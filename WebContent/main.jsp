@@ -122,7 +122,6 @@ a[class="more"] {
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
-		
 	});
 </script>
 </head>
@@ -501,7 +500,7 @@ a[class="more"] {
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board01" class="more">더 보기 ></a>
+					<a href="list.board" class="more">더 보기 ></a>
 				</div>
 			</div>
 		</div>

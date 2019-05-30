@@ -27,7 +27,6 @@ public class MeController extends HttpServlet {
 		MemberDAO me = new MemberDAO();
 
 		try {
-
 			if (cmd.equals("/login.me")) {
 				String email = request.getParameter("id");
 				String pw = request.getParameter("pw");
@@ -42,7 +41,7 @@ public class MeController extends HttpServlet {
 					response.sendRedirect("main.jsp");
 				} else {
 					response.getWriter().append("<script>;"
-							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='main.jsp'}</script>");
+							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='main.jsp';}</script>");
 				}
 			} else if (cmd.equals("/logout.me")) {
 				request.getSession().setAttribute("id", null);
@@ -50,20 +49,21 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 				request.getRequestDispatcher("main.jsp").forward(request, response);
-			} else if (cmd.equals("/getPw.me")) {
-				request.getRequestDispatcher("getPw.jsp").forward(request, response);
-			} else if (cmd.equals("/goPwReset.me")) {
-				String email = request.getParameter("email");
+
+			}else if(cmd.equals("/getPw.me")) {
+				request.getRequestDispatcher("/WEB-INF/member/getPw.jsp").forward(request, response);
+			}else if(cmd.equals("/goPwReset.me")) {
+				String email=request.getParameter("email");
 				request.setAttribute("email", email);
-				request.getRequestDispatcher("pwReset.jsp").forward(request, response);
-			} else if (cmd.equals("/pwReset.me")) {
-				String email = request.getParameter("email");
-				String pw = request.getParameter("pw");
-				System.out.println(email + " " + pw);
-				int result = me.pwReset(email, pw);
+				request.getRequestDispatcher("/WEB-INF/member/pwReset.jsp").forward(request, response);
+			}else if(cmd.equals("/pwReset.me")) {
+				String email=request.getParameter("email");
+				String pw=request.getParameter("pw");
+				System.out.println(email +" "+pw);
+				int result=me.pwReset(email, pw);
 				response.getWriter().print(result);
 			} else if (cmd.equals("/signUpGo.me")) {
-				request.getRequestDispatcher("/signForm.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/member/signForm.jsp").forward(request, response);
 				// 회원가입
 			} else if (cmd.equals("/signUp_insert.me")) {
 				MemberDTO dto = new MemberDTO();
@@ -73,13 +73,6 @@ public class MeController extends HttpServlet {
 				String nickname = request.getParameter("nickname");
 				String age = request.getParameter("age");
 				String gender = request.getParameter("gender");
-
-				System.out.println(email);
-				System.out.println(name);
-				System.out.println(nickname);
-				System.out.println(gender);
-				System.out.println(age);
-
 				dto.setEmail(email);
 				dto.setPw(pw);
 				dto.setName(name);
@@ -89,13 +82,11 @@ public class MeController extends HttpServlet {
 				dto.setAge(age);
 				dto.setType(3);
 				int result = me.insert_member(dto);
-			
 				if (result == 1) {
 					response.getWriter().append("<script> if(alert('가입을 축하드립니다.')!= 0){ location.href='main.jsp' }</script>");
 				} else {
 					response.getWriter().append("<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='main.jsp' }</script>");
 				}
-
 				// 아이디중복확인
 			} else if (cmd.equals("/check.me")) {
 				String email = request.getParameter("id");
