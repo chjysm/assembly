@@ -33,7 +33,7 @@ public class MeController extends HttpServlet {
 					response.sendRedirect("main.jsp");
 				}else {
 					response.getWriter().append("<script>;"
-							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='main.jsp'}</script>");
+							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='main.jsp';}</script>");
 				}
 			}else if(cmd.equals("/logout.me")) {
 				request.getSession().setAttribute("id", null);
@@ -42,11 +42,11 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("nickname", null);
 				request.getRequestDispatcher("main.jsp").forward(request, response);
 			}else if(cmd.equals("/getPw.me")) {
-				request.getRequestDispatcher("getPw.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/member/getPw.jsp").forward(request, response);
 			}else if(cmd.equals("/goPwReset.me")) {
 				String email=request.getParameter("email");
 				request.setAttribute("email", email);
-				request.getRequestDispatcher("pwReset.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/member/pwReset.jsp").forward(request, response);
 			}else if(cmd.equals("/pwReset.me")) {
 				String email=request.getParameter("email");
 				String pw=request.getParameter("pw");

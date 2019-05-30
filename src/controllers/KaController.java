@@ -67,7 +67,7 @@ public class KaController extends HttpServlet {
 					e.printStackTrace();
 					ka.remove(access_token);
 					request.setAttribute("type", 2);
-					request.getRequestDispatcher("reprompt.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
 				}
 			}else if(cmd.equals("/reprompt.ka")) {
 				response.sendRedirect(ka.login());

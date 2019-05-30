@@ -194,7 +194,7 @@
              		<form action="login.me" method="POST">
                  		<div class="form-group pb-1">
                    			<label for="exampleInputEmail1">아이디</label>
-                   			<input type="email" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디를 입력해주세요">
+                   			<input type="email" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="이메일를 입력해주세요">
                  		</div>
                  		<div class="form-group pb-1">
                    			<label for="exampleInputPassword1">비밀번호</label>

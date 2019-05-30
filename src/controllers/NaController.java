@@ -59,7 +59,7 @@ public class NaController extends HttpServlet {
 					response.sendRedirect("main.jsp");
 				}catch(Exception e) {
 					request.setAttribute("type", 1);
-					request.getRequestDispatcher("reprompt.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
 				}
 			}else if(cmd.equals("/reprompt.na")) {
 				response.sendRedirect(na.reprompt());

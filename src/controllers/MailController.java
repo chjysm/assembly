@@ -31,9 +31,7 @@ public class MailController extends HttpServlet {
 				pw.print(result);
 			}else if (cmd.equals("/post.ma")) {
 				String email=request.getParameter("email");
-				System.out.println(email);
 				String certi=ma.Mail(email);
-				System.out.println(certi);
 				pw.print(certi);
 			}
 		}catch (Exception e) {
