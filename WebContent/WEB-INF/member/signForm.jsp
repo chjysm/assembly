@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,21 +22,26 @@
 * {
 	margin: 0 auto;
 }
+
 .fixedMenu {
 	position: fixed;
 	background: #fff;
 	z-index: 999;
 }
+
 .fixedMenuNav {
 	background: #007bff;
 }
+
 .fixedMenu .nav-link {
 	color: #fff;
 	font-weight: bold;
 }
+
 .container {
 	padding-top: 150px;
 }
+
 select {
 	width: 200px; /* 원하는 너비설정 */
 	padding: .8em .5em; /* 여백으로 높이 설정 */
@@ -46,9 +52,10 @@ select {
 	-moz-appearance: none;
 	appearance: none;
 }
-    select :hover{
-        cursor: pointer;
-    }
+
+select :hover {
+	cursor: pointer;
+}
 </style>
 <script>
 	$(function() {
@@ -60,6 +67,7 @@ select {
 			if (emailRex.exec($("#email").val()) == null) {
 				$("#idRegex").css("color", "red");
 				$("#idRegex").text("적합한 형식이 아닙니다. ex) cwg94@naver.com ");
+				$("#email").attr("flag","fales");
 			} else {
 				$("#idRegex").text("");
 				$.ajax({
@@ -107,13 +115,43 @@ select {
 			}
 		});
 		$("#sub").on("click", function() {
-			if($("#email").attr("flag")=="true"){
+			if($("#email").attr("flag")=="true" && $("#certi").attr("flag")=="true"){
 				$("#form").submit();
-			}else if($("#email").attr("flag")=="fales"){
-                alert("이메일이 중복됩니다!");
+			}else if($("#email").attr("flag")=="fales" || $("#certi").attr("flag")=="fales" ){
+                alert("이메일이 중복되거나 인증하지 않았습니다.");
             }else{
                 alert("입력하지 않은 값이 있습니다.");
             }
+		});
+		$("#emailbtn").on("click",function(){
+			if($("#email").attr("flag")=="true"){
+				alert("해당 이메일로 인증 번호가 발송 되었습니다!");
+				$("#certiRegex").css("color", "green");
+				$("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+				$.ajax({
+					url:"post.ma",
+					data:{email : $("#email").val()},
+					type:"get"
+				}).done(function(resp2){
+					var certi=resp2;
+					$("#certibtn").on("click",function(){
+						if($("#certi").val()== certi ){
+							if(alert("인증성공")!=0){
+								$("#certi").attr("flag","true");
+								$("#certiRegex").css("color", "green");
+								$("#certiRegex").text("인증완료!");
+							}
+						}else{
+							alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+							$("#certi").attr("flag","fales");
+							$("#certiRegex").css("color", "red");
+							$("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+						}
+					});
+				});
+			}else{
+				alert("이메일이 중복 되거나 양식에 맞지 않습니다");
+			}
 		});
 	})
 </script>
@@ -151,7 +189,7 @@ select {
 		</div>
 	</div>
 	<div class="container">
-		<form method="post" action="signUp_insert.me" id="form" >
+		<form method="post" action="signUp_insert.me" id="form">
 			<div class="row">
 				<div class="col-lg-8">
 					<table class="table  table-hover"
@@ -162,11 +200,36 @@ select {
 						<tbody>
 							<tr>
 								<td style="width: 200px" class="pt-4"><h5>아이디</h5>
-								<td colspan="2"><input class="form-control" type="text"
-									id="email" name="email" flag="false"
-									placeholder="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
-									pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
-									required><span class="float-left" id=idRegex></span> <br>
+								<td colspan="2">
+									<div class="input-group ">
+										<input type="text" class="form-control" id="email"
+											name="email" flag="false"
+											placeholder="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
+											aria-label="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
+											aria-describedby="button-addon2"
+											pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
+											required>
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" type="button"
+												id="emailbtn">인증</button>
+										</div>
+									</div>
+									<div class="float-left" id='idRegex'></div>
+							</tr>
+							<tr>
+								<td style="width: 200px" class="pt-4"><h5>이메일 인증</h5>
+								<td colspan="2">
+									<div class="input-group">
+										<input type="text" class="form-control" id="certi"
+											name="certi" flag="false" placeholder="인증번호를 입력해 주세요."
+											aria-label="인증번호를 입력해 주세요." aria-describedby="button-addon2"
+											required>
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" type="button"
+												id="certibtn">확인</button>
+										</div>
+									</div>
+									<div class="float-left" id='certiRegex'></div>
 							</tr>
 							<tr>
 								<td style="width: 200px" class="pt-4"><h5>비밀번호</h5> <br>
@@ -195,9 +258,8 @@ select {
 							</tr>
 							<tr>
 								<td style="width: 200px" class="pt-4"><h5>나이</h5>
-								<td style="width: 200px">
-								<select 
-									class="float-left" name="age">
+								<td style="width: 200px"><select class="float-left"
+									name="age">
 										<option value="10-19">10대</option>
 										<option value="20-29">20대</option>
 										<option value="30-39">30대</option>
@@ -217,11 +279,12 @@ select {
 										style="text-align: center; margin: 0 auto;">
 										<div class="btn-group " data-toggle="buttons"
 											style="float: left">
-											<label class="btn btn-primary active"> 
-											<input type="radio" name="gender"  value="M"
-												style="cursor: pointer" checked style="cursor:pointer"  autocomplete="off" checked>남자
-											</label> <label class="btn btn-danger"> 
-											<input type="radio" name="gender"  value="F" style="cursor: pointer" autocomplete="off"  style="cursor:pointer">여자
+											<label class="btn btn-primary active"> <input
+												type="radio" name="gender" value="M" style="cursor: pointer"
+												checked style="cursor:pointer" autocomplete="off" checked>남자
+											</label> <label class="btn btn-danger"> <input type="radio"
+												name="gender" value="F" style="cursor: pointer"
+												autocomplete="off" style="cursor:pointer">여자
 											</label>
 										</div>
 									</div> <br> <br>
@@ -229,7 +292,7 @@ select {
 							<tr>
 								<td style="text-align: center" colspan="3"><input
 									class="btn btn-primary float-center" style="width: 10rem"
-									type="button" id="sub" value="회원가입" >
+									type="button" id="sub" value="회원가입">
 							</tr>
 						</tbody>
 					</table>

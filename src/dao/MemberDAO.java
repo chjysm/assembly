@@ -160,4 +160,26 @@ public class MemberDAO {
 		}
 		return -1;
 	}
+	private PreparedStatement getPstatForGetType(Connection con,String email) throws Exception{
+		String sql ="select type from members where email =?  ";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, email);
+		return pstat;
+	}
+	public int getType(String email) {
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = getPstatForGetType(con,email);
+				ResultSet re = pstat.executeQuery();
+				){
+			if(re.next()) {
+				int type=re.getInt("type");
+				return type;
+			}
+			return -1;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }
