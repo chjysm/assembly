@@ -45,8 +45,8 @@ public class MemberDAO {
 			}
 			pstat.setString(3, dto.getName());
 			pstat.setString(4, dto.getNickname());
-			pstat.setString(5, dto.getBirthday());
-			pstat.setString(6, dto.getGender());
+			pstat.setString(5, dto.getGender());
+			pstat.setString(6, dto.getBirthday());
 			pstat.setString(7, dto.getAge());
 			pstat.setInt(8,dto.getType());
 			int result = pstat.executeUpdate();

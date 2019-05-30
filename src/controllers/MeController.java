@@ -22,10 +22,8 @@ public class MeController extends HttpServlet {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
-		System.out.println(cmd);
 		PrintWriter pt = response.getWriter();
 		MemberDAO me = new MemberDAO();
-
 		try {
 			if (cmd.equals("/login.me")) {
 				String email = request.getParameter("id");
@@ -49,7 +47,6 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 				request.getRequestDispatcher("main.jsp").forward(request, response);
-
 			}else if(cmd.equals("/getPw.me")) {
 				request.getRequestDispatcher("/WEB-INF/member/getPw.jsp").forward(request, response);
 			}else if(cmd.equals("/goPwReset.me")) {
@@ -62,10 +59,10 @@ public class MeController extends HttpServlet {
 				System.out.println(email +" "+pw);
 				int result=me.pwReset(email, pw);
 				response.getWriter().print(result);
-			} else if (cmd.equals("/signUpGo.me")) {
+			} else if (cmd.equals("/signUpGo.me")) {// 회원가입 으로 가기
 				request.getRequestDispatcher("/WEB-INF/member/signForm.jsp").forward(request, response);
-				// 회원가입
-			} else if (cmd.equals("/signUp_insert.me")) {
+			} else if (cmd.equals("/signUp_insert.me")) {// 회원가입
+				System.out.println("sgg");
 				MemberDTO dto = new MemberDTO();
 				String email = request.getParameter("email");// 이메일형식 id
 				String pw = request.getParameter("pwcheck");
@@ -77,7 +74,7 @@ public class MeController extends HttpServlet {
 				dto.setPw(pw);
 				dto.setName(name);
 				dto.setNickname(nickname);
-				dto.setBirthday("null");
+				dto.setBirthday("");
 				dto.setGender(gender);
 				dto.setAge(age);
 				dto.setType(3);
@@ -87,15 +84,13 @@ public class MeController extends HttpServlet {
 				} else {
 					response.getWriter().append("<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='main.jsp' }</script>");
 				}
-				// 아이디중복확인
-			} else if (cmd.equals("/check.me")) {
+				
+			} else if (cmd.equals("/check.me")) {// 아이디중복확인
 				String email = request.getParameter("id");
-				System.out.println(email);
 				int result = me.check(email);
-				System.out.println(result);
 				pt.print(result);
-				// 마이페이지로
-			} else if (cmd.equals("/myPageGo.me")) {
+				
+			} else if (cmd.equals("/myPageGo.me")) {// 마이페이지로
 
 			}
 		} catch (Exception e) {
