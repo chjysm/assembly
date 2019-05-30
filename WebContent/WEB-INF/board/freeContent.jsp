@@ -14,23 +14,28 @@
         <script>
         	$(function(){
         		$(".listBtn").on("click",function(){
-        			location.href="list.board01";
+        			location.href="list.board01?currentPage=${currentPage}";
         		})
         		$(".deleteBtn").on("click",function(){
-        			$("img").each(function(i, item){
+        			location.href="deleteContent.board01?seq=${content.seq}&&currentPage=${currentPage}" ;
+        			
+        			/* $("img").each(function(i, item){
         				var src = $(item).attr("src");
+        				console.log(src);
         				$.ajax({
         					url:"deleteFile.board01",
         					type:"post",
         					data:{img:src},
         					cache:false
-        				});
-        			}).done(function(resp){
-        				if(resp == "파일삭제 성공"){
-                			location.href="deleteContent.board01?seq=${content.seq}";
-
-        				}
-        			})
+        				}).done(function(resp){
+            				console.log(resp)
+            				if(resp == "삭제성공"){
+                    			location.href="deleteContent.board01?seq=${content.seq}" ;
+            				}else{
+            					location.href="deleteContent.board01?seq=${content.seq}" ;
+            				}
+            			});
+        			})  */
         		})
         	})
         </script>

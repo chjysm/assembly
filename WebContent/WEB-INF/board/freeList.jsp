@@ -110,12 +110,12 @@
         </c:forEach>
         
         <div class="navi row">
-        <div>페이지 네비</div>
+        <div>${getNavi }</div>
         </div>
         
         <div class="footer row">
        <div class="col-lg-11 col-md-11 col-sm-11 col-10">
-           <select name="num" id="num">
+           <select name="option" id="option">
             <option>글제목</option>
            <option>작성자</option>
            </select>

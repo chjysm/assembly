@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +20,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.FreeBoardDAO;
+import dto.FileDTO;
 import dto.FreeBoardDTO;
 
 
@@ -41,27 +43,43 @@ public class FreeBoardController extends HttpServlet {
 
 
 		FreeBoardDAO dao = new FreeBoardDAO();
-
-
+		
+		
 
 	
 
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
+			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			request.getSession().setAttribute("currentPage", currentPage);
+			
+			List<FreeBoardDTO> freeList = null;
 			try {
-				List<FreeBoardDTO> freeList = dao.FreeList();
-				request.setAttribute("freeList", freeList);
+				freeList = dao.selectByPage(currentPage);;
+			
 
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
+			String getNavi = null;
+			try {
+				getNavi = dao.getNavi(currentPage); // 페이지 네비 보여주기 
+
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("freeList", freeList);
+			request.setAttribute("getNavi", getNavi);
 			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeWrite.board01")) {//자유게시판 글작성 페이지로
-			System.out.println("왔어");
+			
 			request.getRequestDispatcher("/WEB-INF/board/freeWrite.jsp").forward(request, response);;
 			//---------------------------------------------------------------------------------------------------------------------			
 		}else if(command.equals("/imageUpload.board01")) {//서버에 이미지 업로드
+			response.setCharacterEncoding("utf8");
+			FileDTO fdto = new FileDTO();
+			
 			String rootPath = this.getServletContext().getRealPath("/"); // 서블릿에 대한 환경정보 꺼내옴 -> getRealPath: 코드가 실행되는 진짜 경로
 			System.out.println(rootPath);
 			String nickForderPath = rootPath + (String)request.getSession().getAttribute("email");
@@ -99,8 +117,16 @@ public class FreeBoardController extends HttpServlet {
 							break;
 						}
 					}
-					response.setCharacterEncoding("utf8");
-					response.getWriter().append((String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName);
+					
+					
+					
+					String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
+					System.out.println(realFilePath);
+					fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
+					request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
+					
+					response.getWriter().append(realFilePath);
+					
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -108,10 +134,15 @@ public class FreeBoardController extends HttpServlet {
 
 //---------------------------------------------------------------------------------------------------------------------
 
+		}else if(command.equals("/flag.board01")){//flag 바꿔주기
+			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
+			fdto.setFlag(true);
+			fdto.setFilePath(null);
+//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeBaord.board01")) {//등록버튼 누르면
-			request.getSession().setAttribute("flag", "true");
+			
 			String title = request.getParameter("title");
-			String content = request.getParameter("summernote");
+			String content = request.getParameter("inputContent");
 			String email = (String)request.getSession().getAttribute("email");
 
 			Pattern p = Pattern.compile("^[a-z0-9]*");
@@ -146,33 +177,36 @@ public class FreeBoardController extends HttpServlet {
 			request.setAttribute("result", result);
 			if(result > 0) {
 				System.out.println("입력됨 ㅠ");
-				response.sendRedirect("list.board01");
+				response.sendRedirect("list.board01?currentPage="+request.getSession().getAttribute("currentPage"));
 			}else {System.out.println("입력안됨");}
+			
+			
 			//---------------------------------------------------------------------------------------------------------------------			
-		}else if(command.equals("/deleteFile.board")){//서버에 있는 파일 삭제
+		}else if(command.equals("/deleteFile.board01")){//서버에 있는 파일 삭제
 			String rootPath = this.getServletContext().getRealPath("/");
-			try {Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-			String flag = (String)request.getSession().getAttribute("flag");
-			System.out.println(flag);
-			if(flag.equals("false")) {
-				String imgPath = request.getParameter("img");
-				System.out.println(imgPath);
-
+			String imgPath = request.getParameter("img");
+			FileDTO files = (FileDTO)request.getSession().getAttribute("files");
+			
+			boolean flag = files.isFlag();
+			if( flag == false) {
+				System.out.println("삭제 ㅡㅡ");
 				File file = new File(rootPath + imgPath);
 
 				if(file.exists()) { // 이미지가 서버에 존재 할 경우
 					if(file.delete()) {
-						pw.write("파일삭제 성공");
-						System.out.println("파일삭제 성공");
+						
+						System.out.println("파일삭제성공");
 					}else {
-						pw.write("파일삭제 실패");
-						System.out.println("파일삭제 실패");
+						
+						System.out.println("파일삭제실패");
 					}
 				}else {
-					System.out.println("파일존재 안함");
+					System.out.println("파일존재안함");
 				}
 			}
-			request.getSession().setAttribute("flag", "false");
+			
+			
+			
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeContent.board01")) {//글 내용보기
 			int seq = Integer.parseInt(request.getParameter("seq"));
