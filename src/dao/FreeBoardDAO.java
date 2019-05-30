@@ -54,7 +54,7 @@ public class FreeBoardDAO {
 				String writer = rs.getString("writer");
 				int viewCount =rs.getInt("viewCount");
 				String ip = rs.getString("ip");
-				Timestamp writeDate = rs.getTimestamp("wirteDate");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
 				String email = rs.getString("email");
 				int id = rs.getInt("id");
 				FreeBoardDTO dto = new FreeBoardDTO(seq,title,content,writer,viewCount,ip,writeDate,id,email);
@@ -77,7 +77,7 @@ public class FreeBoardDAO {
 		}
 	}
 	private PreparedStatement pstatContent(Connection con, int seq)throws Exception{
-		String sql = "select * form FreeBoard where seq = ?";
+		String sql = "select * from FreeBoard where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		return pstat;}
@@ -87,19 +87,33 @@ public class FreeBoardDAO {
 				PreparedStatement pstat = this.pstatContent(con, seq);
 				ResultSet rs = pstat.executeQuery();
 				){
-			seq = rs.getInt("seq");
-			String title = rs.getString("title");
-			String content = rs.getString("content");
-			String writer = rs.getString("writer");
-			int viewCount = rs.getInt("viewCount");
-			String ip = rs.getString("ip");
-			Timestamp writeDate = rs.getTimestamp("writeDate");
-			String email = rs.getString("email");
-			int id = rs.getInt("id");
-			FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount ,ip, writeDate, id, email);
-			return dto;
+			while(rs.next()) {
+				seq = rs.getInt("seq");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount ,ip, writeDate, id, email);
+				return dto;
+			}
+			return null;
+			
 		}
 	}
 
+	public int deleteContent(int seq) throws Exception{ // 글 삭제
+		String sql = "delete from FreeBoard where seq = ?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			return pstat.executeUpdate();
+		}
+	}
 
 }

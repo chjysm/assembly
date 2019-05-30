@@ -39,7 +39,7 @@
     					data.append('file',files[0]);
     					console.log(files)
     					$.ajax({
-    						url:'imageUpload.board',
+    						url:'imageUpload.board01',
     						data: data,
     						type:'post',
     						cache: false,
@@ -57,7 +57,7 @@
     			$("img").each(function(i, item){
     				var src = $(item).attr("src");
     				$.ajax({
-    					url:"deleteFile.board",
+    					url:"deleteFile.board01",
     					type:"post",
     					data:{img:src},
     					cache:false
