@@ -500,7 +500,7 @@ a[class="more"] {
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board01" class="more">더 보기 ></a>
+					<a href="list.board01?currentPage=1" class="more">더 보기 ></a>
 				</div>
 			</div>
 		</div>
