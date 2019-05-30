@@ -36,11 +36,15 @@ public class FreeBoardController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
+
 		System.out.println(command);
 
 
 		FreeBoardDAO dao = new FreeBoardDAO();
 
+
+
+	
 
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
 			try {
@@ -64,6 +68,8 @@ public class FreeBoardController extends HttpServlet {
 			String dateForderPath = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 			String filePath = nickForderPath +"/"+ dateForderPath; // 파일이 업로드될 경로
 			System.out.println(filePath);
+
+
 
 			File uploadPath = new File(filePath);
 			if(!uploadPath.exists()) {// 폴더 생성
@@ -99,7 +105,9 @@ public class FreeBoardController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			//---------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------------
+
 		}else if(command.equals("/freeBaord.board01")) {//등록버튼 누르면
 			request.getSession().setAttribute("flag", "true");
 			String title = request.getParameter("title");
@@ -112,7 +120,10 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println(m.group());
 			}
 			String ip = request.getRemoteAddr();
+
 			int id = (int)request.getSession().getAttribute("id");
+
+
 
 			FreeBoardDTO dto = null;
 			try {
@@ -121,6 +132,9 @@ public class FreeBoardController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
+
+
+
 
 			int result = 0;
 			try {
