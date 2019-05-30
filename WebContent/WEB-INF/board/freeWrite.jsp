@@ -76,18 +76,17 @@
     .head{position: relative; top: 200px; text-align: center;}
     .head>div{ margin:auto;}
     #wrapper{border: 0px  black; position: relative; top: 250px; box-sizing: border-box; }
-    
-    h2+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 40px;}
+    h1+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 40px;}
     .header{text-align: center; margin-top:7px; margin-bottom: 7px;}
     .header>div{text-align: center;}
     input[type="text"]{width: 88%; height: 40px; border: none; border-bottom: 4px solid #babbbc;}
     .title{font-size: 20px; line-height: 40px;font-weight: bold;}
     .content>div{margin-top: 10px;}
     #summernote{margin:0; text-align:right; }
-    
     .footer{text-align: center; margin-top:10px;}
     input[type="button"]{background: none; border: 2px solid #babbbc; border-radius: 5px; font-size: 20px;}
     input[type="button"]:hover{background-color: #babbbc; color: white;}
+    
     
 </style>
 
@@ -130,7 +129,7 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h2>자유게시판</h2><div></div></div>
+       <div class="head"><h1>자유게시판</h1><div></div></div>
        <form action="freeBaord.board01" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">

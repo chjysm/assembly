@@ -27,7 +27,7 @@
     #wrapper{border: 0px solid black; position: relative; top: 250px;}
     #wrapper div:first-child{text-align: center;}
     #wrapper *{font-size:25px;}
-    h2+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 50px;}
+    h1+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 50px;}
     
     .header{border-bottom: 1px solid #cfd0d3; height: 40px; line-height: 38px}
     .header>div{font-weight: bold; text-align: center;}
@@ -86,7 +86,7 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
    
-       <div class="head"><h2>자유게시판</h2><div></div></div>
+       <div class="head"><h1>자유게시판</h1><div></div></div>
        
         
            <div class="container" id="wrapper">
@@ -102,7 +102,7 @@
        <c:forEach var="list" items="${freeList }">
         <div class="content row">
             <div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
-            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><a href="freeContent.board01?seq="+${list.seq }>${list.title }</a></div>
+            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><a href="freeContent.board01?seq=${list.seq }">${list.title }</a></div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>

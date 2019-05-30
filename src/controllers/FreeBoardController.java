@@ -152,16 +152,16 @@ public class FreeBoardController extends HttpServlet {
 				}
 			}
 			request.getSession().setAttribute("flag", "false");
-		}else if(command.equals("/freecontent.board01")) {//글 내용보기
+		}else if(command.equals("/freeContent.board01")) {//글 내용보기
 			int seq = Integer.parseInt(request.getParameter("seq"));
-			
+			System.out.println(seq);
 			try {
-			int viewCount = dao.viewCount(seq);
+			int viewCount = dao.viewCount(seq); //조회수 올리기
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.html");
 		}
-			
+			request.getRequestDispatcher("/list.board01").forward(request, response);
 			
 		}
 
