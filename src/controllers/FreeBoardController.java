@@ -51,12 +51,9 @@ public class FreeBoardController extends HttpServlet {
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			request.getSession().setAttribute("currentPage", currentPage);
-			
 			List<FreeBoardDTO> freeList = null;
 			try {
 				freeList = dao.selectByPage(currentPage);;
-			
-
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");

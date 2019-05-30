@@ -28,17 +28,7 @@ public class WinController extends HttpServlet {
 		try {
 			if (cmd.equals("/goMain.win")) {
 				request.getRequestDispatcher("main.jsp").forward(request, response);
-			}else if(cmd.equals("/goFreeList.win")) {//자유게시판 목록페이지로
-				try {
-					List<FreeBoardDTO> freeList = fb.FreeList();
-					request.setAttribute("freeList", freeList);
-				
-					}catch(Exception e) {
-						e.printStackTrace();
-						response.sendRedirect("error.html");
-					}
-				request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
-				}
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

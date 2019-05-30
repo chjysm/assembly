@@ -132,7 +132,7 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="goFreeList.win">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">건의게시판</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
