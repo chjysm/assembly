@@ -351,7 +351,7 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-warning myCard" style="width: 18rem;">
 					<img
-						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
+						src="photo3.png"
 						class="card-img-top" alt="card_img1">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
