@@ -24,47 +24,46 @@
 * {
 	margin: 0 auto;
 }
-
 .fixedMenu {
 	position: fixed;
 	background: #fff;
 	z-index: 999;
 }
-
 .fixedMenuNav {
 	background: #007bff;
 }
-
 .fixedMenu .nav-link {
 	color: #fff;
 	font-weight: bold;
 }
-
 .jumbotron {
 	padding-top: 180px;
 	background: #b8daff;
 }
-
 .mainPage {
 	margin-top: -32px;
 	background: #F2F2F2;
 }
-
 .carousel-indicators>li {
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
 }
-
 .myCard {
 	border: none;
+}
+head>.nav-item {
+	width: 15%;
+	heigth: 100%;
+}
+.nav-item:hover{
+    text-decoration-line: underline;
 }
 
 .nav-tabs .nav-link {
 	color: #000;
 	font-weight: bold;
 }
-
 .tab-pane {
 	padding: 30px;
 	background: #fff;
@@ -73,30 +72,25 @@
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
-
 .myTitle {
 	text-align: left;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-
 .tabStuff {
 	font-size: 13px;
 	color: #555;
 }
-
 .myBanner img {
 	paddingtop: 10px;
 	width: 90%;
 	height: 250px;
 	border-radius: 50%;
 }
-
 .footer {
 	background: #b8daff;
 }
-
 .more {
 	text-align: right;
 }
@@ -104,7 +98,6 @@
 a[class="more"] {
 	color: black;
 }
-
 a[class="more"] {
 	color: black;
 	font-weight: bold;
@@ -115,8 +108,10 @@ a[class="more"] {
 		$("#emailLogout").on("click", function() {
 			location.href = "logout.me";
 		});
+		$("#emailLogout2").on("click", function() {
+			location.href = "logout.me";
+		});
 		$("#getPw").on("click", function() {
-			// 				location.href="getPw.me";
 			open("getPw.me", "_brank", "width=600px,height=400px")
 		});
 		$("#signUp_btn").on("click", function() {
@@ -129,17 +124,22 @@ a[class="more"] {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">메인페이지</a>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center head">
+					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="goFreeList.win">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">건의게시판</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 		<div class="row p-1">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -183,7 +183,7 @@ a[class="more"] {
 		</div>
 	</div>
 	<!-- 	본문 -->
-	<div class="container mainPage p-5">
+	<div class="container mainPage pt-2">
 		<div class="row mb-5">
 			<!-- 	슬라이드 -->
 			<div
@@ -285,7 +285,7 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! admin님!</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">로그아웃</button>
+							<button type="button" class="btn btn-outline-secondary mr-2" id="emailLogout2">로그아웃</button>
 							<br>
 							<br>
 						</form>

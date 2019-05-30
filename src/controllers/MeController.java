@@ -32,9 +32,10 @@ public class MeController extends HttpServlet {
 				if (result == 1) {
 					int id = me.getId(email);
 					String nickname = me.getNickname(email);
+					int type = me.getType(email);
 					request.getSession().setAttribute("id", id);
 					request.getSession().setAttribute("email", email);
-					request.getSession().setAttribute("type", 3);
+					request.getSession().setAttribute("type", type);
 					request.getSession().setAttribute("nickname", nickname);
 					response.sendRedirect("main.jsp");
 				} else {
@@ -62,7 +63,6 @@ public class MeController extends HttpServlet {
 			} else if (cmd.equals("/signUpGo.me")) {// 회원가입 으로 가기
 				request.getRequestDispatcher("/WEB-INF/member/signForm.jsp").forward(request, response);
 			} else if (cmd.equals("/signUp_insert.me")) {// 회원가입
-				System.out.println("sgg");
 				MemberDTO dto = new MemberDTO();
 				String email = request.getParameter("email");// 이메일형식 id
 				String pw = request.getParameter("pwcheck");
@@ -84,7 +84,6 @@ public class MeController extends HttpServlet {
 				} else {
 					response.getWriter().append("<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='main.jsp' }</script>");
 				}
-				
 			} else if (cmd.equals("/check.me")) {// 아이디중복확인
 				String email = request.getParameter("id");
 				int result = me.check(email);
