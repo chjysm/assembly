@@ -26,7 +26,7 @@ public class WinController extends HttpServlet {
 		PrintWriter pt = response.getWriter();
 		FreeBoardDAO fb= new FreeBoardDAO();
 		try {
-			if (cmd.equals("/goMain.win")) {
+			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
 				request.getRequestDispatcher("main.jsp").forward(request, response);
 			}else if(cmd.equals("/goFreeList.win")) {//자유게시판 목록페이지로
 				try {

@@ -13,7 +13,11 @@
     <script>
     	$(function(){
     		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
+    			if(${type == null}){
+    				alert("로그인 후 이용해주세요");
+    			}else{
     			location.href="freeWrite.board01";
+    			}
     		})
     	})
     </script>
@@ -56,7 +60,7 @@
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
 				  <li class="nav-item">
-				    <a class="nav-link active" href="#">메인페이지</a>
+				    <a class="nav-link active" href="goMain.win">메인페이지</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link" href="#">메뉴1</a>
