@@ -18,7 +18,7 @@
     			}else{
     			location.href="freeWrite.board01";
     			}
-    		})
+    		});
     	})
     </script>
 <style>

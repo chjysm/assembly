@@ -50,7 +50,7 @@
                 	}
                 		
                 	}).done(function(resp){
-                		//location.href="";
+                		location.href="commentList.board01";
                 	});
                 	
                   /*  var textarea = $(".textarea").html();
