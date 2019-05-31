@@ -122,6 +122,10 @@ a[class="more"] {
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
+		$("#mPageGo").on("click", function() {
+
+			location.href = "mPageGo.me";
+		});
 	});
 </script>
 </head>
@@ -250,9 +254,8 @@ a[class="more"] {
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
-							<br>
-							<br> <a href="logout.na"><img height="49" width="150"
-								src="nlogout.PNG" /></a>
+							<br> <br> <a href="logout.na"><img height="49"
+								width="150" src="nlogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
@@ -262,9 +265,8 @@ a[class="more"] {
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
-							<br>
-							<br> <a href="logout.ka"><img height="49" width="222"
-								src="klogout.PNG" /></a>
+							<br> <br> <a href="logout.ka"><img height="49"
+								width="222" src="klogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
@@ -272,12 +274,12 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="mPageGo">마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="emailLogout">로그아웃</button>
-							<br>
-							<br>
+							<br> <br>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
@@ -286,8 +288,7 @@ a[class="more"] {
 								<label for="comment">안녕하세요! admin님!</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">로그아웃</button>
-							<br>
-							<br>
+							<br> <br>
 						</form>
 					</c:when>
 					<c:otherwise>
