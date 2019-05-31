@@ -56,7 +56,7 @@ public class NaController extends HttpServlet {
 					request.getSession().setAttribute("email", email);
 					request.getSession().setAttribute("type", type);
 					request.getSession().setAttribute("nickname", nickname);
-					response.sendRedirect("main.jsp");
+					response.sendRedirect("goMain.win");
 				}catch(Exception e) {
 					request.setAttribute("type", 1);
 					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
@@ -64,11 +64,12 @@ public class NaController extends HttpServlet {
 			}else if(cmd.equals("/reprompt.na")) {
 				response.sendRedirect(na.reprompt());
 			}else if(cmd.equals("/logout.na")) {
+				System.out.println("sad");
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

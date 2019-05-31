@@ -258,7 +258,7 @@ a[class="more"] {
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
-								src="nlogout.PNG" /></a>
+								src="Resources/img/nlogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
@@ -270,7 +270,7 @@ a[class="more"] {
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.ka"><img height="49" width="222"
-								src="klogout.PNG" /></a>
+								src="Resources/img/klogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
@@ -314,7 +314,7 @@ a[class="more"] {
 								찾기</button>
 							<br> <br> <a id="kakao-login-btn"></a><a
 								href="http://developers.kakao.com/logout"></a> <a
-								href="login.na"><img height="49" width="222" src="naver.PNG" /></a>
+								href="login.na"><img height="49" width="222" src="Resources/img/naver.PNG" /></a>
 						</form>
 					</c:otherwise>
 				</c:choose>
@@ -357,7 +357,7 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-warning myCard" style="width: 18rem;">
 					<img
-						src="photo3.png"
+						src="Resources/img/photo3.png"
 						class="card-img-top" alt="card_img1">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
