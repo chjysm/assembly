@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -88,9 +90,17 @@ public class MeController extends HttpServlet {
 				String email = request.getParameter("id");
 				int result = me.check(email);
 				pt.print(result);
-				
 			} else if (cmd.equals("/myPageGo.me")) {// 마이페이지로
 
+			}else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
+				String email = (String)request.getSession().getAttribute("email");
+				Pattern p = Pattern.compile("^(.*)[ .]?");
+				Matcher m = p.matcher(email);
+				m.find();
+				String realEmail=m.group(1);
+				System.out.println(realEmail);
+				request.setAttribute("email", realEmail);
+				request.getRequestDispatcher("/WEB-INF/member/withdrawal.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

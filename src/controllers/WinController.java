@@ -23,7 +23,7 @@ public class WinController extends HttpServlet {
 		String cmd = reqUri.substring(ctxPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
 		try {
-			if (cmd.equals("/goMain.win")) {
+			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
@@ -38,7 +38,6 @@ public class WinController extends HttpServlet {
 				response.sendRedirect("http://map.daum.net/?sName="+addr+"&eName="+brand);
 				//request.getRequestDispatcher("http://map.daum.net/?sName="+addr+"&eName="+brand).forward(request, response);
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

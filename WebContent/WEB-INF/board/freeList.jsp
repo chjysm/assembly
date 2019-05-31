@@ -13,8 +13,12 @@
     <script>
     	$(function(){
     		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
+    			if(${type == null}){
+    				alert("로그인 후 이용해주세요");
+    			}else{
     			location.href="freeWrite.board01";
-    		})
+    			}
+    		});
     	})
     </script>
 <style>

@@ -120,6 +120,9 @@ a[class="more"] {
 		$("#storeSerchBtn").on("click", function() {
 			open("goStoreSerch.win", "_brank", "width=800px,height=600px")
 		});
+		$(".withdrawalBtn").on("click", function() {
+			open("withdrawal.me", "_brank", "width=600px,height=600px")
+		});
 	});
 </script>
 </head>
@@ -252,7 +255,7 @@ a[class="more"] {
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
 								src="Resources/img/nlogout.PNG" /></a>
@@ -264,7 +267,7 @@ a[class="more"] {
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.ka"><img height="49" width="222"
 								src="Resources/img/klogout.PNG" /></a>
@@ -276,7 +279,7 @@ a[class="more"] {
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="emailLogout">로그아웃</button>
 							<br>
