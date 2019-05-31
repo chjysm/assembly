@@ -62,7 +62,7 @@ public class KaController extends HttpServlet {
 					request.getSession().setAttribute("email", email);
 					request.getSession().setAttribute("type", type);
 					request.getSession().setAttribute("nickname", nickname);
-					response.sendRedirect("main.jsp");
+					response.sendRedirect("goMain.win");
 				}catch(Exception e) {
 					e.printStackTrace();
 					ka.remove(access_token);
@@ -76,7 +76,7 @@ public class KaController extends HttpServlet {
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

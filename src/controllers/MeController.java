@@ -2,7 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.List;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +28,8 @@ public class MeController extends HttpServlet {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
-		System.out.println(cmd);
 		PrintWriter pt = response.getWriter();
 		MemberDAO me = new MemberDAO();
-
 		try {
 			if (cmd.equals("/login.me")) {
 				String email = request.getParameter("id");
@@ -35,23 +38,25 @@ public class MeController extends HttpServlet {
 				if (result == 1) {
 					int id = me.getId(email);
 					String nickname = me.getNickname(email);
-					request.getSession().setAttribute("id", id);// seq
-					request.getSession().setAttribute("email", email);// 아이디
-					request.getSession().setAttribute("type", 3);
+					int type = me.getType(email);
+					request.getSession().setAttribute("id", id);
+					request.getSession().setAttribute("email", email);
+					request.getSession().setAttribute("type", type);
 					request.getSession().setAttribute("nickname", nickname);
-					response.sendRedirect("main.jsp");
+					response.sendRedirect("goMain.win");
 				} else {
 					response.getWriter().append("<script>;"
-							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='main.jsp';}</script>");
+							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='goMain.win';}</script>");
 				}
 			} else if (cmd.equals("/logout.me")) {
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
-				request.getRequestDispatcher("main.jsp").forward(request, response);
 
-			} else if (cmd.equals("/getPw.me")) {
+				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+			}else if(cmd.equals("/getPw.me")) {
+
 				request.getRequestDispatcher("/WEB-INF/member/getPw.jsp").forward(request, response);
 			} else if (cmd.equals("/goPwReset.me")) {
 				String email = request.getParameter("email");
@@ -63,10 +68,9 @@ public class MeController extends HttpServlet {
 				System.out.println(email + " " + pw);
 				int result = me.pwReset(email, pw);
 				response.getWriter().print(result);
-			} else if (cmd.equals("/signUpGo.me")) {
+			} else if (cmd.equals("/signUpGo.me")) {// 회원가입 으로 가기
 				request.getRequestDispatcher("/WEB-INF/member/signForm.jsp").forward(request, response);
-				// 회원가입
-			} else if (cmd.equals("/signUp_insert.me")) {
+			} else if (cmd.equals("/signUp_insert.me")) {// 회원가입
 				MemberDTO dto = new MemberDTO();
 				String email = request.getParameter("email");// 이메일형식 id
 				String pw = request.getParameter("pwcheck");
@@ -78,24 +82,19 @@ public class MeController extends HttpServlet {
 				dto.setPw(pw);
 				dto.setName(name);
 				dto.setNickname(nickname);
-				dto.setBirthday("null");
+				dto.setBirthday("");
 				dto.setGender(gender);
 				dto.setAge(age);
 				dto.setType(3);
 				int result = me.insert_member(dto);
 				if (result == 1) {
-					response.getWriter()
-							.append("<script> if(alert('가입을 축하드립니다.')!= 0){ location.href='main.jsp' }</script>");
+					response.getWriter().append("<script> if(alert('가입을 축하드립니다.')!= 0){ location.href='goMain.win' }</script>");
 				} else {
-					response.getWriter()
-							.append("<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='main.jsp' }</script>");
+					response.getWriter().append("<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='goMain.win' }</script>");
 				}
-				// 아이디중복확인
-			} else if (cmd.equals("/check.me")) {
+			} else if (cmd.equals("/check.me")) {// 아이디중복확인
 				String email = request.getParameter("id");
-				System.out.println(email);
 				int result = me.check(email);
-				System.out.println(result);
 				pt.print(result);
 				// 마이페이지로
 			} else if (cmd.equals("/mPageGo.me")) {
@@ -155,6 +154,17 @@ public class MeController extends HttpServlet {
 					response.getWriter()
 							.append("<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='main.jsp' }</script>");
 				}
+
+			} else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
+				String email = (String)request.getSession().getAttribute("email");
+				Pattern p = Pattern.compile("^(.*)[ .]?");
+				Matcher m = p.matcher(email);
+				m.find();
+				String realEmail=m.group(1);
+				System.out.println(realEmail);
+				request.setAttribute("email", realEmail);
+				request.getRequestDispatcher("/WEB-INF/member/withdrawal.jsp").forward(request, response);
+
 			}
 
 		} catch (Exception e) {

@@ -15,7 +15,7 @@ import dto.MemberDTO;
 public class MemberDAO {
 	private Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.60.22:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 		return DriverManager.getConnection(url, user, pw);
@@ -53,7 +53,6 @@ public class MemberDAO {
 			pstat.setString(4, dto.getNickname());
 			pstat.setString(5, dto.getGender());
 			pstat.setString(6, dto.getBirthday());
-
 			pstat.setString(7, dto.getAge());
 			pstat.setInt(8, dto.getType());
 			int result = pstat.executeUpdate();
@@ -222,7 +221,30 @@ public class MemberDAO {
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
-		} catch (Exception e) {
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	private PreparedStatement getPstatForGetType(Connection con,String email) throws Exception{
+		String sql ="select type from members where email =?  ";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, email);
+		return pstat;
+	}
+	public int getType(String email) {
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = getPstatForGetType(con,email);
+				ResultSet re = pstat.executeQuery();
+				){
+			if(re.next()) {
+				int type=re.getInt("type");
+				return type;
+			}
+			return -1;
+		} catch(Exception e) {
 			e.printStackTrace();
 			return -1;
 		}

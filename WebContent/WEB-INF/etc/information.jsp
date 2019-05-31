@@ -137,7 +137,7 @@ h3 {
 				<div class="col-lg-6">
 					<div style="width: 80%">
 						<h3>누가 스크래치를 사용하나요?</h3>
-						<img class="rounded" src="information1.png" alt="왜안나오죵">
+						<img class="rounded" src="Resources/img/information1.png" alt="왜안나오죵">
 						<p class="mt-2">
 							<span class="mainspan"><strong>스크래치</strong>는 주로 8~16세를
 								대상으로 만들어졌습니다만, 모든 연령층에서 사용하고 있습니다. 수백만의 사람들이 가정, 학교, 전시관, 도서관,
@@ -163,7 +163,7 @@ h3 {
 				<div class="col-lg-6  ">
 					<div style="width: 80%">
 						<h3 class="mt-3">전세계의 여러 나라</h3>
-						<img class="rounded" src="information2.png" alt="왜안나오죵">
+						<img class="rounded" src="Resources/img/information2.png" alt="왜안나오죵">
 						<p class="mt-2">
 							<span class="mainspan"><strong>스크래치</strong>는 150개 이상의
 								나라에서 40개 이상의 언어로 사용되고 있습니다. 언어를 바꾸려면 페이지의 맨 아래에 있는 메뉴를 클릭하세요.
@@ -175,7 +175,7 @@ h3 {
 				<div class="col-lg-6">
 					<div style="width: 80%">
 						<h3 class="mt-3">학교에서 쓰이는 스크래치</h3>
-						<img class="rounded" src="information3.png" alt="왜안나오죵">
+						<img class="rounded" src="Resources/img/information3.png" alt="왜안나오죵">
 						<p class="mt-2">
 							<span class="mainspan">학생들은 모든 수준(초등학교에서 대학까지)과 다양한 과목(수학,
 								컴퓨터 과학, 국어, 사회 등)에서 스크래치와 함께 학습하고 있습니다. 교육자들은 ScratchEd 웹사이트에서

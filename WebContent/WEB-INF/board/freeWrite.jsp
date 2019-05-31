@@ -15,14 +15,20 @@
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
-    			location.href="list.board01"; //현재페이지 붙여서 보내기
+    			location.href="list.board01?currentPage=${currentPage}"; //현재페이지 붙여서 보내기
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
-    			if($("#title").val() != "" && $("#summernote").val() != ""){
+    			$("#inputContent").val($('#summernote').summernote("code"));
+    			
+    			if($("#title").val() != "" && $("#inputContent").val() != ""){
+    				$.ajax({
+						url:'flag.board01',
+					})
+    				
     				$("#writeForm").submit();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
-    			}else if($("#summernote").val() == ""){
+    			}else if($("#inputContent").val() == ""){
     				alert("내용을 입력해주세요.");
     			}
     			
@@ -31,6 +37,7 @@
     			lang:'ko-KR',
     			placeholder:'글을 입력해주세요.',
     			tabsize:2,
+    			width:1500,
     			height:400,
     			focus:true,
     			callbacks:{
@@ -39,7 +46,7 @@
     					data.append('file',files[0]);
     					console.log(files)
     					$.ajax({
-    						url:'imageUpload.board',
+    						url:'imageUpload.board01',
     						data: data,
     						type:'post',
     						cache: false,
@@ -57,7 +64,7 @@
     			$("img").each(function(i, item){
     				var src = $(item).attr("src");
     				$.ajax({
-    					url:"deleteFile.board",
+    					url:"deleteFile.board01",
     					type:"post",
     					data:{img:src},
     					cache:false
@@ -76,18 +83,17 @@
     .head{position: relative; top: 200px; text-align: center;}
     .head>div{ margin:auto;}
     #wrapper{border: 0px  black; position: relative; top: 250px; box-sizing: border-box; }
-    
-    h2+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 40px;}
+    h1+div{border: 1.5px solid #0a47ff; width: 500px; margin-bottom: 40px;}
     .header{text-align: center; margin-top:7px; margin-bottom: 7px;}
     .header>div{text-align: center;}
     input[type="text"]{width: 88%; height: 40px; border: none; border-bottom: 4px solid #babbbc;}
     .title{font-size: 20px; line-height: 40px;font-weight: bold;}
     .content>div{margin-top: 10px;}
     #summernote{margin:0; text-align:right; }
-    
     .footer{text-align: center; margin-top:10px;}
     input[type="button"]{background: none; border: 2px solid #babbbc; border-radius: 5px; font-size: 20px;}
     input[type="button"]:hover{background-color: #babbbc; color: white;}
+    
     
 </style>
 
@@ -100,7 +106,7 @@
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
 				  <li class="nav-item">
-				    <a class="nav-link active" href="#">메인페이지</a>
+				    <a class="nav-link active" href="goMain.win">메인페이지</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link" href="#">메뉴1</a>
@@ -130,7 +136,7 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h2>자유게시판</h2><div></div></div>
+       <div class="head"><h1>자유게시판</h1><div></div></div>
        <form action="freeBaord.board01" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">
@@ -138,7 +144,8 @@
           <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title"></div>
        </div>
        <div class="content row">
-           <div class="col-lg-12 col-md-12 col-sm-12 col-12"><textarea name="summernote" id="summernote" cols="30" rows="10"></textarea></div>
+       	<div id="summernote" contenteditable="true"></div>
+         <div class="col-lg-12 col-md-12 col-sm-12 col-12"><textarea name="inputContent" id="inputContent" cols="30" rows="10" hidden></textarea></div>
        </div>
         <div class="footer">
             <input type="button" class="completeBtn" value="등록">
