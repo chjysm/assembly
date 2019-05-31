@@ -55,12 +55,6 @@ public class FreeBoardController extends HttpServlet {
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			request.getSession().setAttribute("currentPage", currentPage);
-
-
-		
-				
-
-
 		List<FreeBoardDTO> freeList = null;
 			try {
 				freeList = dao.selectByPage(currentPage);;
@@ -94,8 +88,6 @@ public class FreeBoardController extends HttpServlet {
 			String dateForderPath = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 			String filePath = nickForderPath +"/"+ dateForderPath; // 파일이 업로드될 경로
 			System.out.println(filePath);
-
-
 
 			File uploadPath = new File(filePath);
 			if(!uploadPath.exists()) {// 폴더 생성
@@ -136,9 +128,6 @@ public class FreeBoardController extends HttpServlet {
 					request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
 
 					response.getWriter().append(realFilePath);
-
-
-					
 
 				}
 			}catch(Exception e) {
