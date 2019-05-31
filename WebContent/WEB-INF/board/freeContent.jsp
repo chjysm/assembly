@@ -50,7 +50,7 @@
                 	}
                 		
                 	}).done(function(resp){
-                		
+                		//location.href="";
                 	});
                 	
                   /*  var textarea = $(".textarea").html();

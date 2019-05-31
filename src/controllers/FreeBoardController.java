@@ -56,10 +56,14 @@ public class FreeBoardController extends HttpServlet {
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			request.getSession().setAttribute("currentPage", currentPage);
 
-			List<FreeBoardDTO> freeList = null;
+
+		
+				
+
+
+		List<FreeBoardDTO> freeList = null;
 			try {
 				freeList = dao.selectByPage(currentPage);;
-
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -124,6 +128,8 @@ public class FreeBoardController extends HttpServlet {
 
 
 
+
+
 					String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
 					System.out.println(realFilePath);
 					fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
@@ -131,18 +137,21 @@ public class FreeBoardController extends HttpServlet {
 
 					response.getWriter().append(realFilePath);
 
+
+					
+
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 
-			//---------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/flag.board01")){//flag 바꿔주기
 			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
 			fdto.setFlag(true);
 			fdto.setFilePath(null);
-			//---------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeBaord.board01")) {//등록버튼 누르면
 
 			String title = request.getParameter("title");
@@ -181,9 +190,7 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("입력됨 ㅠ");
 				response.sendRedirect("list.board01?currentPage="+request.getSession().getAttribute("currentPage"));
 			}else {System.out.println("입력안됨");}
-
-
-			//---------------------------------------------------------------------------------------------------------------------			
+//---------------------------------------------------------------------------------------------------------------------			
 		}else if(command.equals("/deleteFile.board01")){//서버에 있는 파일 삭제
 			String rootPath = this.getServletContext().getRealPath("/");
 			String imgPath = request.getParameter("img");
@@ -208,8 +215,7 @@ public class FreeBoardController extends HttpServlet {
 			}
 
 
-
-			//---------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeContent.board01")) {//글 내용보기
 			int seq = Integer.parseInt(request.getParameter("seq"));
 			System.out.println(seq);

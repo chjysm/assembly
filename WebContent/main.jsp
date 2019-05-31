@@ -117,6 +117,9 @@ a[class="more"] {
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
+		$("#storeSerchBtn").on("click", function() {
+			open("goStoreSerch.win", "_brank", "width=800px,height=600px")
+		});
 	});
 </script>
 </head>
@@ -132,7 +135,7 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="goFreeList.win">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">건의게시판</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
@@ -356,7 +359,7 @@ a[class="more"] {
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
 						<p class="card-text">키오스크 사용법이 익숙해졌다면 실제 매장에 가서 주문해보세요!</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<input type="button" class="btn btn-primary" value ="체험하기" id="storeSerchBtn">
 					</div>
 				</div>
 			</div>
