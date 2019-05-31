@@ -2,8 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java.util.List;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,18 +53,20 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
+
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}else if(cmd.equals("/getPw.me")) {
+
 				request.getRequestDispatcher("/WEB-INF/member/getPw.jsp").forward(request, response);
-			}else if(cmd.equals("/goPwReset.me")) {
-				String email=request.getParameter("email");
+			} else if (cmd.equals("/goPwReset.me")) {
+				String email = request.getParameter("email");
 				request.setAttribute("email", email);
 				request.getRequestDispatcher("/WEB-INF/member/pwReset.jsp").forward(request, response);
-			}else if(cmd.equals("/pwReset.me")) {
-				String email=request.getParameter("email");
-				String pw=request.getParameter("pw");
-				System.out.println(email +" "+pw);
-				int result=me.pwReset(email, pw);
+			} else if (cmd.equals("/pwReset.me")) {
+				String email = request.getParameter("email");
+				String pw = request.getParameter("pw");
+				System.out.println(email + " " + pw);
+				int result = me.pwReset(email, pw);
 				response.getWriter().print(result);
 			} else if (cmd.equals("/signUpGo.me")) {// 회원가입 으로 가기
 				request.getRequestDispatcher("/WEB-INF/member/signForm.jsp").forward(request, response);
@@ -90,9 +96,66 @@ public class MeController extends HttpServlet {
 				String email = request.getParameter("id");
 				int result = me.check(email);
 				pt.print(result);
-			} else if (cmd.equals("/myPageGo.me")) {// 마이페이지로
+				// 마이페이지로
+			} else if (cmd.equals("/mPageGo.me")) {
+				int seq = (int) request.getSession().getAttribute("id");
+				List<MemberDTO> dto = me.select_Member(seq);
 
-			}else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
+				request.setAttribute("list", dto);
+				request.getRequestDispatcher("/WEB-INF/member/mypage.jsp").forward(request, response);
+				// 마이페이지에서 패스워드 변경하는 페이지로 이동
+			} else if (cmd.equals("/pwChangeGo.me")) {
+
+				request.getRequestDispatcher("/WEB-INF/member/pwChange.jsp").forward(request, response);
+
+			} else if (cmd.equals("/pwChange.me")) {
+				int seq = (int) request.getSession().getAttribute("id");
+
+				String beforePw = request.getParameter("pw");
+
+				List<MemberDTO> dto = me.select_Member(seq);
+				String dbPw = dto.get(0).getPw();
+				String pw = me.testSHA256(beforePw);
+				System.out.println(pw);
+				System.out.println(dbPw);
+				if (dbPw.equals(pw)) {
+					// 비밀번호일치
+					pt.print(1);
+				} else {
+					// 비밀번호 불일치
+					pt.print(0);
+				}
+				// 패스워드 변경
+			} else if (cmd.equals("/pwChangeOn.me")) {
+				String pw = request.getParameter("pwCheck");
+				int seq = (int) request.getSession().getAttribute("id");
+				System.out.println(pw);
+				System.out.println(seq);
+				int result = me.pwUpdate(pw, seq);
+				System.out.println(result);
+				if (result == 1) {
+					response.getWriter().append("<script> if(alert('패스워드가 변경되었습니다.')!= 0){ self.close() }</script>");
+				} else {
+					response.getWriter().append("<script> if(alert('패스워드 변경에 실패했습니다!')!= 0){ self.close() }</script>");
+				}
+			} else if (cmd.equals("/main.me")) {
+				request.getRequestDispatcher("main.jsp").forward(request, response);
+				// 마이페이지 수정하기
+			} else if (cmd.equals("/modify.me")) {
+				int seq = (int) request.getSession().getAttribute("id");// 씨꿘스
+				String nickname = request.getParameter("nickname");
+				String gender = request.getParameter("gender");
+				int result = me.mpUpdate(nickname,gender, seq);
+				System.out.print(result);
+				if (result == 1) {
+					response.getWriter()
+							.append("<script> if(alert('회원정보를 수정했습니다.')!= 0){ location.href='main.jsp' }</script>");
+				} else {
+					response.getWriter()
+							.append("<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='main.jsp' }</script>");
+				}
+
+			} else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
 				String email = (String)request.getSession().getAttribute("email");
 				Pattern p = Pattern.compile("^(.*)[ .]?");
 				Matcher m = p.matcher(email);
@@ -101,7 +164,9 @@ public class MeController extends HttpServlet {
 				System.out.println(realEmail);
 				request.setAttribute("email", realEmail);
 				request.getRequestDispatcher("/WEB-INF/member/withdrawal.jsp").forward(request, response);
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

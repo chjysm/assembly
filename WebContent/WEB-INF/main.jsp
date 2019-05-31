@@ -117,6 +117,10 @@ a[class="more"] {
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
+
+		$("#mPageGo").on("click", function() {
+			location.href = "mPageGo.me";
+		});
 		$("#storeSerchBtn").on("click", function() {
 			open("goStoreSerch.win", "_brank", "width=800px,height=600px")
 		});
@@ -278,12 +282,11 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2" id="mPageGo">마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="emailLogout">로그아웃</button>
-							<br>
-							<br>
+							<br> <br>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">

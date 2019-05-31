@@ -62,6 +62,8 @@ select :hover {
 		var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
 		var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
 		var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
+		var idCount = 0;
+		var pwCount = 0;
 		//아이디 중복 ajax +정규표현식
 		$("#email").on("input", function() {
 			if (emailRex.exec($("#email").val()) == null) {
@@ -71,7 +73,7 @@ select :hover {
 			} else {
 				$("#idRegex").text("");
 				$.ajax({
-					url :  "check.me",
+					url : "check.me",
 					type : "post",
 					data : {
 						id : $("#email").val()
@@ -260,6 +262,7 @@ select :hover {
 								<td style="width: 200px" class="pt-4"><h5>나이</h5>
 								<td style="width: 200px"><select class="float-left"
 									name="age">
+
 										<option value="10-19">10대</option>
 										<option value="20-29">20대</option>
 										<option value="30-39">30대</option>
@@ -279,7 +282,7 @@ select :hover {
 										style="text-align: center; margin: 0 auto;">
 										<div class="btn-group " data-toggle="buttons"
 											style="float: left">
-											<label class="btn btn-primary active"> <input
+											<label class="btn btn-primary active"> <input 
 												type="radio" name="gender" value="M" style="cursor: pointer"
 												checked style="cursor:pointer" autocomplete="off" checked>남자
 											</label> <label class="btn btn-danger"> <input type="radio"
