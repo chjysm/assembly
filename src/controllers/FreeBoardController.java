@@ -114,21 +114,15 @@ public class FreeBoardController extends HttpServlet {
 							break;
 						}
 					}
-					
-					
-					
 					String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
 					System.out.println(realFilePath);
 					fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
 					request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
-					
 					response.getWriter().append(realFilePath);
-					
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-
 //---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/flag.board01")){//flag 바꿔주기
