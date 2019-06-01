@@ -270,7 +270,7 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2" >마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.ka"><img height="49" width="222"

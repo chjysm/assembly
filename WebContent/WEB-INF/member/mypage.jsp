@@ -97,7 +97,7 @@ input[type=submit]:hover {
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
 		})
 		$("#back_btn").on("click", function() {
-			location.href = "main.me";
+			location.href = "goMain.win";
 		})
 		$("#modify_btn").on("click", function() {
 			$("#mpForm").submit();

@@ -110,14 +110,10 @@ public class MeController extends HttpServlet {
 
 			} else if (cmd.equals("/pwChange.me")) {
 				int seq = (int) request.getSession().getAttribute("id");
-
 				String beforePw = request.getParameter("pw");
-
 				List<MemberDTO> dto = me.select_Member(seq);
 				String dbPw = dto.get(0).getPw();
 				String pw = me.testSHA256(beforePw);
-				System.out.println(pw);
-				System.out.println(dbPw);
 				if (dbPw.equals(pw)) {
 					// 비밀번호일치
 					pt.print(1);
@@ -129,10 +125,7 @@ public class MeController extends HttpServlet {
 			} else if (cmd.equals("/pwChangeOn.me")) {
 				String pw = request.getParameter("pwCheck");
 				int seq = (int) request.getSession().getAttribute("id");
-				System.out.println(pw);
-				System.out.println(seq);
 				int result = me.pwUpdate(pw, seq);
-				System.out.println(result);
 				if (result == 1) {
 					response.getWriter().append("<script> if(alert('패스워드가 변경되었습니다.')!= 0){ self.close() }</script>");
 				} else {
@@ -157,14 +150,12 @@ public class MeController extends HttpServlet {
 
 			} else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
 				String email = (String)request.getSession().getAttribute("email");
-				Pattern p = Pattern.compile("^(.*)[ .]?");
+				Pattern p = Pattern.compile("^(.*) ?");
 				Matcher m = p.matcher(email);
 				m.find();
 				String realEmail=m.group(1);
-				System.out.println(realEmail);
 				request.setAttribute("email", realEmail);
 				request.getRequestDispatcher("/WEB-INF/member/withdrawal.jsp").forward(request, response);
-
 			}
 
 		} catch (Exception e) {
