@@ -233,7 +233,7 @@ public class MemberDAO {
 		pstat.setString(1, email);
 		return pstat;
 	}
-	public int getType(String email) {
+	public int getType(String email) {// 타입값 가져오기
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = getPstatForGetType(con,email);
@@ -244,6 +244,18 @@ public class MemberDAO {
 				return type;
 			}
 			return -1;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	public int delete(int id) {
+		String sql = "delete from members where id=?";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setInt(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
 		} catch(Exception e) {
 			e.printStackTrace();
 			return -1;

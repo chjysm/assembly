@@ -139,24 +139,32 @@ public class MeController extends HttpServlet {
 				String nickname = request.getParameter("nickname");
 				String gender = request.getParameter("gender");
 				int result = me.mpUpdate(nickname,gender, seq);
-				System.out.print(result);
+				request.getSession().setAttribute("nickname", nickname);
 				if (result == 1) {
 					response.getWriter()
-							.append("<script> if(alert('회원정보를 수정했습니다.')!= 0){ location.href='main.jsp' }</script>");
+							.append("<script> if(alert('회원정보를 수정했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				} else {
 					response.getWriter()
-							.append("<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='main.jsp' }</script>");
+							.append("<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				}
-
-			} else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴
+			} else if (cmd.equals("/goWithdrawal.me")) {// 회원 탈퇴 가기
 				String email = (String)request.getSession().getAttribute("email");
-				Pattern p = Pattern.compile("^(.*) ?");
+				Pattern p = Pattern.compile("^((.*) |(.*))");
 				Matcher m = p.matcher(email);
 				m.find();
 				String realEmail=m.group(1);
 				request.setAttribute("email", realEmail);
 				request.getRequestDispatcher("/WEB-INF/member/withdrawal.jsp").forward(request, response);
+			}else if (cmd.equals("/withdrawal.me")) {// 회원 탈퇴 가기
+				int id=(int)request.getSession().getAttribute("id");
+				request.getSession().setAttribute("id", null);
+				request.getSession().setAttribute("email", null);
+				request.getSession().setAttribute("type", null);
+				request.getSession().setAttribute("nickname", null);
+				int result = me.delete(id);
+				response.getWriter().append("<script> if(alert('탈퇴가 완료 되었습니다!.')!= 0){ opener.location.reload(true); window.close(); }</script>");
 			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

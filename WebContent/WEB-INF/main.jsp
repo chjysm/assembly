@@ -112,20 +112,19 @@ a[class="more"] {
 			location.href = "logout.me";
 		});
 		$("#getPw").on("click", function() {
-			open("getPw.me", "_brank", "width=600px,height=400px")
+			open("getPw.me", "_brank", "width=600px,height=400px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(400/2)));
 		});
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
-
-		$("#mPageGo").on("click", function() {
+		$(".mPageGo").on("click", function() {
 			location.href = "mPageGo.me";
 		});
 		$("#storeSerchBtn").on("click", function() {
-			open("goStoreSerch.win", "_brank", "width=800px,height=600px")
+			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+((window.screen.width/2)-(800/2))+",top="+((window.screen.height/2)-(600/2)));
 		});
 		$(".withdrawalBtn").on("click", function() {
-			open("withdrawal.me", "_brank", "width=600px,height=600px")
+			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(600/2)));
 		});
 	});
 </script>
@@ -258,7 +257,7 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
@@ -270,7 +269,7 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2" >마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo" >마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.ka"><img height="49" width="222"
@@ -282,7 +281,7 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2" id="mPageGo">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo" >마이페이지</button>
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="emailLogout">로그아웃</button>
