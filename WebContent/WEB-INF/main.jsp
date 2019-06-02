@@ -139,10 +139,10 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">건의게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
@@ -521,7 +521,17 @@ a[class="more"] {
 				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				홈페이지 이용약관 등</div>
+					<div class="">
+						<span class="logo">Logo</span>
+						<dl>
+							<dt>Assembly(주)</dt>
+							<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+							<dd>대표이사: 홍길동    사업자등록번호 : 815-81-00000</dd>
+							<dd>Tel: 1599-0000    Fax: 02-894-0000</dd>
+							<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+						</dl>
+					</div>
+			</div>
 		</div>
 	</div>
 	<!-- Optional JavaScript -->
