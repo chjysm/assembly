@@ -154,7 +154,6 @@ public class MeController extends HttpServlet {
 					response.getWriter().append(
 							"<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				}
-
 			} else if (cmd.equals("/goWithdrawal.me")) {// 회원 탈퇴 가기
 				String email = (String) request.getSession().getAttribute("email");
 				Pattern p = Pattern.compile("^((.*) |(.*))");
