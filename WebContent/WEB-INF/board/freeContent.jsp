@@ -39,11 +39,11 @@
             			});
         			})  */
                 });
-                $(".alterBtn").on("click",function(){
-                	location.href="alterContent.board01?seq=${content.seq}";
+                $(".alterBtn").on("click",function(){// 글 수정 버튼 -> 글 수정 페이지로 이동
+                	location.href="alterForm.board01?seq=${content.seq}";
                 })
                 
-               $(".comentBtn").on("click",function(){
+               $(".commentBtn").on("click",function(){// 댓글 등록버튼 누르면
                 	if(${type == null}){
         				alert("로그인 후 이용해주세요");
         			}else{
@@ -60,15 +60,7 @@
                     		location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                     	});
         			};
-                	
-                	
-                	
-                  /*  var textarea = $(".textarea").html();
-                    var coment = $("<div>나:"+textarea+"</div>");
-                    
-                    $(".comentBox").append(coment);
-                    $(".textarea").html("");
-                    return(false); */
+         
                 });
               		$(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
               			var seq = $(this).attr("seq");
@@ -85,28 +77,28 @@
 					$(id).show();                	
                 	
                 });
-                $(".commentAlterBtn").on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기
-                	var seq = $(".commentAlterBtn").attr("seq");
-                	var id= "#"+seq;
-                	
-                	$.ajax({
-                		url:"alterComment.board01",
-                		data:{comment:$(".alterTextarea").html(),seq:seq}
-                	}).done(function(resp){
-                		if(resp == "수정됨"){
-                			$(".id").html("");
-                			$(".alterBox").hide();
-                			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
-                		}else if(resp == "수정안됨"){
-                			alter("수정이 정상적으로 완료되지 못하였습니다.")
-                		}
-                		
-                	});
-                    
+                
+                $(".commentAlterBtn").each(function(i,item){
+                	 var btnSeq = $(this).attr("seq");
+                     var commentAlterBtn = "#commentAlterBtn" + btnSeq;
+                     var alterTextarea = "#alterTextarea" + btnSeq;
+                     $(commentAlterBtn).on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기                		
+                 		$.ajax({
+                     		url:"alterComment.board01",
+                     		data:{comment:$(alterTextarea).html(),seq:btnSeq}
+                     	}).done(function(resp){
+                     		if(resp == "수정됨"){
+                     			$(alterTextarea).html("");
+                     			$(".alterBox").hide();
+                     			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                     		}else if(resp == "수정안됨"){
+                     			alter("수정이 정상적으로 완료되지 못하였습니다.")
+                     		}
+                     		
+                     	});
+                 	}); 
                 });
-                
-                
-                
+                                           
             });
         </script>
         <style>
@@ -128,19 +120,19 @@
             .footer>div{text-align: right;}
             .footer input[type="button"]{background: none; border: 2px solid black;}
             .footer input[type="button"]:hover{background-color: #e0e2e5;}
-            .comentBox{ background-color: #eaeaea; margin:auto;}
+            .commentBox{ background-color: #eaeaea; margin:auto;}
             
             .writeBox div:first-child,.writeBox div:nth-child(2){padding-left: 0px; padding-right: 0px; box-sizing: border-box; }
             .textarea{background-color: white; width: 100%; height: 100px; border: 10px solid #eaeaea;}
             .alterTextarea{background-color: white; width: 100%; height: 100px; border: 10px solid #eaeaea;}
-            .comentBtn,.textarea{float: left;}
+            .commentBtn,.textarea{float: left;}
             .cmBtn{text-align : right;}
             .cmAlterBtn${list.seq},.cmDeleteBtn{border: 0px; background-color:#eaeaea;}
             .cmAlterBtn${list.seq}:hover,.cmDeleteBtn:hover{font-weight:bold;}
             .cmWriter{font-weight:bold;}
 			.line{width:95%; border: 1px solid black;}
             
-            .comentBox{position: relative;}
+            .commentBox{position: relative;}
             .alterBox{background-color:#eaeaea; width: 100%; height: 100%;
                         z-index: 10; position: absolute;
             }
@@ -233,15 +225,15 @@
             </div>
 
 			<c:forEach var="list" items="${comList }">
-            <div class="row comentBox">
+            <div class="row commentBox">
                
 		<div class="row  mb-5 alterBox" id="${list.seq }"> <!--댓글 수정 입력폼  -->
                 <div class="col-lg-11 col-md-11 col-sm-11 col-11 pr-0">
-                    <div class="alterTextarea" seq=${list.seq } contenteditable="true"></div> <!--댓글 수정 입력창  -->
+                    <div class="alterTextarea" id="alterTextarea${list.seq }" seq=${list.seq } contenteditable="true"></div> <!--댓글 수정 입력창  -->
                 </div>
 
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1 p-0">
-                    <input type="button" value="등록" seq=${list.seq } class="commentAlterBtn"> <!--댓글 수정 등록 버튼  -->
+                    <input type="button" value="등록" seq=${list.seq } class="commentAlterBtn" id="commentAlterBtn${list.seq }"> <!--댓글 수정 등록 버튼  -->
                 </div>
         </div>  
                 
@@ -274,7 +266,7 @@
                 </div>
 
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1">
-                    <input type="button" value="등록" class="comentBtn"> <!--댓글 등록 버튼-->
+                    <input type="button" value="등록" class="commentBtn"> <!--댓글 등록 버튼-->
                 </div>
             </div>
            

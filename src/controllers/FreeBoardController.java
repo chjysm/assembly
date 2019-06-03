@@ -57,11 +57,6 @@ public class FreeBoardController extends HttpServlet {
 			request.getSession().setAttribute("currentPage", currentPage);
 
 
-
-
-
-
-
 			List<FreeBoardDTO> freeList = null;
 
 			try {
@@ -266,8 +261,22 @@ public class FreeBoardController extends HttpServlet {
 			}else {System.out.println("삭제 ㄴ");}
 			request.getRequestDispatcher("list.board01").forward(request, response);
 //---------------------------------------------------------------------------------------------------------------------
-		}else if(command.equals("/alterContent.board01")) {//글 수정 완료버튼 누르면 
-			int seq = Integer.parseInt(request.getParameter("seq")); // 글번
+		}else if(command.equals("/alterForm.board01")) {//글 수정하는 페이지로 이동
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			
+			FreeBoardDTO content = null;
+			try {
+				content = dao.content(seq);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+			request.setAttribute("content", content);
+			request.getRequestDispatcher("/WEB-INF/board/freeAlterContent.jsp").forward(request, response);
+			
+		}
+		else if(command.equals("/alterContent.board01")) {//글 수정 완료버튼 누르면 
+			int seq = Integer.parseInt(request.getParameter("seq")); // 글번호
 			String title = request.getParameter("title");
 			String content = request.getParameter("inputContent");
 			
@@ -279,7 +288,7 @@ public class FreeBoardController extends HttpServlet {
 				response.sendRedirect("error.html");
 			}
 			
-			request.getRequestDispatcher("freeContent.board01commentPage="+request.getSession().getAttribute("cmCurrnetPage")+"&&seq="+seq).forward(request, response);
+			request.getRequestDispatcher("freeContent.board01?commentPage="+request.getSession().getAttribute("cmCurrnetPage")+"&&seq="+seq).forward(request, response);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/comment.board01")) { // 댓글정보 디비에 넣기
 			String comments = request.getParameter("comments");
@@ -346,8 +355,60 @@ public class FreeBoardController extends HttpServlet {
 			}
 					
 			if(result > 0) {
+				System.out.println("수정 됨");
 				pw.write("수정됨");
-			}else {pw.write("수정안됨");}
+			}else {
+				System.out.println("수정 안됨 ㅠ");
+				pw.write("수정안됨");
+			}
+		}else if(command.equals("/selectByTitle.board01")) { //글제목으로 글 검색하기
+			System.out.println("글제목 검색");
+			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			
+			String title = request.getParameter("searchWord");
+			System.out.println(title);
+			
+			List<FreeBoardDTO> freeTitleList = null;
+			try {			
+				freeTitleList = dao.selectByTitlePage(currentPage, title);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+				
+			}
+			String getNaviTitle = null;
+			try {
+				getNaviTitle = dao.getNaviSelectTitle(currentPage, title); // 페이지 네비 보여주기 
+
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("freeList", freeTitleList);
+			request.setAttribute("getNavi", getNaviTitle);
+			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
+			
+		}else if(command.equals("/selectByWriter.board01")) { // 작성자로 글 검색하기
+			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			String writer = request.getParameter("searchWord");
+			
+			List<FreeBoardDTO> freeWriterList = null;
+			try {			
+				freeWriterList = dao.selectByWriterPage(currentPage, writer);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+				
+			}
+			String getNaviWriter = null;
+			try {
+				getNaviWriter = dao.getNaviSelectWriter(currentPage, writer); // 페이지 네비 보여주기 
+
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("freeList", freeWriterList);
+			request.setAttribute("getNavi", getNaviWriter);
+			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 		}
 		
 	}

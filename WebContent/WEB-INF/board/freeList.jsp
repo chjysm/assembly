@@ -19,6 +19,16 @@
     			location.href="freeWrite.board01";
     			}
     		});
+    		
+    		$(".searchBtn").on("click",function(){ // 검색버튼 누르면
+    			var option = $("#option option:selected").val();
+    			var searchWord = $(".searchWord").val();
+    			if(option == "글제목"){
+    				location.href="selectByTitle.board01?currentPage=1&&searchWord="+searchWord;
+    			}else if(option == "작성자"){
+    				location.href="selectByWriter.baord01?currentPage=1&&searchWord="+searchWord;
+    			}
+    		})
     	});
     </script>
 <style>
@@ -121,7 +131,7 @@
             <option>글제목</option>
            <option>작성자</option>
            </select>
-           <input type="text">
+           <input type="text" class="searchWord">
            <input type="button" class="searchBtn" value="검색">
        </div>
        
