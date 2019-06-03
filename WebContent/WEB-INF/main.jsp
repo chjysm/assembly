@@ -105,6 +105,7 @@ a[class="more"] {
 </style>
 <script>
 	$(function() {
+		
 		$("#emailLogout").on("click", function() {
 			location.href = "logout.me";
 		});
@@ -112,7 +113,9 @@ a[class="more"] {
 			location.href = "logout.me";
 		});
 		$("#getPw").on("click", function() {
-			open("getPw.me", "_brank", "width=600px,height=400px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(400/2)));
+			var width=(window.screen.width/2)-(600/2);
+			var height=window.screen.height/2-400/2;
+			open("getPw.me", "_brank", "width=600px,height=400px,left="+width+",top="+height);
 		});
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
@@ -121,10 +124,14 @@ a[class="more"] {
 			location.href = "mPageGo.me";
 		});
 		$("#storeSerchBtn").on("click", function() {
-			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+((window.screen.width/2)-(800/2))+",top="+((window.screen.height/2)-(600/2)));
+			var width=window.screen.width/2-800/2;
+			var height=window.screen.height/2-600/2;
+			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
 		});
 		$(".withdrawalBtn").on("click", function() {
-			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(600/2)));
+			var width=window.screen.width/2-600/2;
+			var height=window.screen.height/2-600/2;
+			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+width+",top="+height);
 		});
 	});
 </script>
@@ -144,7 +151,7 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -261,7 +268,7 @@ a[class="more"] {
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
-								src="Resources/img/nlogout.PNG" /></a>
+								src="Resources/img/nlogout.PNG" /></a>	
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
@@ -295,6 +302,7 @@ a[class="more"] {
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2" id="emailLogout2">로그아웃</button>
 							<br>
+								<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 							<br>
 						</form>
 					</c:when>

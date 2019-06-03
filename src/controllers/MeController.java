@@ -32,8 +32,11 @@ public class MeController extends HttpServlet {
 		try {
 			if (cmd.equals("/login.me")) {// 로그인
 				String email = request.getParameter("id");
+				System.out.println(email);
 				String pw = request.getParameter("pw");
+				System.out.println(pw);
 				int result = me.loginCheck(email, pw);
+				System.out.println(result);
 				if (result == 1) {
 					int id = me.getId(email);
 					String nickname = me.getNickname(email);
