@@ -105,6 +105,7 @@ a[class="more"] {
 </style>
 <script>
 	$(function() {
+		
 		$("#emailLogout").on("click", function() {
 			location.href = "logout.me";
 		});
@@ -112,7 +113,9 @@ a[class="more"] {
 			location.href = "logout.me";
 		});
 		$("#getPw").on("click", function() {
-			open("getPw.me", "_brank", "width=600px,height=400px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(400/2)));
+			var width=(window.screen.width/2)-(600/2);
+			var height=window.screen.height/2-400/2;
+			open("getPw.me", "_brank", "width=600px,height=400px,left="+width+",top="+height);
 		});
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
@@ -121,10 +124,14 @@ a[class="more"] {
 			location.href = "mPageGo.me";
 		});
 		$("#storeSerchBtn").on("click", function() {
-			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+((window.screen.width/2)-(800/2))+",top="+((window.screen.height/2)-(600/2)));
+			var width=window.screen.width/2-800/2;
+			var height=window.screen.height/2-600/2;
+			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
 		});
 		$(".withdrawalBtn").on("click", function() {
-			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(600/2)));
+			var width=window.screen.width/2-600/2;
+			var height=window.screen.height/2-600/2;
+			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+width+",top="+height);
 		});
 	});
 </script>
