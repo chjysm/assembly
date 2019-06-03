@@ -190,6 +190,13 @@ public class FreeBoardDAO {
 		return sb.toString();
 
 	}
+
+	//1페이지 : 가장최신글 10개 -> seq 크면클수록 최신, 작성일 (중복 됨) -> 글 삭제하면 문제 seq
+	
+	
+	
+				
+			
 	// 1페이지 : 가장최신글 10개 -> seq 크면클수록 최신, 작성일 (중복 됨) -> 글 삭제하면 문제 seq
 
 	private PreparedStatement pstatselectByPage(Connection con, int startNum, int endNum) throws Exception {
@@ -225,7 +232,136 @@ public class FreeBoardDAO {
 			return list;
 
 		}
+	 	
+	}
+	 
+	 	
+	 	
+	 		
+	 		
+	 		
+	 	//------------------------------------------------------------------------------------------------------------------------------------------------
+	 	
+	 	//검색기능
+	 	
+	 	private PreparedStatement pstatSelectCount(Connection con, String searchWord, String option )throws Exception {
+ 			String sql = "select count(*) count from FreeBoard where " + option + " like ?";
+ 			PreparedStatement pstat = con.prepareStatement(sql);
+ 			pstat.setString(1, "%"+searchWord+"%");
+ 			return pstat;
+	 	}
+	 	public int selectCount(String searchWord, String option)throws Exception{// 검색시 글 갯수
+ 			try(
+ 					Connection con = this.getConnection();
+ 					PreparedStatement pstat = this.pstatSelectCount(con, searchWord, option);
+ 					ResultSet rs = pstat.executeQuery();
+ 					){
+ 				rs.next();
+ 				return rs.getInt("count");
+ 			}
+ 		}
+	 	
+	 	
+	 	private PreparedStatement pstatselectBySearchPage(Connection con, int startNum, int endNum, String searchWord, String option)throws Exception{
+			String sql = "select * from (select row_number()over(order by seq desc) as rown, FreeBoard.* from FreeBoard where "+option+" like ?) where rown between ? and ?";
+			PreparedStatement pstat = con.prepareStatement(sql);
+			pstat.setString(1, "%"+searchWord+"%");
+			pstat.setInt(2, startNum);
+			pstat.setInt(3, endNum);
+			return pstat;
+			
+		}
+	 	public List<FreeBoardDTO> selectBySearchPage(int currentPage, String searchWord, String option)throws Exception{ // 한 페이지에 보여줄 검색 글 갯수
+	 			
+	 			int endNum = currentPage *recordCountPerPage;
+	 			int startNum = endNum - 9;
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = this.pstatselectBySearchPage(con, startNum, endNum, searchWord, option);
+					ResultSet rs = pstat.executeQuery();
+					){
+				List<FreeBoardDTO> list = new ArrayList<>();
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String title = rs.getString("title");
+					String content = rs.getString("content");
+					String writer = rs.getString("writer");
+					int viewCount = rs.getInt("viewCount");
+					String ip = rs.getString("ip");
+					Timestamp writeDate = rs.getTimestamp("writeDate");
+					String email = rs.getString("email");
+					int id = rs.getInt("id");
+					FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount ,ip, writeDate, id, email);
+					list.add(dto);
+				}return list;
+				
+			}
+			
+		}
+		public String getNaviSelect(int currentPage, String option, String searchWord)throws Exception { //검색시 네비게이션
+			
+			int recordTotalCount = this.selectCount(searchWord, option); // 전체 글 갯수
+			
+			
+			// 전체 페이지 수
+			int pageTotalCount = 0; 
+			if(recordTotalCount % recordCountPerPage > 0) { //전체 글 갯수 % 한  페이지에 보여줄 글 갯수 -> 나머지 잇으면 한페이지 더 필요
+				pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+			}else if(recordTotalCount % recordCountPerPage == 0) {
+				pageTotalCount = recordTotalCount / recordCountPerPage;
+			}
+	//----------------------------------------------------------------------------------
+			if(currentPage < 1) {//최소 페이지 보다 작으면 최소페이지로
+				currentPage = 1;
+			}else if(currentPage > pageTotalCount) { // 현재페이지 번호가 전체페이지보다 크면 최대 페이지로
+				currentPage = pageTotalCount;
+			}//보안코드
+
+			//내 위치의 기준으로 첫페이지와 끝페이지 알아내기
+			int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+			int endNavi = startNavi + (naviCountPerPage - 1);
+			
+			
+			//ex) startNavi : 14페이지에 있다고 가정  첫페이지는 11  -> 14/10 = 1 -> 1*10 = 10 -> 10+1 = 11 ----> (currentPage/10)*10+1   // 10은 한번에 보여줄 페이지 숫자 범위
+			// 10 20 30등 페이지일 경우도 있음 :     ★★(currentPage - 1)/10*10+1 -> 이 공식은 다 적용
+		
+			//최대페이지 번호보다 endNavi 번호가 크게 나옴 ㅠ
+			if(endNavi > pageTotalCount) {
+				endNavi = pageTotalCount;
+			}
+			
+			boolean needPrev = true; // 이전버튼
+			boolean needNext = true; // 다음버튼
+			
+			if(startNavi == 1) {
+				needPrev = false;
+			}
+			if(endNavi == pageTotalCount) {
+				needNext = false;
+			}
+			
+			
+			StringBuilder sb = new StringBuilder();
+			
+			if(needPrev) {
+				sb.append("<a href='searchContent.board01?currentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
+			}
+			for(int i = startNavi; i <= endNavi; i++) {
+				sb.append("<a href='searchContent.board01?currentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
+				
+			}
+			if(needNext) {
+				sb.append("<a href='searchContent.board01?currentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");
+			}
+			
+			return sb.toString();
+		
+		}
+	 	
+	 
+	 	
+	 	
 
 	}
 
-}
+

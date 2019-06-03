@@ -22,6 +22,19 @@
     			location.href="freeWrite.board01";
     			}
     		});
+    		
+    		$(".searchBtn").on("click",function(){ // 검색버튼 누르면
+    			var option = $("#option option:selected").val();
+    			var searchWord = $(".searchWord").val();
+    			if(option == "글제목"){
+        			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
+    			}else if(option == "작성자"){
+        			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+
+    			}
+    			
+    			
+    		})
     	});
     </script>
 <style>
@@ -186,10 +199,11 @@ a:hover {
 
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
 
-	<div class="head">
-		<h1>자유게시판</h1>
-		<div></div>
-	</div>
+   
+       <div class="head"><h1>자유게시판</h1><div></div></div>
+       
+        
+        
 
 
 	<div class="container" id="wrapper">
@@ -223,8 +237,8 @@ a:hover {
 				<select name="option" id="option">
 					<option>글제목</option>
 					<option>작성자</option>
-				</select> <input type="text"> <input type="button" class="searchBtn"
-					value="검색">
+				</select> 
+				<input type="text" class="searchWord"> <input type="button" class="searchBtn"value="검색">
 			</div>
 
 			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
