@@ -148,7 +148,7 @@
          <div class="col-lg-12 col-md-12 col-sm-12 col-12"><textarea name="inputContent" id="inputContent" cols="30" rows="10" hidden></textarea></div>
        </div>
         <div class="footer">
-            <input type="button" class="completeBtn" value="등록">
+            <input type="button" class="completeBtn" value="수정완료">
             <input type="button" class="cancelBtn" value="취소">
         </div>
     </div>

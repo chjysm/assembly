@@ -38,20 +38,30 @@
             				}
             			});
         			})  */
+                });
+                $(".alterBtn").on("click",function(){
+                	location.href="alterContent.board01?seq=${content.seq}";
                 })
-                $(".comentBtn").on("click",function(){
-                	$.ajax({
-                		url:"comment.board01",
-                		type:"post",
-                		data:{comments:JSON.stringify({comment:$(".textarea").html(),
-                					    postNum:'${content.seq }',
-                						postTitle:'${content.title }'             					    
-                						})
-                	}
-                		
-                	}).done(function(resp){
-                		location.href="commentList.board01";
-                	});
+                
+               $(".comentBtn").on("click",function(){
+                	if(${type == null}){
+        				alert("로그인 후 이용해주세요");
+        			}else{
+        				$.ajax({
+                    		url:"comment.board01",
+                    		type:"post",
+                    		data:{comments:JSON.stringify({comment:$(".textarea").html(),
+                    					    postNum:'${content.seq }',
+                    						postTitle:'${content.title }'             					    
+                    						})
+                    	}
+                    		
+                    	}).done(function(resp){
+                    		location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                    	});
+        			};
+                	
+                	
                 	
                   /*  var textarea = $(".textarea").html();
                     var coment = $("<div>나:"+textarea+"</div>");
@@ -59,8 +69,25 @@
                     $(".comentBox").append(coment);
                     $(".textarea").html("");
                     return(false); */
-                })
-            })
+                });
+              		$(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
+              			var result = confirm("댓글을 삭제하시겠습니까?");
+              			if(result == true){
+              				location.href="cmDeleteBtn.board01?seq=${comList[0].seq}&&postNum=${content.seq}";
+              			}
+              		});
+                $(".alterBox").hide();//수정 댓글입력창 숨기기
+                //수정하기 - 삭제도 ////////////////////////////
+                $(".cmAlterBtn${comList[0].seq}").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
+                    $(".alterBox").show();
+                });
+                $(".comentAlterBtn").on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기
+                   $(".alterBox").hide(); 
+                });
+                
+                
+                
+            });
         </script>
         <style>
             *{margin:0 auto;}
@@ -81,14 +108,22 @@
             .footer>div{text-align: right;}
             .footer input[type="button"]{background: none; border: 2px solid black;}
             .footer input[type="button"]:hover{background-color: #e0e2e5;}
-            .comentBox{ background-color: #eaeaea; height: 300px; margin:auto;}
+            .comentBox{ background-color: #eaeaea; margin:auto;}
             
-            .writeBox div:first-child,.writeBox div:nth-child(2){padding-left: 0px; padding-right: 0px; box-sizing: border-box; overflow: hidden;}
+            .writeBox div:first-child,.writeBox div:nth-child(2){padding-left: 0px; padding-right: 0px; box-sizing: border-box; }
             .textarea{background-color: white; width: 100%; height: 100px; border: 10px solid #eaeaea;}
-            .comentBtn,.textarea{float: left;}
-             
-
             
+            .comentBtn,.textarea{float: left;}
+            .cmBtn{text-align : right;}
+            .cmAlterBtn${list.seq},.cmDeleteBtn{border: 0px; background-color:#eaeaea;}
+            .cmAlterBtn${list.seq}:hover,.cmDeleteBtn:hover{font-weight:bold;}
+            .cmWriter{font-weight:bold;}
+			.line{width:95%; border: 1px solid black;}
+            
+            .comentBox{position: relative;}
+            .alterBox{background-color:#eaeaea; width: 100%; height: 100%;
+                        z-index: 10; position: absolute;
+            }
 
 
         </style>
@@ -101,7 +136,7 @@
                 <div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">메인페이지</a>
+                            <a class="nav-link active" href="goMain.win">메인페이지</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">메뉴1</a>
@@ -163,9 +198,9 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 mt-2 mb-2">
                     <c:choose>
-                        <c:when test="${email != content.email}">
-                            <input type="button" value="삭제" class="deleteBtn" hidden>
-                            <input type="button" value="수정" class="alterBtn" hidden>
+                        <c:when test="${email != content.email || type == 4}">
+                            <input type="button" value="삭제" class="deleteBtn" hidden><!--글 삭제버튼-->
+                            <input type="button" value="수정" class="alterBtn" hidden><!--글 수정버튼-->
                         </c:when>
                         <c:when test="${email  == content.email }">
                             <input type="button" value="삭제" class="deleteBtn">
@@ -175,19 +210,49 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12 p-0 comentBox">
-                  
-
+			<c:forEach var="list" items="${comList }">
+            <div class="row comentBox">
+               
+		<div class="row  mb-5 alterBox"> <!--댓글 수정 입력폼  -->
+                <div class="col-lg-11 col-md-11 col-sm-11 col-11 pr-0">
+                    <div class="alterTextarea" contenteditable="true"></div> <!--댓글 수정 입력창  -->
                 </div>
+
+                <div class="col-lg-1 col-md-1 col-sm-1 col-1 p-0">
+                    <input type="button" value="등록" class="comentAlterBtn"> <!--댓글 수정 등록 버튼  -->
+                </div>
+            </div>  
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 col-6 cmWriter">${list.writer }</div>
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 cmBtn">
+               	<c:choose>
+               		<c:when test="${email != list.email || type == 4}">
+               			<input type="button" class="cmAlterBtn${list.seq }" value="수정" hidden> <!--댓글 수정버튼-->
+               			<input type="button" class="cmDeleteBtn" value="삭제" hidden><!--댓글 삭제버튼-->
+               		</c:when>
+               		<c:when test="${email == list.email }">
+               			<input type="button" class="cmAlterBtn${list.seq }" value="수정">
+               			<input type="button" class="cmDeleteBtn" value="삭제">
+               		</c:when>
+               	</c:choose>	
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">${list.comment }</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">${list.timeForm }</div>
+                <div class="line"></div>
                  </div>
+                </c:forEach>
+                
+                <div class="row">
+                	<div class="col-lg-12 col-md-12 col-sm-12 col-12">${navi }</div>
+                </div>
+                
                  <div class="row  mb-5 writeBox">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-11">
                     <div class="textarea" contenteditable="true"></div>
                 </div>
 
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1">
-                    <input type="button" value="등록" class="comentBtn">
+                    <input type="button" value="등록" class="comentBtn"> <!--댓글 등록 버튼-->
                 </div>
             </div>
            

@@ -19,7 +19,7 @@
     			location.href="freeWrite.board01";
     			}
     		});
-    	})
+    	});
     </script>
 <style>
 	*{margin:0 auto;}
@@ -106,7 +106,7 @@
        <c:forEach var="list" items="${freeList }">
         <div class="content row">
             <div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
-            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><a href="freeContent.board01?seq=${list.seq }">${list.title }</a></div>
+            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
             <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
