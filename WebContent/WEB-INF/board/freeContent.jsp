@@ -8,7 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>content</title>
-
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
 * {
@@ -134,7 +142,9 @@ h1+div {
 
 
 
+
  
+
 
 
 
@@ -145,7 +155,9 @@ list
 
 
 
+
  
+
 
 
 
@@ -156,7 +168,9 @@ list
 
 
 
+
 	
+
 
 
 
@@ -174,12 +188,18 @@ list
 
 
 
+
+
 ${
 list
 
 
 
+
+
 .seq
+
+
 
 
 
