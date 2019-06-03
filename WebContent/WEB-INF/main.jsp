@@ -144,7 +144,7 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -261,7 +261,7 @@ a[class="more"] {
 							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
-								src="Resources/img/nlogout.PNG" /></a>
+								src="Resources/img/nlogout.PNG" /></a>	
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
@@ -295,6 +295,7 @@ a[class="more"] {
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2" id="emailLogout2">로그아웃</button>
 							<br>
+								<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 							<br>
 						</form>
 					</c:when>
