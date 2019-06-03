@@ -364,13 +364,13 @@ public class FreeBoardController extends HttpServlet {
 		}else if(command.equals("/selectByTitle.board01")) { //글제목으로 글 검색하기
 			System.out.println("글제목 검색");
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			
 			String title = request.getParameter("searchWord");
+			String option = request.getParameter("option");
 			System.out.println(title);
 			
 			List<FreeBoardDTO> freeTitleList = null;
 			try {			
-				freeTitleList = dao.selectByTitlePage(currentPage, title);
+				//freeTitleList =;
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
@@ -378,7 +378,7 @@ public class FreeBoardController extends HttpServlet {
 			}
 			String getNaviTitle = null;
 			try {
-				getNaviTitle = dao.getNaviSelectTitle(currentPage, title); // 페이지 네비 보여주기 
+				//getNaviTitle = dao. // 페이지 네비 보여주기 
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -390,10 +390,11 @@ public class FreeBoardController extends HttpServlet {
 		}else if(command.equals("/selectByWriter.board01")) { // 작성자로 글 검색하기
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			String writer = request.getParameter("searchWord");
+			String option = request.getParameter("option");
 			
 			List<FreeBoardDTO> freeWriterList = null;
 			try {			
-				freeWriterList = dao.selectByWriterPage(currentPage, writer);
+				//freeWriterList = dao;
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
@@ -401,7 +402,7 @@ public class FreeBoardController extends HttpServlet {
 			}
 			String getNaviWriter = null;
 			try {
-				getNaviWriter = dao.getNaviSelectWriter(currentPage, writer); // 페이지 네비 보여주기 
+				//getNaviWriter = dao; // 페이지 네비 보여주기 
 
 			}catch(Exception e) {
 				e.printStackTrace();
