@@ -13,7 +13,7 @@ import dto.FreeBoardDTO;
 public class FreeBoardDAO {
 	private Connection getConnection()throws Exception{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.60.24:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 
@@ -115,6 +115,24 @@ public class FreeBoardDAO {
 			return pstat.executeUpdate();
 		}
 	}
+	public int alterContent(String title, String content, int seq)throws Exception{//글 수정
+		String sql = "update FreeBoard set title = ?, content = ? where seq = ? ";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, title);
+			pstat.setString(2, content);
+			pstat.setInt(3, seq);
+			con.commit();
+			int result = pstat.executeUpdate();
+			return result;
+		}
+		
+	}
+	
+	
+	
 	public int recordCount()throws Exception { // 글 갯수 
 		String sql = "select count(*) record from FreeBoard";
 		try(

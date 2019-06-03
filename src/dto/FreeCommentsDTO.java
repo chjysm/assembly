@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class FreeCommentsDTO {
 	private int seq;
@@ -12,6 +13,9 @@ public class FreeCommentsDTO {
 	private Timestamp writeDate;
 	private String email;
 	private int id;
+	private String timeForm;
+	
+	
 	public FreeCommentsDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,6 +32,9 @@ public class FreeCommentsDTO {
 		this.writeDate = writeDate;
 		this.email = email;
 		this.id = id;
+		if(writeDate != null) {
+			this.timeForm = getFormedTime();
+		}
 	}
 	public int getSeq() {
 		return seq;
@@ -83,5 +90,24 @@ public class FreeCommentsDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public String getTimeForm() {
+		return timeForm;
+	}
 	
+	public String getFormedTime() {
+		long currentTime = System.currentTimeMillis();
+		long writeTime = this.writeDate.getTime();
+
+		if(currentTime - writeTime < (1000 * 60 * 60)) {
+			long time = currentTime - writeTime;
+			return time / 1000 / 60 + "분 전";
+		}else if(currentTime - writeTime < (1000 * 60 * 60 * 24)) {
+			long time = currentTime - writeTime;
+			return time / 1000 / 60 / 60 + "시간 전";
+		}else {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			return sdf.format(writeDate);
+		}
+	
+}
 }

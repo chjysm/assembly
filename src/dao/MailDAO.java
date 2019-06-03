@@ -21,8 +21,8 @@ public class MailDAO {
 	}
 	public String Mail(String to){
 		String host     = "smtp.naver.com";
-		final String user   = "id";
-		final String password  = "pw";
+		final String user   = "cwg94";
+		final String password  = "1q2w3e4r%T";
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.auth", "true");

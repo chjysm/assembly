@@ -22,7 +22,7 @@
     			location.href="freeWrite.board01";
     			}
     		});
-    	})
+    	});
     </script>
 <style>
 * {
@@ -147,18 +147,25 @@ a:hover {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active"
-						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
+
+				  <li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>	
+
 		<div class="row p-1">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -174,55 +181,51 @@ a:hover {
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
-	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+	
+<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+   
+       <div class="head"><h1>자유게시판</h1><div></div></div>
+       
+        
+           <div class="container" id="wrapper">
+           
+        <div class="header row">
+                <div class="col-lg-2 col-md-1 col-sm-6 col-6 ">NO.</div>
+                <div class="col-lg-4 col-md-5 col-sm-6 col-6">제목</div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">작성자</div>
+                <div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div> 
+                <div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div> 
+        </div>
+       
+       <c:forEach var="list" items="${freeList }">
+        <div class="content row">
+            <div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
+            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
+            <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
+            <div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
+        </div>
+        </c:forEach>
+        
+        <div class="navi row">
+        <div>${getNavi }</div>
+        </div>
+        
+        <div class="footer row">
+       <div class="col-lg-11 col-md-11 col-sm-11 col-10">
+           <select name="option" id="option">
+            <option>글제목</option>
+           <option>작성자</option>
+           </select>
+           <input type="text">
+           <input type="button" class="searchBtn" value="검색">
+       </div>
+       
+        <div class="col-lg-1 col-md-1 col-sm-1 col-2"><input type="button" class="writeBtn" value="글쓰기"></div>
+        </div>
 
-	<div class="head">
-		<h1>자유게시판</h1>
-		<div></div>
-	</div>
-
-
-	<div class="container" id="wrapper">
-
-		<div class="header row">
-			<div class="col-lg-2 col-md-1 col-sm-6 col-6 ">NO.</div>
-			<div class="col-lg-4 col-md-5 col-sm-6 col-6">제목</div>
-			<div class="col-lg-2 col-md-2 d-none d-md-block">작성자</div>
-			<div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div>
-			<div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div>
-		</div>
-
-		<c:forEach var="list" items="${freeList }">
-			<div class="content row">
-				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
-				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
-					<a href="freeContent.board01?seq=${list.seq }">${list.title }</a>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
-			</div>
-		</c:forEach>
-
-		<div class="navi row">
-			<div>${getNavi }</div>
-		</div>
-
-		<div class="footer row">
-			<div class="col-lg-11 col-md-11 col-sm-11 col-10">
-				<select name="option" id="option">
-					<option>글제목</option>
-					<option>작성자</option>
-				</select> <input type="text"> <input type="button" class="searchBtn"
-					value="검색">
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
-				<input type="button" class="writeBtn" value="글쓰기">
-			</div>
-		</div>
-
-	</div>
-
+    </div>
+    
+>>>>>>> 99819d706fd027bdc00e8bf09f31f6dfdccd7149
 </body>
 </html>

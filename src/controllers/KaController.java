@@ -37,6 +37,7 @@ public class KaController extends HttpServlet {
 				String code = request.getParameter("code");
 				String res=ka.getToken(code);
 				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				String refresh_token=parse.parse(res.toString()).getAsJsonObject().get("refresh_token").getAsString();
 				String info=ka.getInfo(access_token);
 				try {
 					String nickname=parse.parse(info).getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
@@ -58,10 +59,12 @@ public class KaController extends HttpServlet {
 						me.insert_member(new MemberDTO(0,email,null,nickname,nickname,null,gender,age,type));
 					}
 					int id=me.getId(email);
+					String realNickname=me.getNickname(email);
 					request.getSession().setAttribute("id", id);
 					request.getSession().setAttribute("email", email);
 					request.getSession().setAttribute("type", type);
-					request.getSession().setAttribute("nickname", nickname);
+					request.getSession().setAttribute("nickname", realNickname);
+					request.getSession().setAttribute("refresh_token", refresh_token);
 					response.sendRedirect("goMain.win");
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -72,11 +75,28 @@ public class KaController extends HttpServlet {
 			}else if(cmd.equals("/reprompt.ka")) {
 				response.sendRedirect(ka.login());
 			}else if(cmd.equals("/logout.ka")) {
+				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
+				String access_token=ka.getAccessToken(refresh_token);
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
+				request.getSession().setAttribute("refresh_token", null);
+				ka.logout(access_token);
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+			}else if(cmd.equals("/withdrawal.ka")) {
+				int id=(int)request.getSession().getAttribute("id");
+				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
+				request.getSession().setAttribute("id", null);
+				request.getSession().setAttribute("email", null);
+				request.getSession().setAttribute("type", null);
+				request.getSession().setAttribute("nickname", null);
+				request.getSession().setAttribute("refresh_token", null);
+				int result = me.delete(id);
+				String res=ka.getAccessToken(refresh_token);
+				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				ka.remove(access_token);
+				response.getWriter().append("<script> if(alert('탈퇴가 완료 되었습니다!.')!= 0){ opener.location.reload(true); window.close(); }</script>");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

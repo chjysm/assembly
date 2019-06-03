@@ -75,7 +75,7 @@
 }
 
 td {
-	font-size: 1.3em;
+	font-size: 25px;
 	font-weight: 600;
 	color: #819FF7;
 }
@@ -89,6 +89,22 @@ input[type=submit]:hover {
 	background: #6133FF;
 	color: white;
 }
+
+select {
+	width: 200px; /* 원하는 너비설정 */
+	margin-left: 40px;
+	padding: .8em .5em; /* 여백으로 높이 설정 */
+	font-family: inherit; /* 폰트 상속 */
+	border: 1px solid #999;
+	border-radius: 20px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+select :hover {
+	cursor: pointer;
+}
 </style>
 <script>
 	$(function() {
@@ -98,13 +114,15 @@ input[type=submit]:hover {
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
 		})
 		$("#back_btn").on("click", function() {
-			location.href = "main.me";
+			location.href = "goMain.win";
 		})
 		$("#modify_btn").on("click", function() {
 			$("#mpForm").submit();
 		})
 		$("input[name='gender']").filter("[value=${list[0].gender}]").prop(
 				"checked", true);
+		$("input[name='age']").filter("[value=${list[0].age}]").prop(
+				"selected", true);
 	})
 </script>
 </head>
@@ -113,17 +131,26 @@ input[type=submit]:hover {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
+
 					<li class="nav-item"><a class="nav-link active"
 						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+							소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+					</c:if>
+
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 		<div class="row p-1">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -151,8 +178,8 @@ input[type=submit]:hover {
 						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
 						<tr>
 							<td colspan="3" class="btn-primary"
-								style="text-align: center; vertical-align: middle; border-radius: 2em"><h4>마이
-									페이지 (회원 정보 수정)</h4>
+								style="text-align: center; vertical-align: middle; border-radius: 2em"><span>마이
+									페이지 (회원 정보 수정)</span>
 						</tr>
 						<c:forEach var="i" items="${ list}">
 
@@ -160,13 +187,13 @@ input[type=submit]:hover {
 
 								<tr class="pt-4">
 									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>이름</span>
+										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>이름</strong></span>
 									<td colspan="2"
 										style="text-align: left; vertical-align: middle"><span>${i.name }</span>
 								</tr>
 								<tr class="pt-4">
 									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>아이디(이메일)</span>
+										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>아이디(이메일)</strong></span>
 									<td colspan="2"
 										style="text-align: left; vertical-align: middle"><span>${i.email }</span>
 								</tr>
@@ -174,18 +201,18 @@ input[type=submit]:hover {
 									<c:when test="${i.type==3 }">
 										<tr class="pt-4">
 											<td
-												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>비밀번호</span>
+												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>비밀번호</strong></span>
 											<td colspan="2"><input type="button"
 												class=" btn btn-primary float-left" id="pwChange_btn"
 												value="비밀번호 변경하기">
 										</tr>
 									</c:when>
 
-								
+
 									<c:otherwise>
 										<tr class="pt-4">
 											<td
-												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>비밀번호</span>
+												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>비밀번호</strong></span>
 											<td colspan="2"><input type="button"
 												class=" btn btn-primary float-left" id="pwChange_btn"
 												value="비밀번호 변경하기" disabled>
@@ -194,7 +221,7 @@ input[type=submit]:hover {
 								</c:choose>
 								<tr class="pt-4">
 									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>닉네임</span>
+										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>닉네임</strong></span>
 									<td colspan="2"
 										style="text-align: center; vertical-align: middle"><span><input
 											class="form-control" type="text" style="width: 200px"
@@ -203,16 +230,27 @@ input[type=submit]:hover {
 								</tr>
 								<tr class="pt-4">
 									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>나이</span>
+										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>나이</strong></span>
 									<td colspan="2"
 										style="text-align: left; vertical-align: middle">${i.age }
-										대
+										<select name="age">
+
+											<option value="10-19">10 - 19</option>
+											<option value="20-29">20 - 29</option>
+											<option value="30-39">30 - 39</option>
+											<option value="40-49">40 - 49</option>
+											<option value="50-59">50 - 59</option>
+											<option value="60-69">60 - 69</option>
+											<option value="70-79">70 - 79</option>
+											<option value="80-89">80 - 89</option>
+											<option value="90-99">90 - 99</option>
+									</select>
 								</tr>
 								<tr class="pt-4">
 									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>성별</span>
+										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>성별</strong></span>
 									<td style="text-align: left; vertical-align: middle"><span><input
-											type="radio" name="gender" value="M">남자<input
+											type="radio" name="gender" value="M" checked>남자<input
 											class=" ml-3" type="radio" name="gender" value="F">여자</span>
 									<td>
 								</tr>

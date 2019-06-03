@@ -69,7 +69,7 @@ select :hover {
 			if (emailRex.exec($("#email").val()) == null) {
 				$("#idRegex").css("color", "red");
 				$("#idRegex").text("적합한 형식이 아닙니다. ex) cwg94@naver.com ");
-				$("#email").attr("flag","fales");
+				$("#email").attr("flag", "fales");
 			} else {
 				$("#idRegex").text("");
 				$.ajax({
@@ -83,11 +83,11 @@ select :hover {
 					if (resp == 1) {
 						$("#idRegex").css("color", "red");
 						$("#idRegex").text(" *이미 사용중인 계정 입니다.");
-						$("#email").attr("flag","fales");
+						$("#email").attr("flag", "fales");
 					} else {
 						$("#idRegex").css("color", "green");
 						$("#idRegex").text(" *사용할 수 있는 계정 입니다.");
-						$("#email").attr("flag","true");
+						$("#email").attr("flag", "true");
 					}
 				})
 			}
@@ -116,42 +116,48 @@ select :hover {
 
 			}
 		});
-		$("#sub").on("click", function() {
-			if($("#email").attr("flag")=="true" && $("#certi").attr("flag")=="true"){
-				$("#form").submit();
-			}else if($("#email").attr("flag")=="fales" || $("#certi").attr("flag")=="fales" ){
-                alert("이메일이 중복되거나 인증하지 않았습니다.");
-            }else{
-                alert("입력하지 않은 값이 있습니다.");
-            }
-		});
-		$("#emailbtn").on("click",function(){
-			if($("#email").attr("flag")=="true"){
+		$("#sub").on(
+				"click",
+				function() {
+					if ($("#email").attr("flag") == "true"
+							&& $("#certi").attr("flag") == "true") {
+						$("#form").submit();
+					} else if ($("#email").attr("flag") == "fales"
+							|| $("#certi").attr("flag") == "fales") {
+						alert("이메일이 중복되거나 인증하지 않았습니다.");
+					} else {
+						alert("입력하지 않은 값이 있습니다.");
+					}
+				});
+		$("#emailbtn").on("click", function() {
+			if ($("#email").attr("flag") == "true") {
 				alert("해당 이메일로 인증 번호가 발송 되었습니다!");
 				$("#certiRegex").css("color", "green");
 				$("#certiRegex").text("인증번호가 발송 되었습니다!. ");
 				$.ajax({
-					url:"post.ma",
-					data:{email : $("#email").val()},
-					type:"get"
-				}).done(function(resp2){
-					var certi=resp2;
-					$("#certibtn").on("click",function(){
-						if($("#certi").val()== certi ){
-							if(alert("인증성공")!=0){
-								$("#certi").attr("flag","true");
+					url : "post.ma",
+					data : {
+						email : $("#email").val()
+					},
+					type : "get"
+				}).done(function(resp2) {
+					var certi = resp2;
+					$("#certibtn").on("click", function() {
+						if ($("#certi").val() == certi) {
+							if (alert("인증성공") != 0) {
+								$("#certi").attr("flag", "true");
 								$("#certiRegex").css("color", "green");
 								$("#certiRegex").text("인증완료!");
 							}
-						}else{
+						} else {
 							alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-							$("#certi").attr("flag","fales");
+							$("#certi").attr("flag", "fales");
 							$("#certiRegex").css("color", "red");
 							$("#certiRegex").text("인증번호가 발송 되었습니다!. ");
 						}
 					});
 				});
-			}else{
+			} else {
 				alert("이메일이 중복 되거나 양식에 맞지 않습니다");
 			}
 		});
@@ -163,17 +169,21 @@ select :hover {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+							소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 		<div class="row p-1">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -201,7 +211,7 @@ select :hover {
 						</thead>
 						<tbody>
 							<tr>
-								<td style="width: 200px" class="pt-4"><h5>아이디</h5>
+								<td style="width: 200px; vertical-align: middle" class="pt-4"><h5>아이디</h5>
 								<td colspan="2">
 									<div class="input-group ">
 										<input type="text" class="form-control" id="email"
@@ -263,15 +273,15 @@ select :hover {
 								<td style="width: 200px"><select class="float-left"
 									name="age">
 
-										<option value="10-19">10대</option>
-										<option value="20-29">20대</option>
-										<option value="30-39">30대</option>
-										<option value="40-49">40대</option>
-										<option value="50-59">50대</option>
-										<option value="60-69">60대</option>
-										<option value="70-79">70대</option>
-										<option value="80-89">80대</option>
-										<option value="90-99">90대</option>
+										<option value="10-19">10 - 19</option>
+										<option value="20-29">20 - 29</option>
+										<option value="30-39">30 - 39</option>
+										<option value="40-49">40 - 49</option>
+										<option value="50-59">50 - 59</option>
+										<option value="60-69">60 - 69</option>
+										<option value="70-79">70 - 79</option>
+										<option value="80-89">80 - 89</option>
+										<option value="90-99">90 - 99</option>
 								</select>
 								<td>
 							</tr>
@@ -282,12 +292,11 @@ select :hover {
 										style="text-align: center; margin: 0 auto;">
 										<div class="btn-group " data-toggle="buttons"
 											style="float: left">
-											<label class="btn btn-primary active"> <input 
-												type="radio" name="gender" value="M" style="cursor: pointer"
-												checked style="cursor:pointer" autocomplete="off" checked>남자
+											<label class="btn btn-primary active"> <input
+												type="radio" name="gender" value="M" checked
+												autocomplete="off" checked>남자
 											</label> <label class="btn btn-danger"> <input type="radio"
-												name="gender" value="F" style="cursor: pointer"
-												autocomplete="off" style="cursor:pointer">여자
+												name="gender" value="F" autocomplete="off">여자
 											</label>
 										</div>
 									</div> <br> <br>

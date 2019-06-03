@@ -22,7 +22,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import dao.FreeBoardDAO;
-import dao.FreeCommentDAO;
+import dao.FreeCommentsDAO;
 import dto.FileDTO;
 import dto.FreeBoardDTO;
 import dto.FreeCommentsDTO;
@@ -47,7 +47,7 @@ public class FreeBoardController extends HttpServlet {
 
 
 		FreeBoardDAO dao = new FreeBoardDAO();
-		FreeCommentDAO cdao = new FreeCommentDAO();
+		FreeCommentsDAO cdao = new FreeCommentsDAO();
 
 
 
@@ -55,7 +55,15 @@ public class FreeBoardController extends HttpServlet {
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			request.getSession().setAttribute("currentPage", currentPage);
-		List<FreeBoardDTO> freeList = null;
+
+
+
+
+
+
+
+			List<FreeBoardDTO> freeList = null;
+
 			try {
 				freeList = dao.selectByPage(currentPage);;
 
@@ -134,13 +142,13 @@ public class FreeBoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-//---------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/flag.board01")){//flag 바꿔주기
 			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
 			fdto.setFlag(true);
 			fdto.setFilePath(null);
-//---------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeBaord.board01")) {//등록버튼 누르면
 
 			String title = request.getParameter("title");
@@ -179,7 +187,7 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("입력됨 ㅠ");
 				response.sendRedirect("list.board01?currentPage="+request.getSession().getAttribute("currentPage"));
 			}else {System.out.println("입력안됨");}
-//---------------------------------------------------------------------------------------------------------------------			
+			//---------------------------------------------------------------------------------------------------------------------			
 		}else if(command.equals("/deleteFile.board01")){//서버에 있는 파일 삭제
 			String rootPath = this.getServletContext().getRealPath("/");
 			String imgPath = request.getParameter("img");
@@ -204,7 +212,7 @@ public class FreeBoardController extends HttpServlet {
 			}
 
 
-//---------------------------------------------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/freeContent.board01")) {//글 내용보기
 			int seq = Integer.parseInt(request.getParameter("seq"));
 			System.out.println(seq);
@@ -221,10 +229,30 @@ public class FreeBoardController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
+			
+			int commentPage = Integer.parseInt(request.getParameter("commentPage")); //댓글 창 현재페이지
+			System.out.println("commentPage");
+			 request.getSession().setAttribute("cmCurrnetPage", commentPage);
+			List<FreeCommentsDTO> commentList = null;
+			try {
+				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			String navi = null;
+			try {
+				navi = cdao.getNavi(commentPage, seq);
+			}catch(Exception e) {
+				e.printStackTrace();
+				
+			}
 			request.setAttribute("content", content);
+			request.setAttribute("comList", commentList);
+			request.setAttribute("navi", navi);
 			request.getRequestDispatcher("/WEB-INF/board/freeContent.jsp").forward(request, response);
 			//---------------------------------------------------------------------------------------------------------------------
-		}else if(command.equals("/deleteContent.board01")) {
+		}else if(command.equals("/deleteContent.board01")) { // 글 삭제
 			int seq = Integer.parseInt(request.getParameter("seq"));
 			int result = 0;
 			try {
@@ -237,32 +265,47 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("삭제");
 			}else {System.out.println("삭제 ㄴ");}
 			request.getRequestDispatcher("list.board01").forward(request, response);
+//---------------------------------------------------------------------------------------------------------------------
+		}else if(command.equals("/alterContent.board01")) {//글 수정 완료버튼 누르면 
+			int seq = Integer.parseInt(request.getParameter("seq")); // 글번
+			String title = request.getParameter("title");
+			String content = request.getParameter("inputContent");
+			
+			int result = 0;
+			try {
+				result = dao.alterContent(title, content, seq);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+			
+			request.getRequestDispatcher("freeContent.board01commentPage="+request.getSession().getAttribute("cmCurrnetPage")+"&&seq="+seq).forward(request, response);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/comment.board01")) { // 댓글정보 디비에 넣기
 			String comments = request.getParameter("comments");
 			System.out.println(comments);
 			JsonParser jp = new JsonParser();
 			JsonObject root = jp.parse(comments).getAsJsonObject();
-			
+
 			String comment = root.get("comment").getAsString(); // 댓글
 			int postNum = Integer.parseInt(root.get("postNum").getAsString()); // 글번호
 			String postTitle = root.get("postTitle").getAsString();//글제목
-			
+
 			String email = (String)request.getSession().getAttribute("email");//댓글쓴사람 이메일
 			Pattern p = Pattern.compile("^[a-z0-9]*");
 			Matcher m = p.matcher(email); // 이메일 앞부분 -작성자
 			m.find();
 			String writer = m.group();//댓글 쓴 사람
 			System.out.println(writer);
-			
+
 			String ip = request.getRemoteAddr();
 			int id = (int)request.getSession().getAttribute("id");
-			
+
 			FreeCommentsDTO fcdto = new FreeCommentsDTO(0, comment, postNum, postTitle, writer, ip, null, email, id);
-			
+
 			int result = 0;
 			try {
-			result = cdao.insertComment(fcdto);
+				result = cdao.insertComment(fcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -271,12 +314,42 @@ public class FreeBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
-
-
-
-
+//---------------------------------------------------------------------------------------------------------------------
+		}else if(command.equals("/deleteComment.board01")) {//댓글 삭제하기
+			int postNum = Integer.parseInt(request.getParameter("postNum"));
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			System.out.println(seq);
+			int result = 0;
+			try {
+			result = cdao.deleteComment(seq);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+			if(result > 0) {
+				System.out.println("댓글삭제");
+			}else {
+				System.out.println("댓글삭제 ㄴ");
+			}
+			request.getRequestDispatcher("/freeContent.board01?commentPage="+request.getSession().getAttribute("cmCurrnetPage")+"&&seq="+postNum).forward(request, response);
+		}else if(command.equals("/alterComment.board01")) {//댓글 수정하기
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			String comment = request.getParameter("comment");
+			System.out.println(comment);
 			
+			int result = 0;
+			try {
+			 result = cdao.alterComment(seq, comment);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+					
+			if(result > 0) {
+				pw.write("수정됨");
+			}else {pw.write("수정안됨");}
 		}
+		
 	}
 
 

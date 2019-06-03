@@ -43,7 +43,28 @@
 							$("#certibtn").on("click",function(){
 								if($("#certi").val()== certi ){
 									if(alert("인증성공")!=0){
-										
+										if(${type==1}){//네이버
+											var flag=confirm("정말 탈퇴 하시겠습니까??");
+											if(flag==true){
+												location.href="withdrawal.na";
+											}else{
+												window.close();
+											}
+										}else if(${type==2}){//카카오
+											var flag=confirm("정말 탈퇴 하시겠습니까??");
+											if(flag==true){
+												location.href="withdrawal.ka";
+											}else{
+												window.close();
+											}
+										}else if(${type==3}){//이메일
+											var flag=confirm("정말 탈퇴 하시겠습니까??");
+											if(flag==true){
+												location.href="withdrawal.me";
+											}else{
+												window.close();
+											}
+										}
 									}
 								}else{
 									alert("인증 실패! 이메일과 인증번호를 확인 하세요!");

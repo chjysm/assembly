@@ -212,12 +212,13 @@ public class MemberDAO {
 	}
 
 	// 마이페이지 수정하기
-	public int mpUpdate(String nickname, String gender, int seq) {
-		String sql = "update members set nickname = ? , gender = ? where id = ?";
+	public int mpUpdate(String nickname, String gender,String age, int seq) {
+		String sql = "update members set nickname = ? , gender = ?, age= ? where id = ?";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, nickname);
 			pstat.setString(2, gender);
-			pstat.setInt(3, seq);
+			pstat.setString(3, age);
+			pstat.setInt(4, seq);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
@@ -233,7 +234,7 @@ public class MemberDAO {
 		pstat.setString(1, email);
 		return pstat;
 	}
-	public int getType(String email) {
+	public int getType(String email) {// 타입값 가져오기
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = getPstatForGetType(con,email);
@@ -244,6 +245,18 @@ public class MemberDAO {
 				return type;
 			}
 			return -1;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	public int delete(int id) {
+		String sql = "delete from members where id=?";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setInt(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
 		} catch(Exception e) {
 			e.printStackTrace();
 			return -1;
