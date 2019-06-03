@@ -112,13 +112,19 @@ a[class="more"] {
 			location.href = "logout.me";
 		});
 		$("#getPw").on("click", function() {
-			open("getPw.me", "_brank", "width=600px,height=400px")
+			open("getPw.me", "_brank", "width=600px,height=400px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(400/2)));
 		});
 		$("#signUp_btn").on("click", function() {
 			location.href = "signUpGo.me";
 		});
+		$(".mPageGo").on("click", function() {
+			location.href = "mPageGo.me";
+		});
 		$("#storeSerchBtn").on("click", function() {
-			open("goStoreSerch.win", "_brank", "width=800px,height=600px")
+			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+((window.screen.width/2)-(800/2))+",top="+((window.screen.height/2)-(600/2)));
+		});
+		$(".withdrawalBtn").on("click", function() {
+			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+((window.screen.width/2)-(600/2))+",top="+((window.screen.height/2)-(600/2)));
 		});
 	});
 </script>
@@ -133,10 +139,10 @@ a[class="more"] {
 					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">건의게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
@@ -251,11 +257,11 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.na"><img height="49" width="150"
-								src="nlogout.PNG" /></a>
+								src="Resources/img/nlogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
@@ -263,11 +269,11 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo" >마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<br>
 							<br> <a href="logout.ka"><img height="49" width="222"
-								src="klogout.PNG" /></a>
+								src="Resources/img/klogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
@@ -275,12 +281,11 @@ a[class="more"] {
 							<div class="form-group pb-1">
 								<label for="comment">안녕하세요! ${nickname}님</label>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2">마이페이지</button>
-							<button type="button" class="btn btn-outline-secondary mr-2">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 mPageGo" >마이페이지</button>
+							<button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="emailLogout">로그아웃</button>
-							<br>
-							<br>
+							<br> <br>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
@@ -311,7 +316,7 @@ a[class="more"] {
 								찾기</button>
 							<br> <br> <a id="kakao-login-btn"></a><a
 								href="http://developers.kakao.com/logout"></a> <a
-								href="login.na"><img height="49" width="222" src="naver.PNG" /></a>
+								href="login.na"><img height="49" width="222" src="Resources/img/naver.PNG" /></a>
 						</form>
 					</c:otherwise>
 				</c:choose>
@@ -354,7 +359,7 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-warning myCard" style="width: 18rem;">
 					<img
-						src="photo3.png"
+						src="Resources/img/photo3.png"
 						class="card-img-top" alt="card_img1">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
@@ -516,7 +521,17 @@ a[class="more"] {
 				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				홈페이지 이용약관 등</div>
+					<div class="">
+						<span class="logo">Logo</span>
+						<dl>
+							<dt>Assembly(주)</dt>
+							<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+							<dd>대표이사: 홍길동    사업자등록번호 : 815-81-00000</dd>
+							<dd>Tel: 1599-0000    Fax: 02-894-0000</dd>
+							<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+						</dl>
+					</div>
+			</div>
 		</div>
 	</div>
 	<!-- Optional JavaScript -->

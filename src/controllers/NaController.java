@@ -38,6 +38,7 @@ public class NaController extends HttpServlet {
 				String state = request.getParameter("state");
 				String res = na.getToken(code, state);
 				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				String refresh_token=parse.parse(res.toString()).getAsJsonObject().get("refresh_token").getAsString();
 				String info=na.getInfo(access_token);
 				try {
 					String email=parse.parse(info).getAsJsonObject().get("email").getAsString();
@@ -52,11 +53,13 @@ public class NaController extends HttpServlet {
 						int result = me.insert_member(new MemberDTO(0,email,null,name,nickname,birthday,gender,age,type));
 					}
 					int id=me.getId(email);
+					String realNickname=me.getNickname(email);
 					request.getSession().setAttribute("id", id);
 					request.getSession().setAttribute("email", email);
 					request.getSession().setAttribute("type", type);
-					request.getSession().setAttribute("nickname", nickname);
-					response.sendRedirect("main.jsp");
+					request.getSession().setAttribute("nickname", realNickname);
+					request.getSession().setAttribute("refresh_token", refresh_token);
+					response.sendRedirect("goMain.win");
 				}catch(Exception e) {
 					request.setAttribute("type", 1);
 					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
@@ -68,7 +71,21 @@ public class NaController extends HttpServlet {
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getSession().setAttribute("refresh_token", null);
+				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+			}else if(cmd.equals("/withdrawal.na")) {
+				int id=(int)request.getSession().getAttribute("id");
+				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
+				request.getSession().setAttribute("id", null);
+				request.getSession().setAttribute("email", null);
+				request.getSession().setAttribute("type", null);
+				request.getSession().setAttribute("nickname", null);
+				request.getSession().setAttribute("refresh_token", null);
+				int result = me.delete(id);
+				String res=na.getAccessToken(refresh_token);
+				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				String a=na.delete(access_token);
+				response.getWriter().append("<script> if(alert('탈퇴가 완료 되었습니다!.')!= 0){ opener.location.reload(true); window.close(); }</script>");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

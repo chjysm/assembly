@@ -62,6 +62,8 @@ select :hover {
 		var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
 		var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
 		var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
+		var idCount = 0;
+		var pwCount = 0;
 		//아이디 중복 ajax +정규표현식
 		$("#email").on("input", function() {
 			if (emailRex.exec($("#email").val()) == null) {
@@ -71,7 +73,7 @@ select :hover {
 			} else {
 				$("#idRegex").text("");
 				$.ajax({
-					url :  "check.me",
+					url : "check.me",
 					type : "post",
 					data : {
 						id : $("#email").val()
@@ -161,17 +163,19 @@ select :hover {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">메인페이지</a>
+					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 		<div class="row p-1">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -260,6 +264,7 @@ select :hover {
 								<td style="width: 200px" class="pt-4"><h5>나이</h5>
 								<td style="width: 200px"><select class="float-left"
 									name="age">
+
 										<option value="10-19">10대</option>
 										<option value="20-29">20대</option>
 										<option value="30-39">30대</option>
@@ -279,7 +284,7 @@ select :hover {
 										style="text-align: center; margin: 0 auto;">
 										<div class="btn-group " data-toggle="buttons"
 											style="float: left">
-											<label class="btn btn-primary active"> <input
+											<label class="btn btn-primary active"> <input 
 												type="radio" name="gender" value="M" style="cursor: pointer"
 												checked style="cursor:pointer" autocomplete="off" checked>남자
 											</label> <label class="btn btn-danger"> <input type="radio"

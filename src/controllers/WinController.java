@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FreeBoardDAO;
-import dto.FreeBoardDTO;
 
 
 @WebServlet("*.win")
@@ -23,11 +21,10 @@ public class WinController extends HttpServlet {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
-		PrintWriter pt = response.getWriter();
 		FreeBoardDAO fb= new FreeBoardDAO();
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch2.win")) {
@@ -40,8 +37,9 @@ public class WinController extends HttpServlet {
 				System.out.println(addr+":"+ brand);
 				response.sendRedirect("http://map.daum.net/?sName="+addr+"&eName="+brand);
 				//request.getRequestDispatcher("http://map.daum.net/?sName="+addr+"&eName="+brand).forward(request, response);
+			}else if (cmd.equals("/goInfo.win")) { // 메인페이지로 이동
+				request.getRequestDispatcher("/WEB-INF/etc/information.jsp").forward(request, response);
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
