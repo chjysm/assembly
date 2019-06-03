@@ -7,9 +7,8 @@ create table Board(
     ip varchar(50) not null,
     wirteDate timestamp default sysdate,
     email varchar(100) not null,
-    id number not null
-    
-);  
+    id number not null 
+);
 drop table board;
 drop sequence board_seq;
 commit;

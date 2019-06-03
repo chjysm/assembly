@@ -52,7 +52,7 @@ public class AdminController extends HttpServlet {
 				vdto = vdao.VisitChart();
 				
 				request.setAttribute("vdto", vdto);
-				request.getRequestDispatcher("/admin.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/etc/admin.jsp").forward(request, response);
 			} 
 		}catch (Exception e) {
 			e.printStackTrace();
