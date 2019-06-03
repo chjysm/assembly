@@ -16,7 +16,7 @@ import dto.FreeCommentsDTO;
 public class FreeCommentsDAO {
 	private Connection getConnection()throws Exception{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.60.24:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 
@@ -75,7 +75,7 @@ public class FreeCommentsDAO {
 	static int naviCountPerPage = 10;// 한페이지에 보여줄 페이지 번호 수
 	
 	private PreparedStatement pstatselectByPage(Connection con, int startNum, int endNum, int postNum)throws Exception{
-		String sql = "select * from (select row_number()over(order by seq asc) as rown, FreeComments.* from FreeComments) where postnum = ? and rown between ? and ?";
+		String sql = "select * from (select row_number()over(order by seq asc) as rown, FreeComments.* from FreeComments where postnum = ?) where rown between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, postNum);
 		pstat.setInt(2, startNum);

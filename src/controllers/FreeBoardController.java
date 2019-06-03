@@ -361,55 +361,32 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("수정 안됨 ㅠ");
 				pw.write("수정안됨");
 			}
-		}else if(command.equals("/selectByTitle.board01")) { //글제목으로 글 검색하기
-			System.out.println("글제목 검색");
+		}else if(command.equals("/searchContent.board01")) { //검색버튼 누르면
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			String title = request.getParameter("searchWord");
+			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
-			System.out.println(title);
+			System.out.println("검색어: "+searchWord);
+			System.out.println("옵션:" + option);
 			
-			List<FreeBoardDTO> freeTitleList = null;
+			List<FreeBoardDTO> freeSelectList = null;
 			try {			
-				//freeTitleList =;
+				freeSelectList = dao.selectBySearchPage(currentPage, searchWord, option);
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 				
 			}
-			String getNaviTitle = null;
+			String getNaviSelect = null;
 			try {
-				//getNaviTitle = dao. // 페이지 네비 보여주기 
+				getNaviSelect = dao.getNaviSelect(currentPage, option, searchWord); // 페이지 네비 보여주기 
 
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			request.setAttribute("freeList", freeTitleList);
-			request.setAttribute("getNavi", getNaviTitle);
+			request.setAttribute("freeList", freeSelectList);
+			request.setAttribute("getNavi", getNaviSelect);
 			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 			
-		}else if(command.equals("/selectByWriter.board01")) { // 작성자로 글 검색하기
-			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			String writer = request.getParameter("searchWord");
-			String option = request.getParameter("option");
-			
-			List<FreeBoardDTO> freeWriterList = null;
-			try {			
-				//freeWriterList = dao;
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-				
-			}
-			String getNaviWriter = null;
-			try {
-				//getNaviWriter = dao; // 페이지 네비 보여주기 
-
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			request.setAttribute("freeList", freeWriterList);
-			request.setAttribute("getNavi", getNaviWriter);
-			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 		}
 		
 	}

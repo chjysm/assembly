@@ -212,12 +212,13 @@ public class MemberDAO {
 	}
 
 	// 마이페이지 수정하기
-	public int mpUpdate(String nickname, String gender, int seq) {
-		String sql = "update members set nickname = ? , gender = ? where id = ?";
+	public int mpUpdate(String nickname, String gender,String age, int seq) {
+		String sql = "update members set nickname = ? , gender = ?, age= ? where id = ?";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, nickname);
 			pstat.setString(2, gender);
-			pstat.setInt(3, seq);
+			pstat.setString(3, age);
+			pstat.setInt(4, seq);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;

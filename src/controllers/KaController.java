@@ -76,7 +76,7 @@ public class KaController extends HttpServlet {
 				response.sendRedirect(ka.login());
 			}else if(cmd.equals("/logout.ka")) {
 				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
-				String access_token=ka.getAccessToken(refresh_token);
+				String access_token=parse.parse(ka.getAccessToken(refresh_token)).getAsJsonObject().get("access_token").getAsString();
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);

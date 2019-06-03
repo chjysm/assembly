@@ -46,17 +46,17 @@ h1 {
 
 h3 {
 	color: #5882FA;
-	font-size: 1.8rem;
+	font-size: 2.0rem;
 }
 
 .headerspan {
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	color: #6E6E6E;
 }
 
 .mainspan {
 	color: #6E6E6E;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 }
 
 .containermain {
@@ -64,6 +64,10 @@ h3 {
 	border-radius: 10px;
 	border-color: #D8D8D8;
 }
+.footer {
+	background: #b8daff;
+}
+
 </style>
 </head>
 <body>
@@ -107,7 +111,7 @@ h3 {
 		<div class="pb-3">
 
 			<h1>
-				스크래치<small>에 관하여 소개합니다!</small>
+				우야꼬<small>에 관하여 소개합니다!</small>
 			</h1>
 			<hr>
 
@@ -115,16 +119,24 @@ h3 {
 		<div class="row ">
 			<div class="col-lg-6">
 				<p>
-					<span class="headerspan"><strong>스크래치</strong>를 이용하면 인터렉티브한
-						이야기, 게임, 애니메이션을 직접 만들 수 있고,그 작품을 온라인 커뮤니티에서 다른 사람들과 공유할 수 있습니다</span>
+					<span class="headerspan"><strong>기술</strong>은 사람을 편하게 하기 위해 존재합니다
+					하지만 아이러니하게도, 우리들은 기술 발전의 홍수 속에서 더욱 더 부지런히 살지 않으면 안 되게 되었습니다
+					<Strong>그러나</Strong>, 모두가 앞만 보고 달려가는 무한경쟁 사회에선 그 레이스에 발맞추기 힘든 이들이 생기기 마련입니다
+					</span>
 				</p>
 				<p>
-					<span class="headerspan"><strong>스크래치</strong>를 통해 어린이들은 창의적
-						사고, 체계적 추론, 협동 작업을 배우게 됩니다. 이런 능력은 21세기를 살아가는데 필수적이죠.</span>
+					<span class="headerspan">오늘날 사회문제로 떠오른 디지털 소외계층도 그 일부라고 할 수 있습니다. 
+					대표적으로 <Strong>노인계층</Strong>을 들 수 있습니다.</span>
 				</p>
 				<p>
-					<span class="headerspan"><strong>스크래치</strong>는 MIT 미디어랩의
-						Lifelong Kindergarten Group 에서 운영하는 프로젝트이며 무료입니다!</span>
+					<span class="headerspan"> 한국을 비롯한 전 세계는 고령화에 접어들고 있습니다. 이는 더이상 개인이난 한 지역의 책임으로 돌릴 수 없습니다.
+					어떻게 이들을 끌어안아 함께 발맞춰갈 수 있을까? 이는 우리 모두가 당면한 <Strong>문제</Strong>며, 당연히 고민해봐야 할 과제입니다
+					</span>
+				</p>
+				<p>
+					<span class="headerspan">  그래서, 우리 <Strong>우야꼬</Strong>는 디지털 소외계층에 대한 해결책 중 하나로 교육을 제시하고자 합니다. 
+					웹이라는 세상에서, 시간과 공간에 큰 제약을 받지 않고도 새로운 기술들을 접하고 배울 수 있는 컨텐츠를 만들었습니다.
+					</span>
 				</p>
 
 			</div>
@@ -142,19 +154,20 @@ h3 {
 
 				<div class="col-lg-6">
 					<div style="width: 80%">
-						<h3>누가 스크래치를 사용하나요?</h3>
-						<img class="rounded" src="Resources/img/information1.png" alt="왜안나오죵">
+						<h3>누가 우야꼬를 사용하나요?</h3>
+						<img class="rounded" src="Resources/img/information1.png" alt="왜안나오죵" width="384px" height="210px">
 						<p class="mt-2">
-							<span class="mainspan"><strong>스크래치</strong>는 주로 8~16세를
-								대상으로 만들어졌습니다만, 모든 연령층에서 사용하고 있습니다. 수백만의 사람들이 가정, 학교, 전시관, 도서관,
-								지역 센터 등 다양한 환경에서 스크래치 프로젝트를 만들고 있습니다.</span>
+							<span class="mainspan"><strong >우야꼬</strong>는 주로 디지털 소외계층을 위해 만들어 졌습니다.
+							실제 상황 에서는 주변의 따가운 시선과 압박으로 연습은 커녕  주문할 기회조차 얻지 못하는 분들을 위한 사이트 입니다.
+							우야꼬는 가정, 학원, 노인정, 지역센터, 도서관 등 다양하고 접하기 쉬운 환경에서 디지털 소외계층 분들에게 제공될 것 입니다.
+							</span>
 						</p>
 					</div>
 				</div>
 
 				<div class="col-lg-6">
 					<div style="width: 80%">
-						<h3>프로그래밍 교육, 프로그래밍을 통한 교육</h3>
+						<h3>키오스크 게임,게임을 통한 쉬운 학습</h3>
 						<div>
 							<iframe width="100%" height="315"
 								src="https://www.youtube.com/embed/fpBbvE0Jsz4" frameborder="0"
@@ -163,40 +176,36 @@ h3 {
 						</div>
 					</div>
 				</div>
-
-
-
 				<div class="col-lg-6  ">
 					<div style="width: 80%">
-						<h3 class="mt-3">전세계의 여러 나라</h3>
-						<img class="rounded" src="Resources/img/information2.png" alt="왜안나오죵">
+						<h3 class="mt-3">다양한 환경</h3>
+						<img class="rounded" src="Resources/img/information2.png" width="384px" height="210px">
 						<p class="mt-2">
-							<span class="mainspan"><strong>스크래치</strong>는 150개 이상의
-								나라에서 40개 이상의 언어로 사용되고 있습니다. 언어를 바꾸려면 페이지의 맨 아래에 있는 메뉴를 클릭하세요.
-								프로젝트 에디터에서는 페이지의 맨 위쪽에 있는 지구 모양을 클릭하세요. 번역이 되지 않은 부분을 번역하거나 번역된
-								내용을 고치고 싶으시면 번역 페이지로 가 보세요</span>
+							<span class="mainspan"><strong>우야꼬</strong>
+							는 인터넷 접속, 회원 가입, 인터넷과 관련된 모든 것에 힘들어 하시는 디지털 소외계층 분들을 위해
+							우야꼬는 가정, 학원, 노인정, 지역센터, 도서관 등 다양하고 접하기 쉬운 환경과 도움을 드릴 수 있는 직원분들을 통해 지원을 받으실 수 있습니다.
+							</span>
 						</p>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div style="width: 80%">
-						<h3 class="mt-3">학교에서 쓰이는 스크래치</h3>
+						<h3 class="mt-3">학교에서 쓰이는 우야꼬 </h3>
 						<img class="rounded" src="Resources/img/information3.png" alt="왜안나오죵">
 						<p class="mt-2">
-							<span class="mainspan">학생들은 모든 수준(초등학교에서 대학까지)과 다양한 과목(수학,
-								컴퓨터 과학, 국어, 사회 등)에서 스크래치와 함께 학습하고 있습니다. 교육자들은 ScratchEd 웹사이트에서
-								경험과 자료들을 공유하고, 질문을 하고, 사람들을 찾고 있습니다.</span>
+							<span class="mainspan"><strong>우야꼬</strong>는 디지털 소외계층 분들을 위한 것입니다. 
+							하지만 이 디지털 소외계층은 노년층만 해당하는 것이 아닙니다. 초등학생이나 유치원생들 또한 이러한 키오스크를 접할 기회가 적기 때문에,
+							수업시간에 우야꼬를 통한 교육으로 빠른 성취를 이룰 수 있을것입니다.</span>
 						</p>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div style="width: 80%">
-						<h3 class="mt-3">???에 대하여 자세히 알아보기</h3>
-
+						<h3 class="mt-3">우야꼬에 대하여 자세히 알아보기</h3>
 						<p class="mt-2">
-							<span class="mainspan">학생들은 모든 수준(초등학교에서 대학까지)과 다양한 과목(수학,
-								컴퓨터 과학, 국어, 사회 등)에서 스크래치와 함께 학습하고 있습니다. 교육자들은 ScratchEd 웹사이트에서
-								경험과 자료들을 공유하고, 질문을 하고, 사람들을 찾고 있습니다.</span>
+							<span class="mainspan"><strong>우야꼬</strong>는 여러 브랜드의 키오스크를 연습하고 경험할 수 있는 사이트 입니다.
+							손쉬운 접근과 다양한 부가기능 제공으로 실제 상황이 되어도 좀더 편안한 마음으로 키오스크를 사용 할 수 있게끔 만들어 드립니다.
+							</span>
 						</p>
 					</div>
 				</div>
@@ -205,18 +214,35 @@ h3 {
 						<h3 class="mt-3">지원 및 자금 후원</h3>
 
 						<p class="mt-2">
-							<span class="mainspan">스크래치 프로젝트는 National Science
+							<span class="mainspan"><strong >우야꼬</strong> 프로젝트는 National Science
 								Foundation, Scratch Foundation, Siegel Family Endowment, Google,
 								LEGO Foundation, Intel, Cartoon Network, Lemann Foundation,
 								MacArthur Foundation의 재정적 지원을 받아왔습니다. 더 많은 정보는 기여자 페이지에서 확인하십시오.
-								만약 스크래치를 지원하고 싶으시다면, 스크래치 재단 기부 페이지를 방문하시거나,
-								donate@scratch.mit.edu로 문의하십시오.</span>
+								만약 우야꼬를 지원하고 싶으시다면, 우야꼬 재단 기부 페이지를 방문하시거나,
+								donate@assembly.mit.edu로 문의하십시오.</span>
 						</p>
 					</div>
 				</div>
 			</div>
+			
 
-
+		</div>
+		
+	</div>
+	<div class="container-fluid footer pt-5">
+			<div class="row pt-2 pb-5">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<div class="">
+						<span class="logo">Logo</span>
+						<dl>
+							<dt>Assembly(주)</dt>
+							<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+							<dd>대표이사: 홍길동    사업자등록번호 : 815-81-00000</dd>
+							<dd>Tel: 1599-0000    Fax: 02-894-0000</dd>
+							<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+						</dl>
+					</div>
+			</div>
 		</div>
 	</div>
 </body>
