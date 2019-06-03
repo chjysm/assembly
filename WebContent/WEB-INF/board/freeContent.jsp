@@ -136,95 +136,23 @@ h1+div {
 .cmBtn {
 	text-align: right;
 }
-
-.cmAlterBtn
-
-
-
-
-
- 
-
-
-
-
-
-${
-list
-
-
-
-
-
- 
-
-
-
-
-
-.seq
-
-
-
-
-
-
-	
-
-
-
-
-
-
-}
-,
-.cmDeleteBtn {
+.cmAlterBtn${list.seq},.cmDeleteBtn {
 	border: 0px;
 	background-color: #eaeaea;
 }
-
-.cmAlterBtn
-
-
-
-
-
-
-${
-list
-
-
-
-
-
-.seq
-
-
-
-
-
-
-
-
-
-}
-:hover, .cmDeleteBtn:hover {
+.cmAlterBtn${list.seq}:hover, .cmDeleteBtn:hover {
 	font-weight: bold;
 }
-
 .cmWriter {
 	font-weight: bold;
 }
-
 .line {
 	width: 95%;
 	border: 1px solid black;
 }
-
 .comentBox {
 	position: relative;
 }
-
 .alterBox {
 	background-color: #eaeaea;
 	width: 100%;
@@ -383,9 +311,6 @@ list
 				<!--댓글 등록 버튼-->
 			</div>
 		</div>
-
 	</div>
-
 </body>
-
 </html>

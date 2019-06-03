@@ -23,15 +23,13 @@
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
-					})
-    				
+					})	
     				$("#writeForm").submit();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
     			}else if($("#inputContent").val() == ""){
     				alert("내용을 입력해주세요.");
     			}
-    			
     		})
     		$("#summernote").summernote({
     			lang:'ko-KR',
