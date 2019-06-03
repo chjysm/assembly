@@ -25,7 +25,7 @@
 						url:'flag.board01',
 					})
     				
-    				$("#writeForm").submit();	
+    				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
     			}else if($("#inputContent").val() == ""){
@@ -71,6 +71,8 @@
     				});
     			})
     		});
+    		
+    		$("#title").val("${content.title}");
     		
     	})
     </script>
@@ -137,14 +139,14 @@
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
        <div class="head"><h1>자유게시판</h1><div></div></div>
-       <form action="freeBaord.board01" method="get" id="writeForm">
+       <form action="alterContent.board01" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">
           <div class="title col-lg-2 col-md-3 col-sm-2 col-3 ">제목</div>
           <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title"></div>
        </div>
        <div class="content row">
-       	<div id="summernote" contenteditable="true"></div>
+       	<div id="summernote" contenteditable="true">${content.content }</div>
          <div class="col-lg-12 col-md-12 col-sm-12 col-12"><textarea name="inputContent" id="inputContent" cols="30" rows="10" hidden></textarea></div>
        </div>
         <div class="footer">

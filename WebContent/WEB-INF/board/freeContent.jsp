@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>content</title>
@@ -13,11 +14,96 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean"
-	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
+<!-- JQuery -->
+<script>
+            $(function(){
+                $(".listBtn").on("click",function(){
+                    location.href="list.board01?currentPage=${currentPage}";
+                })
+                $(".deleteBtn").on("click",function(){
+                    location.href="deleteContent.board01?seq=${content.seq}&&currentPage=${currentPage}" ;
+
+                    /* $("img").each(function(i, item){
+        				var src = $(item).attr("src");
+        				console.log(src);
+        				$.ajax({
+        					url:"deleteFile.board01",
+        					type:"post",
+        					data:{img:src},
+        					cache:false
+        				}).done(function(resp){
+            				console.log(resp)
+            				if(resp == "삭제성공"){
+                    			location.href="deleteContent.board01?seq=${content.seq}" ;
+            				}else{
+            					location.href="deleteContent.board01?seq=${content.seq}" ;
+            				}
+            			});
+        			})  */
+                });
+                $(".alterBtn").on("click",function(){// 글 수정 버튼 -> 글 수정 페이지로 이동
+                	location.href="alterForm.board01?seq=${content.seq}";
+                })
+                
+               $(".commentBtn").on("click",function(){// 댓글 등록버튼 누르면
+                	if(${type == null}){
+        				alert("로그인 후 이용해주세요");
+        			}else{
+        				$.ajax({
+                    		url:"comment.board01",
+                    		type:"post",
+                    		data:{comments:JSON.stringify({comment:$(".textarea").html(),
+                    					    postNum:'${content.seq }',
+                    						postTitle:'${content.title }'             					    
+                    						})
+                    	}
+                    		
+                    	}).done(function(resp){
+                    		location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                    	});
+        			};
+         
+                });
+              		$(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
+              			var seq = $(this).attr("seq");
+              			console.log(seq);
+              			var result = confirm("댓글을 삭제하시겠습니까?");
+              			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
+              			
+              		});
+                $(".alterBox").hide();//수정 댓글입력창 숨기기
+                //수정하기 
+                $(".cmAlterBtn").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
+                	var seq = $(this).attr("seq");
+                	var id= "#"+seq;
+					$(id).show();                	
+                	
+                });
+                
+                $(".commentAlterBtn").each(function(i,item){
+                	 var btnSeq = $(this).attr("seq");
+                     var commentAlterBtn = "#commentAlterBtn" + btnSeq;
+                     var alterTextarea = "#alterTextarea" + btnSeq;
+                     $(commentAlterBtn).on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기                		
+                 		$.ajax({
+                     		url:"alterComment.board01",
+                     		data:{comment:$(alterTextarea).html(),seq:btnSeq}
+                     	}).done(function(resp){
+                     		if(resp == "수정됨"){
+                     			$(alterTextarea).html("");
+                     			$(".alterBox").hide();
+                     			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                     		}else if(resp == "수정안됨"){
+                     			alter("수정이 정상적으로 완료되지 못하였습니다.")
+                     		}
+                     		
+                     	});
+                 	}); 
+                });
+                                           
+            });
+        </script>
 <style>
 * {
 	margin: 0 auto;
@@ -104,7 +190,7 @@ h1+div {
 	background-color: #e0e2e5;
 }
 
-.comentBox {
+.commentBox {
 	background-color: #eaeaea;
 	margin: auto;
 }
@@ -129,7 +215,7 @@ h1+div {
 	border: 10px solid #eaeaea;
 }
 
-.comentBtn, .textarea {
+.commentBtn, .textarea {
 	float: left;
 }
 
@@ -137,77 +223,20 @@ h1+div {
 	text-align: right;
 }
 
-.cmAlterBtn
-
-
-
-
-
- 
-
-
-
-
-
-${
-list
-
-
-
-
-
- 
-
-
-
-
-
-.seq
-
-
-
-
-
-
+.cmAlterBtn ${list .seq
 	
-
-
-
-
-
-
 }
+
 ,
 .cmDeleteBtn {
 	border: 0px;
 	background-color: #eaeaea;
 }
 
-.cmAlterBtn
-
-
-
-
-
-
-${
-list
-
-
-
-
-
-.seq
-
-
-
-
-
-
-
-
-
+.cmAlterBtn ${list .seq
+	
 }
+
 :hover, .cmDeleteBtn:hover {
 	font-weight: bold;
 }
@@ -221,7 +250,7 @@ list
 	border: 1px solid black;
 }
 
-.comentBox {
+.commentBox {
 	position: relative;
 }
 
@@ -246,6 +275,7 @@ list
 
 					<li class="nav-item"><a class="nav-link active"
 						href="goMain.win">메인페이지</a></li>
+
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
 							소개</a></li>
@@ -256,6 +286,7 @@ list
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
+
 
 				</ul>
 			</div>
@@ -328,18 +359,19 @@ list
 		</div>
 
 		<c:forEach var="list" items="${comList }">
-			<div class="row comentBox">
+			<div class="row commentBox">
 
 				<div class="row  mb-5 alterBox" id="${list.seq }">
 					<!--댓글 수정 입력폼  -->
 					<div class="col-lg-11 col-md-11 col-sm-11 col-11 pr-0">
-						<div class="alterTextarea" seq=${list.seq } contenteditable="true"></div>
+						<div class="alterTextarea" id="alterTextarea${list.seq }"
+							seq=${list.seq } contenteditable="true"></div>
 						<!--댓글 수정 입력창  -->
 					</div>
 
 					<div class="col-lg-1 col-md-1 col-sm-1 col-1 p-0">
 						<input type="button" value="등록" seq=${list.seq }
-							class="commentAlterBtn">
+							class="commentAlterBtn" id="commentAlterBtn${list.seq }">
 						<!--댓글 수정 등록 버튼  -->
 					</div>
 				</div>
@@ -379,10 +411,12 @@ list
 			</div>
 
 			<div class="col-lg-1 col-md-1 col-sm-1 col-1">
-				<input type="button" value="등록" class="comentBtn">
+				<input type="button" value="등록" class="commentBtn">
 				<!--댓글 등록 버튼-->
 			</div>
 		</div>
+
+
 
 	</div>
 

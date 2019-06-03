@@ -225,6 +225,293 @@ public class FreeBoardDAO {
 			return list;
 
 		}
+	}
+
+	private PreparedStatement pstatSelectByTitle(Connection con, String title) throws Exception {
+		String sql = "select * from FreeBoard where title like ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, "%" + title + "%");
+		return pstat;
+
+	}
+
+	public List<FreeBoardDTO> selectByTitle(String title) throws Exception {// 글제목으로 글 검색
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatSelectByTitle(con, title);
+				ResultSet rs = pstat.executeQuery();) {
+			List<FreeBoardDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt("seq");
+				title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+				list.add(dto);
+
+			}
+			return list;
+		}
+	}
+
+	private PreparedStatement pstatSelectByWriter(Connection con, String writer) throws Exception {
+		String sql = "select * from FreeBoard where writer like '% ? %' ";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, writer);
+		return pstat;
+
+	}
+
+	public List<FreeBoardDTO> selectByWriter(String writer) throws Exception {// 작성자로 글 검색
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatSelectByWriter(con, writer);
+				ResultSet rs = pstat.executeQuery();) {
+			List<FreeBoardDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt("seq");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+				list.add(dto);
+
+			}
+			return list;
+		}
+
+	}
+
+	private PreparedStatement pstatWriterCount(Connection con, String writer) throws Exception {
+		String sql = "select count(*) count from FreeBoard where writer like ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, "%" + writer + "%");
+		return pstat;
+	}
+
+	public int writerCount(String writer) throws Exception {// 작성자 검색시 글 갯수
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatWriterCount(con, writer);
+				ResultSet rs = pstat.executeQuery();) {
+			rs.next();
+			return rs.getInt("count");
+		}
+	}
+
+	private PreparedStatement pstatTitleCount(Connection con, String title) throws Exception {
+		String sql = "select count(*) count from FreeBoard where title like ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, "%" + title + "%");
+		return pstat;
+	}
+
+	public int titleCount(String title) throws Exception {// 제목 검색시 글 갯수
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatWriterCount(con, title);
+				ResultSet rs = pstat.executeQuery();) {
+			rs.next();
+			return rs.getInt("count");
+		}
+	}
+
+	public String getNaviSelectWriter(int currentPage, String writer) throws Exception {// 작성자 검색했을시 나올 페이지네비
+
+		int recordTotalCount = this.writerCount(writer); // 전체 글 갯수
+
+		// 전체 페이지 수
+		int pageTotalCount = 0;
+		if (recordTotalCount % recordCountPerPage > 0) { // 전체 글 갯수 % 한 페이지에 보여줄 글 갯수 -> 나머지 잇으면 한페이지 더 필요
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else if (recordTotalCount % recordCountPerPage == 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		// ----------------------------------------------------------------------------------
+		if (currentPage < 1) {// 최소 페이지 보다 작으면 최소페이지로
+			currentPage = 1;
+		} else if (currentPage > pageTotalCount) { // 현재페이지 번호가 전체페이지보다 크면 최대 페이지로
+			currentPage = pageTotalCount;
+		} // 보안코드
+
+		// 내 위치의 기준으로 첫페이지와 끝페이지 알아내기
+		int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		// ex) startNavi : 14페이지에 있다고 가정 첫페이지는 11 -> 14/10 = 1 -> 1*10 = 10 -> 10+1 = 11
+		// ----> (currentPage/10)*10+1 // 10은 한번에 보여줄 페이지 숫자 범위
+		// 10 20 30등 페이지일 경우도 있음 : ★★(currentPage - 1)/10*10+1 -> 이 공식은 다 적용
+
+		// 최대페이지 번호보다 endNavi 번호가 크게 나옴 ㅠ
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		boolean needPrev = true; // 이전버튼
+		boolean needNext = true; // 다음버튼
+
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if (needPrev) {
+			sb.append("<a href='selectByWriter.board01?currentPage=" + (startNavi - 1) + "'> <이전 </a>");
+		}
+		for (int i = startNavi; i <= endNavi; i++) {
+			sb.append("<a href='selectByWriter.board01?currentPage=" + i + "'>  " + i + "  </a>");
+
+		}
+		if (needNext) {
+			sb.append("<a href='selectByWriter.board01?currentPage=" + (endNavi + 1) + "'> 다음> </a>");
+		}
+
+		return sb.toString();
+
+	}
+
+	public String getNaviSelectTitle(int currentPage, String title) throws Exception {// 제목 검색했을시 나올 페이지네비
+
+		int recordTotalCount = this.titleCount(title); // 전체 글 갯수
+
+		// 전체 페이지 수
+		int pageTotalCount = 0;
+		if (recordTotalCount % recordCountPerPage > 0) { // 전체 글 갯수 % 한 페이지에 보여줄 글 갯수 -> 나머지 잇으면 한페이지 더 필요
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else if (recordTotalCount % recordCountPerPage == 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		// ----------------------------------------------------------------------------------
+		if (currentPage < 1) {// 최소 페이지 보다 작으면 최소페이지로
+			currentPage = 1;
+		} else if (currentPage > pageTotalCount) { // 현재페이지 번호가 전체페이지보다 크면 최대 페이지로
+			currentPage = pageTotalCount;
+		} // 보안코드
+
+		// 내 위치의 기준으로 첫페이지와 끝페이지 알아내기
+		int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		// ex) startNavi : 14페이지에 있다고 가정 첫페이지는 11 -> 14/10 = 1 -> 1*10 = 10 -> 10+1 = 11
+		// ----> (currentPage/10)*10+1 // 10은 한번에 보여줄 페이지 숫자 범위
+		// 10 20 30등 페이지일 경우도 있음 : ★★(currentPage - 1)/10*10+1 -> 이 공식은 다 적용
+
+		// 최대페이지 번호보다 endNavi 번호가 크게 나옴 ㅠ
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		boolean needPrev = true; // 이전버튼
+		boolean needNext = true; // 다음버튼
+
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if (needPrev) {
+			sb.append("<a href='selectByTitle.board01?currentPage=" + (startNavi - 1) + "'> <이전 </a>");
+		}
+		for (int i = startNavi; i <= endNavi; i++) {
+			sb.append("<a href='selectByTitle.board01?currentPage=" + i + "'>  " + i + "  </a>");
+
+		}
+		if (needNext) {
+			sb.append("<a href='selectByTitle.board01?currentPage=" + (endNavi + 1) + "'> 다음> </a>");
+		}
+
+		return sb.toString();
+
+	}
+
+	private PreparedStatement pstatselectByWriterPage(Connection con, int startNum, int endNum, String writer)
+			throws Exception {
+		String sql = "select * from (select row_number()over(order by seq desc) as rown, FreeBoard.* from FreeBoard) where writer =? and rown between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, writer);
+		pstat.setInt(2, startNum);
+		pstat.setInt(3, endNum);
+		return pstat;
+
+	}
+
+	public List<FreeBoardDTO> selectByWriterPage(int currentPage, String writer) throws Exception { // 한 페이지에 보여줄 작성자 글
+																									// 갯수
+
+		int endNum = currentPage * recordCountPerPage;
+		int startNum = endNum - 9;
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatselectByWriterPage(con, startNum, endNum, writer);
+				ResultSet rs = pstat.executeQuery();) {
+			List<FreeBoardDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt("seq");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+	}
+
+	private PreparedStatement pstatselectByTitlePage(Connection con, int startNum, int endNum, String title)
+			throws Exception {
+		String sql = "select * from (select row_number()over(order by seq desc) as rown, FreeBoard.* from FreeBoard) where title = ? and rown between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, title);
+		pstat.setInt(2, startNum);
+		pstat.setInt(3, endNum);
+		return pstat;
+
+	}
+
+	public List<FreeBoardDTO> selectByTitlePage(int currentPage, String title) throws Exception { // 한 페이지에 보여줄 글 갯수
+
+		int endNum = currentPage * recordCountPerPage;
+		int startNum = endNum - 9;
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatselectByPage(con, startNum, endNum);
+				ResultSet rs = pstat.executeQuery();) {
+			List<FreeBoardDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt("seq");
+				title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+				list.add(dto);
+			}
+			return list;
+
+		}
 
 	}
 
