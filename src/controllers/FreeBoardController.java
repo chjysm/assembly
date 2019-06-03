@@ -315,7 +315,7 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("등록 ㄴ");
 			}
 //---------------------------------------------------------------------------------------------------------------------
-		}else if(command.equals("/cmDeleteBtn.board01")) {//댓글 삭제하기
+		}else if(command.equals("/deleteComment.board01")) {//댓글 삭제하기
 			int postNum = Integer.parseInt(request.getParameter("postNum"));
 			int seq = Integer.parseInt(request.getParameter("seq"));
 			System.out.println(seq);
@@ -332,6 +332,22 @@ public class FreeBoardController extends HttpServlet {
 				System.out.println("댓글삭제 ㄴ");
 			}
 			request.getRequestDispatcher("/freeContent.board01?commentPage="+request.getSession().getAttribute("cmCurrnetPage")+"&&seq="+postNum).forward(request, response);
+		}else if(command.equals("/alterComment.board01")) {//댓글 수정하기
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			String comment = request.getParameter("comment");
+			System.out.println(comment);
+			
+			int result = 0;
+			try {
+			 result = cdao.alterComment(seq, comment);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+					
+			if(result > 0) {
+				pw.write("수정됨");
+			}else {pw.write("수정안됨");}
 		}
 		
 	}

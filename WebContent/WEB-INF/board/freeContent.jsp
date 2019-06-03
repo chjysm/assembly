@@ -71,18 +71,38 @@
                     return(false); */
                 });
               		$(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
+              			var seq = $(this).attr("seq");
+              			console.log(seq);
               			var result = confirm("댓글을 삭제하시겠습니까?");
-              			if(result == true){
-              				location.href="cmDeleteBtn.board01?seq=${comList[0].seq}&&postNum=${content.seq}";
-              			}
+              			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
+              			
               		});
                 $(".alterBox").hide();//수정 댓글입력창 숨기기
-                //수정하기 - 삭제도 ////////////////////////////
-                $(".cmAlterBtn${comList[0].seq}").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
-                    $(".alterBox").show();
+                //수정하기 
+                $(".cmAlterBtn").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
+                	var seq = $(this).attr("seq");
+                	var id= "#"+seq;
+					$(id).show();                	
+                	
                 });
-                $(".comentAlterBtn").on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기
-                   $(".alterBox").hide(); 
+                $(".commentAlterBtn").on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기
+                	var seq = $(".commentAlterBtn").attr("seq");
+                	var id= "#"+seq;
+                	
+                	$.ajax({
+                		url:"alterComment.board01",
+                		data:{comment:$(".alterTextarea").html(),seq:seq}
+                	}).done(function(resp){
+                		if(resp == "수정됨"){
+                			$(".id").html("");
+                			$(".alterBox").hide();
+                			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                		}else if(resp == "수정안됨"){
+                			alter("수정이 정상적으로 완료되지 못하였습니다.")
+                		}
+                		
+                	});
+                    
                 });
                 
                 
@@ -112,7 +132,7 @@
             
             .writeBox div:first-child,.writeBox div:nth-child(2){padding-left: 0px; padding-right: 0px; box-sizing: border-box; }
             .textarea{background-color: white; width: 100%; height: 100px; border: 10px solid #eaeaea;}
-            
+            .alterTextarea{background-color: white; width: 100%; height: 100px; border: 10px solid #eaeaea;}
             .comentBtn,.textarea{float: left;}
             .cmBtn{text-align : right;}
             .cmAlterBtn${list.seq},.cmDeleteBtn{border: 0px; background-color:#eaeaea;}
@@ -135,20 +155,9 @@
                 <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
                 <div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
                     <ul class="nav justify-content-center">
-<<<<<<< HEAD
-                        <li class="nav-item">
-                            <a class="nav-link active" href="goMain.win">메인페이지</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">메뉴1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">메뉴2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">메뉴3</a>
-                        </li>
-=======
+
+                       
+
                         <li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
@@ -159,7 +168,7 @@
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
->>>>>>> c93f5fb1fdc28d0c3901fbd23388e0a0d92595e1
+
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -198,7 +207,7 @@
                 <div class="col-lg-2 col-md-2   d-none d-md-block secondcol">${content.viewCount }</div>
 
             </div>
-            <div class="content row">
+            <div class="content row"> 
                 <div class="col-lg-1.5 col-md-2 col-sm-2 d-none d-sm-block firstcol">내용</div>
                 <div class="col-lg-9.5 col-md-10 col-sm-10 secondcol">${content.content }</div>
             </div>
@@ -215,7 +224,7 @@
                             <input type="button" value="삭제" class="deleteBtn" hidden><!--글 삭제버튼-->
                             <input type="button" value="수정" class="alterBtn" hidden><!--글 수정버튼-->
                         </c:when>
-                        <c:when test="${email  == content.email }">
+                        <c:when test="${email  == content.email || type == 4}">
                             <input type="button" value="삭제" class="deleteBtn">
                             <input type="button" value="수정" class="alterBtn" >
                         </c:when>
@@ -226,26 +235,26 @@
 			<c:forEach var="list" items="${comList }">
             <div class="row comentBox">
                
-		<div class="row  mb-5 alterBox"> <!--댓글 수정 입력폼  -->
+		<div class="row  mb-5 alterBox" id="${list.seq }"> <!--댓글 수정 입력폼  -->
                 <div class="col-lg-11 col-md-11 col-sm-11 col-11 pr-0">
-                    <div class="alterTextarea" contenteditable="true"></div> <!--댓글 수정 입력창  -->
+                    <div class="alterTextarea" seq=${list.seq } contenteditable="true"></div> <!--댓글 수정 입력창  -->
                 </div>
 
                 <div class="col-lg-1 col-md-1 col-sm-1 col-1 p-0">
-                    <input type="button" value="등록" class="comentAlterBtn"> <!--댓글 수정 등록 버튼  -->
+                    <input type="button" value="등록" seq=${list.seq } class="commentAlterBtn"> <!--댓글 수정 등록 버튼  -->
                 </div>
-            </div>  
+        </div>  
                 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 cmWriter">${list.writer }</div>
                  <div class="col-lg-6 col-md-6 col-sm-6 col-6 cmBtn">
                	<c:choose>
                		<c:when test="${email != list.email || type == 4}">
-               			<input type="button" class="cmAlterBtn${list.seq }" value="수정" hidden> <!--댓글 수정버튼-->
-               			<input type="button" class="cmDeleteBtn" value="삭제" hidden><!--댓글 삭제버튼-->
+               			<input type="button" class="cmAlterBtn" value="수정" seq=${list.seq } hidden> <!--댓글 수정버튼-->
+               			<input type="button" class="cmDeleteBtn" value="삭제" seq=${list.seq }  hidden><!--댓글 삭제버튼-->
                		</c:when>
-               		<c:when test="${email == list.email }">
-               			<input type="button" class="cmAlterBtn${list.seq }" value="수정">
-               			<input type="button" class="cmDeleteBtn" value="삭제">
+               		<c:when test="${email == list.email || type == 4}">
+               			<input type="button" class="cmAlterBtn" seq=${list.seq } value="수정">
+               			<input type="button" class="cmDeleteBtn" seq=${list.seq } value="삭제">
                		</c:when>
                	</c:choose>	
                 </div>

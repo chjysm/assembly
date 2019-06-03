@@ -16,7 +16,7 @@ import dto.FreeCommentsDTO;
 public class FreeCommentsDAO {
 	private Connection getConnection()throws Exception{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:59161:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 
