@@ -155,7 +155,7 @@ h3 {
 				<div class="col-lg-6">
 					<div style="width: 80%">
 						<h3>누가 우야꼬를 사용하나요?</h3>
-						<img class="rounded" src="Resources/img/information1.png" alt="왜안나오죵">
+						<img class="rounded" src="Resources/img/information1.png" alt="왜안나오죵" width="384px" height="210px">
 						<p class="mt-2">
 							<span class="mainspan"><strong >우야꼬</strong>는 주로 디지털 소외계층을 위해 만들어 졌습니다.
 							실제 상황 에서는 주변의 따가운 시선과 압박으로 연습은 커녕  주문할 기회조차 얻지 못하는 분들을 위한 사이트 입니다.
@@ -179,7 +179,7 @@ h3 {
 				<div class="col-lg-6  ">
 					<div style="width: 80%">
 						<h3 class="mt-3">다양한 환경</h3>
-						<img class="rounded" src="Resources/img/information2.png" alt="왜안나오죵">
+						<img class="rounded" src="Resources/img/information2.png" width="384px" height="210px">
 						<p class="mt-2">
 							<span class="mainspan"><strong>우야꼬</strong>
 							는 인터넷 접속, 회원 가입, 인터넷과 관련된 모든 것에 힘들어 하시는 디지털 소외계층 분들을 위해
@@ -214,7 +214,7 @@ h3 {
 						<h3 class="mt-3">지원 및 자금 후원</h3>
 
 						<p class="mt-2">
-							<span class="mainspan">우야꼬 프로젝트는 National Science
+							<span class="mainspan"><strong >우야꼬</strong> 프로젝트는 National Science
 								Foundation, Scratch Foundation, Siegel Family Endowment, Google,
 								LEGO Foundation, Intel, Cartoon Network, Lemann Foundation,
 								MacArthur Foundation의 재정적 지원을 받아왔습니다. 더 많은 정보는 기여자 페이지에서 확인하십시오.
