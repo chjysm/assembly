@@ -10,7 +10,7 @@
 </head>
 <body>
 	<script>
-			location.href="goMain.admin";
+		location.href = "goMain.admin";
 	</script>
 </body>
 </html>

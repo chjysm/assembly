@@ -15,7 +15,7 @@ import dto.MemberDTO;
 public class MemberDAO {
 	private Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.60.22:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 		return DriverManager.getConnection(url, user, pw);

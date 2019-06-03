@@ -92,6 +92,7 @@ input[type=submit]:hover {
 </style>
 <script>
 	$(function() {
+
 		$("#pwChange_btn").on("click", function() {
 			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
@@ -102,6 +103,8 @@ input[type=submit]:hover {
 		$("#modify_btn").on("click", function() {
 			$("#mpForm").submit();
 		})
+		$("input[name='gender']").filter("[value=${list[0].gender}]").prop(
+				"checked", true);
 	})
 </script>
 </head>
@@ -113,8 +116,8 @@ input[type=submit]:hover {
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active"
+						href="goMain.win">메인페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">메뉴1</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">메뉴2</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
@@ -167,15 +170,28 @@ input[type=submit]:hover {
 									<td colspan="2"
 										style="text-align: left; vertical-align: middle"><span>${i.email }</span>
 								</tr>
-								<tr class="pt-4">
-									<td
-										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>비밀번호</span>
-									<td colspan="2"><input type="button"
-										class=" btn btn-primary float-left" id="pwChange_btn"
-										value="비밀번호 변경하기">
-								</tr>
+								<c:choose>
+									<c:when test="${i.type==3 }">
+										<tr class="pt-4">
+											<td
+												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>비밀번호</span>
+											<td colspan="2"><input type="button"
+												class=" btn btn-primary float-left" id="pwChange_btn"
+												value="비밀번호 변경하기">
+										</tr>
+									</c:when>
 
-
+								
+									<c:otherwise>
+										<tr class="pt-4">
+											<td
+												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>비밀번호</span>
+											<td colspan="2"><input type="button"
+												class=" btn btn-primary float-left" id="pwChange_btn"
+												value="비밀번호 변경하기" disabled>
+										</tr>
+									</c:otherwise>
+								</c:choose>
 								<tr class="pt-4">
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span>닉네임</span>
