@@ -15,7 +15,7 @@ import dto.MemberDTO;
 public class MemberDAO {
 	private Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.60.22:1521:xe";
 		String user = "kh";
 		String pw = "kh";
 		return DriverManager.getConnection(url, user, pw);
@@ -212,12 +212,13 @@ public class MemberDAO {
 	}
 
 	// 마이페이지 수정하기
-	public int mpUpdate(String nickname, String gender, int seq) {
-		String sql = "update members set nickname = ? , gender = ? where id = ?";
+	public int mpUpdate(String nickname, String gender,String age, int seq) {
+		String sql = "update members set nickname = ? , gender = ?, age= ? where id = ?";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, nickname);
 			pstat.setString(2, gender);
-			pstat.setInt(3, seq);
+			pstat.setString(3, age);
+			pstat.setInt(4, seq);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
