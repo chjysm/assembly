@@ -11,6 +11,13 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
@@ -378,7 +385,7 @@ a[class="more"] {
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수
 							있습니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="startGame.kiosk" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -524,13 +531,6 @@ a[class="more"] {
 			</div>
 		</div>
 	</div>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- NAVER KAKAO -->
 	<script type='text/javascript'>
 		Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
