@@ -26,15 +26,18 @@
     		$(".searchBtn").on("click",function(){ // 검색버튼 누르면
     			var option = $("#option option:selected").val();
     			var searchWord = $(".searchWord").val();
-    			if(option == "글제목"){
-        			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
-    			}else if(option == "작성자"){
-        			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
-
-    			}
-    			
-    			
-    		})
+    			if(searchWord == ""){
+    				alert("검색어를 입력해주세요");
+    			}else{
+    				if(option == "글제목"){
+            			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
+        			}else if(option == "작성자"){
+            			location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+        			}
+    			};
+   			
+    		});
+    		
     	});
     </script>
 <style>
@@ -153,6 +156,9 @@ a:hover {
 	color: black;
 	font-weight: bold;
 }
+.noneRecord{
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -207,7 +213,7 @@ a:hover {
 
 
 	<div class="container" id="wrapper">
-
+			
 		<div class="header row">
 			<div class="col-lg-2 col-md-1 col-sm-6 col-6 ">NO.</div>
 			<div class="col-lg-4 col-md-5 col-sm-6 col-6">제목</div>
@@ -215,8 +221,12 @@ a:hover {
 			<div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div>
 			<div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div>
 		</div>
-
-		<c:forEach var="list" items="${freeList }">
+		<c:choose>
+			<c:when test="${recordCount == 0 }">
+				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+					<c:forEach var="list" items="${freeList }">
 			<div class="content row">
 				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
@@ -228,7 +238,10 @@ a:hover {
 			</div>
 		</c:forEach>
 
-		<div class="navi row">
+		
+			</c:otherwise>
+		</c:choose>
+				<div class="navi row">
 			<div>${getNavi }</div>
 		</div>
 
@@ -244,7 +257,8 @@ a:hover {
 			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
 				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
-		</div>
+		</div>	
+		
 
 	</div>
 

@@ -107,29 +107,19 @@
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
 
-				  <li class="nav-item">
-				    <a class="nav-link active" href="goMain.win">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
+				  <li class="nav-item"><a class="nav-link active"
+                                                href="goMain.win">메인페이지</a></li>
 
-				 <li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
-					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
-					</c:if>
+                        <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+                            소개</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="list.board01?currentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+                        <c:if test="${type==4}">
+                            <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+                        </c:if>
 
 				</ul>
 			</div>
@@ -155,7 +145,7 @@
        <div class="container" id="wrapper">
        <div class="header row">
           <div class="title col-lg-2 col-md-3 col-sm-2 col-3 ">제목</div>
-          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title"></div>
+          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title" maxlength="30"></div>
        </div>
        <div class="content row">
        	<div id="summernote" contenteditable="true"></div>

@@ -24,7 +24,6 @@
     				$.ajax({
 						url:'flag.board01',
 					})
-    				
     				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
@@ -107,18 +106,19 @@
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-				  <li class="nav-item">
-				    <a class="nav-link active" href="goMain.win">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
+				  <li class="nav-item"><a class="nav-link active"
+                                                href="goMain.win">메인페이지</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+                            소개</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="list.board01?currentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+                        <c:if test="${type==4}">
+                            <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+                        </c:if>
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>

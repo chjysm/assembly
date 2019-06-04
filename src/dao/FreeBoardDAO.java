@@ -22,9 +22,14 @@ public class FreeBoardDAO {
 
 	public int insert(FreeBoardDTO param) throws Exception { // 내용 등록
 		String sql = "insert into FreeBoard values(FreeBoard_seq.nextval,?,?,?,0,?,default,?,?)";
-		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, param.getTitle());
-			pstat.setString(2, param.getContent());
+		String content= this.replaceAll(param.getContent());
+		String title = this.replaceAll(param.getTitle());
+		try (
+				Connection con = this.getConnection(); 
+				PreparedStatement pstat = con.prepareStatement(sql);) 
+		{
+			pstat.setString(1, title);
+			pstat.setString(2, content);
 			pstat.setString(3, param.getWriter());
 			pstat.setString(4, param.getIp());
 			pstat.setString(5, param.getEmail());
@@ -109,9 +114,11 @@ public class FreeBoardDAO {
 
 	public int alterContent(String title, String content, int seq) throws Exception {// 글 수정
 		String sql = "update FreeBoard set title = ?, content = ? where seq = ? ";
+		String replaceContent = this.replaceAll(content);
+		String replcateTitle = this.replaceAll(title);
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, title);
-			pstat.setString(2, content);
+			pstat.setString(1, replcateTitle);
+			pstat.setString(2, replaceContent);
 			pstat.setInt(3, seq);
 			con.commit();
 			int result = pstat.executeUpdate();
@@ -357,6 +364,13 @@ public class FreeBoardDAO {
 			return sb.toString();
 		
 		}
+		
+		public String replaceAll(String contents)throws Exception{
+	 		contents = contents.replaceAll("<script>","aa" );
+	 		contents = contents.replaceAll("</script>", "bb");
+	 		
+	 		return contents;
+	 	}
 	 	
 	 
 	 	

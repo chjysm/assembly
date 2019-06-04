@@ -25,11 +25,12 @@ public class FreeCommentsDAO {
 	
 	public int insertComment(FreeCommentsDTO param)throws Exception{ // 댓글 정보 데베에 저장
 		String sql = "insert into FreeComments values(freeComments_seq.nextval,?,?,?,?,?,default,?,?)";
+		String comment = this.replaceAll(param.getComment());
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, param.getComment());
+			pstat.setString(1, comment);
 			pstat.setInt(2, param.getPostNum());
 			pstat.setString(3, param.getPostTitle());
 			pstat.setString(4, param.getWriter());
@@ -211,5 +212,11 @@ public String getNavi(int currentPage, int postNum)throws Exception {
 			return result;
 		}
 	}
+	public String replaceAll(String contents)throws Exception{
+ 		contents = contents.replaceAll("<script>","aa" );
+ 		contents = contents.replaceAll("</script>", "bb");
+ 		
+ 		return contents;
+ 	}
 	
 }
