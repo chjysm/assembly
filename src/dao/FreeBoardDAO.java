@@ -140,13 +140,10 @@ public class FreeBoardDAO {
 		} else if (currentPage > pageTotalCount) { // 현재페이지 번호가 전체페이지보다 크면 최대 페이지로
 			currentPage = pageTotalCount;
 		} // 보안코드
-		// 내 위치의 기준으로 첫페이지와 끝페이지 알아내기
+	
 		int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
 		int endNavi = startNavi + (naviCountPerPage - 1);
-		// ex) startNavi : 14페이지에 있다고 가정 첫페이지는 11 -> 14/10 = 1 -> 1*10 = 10 -> 10+1 = 11
-		// ----> (currentPage/10)*10+1 // 10은 한번에 보여줄 페이지 숫자 범위
-		// 10 20 30등 페이지일 경우도 있음 : ★★(currentPage - 1)/10*10+1 -> 이 공식은 다 적용
-		// 최대페이지 번호보다 endNavi 번호가 크게 나옴 ㅠ
+	
 		if (endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}

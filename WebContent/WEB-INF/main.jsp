@@ -105,10 +105,10 @@ head>.nav-item {
 	text-align: right;
 }
 
-a[class="more"] {
+a[class="moreBtn"] {
 	color: black;
 }
-a[class="more"] {
+a[class="moreBtn"] {
 	color: black;
 	font-weight: bold;
 }
@@ -146,6 +146,17 @@ a[class="more"] {
 		$("#adminPage").on("click", function() {
 			location.href = "goAdmin.admin";
 		});
+		
+		$(".infoBoard").on("click",function(){
+			//more 주소바꾸기
+		});
+		$(".freeBoard").on("click",function(){
+			$(".moreBtn").attr("href","list.board01?currentPage=1");
+		});
+		$(".qnaBoard").on("click",function(){
+			$(".moreBtn").attr("href","list.board02?currentPage=1");
+		});
+		
 	});
 </script>
 </head>
@@ -451,11 +462,11 @@ a[class="more"] {
 			<!-- 	공지사항, 게시판 -->
 			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 mt-5">
 				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link active infoBoard"
 						data-toggle="tab" href="#info">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+					<li class="nav-item"><a class="nav-link freeBoard" data-toggle="tab"
 						href="#freeBoard">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+					<li class="nav-item"><a class="nav-link qnaBoard" data-toggle="tab"
 						href="#qna">질문게시판</a></li>
 				</ul>
 				<div class="tab-content">
@@ -495,8 +506,8 @@ a[class="more"] {
 							<div
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
 							<c:choose>
-							<c:when test="${FreeRecordCount == 0 }">
-								<div class="noneRecord ">등록된 게시글이 없습니다.</div>
+							<c:when test="${freeRecordCount == 0 }">
+								<div class="noneRecord">등록된 게시글이 없습니다.</div>
 							</c:when>
 							<c:otherwise>
 							<c:forEach var="list" items="${mainFreeList }">
@@ -511,14 +522,36 @@ a[class="more"] {
 						</div>
 					</div>
 					<div class="tab-pane fade" id="qna">
-						<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
-							mattis leo, vel fermentum tellus. Sed sagittis rhoncus venenatis.
-							Quisque commodo consectetur faucibus. Aenean eget ultricies
-							justo.</p>
+						<div class="row text-center">
+							<div
+								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div
+								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div
+								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+							<c:choose>
+							<c:when test="${qnaRecordCount == 0 }">
+								<div class="noneRecord">등록된 게시글이 없습니다.</div>
+							</c:when>
+							<c:otherwise>
+							<c:forEach var="list" items="${mainQnaList }">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${list.seq }</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle"><a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">${list.timeForm }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.writer }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.viewCount }</div>
+							</c:forEach> 
+							</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board01?currentPage=1" class="more">더 보기 ></a>
+					<a href="" class="moreBtn">더 보기 ></a>
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>Free Board Alter Content</title>
+    <title>Qna WriteForm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- JQuery -->
@@ -15,21 +16,20 @@
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
-    			location.href="list.board01?currentPage=${currentPage}";//현재페이지 붙여서 보내기
+    			location.href="list.board02?currentPage=${currentPage}"; //현재페이지 붙여서 보내기
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
     			$("#inputContent").val($('#summernote').summernote("code"));
-    			
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
-						url:'flag.board01',
-					});	
-    				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
-					}else if($("#title").val() == ""){
-	    				alert("제목을 입력해주세요.");
-	    			}else if($("#inputContent").val() == ""){
-	    				alert("내용을 입력해주세요.");
-	    			}
+						url:'flag.board02',
+					});
+    				$("#writeForm").submit();	
+    			}else if($("#title").val() == ""){
+    				alert("제목을 입력해주세요.");
+    			}else if($("#inputContent").val() == ""){
+    				alert("내용을 입력해주세요.");
+    			}		
     		});
     		$("#summernote").summernote({
     			lang:'ko-KR',
@@ -44,7 +44,7 @@
     					data.append('file',files[0]);
     					console.log(files)
     					$.ajax({
-    						url:'imageUpload.board01',
+    						url:'imageUpload.board02',
     						data: data,
     						type:'post',
     						cache: false,
@@ -62,16 +62,13 @@
     			$("img").each(function(i, item){
     				var src = $(item).attr("src");
     				$.ajax({
-    					url:"deleteFile.board01",
+    					url:"deleteFile.board02",
     					type:"post",
     					data:{img:src},
     					cache:false
     				});
     			})
-    		});
-    		
-    		$("#title").val("${content.title}");
-    		
+    		});	
     	})
     </script>
 <style>
@@ -102,54 +99,41 @@
     <!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-				  <li class="nav-item"><a class="nav-link active"
-                                                href="goMain.win">메인페이지</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-                            소개</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link"
-                                                href="list.board01?currentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
-                        <c:if test="${type==4}">
-                            <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
-                        </c:if>
+					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-				  <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>
+
+	
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h1>자유게시판</h1><div></div></div>
-       <form action="alterContent.board01" method="get" id="writeForm">
+       <div class="head"><h1>건의 게시판</h1><div></div></div>
+       <form action="qnaBaord.board02" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">
           <div class="title col-lg-2 col-md-3 col-sm-2 col-3 ">제목</div>
-          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title"></div>
+          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title" maxlength="30"></div>
        </div>
        <div class="content row">
-       	<div id="summernote" contenteditable="true">${content.content }</div>
+       	<div id="summernote" contenteditable="true"></div>
          <div class="col-lg-12 col-md-12 col-sm-12 col-12"><textarea name="inputContent" id="inputContent" cols="30" rows="10" hidden></textarea></div>
        </div>
         <div class="footer">
-            <input type="button" class="completeBtn" value="수정완료">
+            <input type="button" class="completeBtn" value="등록">
             <input type="button" class="cancelBtn" value="취소">
         </div>
     </div>

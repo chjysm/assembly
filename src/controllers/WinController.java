@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FreeBoardDAO;
+import dao.QnaBoardDAO;
 import dto.FreeBoardDTO;
+import dto.QnaBoardDTO;
 
 
 @WebServlet("*.win")
@@ -23,22 +25,25 @@ public class WinController extends HttpServlet {
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
-		
+		QnaBoardDAO qb = new QnaBoardDAO();
 		
 		
 		
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
-				int FreeRecordCount = 0 ;
+				
+				int freeRecordCount = 0 ;
+				int qnaRecordCount = 0; 
 				try {
-				FreeRecordCount = fb.recordCount();
+				freeRecordCount = fb.recordCount();
+				qnaRecordCount = qb.recordCount();
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
 				
-				if(FreeRecordCount == 0) {
-					request.setAttribute("FreeRecordCount", FreeRecordCount);
-				}else {
+				if(freeRecordCount == 0 ) { // 자유게시판 게시글 0 일 경우
+					request.setAttribute("freeRecordCount", freeRecordCount);
+				}else{
 				List<FreeBoardDTO> mainFreeList = null;
 				try {
 				mainFreeList = fb.mainFreeBoardList(1);
@@ -48,7 +53,22 @@ public class WinController extends HttpServlet {
 				}
 				request.setAttribute("mainFreeList", mainFreeList);
 				}
+				if(qnaRecordCount == 0) {
+					request.setAttribute("qnaRecordCount", qnaRecordCount);
+				}else {
+					List<QnaBoardDTO> mainQnaList = null;
+					try {
+					mainQnaList = qb.mainQnaBoardList(1);
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("mainQnaList", mainQnaList);
+				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				
+				
+				
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch2.win")) {

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>Free Board Alter Content</title>
+    <title>Qna Board Alter Content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- JQuery -->
@@ -15,16 +15,16 @@
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
-    			location.href="list.board01?currentPage=${currentPage}";//현재페이지 붙여서 보내기
+    			location.href="list.board02?currentPage=${currentPage}";//현재페이지 붙여서 보내기
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
     			$("#inputContent").val($('#summernote').summernote("code"));
     			
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
-						url:'flag.board01',
+						url:'flag.board02',
 					});	
-    				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
+    				location.href="alterContent.board02?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
 					}else if($("#title").val() == ""){
 	    				alert("제목을 입력해주세요.");
 	    			}else if($("#inputContent").val() == ""){
@@ -44,7 +44,7 @@
     					data.append('file',files[0]);
     					console.log(files)
     					$.ajax({
-    						url:'imageUpload.board01',
+    						url:'imageUpload.board02',
     						data: data,
     						type:'post',
     						cache: false,
@@ -62,7 +62,7 @@
     			$("img").each(function(i, item){
     				var src = $(item).attr("src");
     				$.ajax({
-    					url:"deleteFile.board01",
+    					url:"deleteFile.board02",
     					type:"post",
     					data:{img:src},
     					cache:false
@@ -113,7 +113,7 @@
                             소개</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link"
-                                                href="list.board01?currentPage=1">자유게시판</a></li>
+                                                href="list.board02?currentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
                         <c:if test="${type==4}">
                             <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
@@ -137,8 +137,8 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h1>자유게시판</h1><div></div></div>
-       <form action="alterContent.board01" method="get" id="writeForm">
+       <div class="head"><h1>건의 게시판</h1><div></div></div>
+       <form action="alterContent.board02" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">
           <div class="title col-lg-2 col-md-3 col-sm-2 col-3 ">제목</div>
