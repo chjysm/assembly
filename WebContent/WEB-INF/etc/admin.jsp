@@ -428,8 +428,6 @@
 										class="fas fa-circle text-primary"></i> 남성
 									</span> <span class="mr-2"> <i
 										class="fas fa-circle text-success"></i> 여성
-									</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-										Referral
 									</span>
 								</div>
 							</div>
@@ -446,57 +444,115 @@
 						<!-- Project Card Example -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">연령대별 방문자 수</h6>
+								<h6 class="m-0 font-weight-bold text-primary">일일 방문자 수</h6>
 							</div>
 							<div class="card-body">
+								<c:if test="${agedto.teenage > 0}">
 								<h4 class="small font-weight-bold">
-									Server Migration <span class="float-right">20%</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
-								<h4 class="small font-weight-bold">
-									Sales Tracking <span class="float-right">40%</span>
+									10대 <span class="float-right">${agedto.teenage }명</span>
 								</h4>
 								<div class="progress mb-4">
 									<div class="progress-bar bg-warning" role="progressbar"
-										style="width: 40%" aria-valuenow="40" aria-valuemin="0"
+										style="width: ${agePerdto.perTeenage }%" aria-valuenow="40" aria-valuemin="0"
 										aria-valuemax="100"></div>
 								</div>
+								</c:if>
+								<c:if test="${agedto.twenty > 0}">
 								<h4 class="small font-weight-bold">
-									Customer Database <span class="float-right">60%</span>
+									20대 <span class="float-right">${agedto.twenty }명</span>
 								</h4>
 								<div class="progress mb-4">
-									<div class="progress-bar" role="progressbar" style="width: 60%"
+									<div class="progress-bar bg-primary" role="progressbar" style="width: ${agePerdto.perTwenty }%"
 										aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
+								</c:if>
+								<c:if test="${agedto.thirty > 0}">
 								<h4 class="small font-weight-bold">
-									Payout Details <span class="float-right">80%</span>
+									30대 <span class="float-right">${agedto.thirty }명</span>
 								</h4>
 								<div class="progress mb-4">
-									<div class="progress-bar bg-info" role="progressbar"
-										style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+									<div class="progress-bar bg-success" role="progressbar"
+										style="width: ${agePerdto.perThirty }%" aria-valuenow="80" aria-valuemin="0"
 										aria-valuemax="100"></div>
 								</div>
+								</c:if>
+								<c:if test="${agedto.forty > 0}">
 								<h4 class="small font-weight-bold">
-									Account Setup <span class="float-right">Complete!</span>
+									40대 <span class="float-right">${agedto.forty }명</span>
 								</h4>
 								<div class="progress">
-									<div class="progress-bar bg-success" role="progressbar"
-										style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+									<div class="progress-bar bg-info" role="progressbar"
+										style="width: ${agePerdto.perForty }%" aria-valuenow="100" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div><br>
+								</c:if>
+								<c:if test="${agedto.fifty > 0}">
+								<h4 class="small font-weight-bold">
+									50대 <span class="float-right">${agedto.fifty }명</span>
+								</h4>
+								<div class="progress mb-4">
+									<div class="progress-bar bg-secondary" role="progressbar"
+										style="width: ${agePerdto.perFifty }%" aria-valuenow="20" aria-valuemin="0"
 										aria-valuemax="100"></div>
 								</div>
+								</c:if>
+								<c:if test="${agedto.sixty > 0}">
+								<h4 class="small font-weight-bold">
+									60대 <span class="float-right">${agedto.sixty }명</span>
+								</h4>
+								<div class="progress mb-4">
+									<div class="progress-bar bg-danger" role="progressbar"
+										style="width: ${agePerdto.perSixty }%" aria-valuenow="20" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+								</c:if>
+								<c:if test="${agedto.seventy > 0}">
+								<h4 class="small font-weight-bold">
+									70대 <span class="float-right">${agedto.seventy }명</span>
+								</h4>
+								<div class="progress mb-4">
+									<div class="progress-bar bg-warning" role="progressbar"
+										style="width: ${agePerdto.perSeventy }%" aria-valuenow="20" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+								</c:if>
+								<c:if test="${agedto.eighty > 0}">
+								<h4 class="small font-weight-bold">
+									80대 <span class="float-right">${agedto.eighty }명</span>
+								</h4>
+								<div class="progress mb-4">
+									<div class="progress-bar bg-primary" role="progressbar"
+										style="width: ${agePerdto.perEighty }%" aria-valuenow="20" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+								</c:if>
+								<c:if test="${agedto.ninety > 0}">
+								<h4 class="small font-weight-bold">
+									90대 <span class="float-right">${agedto.ninety }명</span>
+								</h4>
+								<div class="progress mb-4">
+									<div class="progress-bar bg-success" role="progressbar"
+										style="width: ${agePerdto.perNinety }%" aria-valuenow="20" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+								</c:if>
 							</div>
 						</div>
 
 						<!-- Color System -->
 						<div class="row">
+						<div class="col-lg-6 mb-4">
+								<div class="card bg-warning text-white shadow">
+									<div class="card-body">
+										Teenage / Seventy
+										<div class="text-white-50 small">#f6c23e</div>
+									</div>
+								</div>
+							</div>
 							<div class="col-lg-6 mb-4">
 								<div class="card bg-primary text-white shadow">
 									<div class="card-body">
-										Primary
+										Twenty / Eighty
 										<div class="text-white-50 small">#4e73df</div>
 									</div>
 								</div>
@@ -504,7 +560,7 @@
 							<div class="col-lg-6 mb-4">
 								<div class="card bg-success text-white shadow">
 									<div class="card-body">
-										Success
+										Thirty / Ninety
 										<div class="text-white-50 small">#1cc88a</div>
 									</div>
 								</div>
@@ -512,32 +568,24 @@
 							<div class="col-lg-6 mb-4">
 								<div class="card bg-info text-white shadow">
 									<div class="card-body">
-										Info
+										Forty
 										<div class="text-white-50 small">#36b9cc</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 mb-4">
-								<div class="card bg-warning text-white shadow">
-									<div class="card-body">
-										Warning
-										<div class="text-white-50 small">#f6c23e</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 mb-4">
-								<div class="card bg-danger text-white shadow">
-									<div class="card-body">
-										Danger
-										<div class="text-white-50 small">#e74a3b</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 mb-4">
 								<div class="card bg-secondary text-white shadow">
 									<div class="card-body">
-										Secondary
+										Fifty
 										<div class="text-white-50 small">#858796</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 mb-4">
+								<div class="card bg-danger text-white shadow">
+									<div class="card-body">
+										Ninety
+										<div class="text-white-50 small">#e74a3b</div>
 									</div>
 								</div>
 							</div>
@@ -653,7 +701,7 @@
             		    type : 'line',
 						data : {
 							labels : [ 	
-								<c:forEach var="temp" items="${vdto }">
+								<c:forEach var="temp" items="${vList }">
 								"${temp.visitDate }",
 							   </c:forEach>	
 									],
@@ -671,7 +719,7 @@
 								pointHitRadius : 10,
 								pointBorderWidth : 2,
 								data : [
-									<c:forEach var="temp" items="${vdto }">
+									<c:forEach var="temp" items="${vList }">
 									${temp.visitCount },
 								   </c:forEach>
 									],
@@ -760,8 +808,8 @@
 				data : {
 					labels : [ "남성", "여성" ],
 					datasets : [ {
-						data : [ 55, 15 ],
-						backgroundColor : [ '#4e73df', '#36b9cc' ],
+						data : [ ${vdto.male}, ${vdto.female} ],
+						backgroundColor : [ '#1cc88a', '#f6c23e' ],
 						hoverBackgroundColor : [ '#2e59d9', '#2c9faf' ],
 						hoverBorderColor : "rgba(234, 236, 244, 1)",
 					} ],
