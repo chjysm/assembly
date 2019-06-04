@@ -53,7 +53,7 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 
-				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				request.getRequestDispatcher("goMain.win").forward(request, response);
 
 			} else if (cmd.equals("/getPw.me")) {// pw얻기
 
@@ -134,7 +134,7 @@ public class MeController extends HttpServlet {
 					response.getWriter().append("<script> if(alert('패스워드 변경에 실패했습니다!')!= 0){ self.close() }</script>");
 				}
 			} else if (cmd.equals("/main.me")) {
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getRequestDispatcher("goMain.win").forward(request, response);
 				// 마이페이지 수정하기
 			} else if (cmd.equals("/modify.me")) {
 				int seq = (int) request.getSession().getAttribute("id");// 씨꿘스

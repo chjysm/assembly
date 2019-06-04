@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AdminDAO;
+import dao.FreeBoardDAO;
 import dto.AdminDTO;
+import dto.FreeBoardDTO;
 
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
@@ -22,7 +24,7 @@ public class AdminController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String cmd = requestURI.substring(contextPath.length());
-
+		FreeBoardDAO fb= new FreeBoardDAO();
 	
 		try {
 			// ========================================== 방문자 수 ==========================================
@@ -42,7 +44,27 @@ public class AdminController extends HttpServlet {
 							1000 * 60 * 60 * 24
 							);
 				}
+				int FreeRecordCount = 0 ;
+				try {
+				FreeRecordCount = fb.recordCount();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				if(FreeRecordCount == 0) {
+					request.setAttribute("FreeRecordCount", FreeRecordCount);
+				}else {
+				List<FreeBoardDTO> mainFreeList = null;
+				try {
+				mainFreeList = fb.mainFreeBoardList(1);
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				request.setAttribute("mainFreeList", mainFreeList);
+				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				
 			} 
 			// ========================================== 관리자 페이지_그래프 ==========================================
 			if(cmd.equals("/goAdmin.admin")) {									// 일일 방문자
