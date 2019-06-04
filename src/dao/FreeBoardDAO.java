@@ -301,9 +301,39 @@ public class FreeBoardDAO {
 	 		return contents;
 	 	}
 	 	
-	 
+	 //----------------------------------------------------------------------------------------------------------
+		//메인페이지에 게시판 리스트 
 	 	
-	 	
+		private PreparedStatement pstatmainFreeBoardList(Connection con, int startNum, int endNum) throws Exception {
+			String sql = "select * from (select row_number()over(order by seq desc) as rown, FreeBoard.* from FreeBoard) where rown between ? and ?";
+			PreparedStatement pstat = con.prepareStatement(sql);
+			pstat.setInt(1, startNum);
+			pstat.setInt(2, endNum);
+			return pstat;
+		}
+		public List<FreeBoardDTO> mainFreeBoardList(int currentPage) throws Exception { // 한 페이지에 보여줄 글 갯수
+			int endNum = currentPage * 7;
+			int startNum = endNum - 9;
+			try (Connection con = this.getConnection();
+					PreparedStatement pstat = this.pstatselectByPage(con, startNum, endNum);
+					ResultSet rs = pstat.executeQuery();) {
+				List<FreeBoardDTO> list = new ArrayList<>();
+				while (rs.next()) {
+					int seq = rs.getInt("seq");
+					String title = rs.getString("title");
+					String content = rs.getString("content");
+					String writer = rs.getString("writer");
+					int viewCount = rs.getInt("viewCount");
+					String ip = rs.getString("ip");
+					Timestamp writeDate = rs.getTimestamp("writeDate");
+					String email = rs.getString("email");
+					int id = rs.getInt("id");
+					FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+					list.add(dto);
+				}
+				return list;
+			}
+		}
 
 
 	}
