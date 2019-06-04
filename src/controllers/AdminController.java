@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.VisitDAO;
-import dto.VisitDTO;
+import dao.AdminDAO;
+import dto.AdminDTO;
 
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
@@ -37,7 +37,7 @@ public class AdminController extends HttpServlet {
 					date.set(Calendar.SECOND, 50);
 					date.set(Calendar.MILLISECOND, 0);
 					timer.schedule(
-							new VisitDAO(),
+							new AdminDAO(),
 							date.getTime(),
 							1000 * 60 * 60 * 24
 							);
@@ -45,12 +45,24 @@ public class AdminController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			} 
 			// ========================================== 관리자 페이지_그래프 ==========================================
-			if(cmd.equals("/goAdmin.admin")) {
-				VisitDAO vdao = new VisitDAO();
-				List<VisitDTO> vdto = new ArrayList<>();
-				vdto = vdao.VisitChart();
+			if(cmd.equals("/goAdmin.admin")) {									// 일일 방문자
+				AdminDAO vdao = new AdminDAO();
+				List<AdminDTO> vList = new ArrayList<>();
+				vList = vdao.visitChart();
+				request.setAttribute("vList", vList);
 				
+				AdminDTO vdto = new AdminDTO();									// 성별
+				vdto = vdao.genderChart();
 				request.setAttribute("vdto", vdto);
+				
+				AdminDTO agedto = new AdminDTO();
+				agedto = vdao.ageChart();											
+				request.setAttribute("agedto", agedto);							// 연령대
+				
+				AdminDTO agePerdto = new AdminDTO();
+				agePerdto = vdao.agePerChart();
+				request.setAttribute("agePerdto", agePerdto);
+
 				request.getRequestDispatcher("/WEB-INF/etc/admin.jsp").forward(request, response);
 			} 
 		}catch (Exception e) {

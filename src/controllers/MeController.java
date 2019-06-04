@@ -32,11 +32,8 @@ public class MeController extends HttpServlet {
 		try {
 			if (cmd.equals("/login.me")) {// 로그인
 				String email = request.getParameter("id");
-				System.out.println(email);
 				String pw = request.getParameter("pw");
-				System.out.println(pw);
 				int result = me.loginCheck(email, pw);
-				System.out.println(result);
 				if (result == 1) {
 					int id = me.getId(email);
 					String nickname = me.getNickname(email);
@@ -154,7 +151,6 @@ public class MeController extends HttpServlet {
 					response.getWriter().append(
 							"<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				}
-
 			} else if (cmd.equals("/goWithdrawal.me")) {// 회원 탈퇴 가기
 				String email = (String) request.getSession().getAttribute("email");
 				Pattern p = Pattern.compile("^((.*) |(.*))");

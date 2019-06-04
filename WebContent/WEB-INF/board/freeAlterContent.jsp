@@ -23,6 +23,8 @@
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
+					})	
+    				$("#writeForm").submit();	
 					})
     				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
     			}else if($("#title").val() == ""){
@@ -30,7 +32,6 @@
     			}else if($("#inputContent").val() == ""){
     				alert("내용을 입력해주세요.");
     			}
-    			
     		})
     		$("#summernote").summernote({
     			lang:'ko-KR',

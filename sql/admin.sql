@@ -1,6 +1,6 @@
 create table visit(
-visitCount number not null,
-visitDate varchar(300) default to_char(sysdate,'YY.MM.DD HH24:Mi') not null
+visitDate varchar(300) default to_char(sysdate,'YY.MM.DD HH24:Mi') not null,
+visitCount number not null
 );
 
 drop table visit;
@@ -14,6 +14,6 @@ insert into visit values('19.05.25 23:59', 695);
 insert into visit values('19.05.26 23:59', 784);
 insert into visit values('19.05.27 23:59', 834);
 insert into visit values('19.05.28 23:59', 521);
-insert into visit values(947, '19.05.29 23:59',);
-insert into visit values(1023, '19.05.30 23:59',);
+insert into visit values('19.05.29 23:59', 937);
+insert into visit values('19.05.30 23:59', 1023);
 select * from visit;

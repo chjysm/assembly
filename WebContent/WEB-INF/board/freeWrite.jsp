@@ -20,19 +20,16 @@
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
     			$("#inputContent").val($('#summernote').summernote("code"));
-    			
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
 					})
-    				
     				$("#writeForm").submit();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
     			}else if($("#inputContent").val() == ""){
     				alert("내용을 입력해주세요.");
-    			}
-    			
+    			}		
     		})
     		$("#summernote").summernote({
     			lang:'ko-KR',
@@ -71,8 +68,7 @@
     					cache:false
     				});
     			})
-    		});
-    		
+    		});	
     	})
     </script>
 <style>

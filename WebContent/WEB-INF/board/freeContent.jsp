@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html>
+>>>>>>> b9d0b5052fb6e75c684f0efdd7026be6dc820f68
     <head>
         <meta charset="UTF-8">
         <title>Document</title>
@@ -39,6 +43,7 @@
                 $(".alterBtn").on("click",function(){// 글 수정 버튼 -> 글 수정 페이지로 이동
                 	location.href="alterForm.board01?seq=${content.seq}";
                 })
+
                 
 //                 $(".bb").hide();
 //                 $(".comment-BoxBtn").on("click",function(){ // 댓글▼버튼 누르면 댓글 박스 열리기
@@ -51,8 +56,6 @@
 //                 		$(this).attr("state","close");
 //                 	}
 //                 })
-               
-                
                $(".commentBtn").on("click",function(){// 댓글 등록버튼 누르면
                 	if(${type == null}){
         				alert("로그인 후 이용해주세요");
@@ -72,6 +75,17 @@
                         		location.href="wirteComment.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                         	});
         				}
+        				$.ajax({
+                    		url:"comment.board01",
+                    		type:"post",
+                    		data:{comments:JSON.stringify({comment:$(".textarea").html(),
+                    					    postNum:'${content.seq }',
+                    						postTitle:'${content.title }'             					    
+                    						})
+                    	}
+                    	}).done(function(resp){
+                    		location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                    	});
         			};
                 });
                 
@@ -97,7 +111,8 @@
                 	 var alterTextarea = "#alterTextarea" + seq;
                 	 $(id).hide();
                 });
-                
+					$(id).show();                	
+                });
                 $(".commentAlterBtn").each(function(i,item){
                 	 var btnSeq = $(this).attr("seq");
                      var commentAlterBtn = "#commentAlterBtn" + btnSeq;
@@ -122,7 +137,21 @@
                  		}
                  	});
                 });
-                
+                 		$.ajax({
+                     		url:"alterComment.board01",
+                     		data:{comment:$(alterTextarea).html(),seq:btnSeq}
+                     	}).done(function(resp){
+                     		if(resp == "수정됨"){
+                     			$(alterTextarea).html("");
+                     			$(".alterBox").hide();
+                     			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                     		}else if(resp == "수정안됨"){
+                     			alter("수정이 정상적으로 완료되지 못하였습니다.")
+                     		}
+                     	});
+                 	}); 
+                });
+
             });
         </script>
         <style>
@@ -144,6 +173,7 @@
             
             .writeBox>div{padding: 0;}
             
+
             .commentBox{position: relative;  border-top:1px solid black;}
             .cmWriter{font-weight: bold;}
             .cmBtn{text-align: right;}
@@ -161,19 +191,20 @@
              a:hover{color:black; font-weight:bold;}
             .noneRecord{text-align:center;}
         </style>
-    </head>
-    <body>
-        <!-- 고정메뉴 -->
-        <div class="container-fluid fixedMenu">
-            <div class="row fixedMenuNav p-2">
-                <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-                <div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-                    <ul class="nav justify-content-center">
+</head>
+<body>
+	<!-- 고정메뉴 -->
+	<div class="container-fluid fixedMenu">
+		<div class="row fixedMenuNav p-2">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center">
 
 
 
                         <li class="nav-item"><a class="nav-link active"
                                                 href="goMain.win">메인페이지</a></li>
+
 
                         <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
                         <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
@@ -184,9 +215,16 @@
                         <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
                         <c:if test="${type==4}">
                             <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
-                        </c:if>
-
-
+                        </c:if><li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+							소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+					</c:if>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -310,4 +348,5 @@
           </div>
        
     </body>
+</body>
 </html>
