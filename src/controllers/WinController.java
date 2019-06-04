@@ -26,9 +26,7 @@ public class WinController extends HttpServlet {
 		String cmd = reqUri.substring(ctxPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
 		QnaBoardDAO qb = new QnaBoardDAO();
-		
-		
-		
+
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
 				
@@ -67,8 +65,10 @@ public class WinController extends HttpServlet {
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 				
+
 				
 				
+
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch2.win")) {

@@ -11,6 +11,13 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
@@ -146,6 +153,7 @@ a[class="moreBtn"] {
 		$("#adminPage").on("click", function() {
 			location.href = "goAdmin.admin";
 		});
+
 		
 		$(".infoBoard").on("click",function(){
 			//more 주소바꾸기
@@ -157,6 +165,13 @@ a[class="moreBtn"] {
 			$(".moreBtn").attr("href","list.board02?currentPage=1");
 		});
 		
+
+		$("#supportBtn").on("click", function() {
+			var width=window.screen.width/2-900/2;
+			var height=window.screen.height/2-600/2;
+			open("goSupport.su", "_brank", "width=900px,height=600px,left="+width+",top="+height);
+		});
+
 	});
 </script>
 </head>
@@ -209,7 +224,7 @@ a[class="moreBtn"] {
 					<p class="pb-2">
 						처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
 					</p>
-					<a class="btn btn-primary btn-lg mr-2" href="#" role="button">둘러보기</a>
+					<a class="btn btn-primary btn-lg mr-2" href="goInfo.win" role="button">소개보기</a>
 					<a class="btn btn-primary btn-lg" href="#" role="button">체험
 						시작하기</a>
 				</div>
@@ -384,7 +399,7 @@ a[class="moreBtn"] {
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수
 							있습니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="startGame.kiosk" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -411,51 +426,26 @@ a[class="moreBtn"] {
 		<div class="row pb-5">
 			<!-- 	배너 -->
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mt-4">
-				<div class="card text-center text-white bg-dark p-2">
+				<div class="card text-center text-white bg-light p-2">
 					<div class="bd-example">
 						<div id="carouselExampleCaptions" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators my-card">
 								<li data-target="#carouselExampleCaptions" data-slide-to="0"
 									class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 							</ol>
 							<div class="carousel-inner pt-3 pb-1">
 								<div class="carousel-item active my-card myBanner">
 									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
+										src="Resources/img/support.jpg"
 										class="d-block" alt="1">
-									<div class="carousel-caption">
-										<h5>First slide</h5>
-										<p>Nulla vitae elit libero</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="2">
-									<div class="carousel-caption">
-										<h5>Second slide</h5>
-										<p>Lorem ipsum dolor sit amet</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="3">
-									<div class="carousel-caption">
-										<h5>Third slide</h5>
-										<p>Praesent commodo cursus magna</p>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<button type="button" class="btn btn-outline-secondary"
-							data-toggle="tooltip" data-placement="top" title="Tooltip on top">배너
-							구경하기</button>
+						<button type="button" class="btn btn-primary"
+							data-toggle="tooltip" data-placement="top" title="Tooltip on top" id="supportBtn">후원하기</button>
 					</div>
 				</div>
 			</div>
@@ -577,13 +567,6 @@ a[class="moreBtn"] {
 			</div>
 		</div>
 	</div>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- NAVER KAKAO -->
 	<script type='text/javascript'>
 		Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
