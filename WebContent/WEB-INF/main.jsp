@@ -185,7 +185,7 @@ a[class="more"] {
 					<p class="pb-2">
 						처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
 					</p>
-					<a class="btn btn-primary btn-lg mr-2" href="#" role="button">둘러보기</a>
+					<a class="btn btn-primary btn-lg mr-2" href="goInfo.win" role="button">소개보기</a>
 					<a class="btn btn-primary btn-lg" href="#" role="button">체험
 						시작하기</a>
 				</div>
