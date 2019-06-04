@@ -136,6 +136,11 @@ a[class="more"] {
 		$("#adminPage").on("click", function() {
 			location.href = "goAdmin.admin";
 		});
+		$("#supportBtn").on("click", function() {
+			var width=window.screen.width/2-900/2;
+			var height=window.screen.height/2-600/2;
+			open("goSupport.su", "_brank", "width=900px,height=600px,left="+width+",top="+height);
+		});
 	});
 </script>
 </head>
@@ -390,51 +395,26 @@ a[class="more"] {
 		<div class="row pb-5">
 			<!-- 	배너 -->
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mt-4">
-				<div class="card text-center text-white bg-dark p-2">
+				<div class="card text-center text-white bg-light p-2">
 					<div class="bd-example">
 						<div id="carouselExampleCaptions" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators my-card">
 								<li data-target="#carouselExampleCaptions" data-slide-to="0"
 									class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 							</ol>
 							<div class="carousel-inner pt-3 pb-1">
 								<div class="carousel-item active my-card myBanner">
 									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
+										src="Resources/img/support.jpg"
 										class="d-block" alt="1">
-									<div class="carousel-caption">
-										<h5>First slide</h5>
-										<p>Nulla vitae elit libero</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="2">
-									<div class="carousel-caption">
-										<h5>Second slide</h5>
-										<p>Lorem ipsum dolor sit amet</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="3">
-									<div class="carousel-caption">
-										<h5>Third slide</h5>
-										<p>Praesent commodo cursus magna</p>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<button type="button" class="btn btn-outline-secondary"
-							data-toggle="tooltip" data-placement="top" title="Tooltip on top">배너
-							구경하기</button>
+						<button type="button" class="btn btn-primary"
+							data-toggle="tooltip" data-placement="top" title="Tooltip on top" id="supportBtn">후원하기</button>
 					</div>
 				</div>
 			</div>
