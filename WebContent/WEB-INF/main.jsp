@@ -133,6 +133,9 @@ a[class="more"] {
 			var height=window.screen.height/2-600/2;
 			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+width+",top="+height);
 		});
+		$("#adminPage").on("click", function() {
+			location.href = "goAdmin.admin";
+		});
 	});
 </script>
 </head>
@@ -301,8 +304,8 @@ a[class="more"] {
 								<label for="comment">안녕하세요! admin님!</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2" id="emailLogout2">로그아웃</button>
-							<br>
-								<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+							<br> <br>
+							<button type="button" class="btn btn-outline-secondary mr-2" id="adminPage">관리자 페이지</button>
 							<br>
 						</form>
 					</c:when>
