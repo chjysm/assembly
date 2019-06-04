@@ -1,7 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FreeBoardDAO;
+import dto.FreeBoardDTO;
 
 
 @WebServlet("*.win")
@@ -22,8 +23,31 @@ public class WinController extends HttpServlet {
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
+		
+		
+		
+		
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
+				int FreeRecordCount = 0 ;
+				try {
+				FreeRecordCount = fb.recordCount();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				if(FreeRecordCount == 0) {
+					request.setAttribute("FreeRecordCount", FreeRecordCount);
+				}else {
+				List<FreeBoardDTO> mainFreeList = null;
+				try {
+				mainFreeList = fb.mainFreeBoardList(1);
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				request.setAttribute("mainFreeList", mainFreeList);
+				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);

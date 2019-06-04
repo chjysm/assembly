@@ -21,11 +21,8 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
-* {
-	margin: 0 auto;
-}
-.fixedMenu {
-	position: fixed;
+* {margin: 0 auto;}
+.fixedMenu {position: fixed;
 	background: #fff;
 	z-index: 999;
 }
@@ -77,6 +74,19 @@ head>.nav-item {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+.myTitle p{
+	margin: 0;
+}
+.myTitle a{
+	color: black;
+}
+.myTitle a:hover{
+	color: black;
+	font-weight: bold;
+}
+.noneRecord{
+	text-align: center;
 }
 .tabStuff {
 	font-size: 13px;
@@ -442,54 +452,43 @@ a[class="more"] {
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
 							<div
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">1</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">2</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">3</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">4</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">5</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">6</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">7</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<%--  <c:forEach var="list" items="${mainFreeList }">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${list.seq }</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">${list.timeForm }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.writer }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.viewCount }</div>
+							</c:forEach>  --%>
+			
 						</div>
 					</div>
 					<div class="tab-pane fade" id="freeBoard">
-						<p>Nunc vitae turpis id nibh sodales commodo et non augue.
-							Proin fringilla ex nunc. Integer tincidunt risus ut facilisis
-							tristique.</p>
+						<div class="row text-center">
+							<div
+								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div
+								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div
+								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+							<c:choose>
+							<c:when test="${FreeRecordCount == 0 }">
+								<div class="noneRecord ">등록된 게시글이 없습니다.</div>
+							</c:when>
+							<c:otherwise>
+							<c:forEach var="list" items="${mainFreeList }">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${list.seq }</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">${list.timeForm }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.writer }</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.viewCount }</div>
+							</c:forEach> 
+							</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 					<div class="tab-pane fade" id="qna">
 						<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut

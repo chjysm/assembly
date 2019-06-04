@@ -15,7 +15,7 @@
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
-    			location.href="list.board01?currentPage=${currentPage}"; //현재페이지 붙여서 보내기
+    			location.href="list.board01?currentPage=${currentPage}";//현재페이지 붙여서 보내기
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
     			$("#inputContent").val($('#summernote').summernote("code"));
@@ -23,16 +23,14 @@
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
-					})	
-    				$("#writeForm").submit();	
-					})
+					});	
     				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
-    			}else if($("#title").val() == ""){
-    				alert("제목을 입력해주세요.");
-    			}else if($("#inputContent").val() == ""){
-    				alert("내용을 입력해주세요.");
-    			}
-    		})
+					}else if($("#title").val() == ""){
+	    				alert("제목을 입력해주세요.");
+	    			}else if($("#inputContent").val() == ""){
+	    				alert("내용을 입력해주세요.");
+	    			}
+    		});
     		$("#summernote").summernote({
     			lang:'ko-KR',
     			placeholder:'글을 입력해주세요.',
@@ -77,7 +75,7 @@
     	})
     </script>
 <style>
-	*:not(.content>*){margin:0 auto;}
+	*:not(.content *){margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
 		.fixedMenuNav{background:#007bff;}
 		.fixedMenu,.nav-link{color:#fff; font-weight:bold;}
@@ -107,18 +105,19 @@
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-				  <li class="nav-item">
-				    <a class="nav-link active" href="goMain.win">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
+				  <li class="nav-item"><a class="nav-link active"
+                                                href="goMain.win">메인페이지</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+                            소개</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="list.board01?currentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+                        <c:if test="${type==4}">
+                            <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+                        </c:if>
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>

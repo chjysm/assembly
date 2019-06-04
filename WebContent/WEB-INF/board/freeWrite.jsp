@@ -23,14 +23,14 @@
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
-					})
+					});
     				$("#writeForm").submit();	
     			}else if($("#title").val() == ""){
     				alert("제목을 입력해주세요.");
     			}else if($("#inputContent").val() == ""){
     				alert("내용을 입력해주세요.");
     			}		
-    		})
+    		});
     		$("#summernote").summernote({
     			lang:'ko-KR',
     			placeholder:'글을 입력해주세요.',
@@ -72,7 +72,7 @@
     	})
     </script>
 <style>
-	*:not(.content>*){margin:0 auto;}
+	*:not(.content *){margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
 		.fixedMenuNav{background:#007bff;}
 		.fixedMenu,.nav-link{color:#fff; font-weight:bold;}
@@ -103,21 +103,7 @@
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
 
-				  <li class="nav-item">
-				    <a class="nav-link active" href="goMain.win">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
-
-				 <li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
@@ -126,23 +112,12 @@
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
-
 				</ul>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-				  <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
+		</div>
+
+	
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
@@ -151,7 +126,7 @@
        <div class="container" id="wrapper">
        <div class="header row">
           <div class="title col-lg-2 col-md-3 col-sm-2 col-3 ">제목</div>
-          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title"></div>
+          <div class=" col-lg-10 col-md-9 col-sm-10 col-9 "><input type="text" placeholder="제목을 입력해주세요." name="title" id="title" maxlength="30"></div>
        </div>
        <div class="content row">
        	<div id="summernote" contenteditable="true"></div>

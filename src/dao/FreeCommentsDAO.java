@@ -25,11 +25,12 @@ public class FreeCommentsDAO {
 	
 	public int insertComment(FreeCommentsDTO param)throws Exception{ // 댓글 정보 데베에 저장
 		String sql = "insert into FreeComments values(freeComments_seq.nextval,?,?,?,?,?,default,?,?)";
+		String comment = this.replaceAll(param.getComment());
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, param.getComment());
+			pstat.setString(1, comment);
 			pstat.setInt(2, param.getPostNum());
 			pstat.setString(3, param.getPostTitle());
 			pstat.setString(4, param.getWriter());
@@ -58,7 +59,7 @@ public class FreeCommentsDAO {
 			while(rs.next()) {
 				int seq = rs.getInt("seq");
 				String comment = rs.getString("comments");
-				postNum = rs.getInt("postnum");
+				postNum = rs.getInt("postNum");
 				String postTitle = rs.getString("postTitle");
 				String writer = rs.getString("postTitle");
 				String ip = rs.getString("ip");
@@ -75,7 +76,7 @@ public class FreeCommentsDAO {
 	static int naviCountPerPage = 10;// 한페이지에 보여줄 페이지 번호 수
 	
 	private PreparedStatement pstatselectByPage(Connection con, int startNum, int endNum, int postNum)throws Exception{
-		String sql = "select * from (select row_number()over(order by seq asc) as rown, FreeComments.* from FreeComments where postnum = ?) where rown between ? and ?";
+		String sql = "select * from (select row_number()over(order by seq asc) as rown, FreeComments.* from FreeComments where postNum = ?) where rown between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, postNum);
 		pstat.setInt(2, startNum);
@@ -211,5 +212,11 @@ public String getNavi(int currentPage, int postNum)throws Exception {
 			return result;
 		}
 	}
+	public String replaceAll(String contents)throws Exception{
+ 		contents = contents.replaceAll("<script>","aa" );
+ 		contents = contents.replaceAll("</script>", "bb");
+ 		
+ 		return contents;
+ 	}
 	
 }
