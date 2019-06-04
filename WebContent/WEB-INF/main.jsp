@@ -233,18 +233,17 @@ a[class="more"] {
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="https://scratch.mit.edu/images/scratch-og.png"
+								<img src="http://www.newspost.kr/news/photo/201707/55742_60442_159.jpg"
 									class="d-block w-100" alt="slide_img1">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>First slide label</h5>
-									<p>Nulla vitae elit libero, a pharetra augue mollis
-										interdum.</p>
+									<h5>[기회취재]</h5>
+									<a href="http://www.newspost.kr/news/articleView.html?idxno=55742"><p>무인자동주문기 ‘키오스크’ 확산, 노년층 진땀.</p></a>
 								</div>
 							</div>
 							<div class="carousel-item">
 								<img
 									src="https://img.docslide.net/img/1200x630/reader008/image/20180829/5790560c1a28ab900c978eab.png"
-									class="d-block w-100" alt="slide_img2">
+									class="d-block w-100" alt="slide_img2"  height="362.25px">
 								<div class="carousel-caption d-none d-md-block">
 									<h5>Second slide label</h5>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -407,17 +406,17 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mt-4">
 				<div class="card text-center text-white bg-light p-2">
 					<div class="bd-example">
-						<div id="carouselExampleCaptions" class="carousel slide"
+						<div id="carouselExampleCaptions" class="carousel "
 							data-ride="carousel">
 							<ol class="carousel-indicators my-card">
-								<li data-target="#carouselExampleCaptions" data-slide-to="0"
+								<li data-target="#carouselExampleCaptions" 
 									class="active"></li>
 							</ol>
 							<div class="carousel-inner pt-3 pb-1">
 								<div class="carousel-item active my-card myBanner">
 									<img
 										src="Resources/img/support.jpg"
-										class="d-block" alt="1">
+										class="d-block" >
 								</div>
 							</div>
 						</div>

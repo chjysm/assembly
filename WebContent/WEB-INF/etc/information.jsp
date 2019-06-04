@@ -107,14 +107,11 @@ h3 {
 		</div>
 	</div>
 	<div class="container fluid">
-
 		<div class="pb-3">
-
 			<h1>
 				우야꼬<small>에 관하여 소개합니다!</small>
 			</h1>
 			<hr>
-
 		</div>
 		<div class="row ">
 			<div class="col-lg-6">
@@ -224,10 +221,7 @@ h3 {
 					</div>
 				</div>
 			</div>
-			
-
 		</div>
-		
 	</div>
 	<div class="container-fluid footer pt-5">
 			<div class="row pt-2 pb-5">

@@ -61,7 +61,7 @@ $(function(){
     	var name = "";
     }else{
     	var email="${email}";
-    	var name ="${name}"
+    	var name ="${name}";
     }
 	$("#payment_btn").on("click",function(){
 		var  amount = $("#donaMoney").val();
@@ -101,7 +101,7 @@ $(function(){
 				}
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
-		        msg += '에러내용 : ' + rsp.error_msg;
+		        msg += '에러내용 : ' + rsp.error_msg;   
 		        alert(msg);
 		    }
 		});

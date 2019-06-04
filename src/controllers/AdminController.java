@@ -25,7 +25,6 @@ public class AdminController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String cmd = requestURI.substring(contextPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
-	
 		try {
 			// ========================================== 방문자 수 ==========================================
 			if(cmd.equals("/goMain.admin")) {
@@ -50,7 +49,6 @@ public class AdminController extends HttpServlet {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
-				
 				if(FreeRecordCount == 0) {
 					request.setAttribute("FreeRecordCount", FreeRecordCount);
 				}else {
@@ -64,7 +62,6 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("mainFreeList", mainFreeList);
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
-				
 			} 
 			// ========================================== 관리자 페이지_그래프 ==========================================
 			if(cmd.equals("/goAdmin.admin")) {									// 일일 방문자
