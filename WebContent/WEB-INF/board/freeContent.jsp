@@ -2,12 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
-=======
-<html>
->>>>>>> b9d0b5052fb6e75c684f0efdd7026be6dc820f68
-    <head>
+<head>
         <meta charset="UTF-8">
         <title>Document</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,45 +13,40 @@
         <script>
             $(function(){
                  $(".listBtn").on("click",function(){// 목록으로돌아가기
-                    window.history.back();
+                	 location.href="list.board01?currentPage=${currentPage}";
                 });
                  $(".deleteBtn").on("click",function(){ // 글 삭제 버튼
-                    location.href="deleteContent.board01?seq=${content.seq}&&currentPage=${currentPage}" ;
+                	 var result = confirm("글을 삭제하시겠습니까?")
+                	 
+                	 if(result == true){
+                		 location.href="deleteContent.board01?seq=${content.seq}&&currentPage=${currentPage}" ;
 
-                    /* $("img").each(function(i, item){
-        				var src = $(item).attr("src");
-        				console.log(src);
-        				$.ajax({
-        					url:"deleteFile.board01",
-        					type:"post",
-        					data:{img:src},
-        					cache:false
-        				}).done(function(resp){
-            				console.log(resp)
-            				if(resp == "삭제성공"){
-                    			location.href="deleteContent.board01?seq=${content.seq}" ;
-            				}else{
-            					location.href="deleteContent.board01?seq=${content.seq}" ;
-            				}
-            			});
-        			})  */
+                         /* $("img").each(function(i, item){
+             				var src = $(item).attr("src");
+             				console.log(src);
+             				$.ajax({
+             					url:"deleteFile.board01",
+             					type:"post",
+             					data:{img:src},
+             					cache:false
+             				}).done(function(resp){
+                 				console.log(resp)
+                 				if(resp == "삭제성공"){
+                         			location.href="deleteContent.board01?seq=${content.seq}" ;
+                 				}else{
+                 					location.href="deleteContent.board01?seq=${content.seq}" ;
+                 				}
+                 			});
+             			})  */
+                	 }
+                   
                 });
                 $(".alterBtn").on("click",function(){// 글 수정 버튼 -> 글 수정 페이지로 이동
                 	location.href="alterForm.board01?seq=${content.seq}";
                 })
 
                 
-//                 $(".bb").hide();
-//                 $(".comment-BoxBtn").on("click",function(){ // 댓글▼버튼 누르면 댓글 박스 열리기
-//                 	var state = $(this).attr("state");
-//                 	if(state == "close"){
-//                 	$(".bb").show();
-//                 	$(this).attr("state","open");
-//                 	}else if(state == "open"){
-//                 		$(".bb").hide();
-//                 		$(this).attr("state","close");
-//                 	}
-//                 })
+
                $(".commentBtn").on("click",function(){// 댓글 등록버튼 누르면
                 	if(${type == null}){
         				alert("로그인 후 이용해주세요");
@@ -93,7 +84,10 @@
               			var seq = $(this).attr("seq");
               			console.log(seq);
               			var result = confirm("댓글을 삭제하시겠습니까?");
-              			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
+              			
+              			if(result == true){
+                  			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
+              			}
               		});
                 $(".alterBox").hide();//수정 댓글입력창 숨기기
                 //수정하기 
@@ -111,8 +105,8 @@
                 	 var alterTextarea = "#alterTextarea" + seq;
                 	 $(id).hide();
                 });
-					$(id).show();                	
-                });
+				               	
+               
                 $(".commentAlterBtn").each(function(i,item){
                 	 var btnSeq = $(this).attr("seq");
                      var commentAlterBtn = "#commentAlterBtn" + btnSeq;
@@ -137,20 +131,8 @@
                  		}
                  	});
                 });
-                 		$.ajax({
-                     		url:"alterComment.board01",
-                     		data:{comment:$(alterTextarea).html(),seq:btnSeq}
-                     	}).done(function(resp){
-                     		if(resp == "수정됨"){
-                     			$(alterTextarea).html("");
-                     			$(".alterBox").hide();
-                     			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
-                     		}else if(resp == "수정안됨"){
-                     			alter("수정이 정상적으로 완료되지 못하였습니다.")
-                     		}
-                     	});
-                 	}); 
-                });
+                 	 
+             
 
             });
         </script>
@@ -169,12 +151,12 @@
             .content{min-height: 300px;}
             .content div:nth-child(2){overflow-y:scroll;}
             .footer{border-top:1px solid black; }
-            .footer>div{text-align: right;}
-            
+            .footer>div{text-align: right; border-bottom: 1px solid black;}
+            .footer input[type="button"]{margin-bottom: 4px; margin-top:4px;}
             .writeBox>div{padding: 0;}
             
 
-            .commentBox{position: relative;  border-top:1px solid black;}
+            .commentBox{position: relative;}
             .cmWriter{font-weight: bold;}
             .cmBtn{text-align: right;}
             .cmBtn>input[type="button"]{margin-top:2px;}
@@ -189,7 +171,7 @@
             .line{border: 1px solid black; width:95%;}
              a{color:black;}
              a:hover{color:black; font-weight:bold;}
-            .noneRecord{text-align:center;}
+            .noneRecord{text-align:center; margin-top:10px; margin-bottom:10px;}
         </style>
 </head>
 <body>
@@ -200,48 +182,35 @@
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
 
-
-
-                        <li class="nav-item"><a class="nav-link active"
-                                                href="goMain.win">메인페이지</a></li>
-
-
-                        <li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-                            소개</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link"
-                                                href="list.board01?currentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
-                        <c:if test="${type==4}">
-                            <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
-                        </c:if><li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
+					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-            </div>	
-            <div class="row p-1">
-                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="input-group mt-3 mb-3">
-                        <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-            </div>	
-        </div>
+				</ul>
+			</div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>
+
+		<div class="row p-1">
+			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="input-group mt-3 mb-3">
+					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
+						aria-label="Search">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">찾아보기</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>
+	</div>
         <!-- ------------------------------------------------------------------------------------- -->
 
         <div class="head"><h1>자유게시판</h1><div></div></div>
@@ -267,11 +236,8 @@
             </div>
             <!--------------------------------------------------------------------------------------->
             <div class="footer row">
-                <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-2 mb-2">
-                    <input type="button" value="댓글▼" class="comment-BoxBtn btn btn-primary" state="close">
-                    <input type="button" value="목록" class="listBtn btn btn-primary">
-                </div>	
-                <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-2 mb-2">
+               
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <c:choose>
                         <c:when test="${email != content.email and type!=4 }">
                             <input type="button" value="수정" class="alterBtn btn btn-primary" hidden><!--글 수정버튼-->
@@ -281,15 +247,15 @@
                             <input type="button" value="수정" class="alterBtn btn btn-primary" >
                             <input type="button" value="삭제" class="deleteBtn btn btn-primary">
                         </c:when>
-                    </c:choose>    
+                    </c:choose> 
+                    <input type="button" value="목록" class="listBtn btn btn-primary">   
                 </div>
             </div>
             <!----------------------------------------------------------------------------------------->
             <!-- 댓글 -->
          
            
-            <div class="row bb">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+           
              <c:choose>
             <c:when test="${countComment == 0 }">
             <div class="noneRecord">등록된 댓글이 없습니다. 댓글을 달아보세요!</div>
@@ -343,10 +309,8 @@
 
             </div>
             </div>
-          </div>
-         
-          </div>
+        
        
     </body>
-</body>
+
 </html>

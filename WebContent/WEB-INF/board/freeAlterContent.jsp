@@ -15,7 +15,7 @@
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
-    			location.href="list.board01?currentPage=${currentPage}"; //현재페이지 붙여서 보내기
+    			location.href="list.board01?currentPage=${currentPage}";//현재페이지 붙여서 보내기
     		})
     		$(".completeBtn").on("click",function(){//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
     			$("#inputContent").val($('#summernote').summernote("code"));
@@ -23,16 +23,14 @@
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
 						url:'flag.board01',
-					})	
-    				$("#writeForm").submit();	
-					})
+					});	
     				location.href="alterContent.board01?seq=${content.seq}&&title="+$("#title").val()+"&&inputContent="+$("#inputContent").val();	
-    			}else if($("#title").val() == ""){
-    				alert("제목을 입력해주세요.");
-    			}else if($("#inputContent").val() == ""){
-    				alert("내용을 입력해주세요.");
-    			}
-    		})
+					}else if($("#title").val() == ""){
+	    				alert("제목을 입력해주세요.");
+	    			}else if($("#inputContent").val() == ""){
+	    				alert("내용을 입력해주세요.");
+	    			}
+    		});
     		$("#summernote").summernote({
     			lang:'ko-KR',
     			placeholder:'글을 입력해주세요.',
@@ -77,7 +75,7 @@
     	})
     </script>
 <style>
-	*:not(.content>*){margin:0 auto;}
+	*:not(.content *){margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
 		.fixedMenuNav{background:#007bff;}
 		.fixedMenu,.nav-link{color:#fff; font-weight:bold;}

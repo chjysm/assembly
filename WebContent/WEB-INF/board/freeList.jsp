@@ -38,7 +38,7 @@
     			};
    			
     		});
-    		   $(".searchBtn").on("click",function(){ // 검색버튼 누르면
+    		  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
     	             var option = $("#option option:selected").val();
     	             var searchWord = $(".searchWord").val();
     	             if(searchWord == ""){
@@ -51,7 +51,6 @@
     	                 }
     	             };
     	          });
->>>>>>> b9d0b5052fb6e75c684f0efdd7026be6dc820f68
     	});
     </script>
 <style>

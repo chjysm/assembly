@@ -36,11 +36,12 @@ public class FreeBoardController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 		FreeBoardDAO dao = new FreeBoardDAO();
 		FreeCommentsDAO cdao = new FreeCommentsDAO();
-		
+
 		if(command.equals("/list.board01")) {//자유게시판 목록페이지로
 			int recordCount = 0;
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			request.getSession().setAttribute("currentPage", currentPage);
+
 			List<FreeBoardDTO> freeList = null;
 			try {
 				recordCount = dao.recordCount();
@@ -48,10 +49,10 @@ public class FreeBoardController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
+
 			if(recordCount == 0) {
 				request.setAttribute("recordCount", recordCount);
 			}else {
-				
 				try {
 					freeList = dao.selectByPage(currentPage);;
 				}catch(Exception e) {
@@ -186,7 +187,7 @@ public class FreeBoardController extends HttpServlet {
 				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
-			
+
 			if(countComment == 0) { // 댓글이 없다면
 				request.setAttribute("countComment", countComment);
 			}else{
@@ -256,7 +257,7 @@ public class FreeBoardController extends HttpServlet {
 			}
 			request.setAttribute("content", content);
 			request.getRequestDispatcher("/WEB-INF/board/freeAlterContent.jsp").forward(request, response);
-			
+
 		}else if(command.equals("/alterContent.board01")) {//글 수정 완료버튼 누르면 
 			int seq = Integer.parseInt(request.getParameter("seq")); // 글번호
 			String title = request.getParameter("title");
@@ -368,6 +369,7 @@ public class FreeBoardController extends HttpServlet {
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
+
 			int recordCount = 0;
 			try {
 				recordCount = dao.selectCount(searchWord, option);
@@ -375,35 +377,29 @@ public class FreeBoardController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
-			List<FreeBoardDTO> freeSelectList = null;
-			try {			
-				freeSelectList = dao.selectBySearchPage(currentPage, searchWord, option);
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-			
 			if(recordCount == 0) {
 				request.setAttribute("recordCount", recordCount);
 			}else {
-				
+				List<FreeBoardDTO> freeSelectList = null;
+				try {			
+					freeSelectList = dao.selectBySearchPage(currentPage, searchWord, option);
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
 				String getNaviSelect = null;
 				try {
 					getNaviSelect = dao.getNaviSelect(currentPage, option, searchWord); // 페이지 네비 보여주기 
-
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
 				request.setAttribute("freeList", freeSelectList);
 				request.setAttribute("getNavi", getNaviSelect);
-			
-			
-			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 			}
-			
+			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 		}
-			
-			
+
+
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
