@@ -21,9 +21,11 @@ public class FreeBoardDAO {
 
 	public int insert(FreeBoardDTO param) throws Exception { // 내용 등록
 		String sql = "insert into FreeBoard values(FreeBoard_seq.nextval,?,?,?,0,?,default,?,?)";
+		String content = this.replaceAll(param.getContent());
+		String title = this.replaceAll(param.getTitle());
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, param.getTitle());
-			pstat.setString(2, param.getContent());
+			pstat.setString(1, title);
+			pstat.setString(2, content);
 			pstat.setString(3, param.getWriter());
 			pstat.setString(4, param.getIp());
 			pstat.setString(5, param.getEmail());
@@ -105,9 +107,11 @@ public class FreeBoardDAO {
 
 	public int alterContent(String title, String content, int seq) throws Exception {// 글 수정
 		String sql = "update FreeBoard set title = ?, content = ? where seq = ? ";
+		String replaceContent = this.replaceAll(content);
+		String replcateTitle = this.replaceAll(title);
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, title);
-			pstat.setString(2, content);
+			pstat.setString(1, replcateTitle);
+			pstat.setString(2, replaceContent);
 			pstat.setInt(3, seq);
 			con.commit();
 			int result = pstat.executeUpdate();
@@ -143,13 +147,10 @@ public class FreeBoardDAO {
 		} else if (currentPage > pageTotalCount) { // 현재페이지 번호가 전체페이지보다 크면 최대 페이지로
 			currentPage = pageTotalCount;
 		} // 보안코드
-			// 내 위치의 기준으로 첫페이지와 끝페이지 알아내기
+
 		int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
 		int endNavi = startNavi + (naviCountPerPage - 1);
-		// ex) startNavi : 14페이지에 있다고 가정 첫페이지는 11 -> 14/10 = 1 -> 1*10 = 10 -> 10+1 = 11
-		// ----> (currentPage/10)*10+1 // 10은 한번에 보여줄 페이지 숫자 범위
-		// 10 20 30등 페이지일 경우도 있음 : ★★(currentPage - 1)/10*10+1 -> 이 공식은 다 적용
-		// 최대페이지 번호보다 endNavi 번호가 크게 나옴 ㅠ
+
 		if (endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
@@ -237,7 +238,7 @@ public class FreeBoardDAO {
 		return pstat;
 	}
 
-	public List<FreeBoardDTO> selectBySearchPage(int currentPage, String searchWord, String option) throws Exception { 
+	public List<FreeBoardDTO> selectBySearchPage(int currentPage, String searchWord, String option) throws Exception {
 		int endNum = currentPage * recordCountPerPage;
 		int startNum = endNum - 9;
 		try (Connection con = this.getConnection();
@@ -270,6 +271,7 @@ public class FreeBoardDAO {
 		} else if (recordTotalCount % recordCountPerPage == 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
+
 		// ----------------------------------------------------------------------------------
 		if (currentPage < 1) {// 최소 페이지 보다 작으면 최소페이지로
 			currentPage = 1;
@@ -304,4 +306,47 @@ public class FreeBoardDAO {
 		}
 		return sb.toString();
 	}
+
+	public String replaceAll(String contents) throws Exception {
+		contents = contents.replaceAll("<script>", "aa");
+		contents = contents.replaceAll("</script>", "bb");
+
+		return contents;
+	}
+
+	// ----------------------------------------------------------------------------------------------------------
+	// 메인페이지에 게시판 리스트
+
+	private PreparedStatement pstatmainFreeBoardList(Connection con, int startNum, int endNum) throws Exception {
+		String sql = "select * from (select row_number()over(order by seq desc) as rown, FreeBoard.* from FreeBoard) where rown between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, startNum);
+		pstat.setInt(2, endNum);
+		return pstat;
+	}
+
+	public List<FreeBoardDTO> mainFreeBoardList(int currentPage) throws Exception { // 한 페이지에 보여줄 글 갯수
+		int endNum = currentPage * 7;
+		int startNum = endNum - 9;
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatselectByPage(con, startNum, endNum);
+				ResultSet rs = pstat.executeQuery();) {
+			List<FreeBoardDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt("seq");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				int viewCount = rs.getInt("viewCount");
+				String ip = rs.getString("ip");
+				Timestamp writeDate = rs.getTimestamp("writeDate");
+				String email = rs.getString("email");
+				int id = rs.getInt("id");
+				FreeBoardDTO dto = new FreeBoardDTO(seq, title, content, writer, viewCount, ip, writeDate, id, email);
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+
 }

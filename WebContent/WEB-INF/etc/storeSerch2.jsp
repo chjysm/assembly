@@ -98,7 +98,7 @@
                   <img class="" alt="Start" id="start_img" src="https://image.flaticon.com/icons/png/512/440/440815.png">
               </button>
             </div>
-          <input type="text" placeholder="찾고 싶으신 브랜드의 이름을 말씀하시거나 입력해주세요!" class="final" id="final_span" contenteditable="true" name="brand"> <span class="interim" id=
+          <input type="text" placeholder="찾고 싶으신 브랜드의 이름을 말씀하시거나 입력해주세요! 주변 역이름을 입력하면 더 정확해 집니다!  " class="final" id="final_span" contenteditable="true" name="brand"> <span class="interim" id=
           "interim_span"></span>
         </div>
         <input type="button" class="btn btn-primary" value ="입력완료" id="nextBtn">

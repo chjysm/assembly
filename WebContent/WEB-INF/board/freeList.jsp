@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Baord List</title>
+<title>Free Baord List</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
@@ -13,32 +13,32 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- JQuery -->
+
 <script>
-       $(function(){
-          $(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
-             if(${type == null}){
-                alert("로그인 후 이용해주세요");
-             }else{
-             location.href="freeWrite.board01";
-             }
-          });
-          
-          $(".searchBtn").on("click",function(){ // 검색버튼 누르면
-             var option = $("#option option:selected").val();
-             var searchWord = $(".searchWord").val();
-             if(searchWord == ""){
-                alert("검색어를 입력해주세요");
-             }else{
-                if(option == "글제목"){
-                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
-                 }else if(option == "작성자"){
-                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
-                 }
-             };
-            
-          });
-          
-       });
+
+    	$(function(){
+    		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
+    			if(${type == null}){
+    				alert("로그인 후 이용해주세요");
+    			}else{
+    			location.href="freeWrite.board01";
+    			}
+    		});
+    		  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
+    	             var option = $("#option option:selected").val();
+    	             var searchWord = $(".searchWord").val();
+    	             if(searchWord == ""){
+    	                alert("검색어를 입력해주세요");
+    	             }else{
+    	                if(option == "글제목"){
+    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
+    	                 }else if(option == "작성자"){
+    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+    	                 }
+    	             };
+    	          });
+    	});
+
     </script>
 <style>
 * {
@@ -55,7 +55,7 @@
 	background: #007bff;
 }
 
-.fixedMenu .nav-link {
+.fixedMenu, .nav-link {
 	color: #fff;
 	font-weight: bold;
 }
@@ -93,7 +93,7 @@ h1+div {
 }
 
 .header>div {
-	font-weight: bold;
+	ont-weight: bold;
 	text-align: center;
 }
 
@@ -160,10 +160,6 @@ a:hover {
 .noneRecord {
 	text-align: center;
 }
-
-.footer div:last-child {
-	text-align: right;
-}
 </style>
 </head>
 <body>
@@ -192,20 +188,7 @@ a:hover {
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
+
 	</div>
 
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
@@ -215,6 +198,7 @@ a:hover {
 		<h1>자유게시판</h1>
 		<div></div>
 	</div>
+
 
 
 
@@ -234,6 +218,7 @@ a:hover {
 				<div class="noneRecord">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
+
 				<c:forEach var="list" items="${freeList }">
 					<div class="content row">
 						<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
@@ -250,6 +235,7 @@ a:hover {
 			</c:otherwise>
 		</c:choose>
 		<div class="navi row">
+
 			<div>${getNavi }</div>
 		</div>
 
@@ -265,11 +251,12 @@ a:hover {
 			<div class="col-lg-1 col-md-1.5 col-sm-6 col-12">
 				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
+
 		</div>
 
 
-	</div>
 
+	</div>
 
 </body>
 </html>

@@ -2,9 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.List;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDAO;
+import dao.StudyDAO;
 import dto.MemberDTO;
+import dto.StudyDTO;
 
 @WebServlet("*.me")
 public class MeController extends HttpServlet {
@@ -29,14 +29,12 @@ public class MeController extends HttpServlet {
 		String cmd = reqUri.substring(ctxPath.length());
 		PrintWriter pt = response.getWriter();
 		MemberDAO me = new MemberDAO();
+		StudyDAO st = new StudyDAO();
 		try {
 			if (cmd.equals("/login.me")) {// 로그인
 				String email = request.getParameter("id");
-				System.out.println(email);
 				String pw = request.getParameter("pw");
-				System.out.println(pw);
 				int result = me.loginCheck(email, pw);
-				System.out.println(result);
 				if (result == 1) {
 					int id = me.getId(email);
 					String nickname = me.getNickname(email);
@@ -56,7 +54,7 @@ public class MeController extends HttpServlet {
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 
-				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				request.getRequestDispatcher("goMain.win").forward(request, response);
 
 			} else if (cmd.equals("/getPw.me")) {// pw얻기
 
@@ -104,9 +102,12 @@ public class MeController extends HttpServlet {
 				// 마이페이지로
 			} else if (cmd.equals("/mPageGo.me")) {
 				int seq = (int) request.getSession().getAttribute("id");
+				String currentPage=request.getParameter("currentPage");
+				List<StudyDTO> study_dto= st.getStudy(Integer.parseInt(currentPage),seq);
 				List<MemberDTO> dto = me.select_Member(seq);
-				System.out.println(dto.get(0).getType());
 				request.setAttribute("list", dto);
+				request.setAttribute("s_list", study_dto);
+				request.setAttribute("navi", st.getNavi(seq, Integer.parseInt(currentPage)));
 				request.getRequestDispatcher("/WEB-INF/member/mypage.jsp").forward(request, response);
 				// 마이페이지에서 패스워드 변경하는 페이지로 이동
 			} else if (cmd.equals("/pwChangeGo.me")) {
@@ -137,7 +138,7 @@ public class MeController extends HttpServlet {
 					response.getWriter().append("<script> if(alert('패스워드 변경에 실패했습니다!')!= 0){ self.close() }</script>");
 				}
 			} else if (cmd.equals("/main.me")) {
-				request.getRequestDispatcher("main.jsp").forward(request, response);
+				request.getRequestDispatcher("goMain.win").forward(request, response);
 				// 마이페이지 수정하기
 			} else if (cmd.equals("/modify.me")) {
 				int seq = (int) request.getSession().getAttribute("id");// 씨꿘스

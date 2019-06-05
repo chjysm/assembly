@@ -20,6 +20,9 @@
 	charset="utf-8"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap&subset=korean"
+	rel="stylesheet">
 <style>
 * {
 	margin: 0 auto;
@@ -90,6 +93,15 @@ head>.nav-item {
 	white-space: nowrap;
 }
 
+.myTitle a {
+	color: black;
+}
+
+.myTitle a:hover {
+	color: black;
+	font-weight: bold;
+}
+
 .tabStuff {
 	font-size: 13px;
 	color: #555;
@@ -110,48 +122,68 @@ head>.nav-item {
 	text-align: right;
 }
 
-a[class="more"] {
+a[class="moreBtn"] {
 	color: black;
 }
 
-a[class="more"] {
+a:hover[class="moreBtn"] {
 	color: black;
 	font-weight: bold;
 }
+
+.carousel_h3 {
+	color: green;
+	font-family: 'Gamja Flower', cursive;
+}
 </style>
 <script>
-	$(function() {
-		
-		$("#emailLogout").on("click", function() {
-			location.href = "logout.me";
-		});
-		$("#emailLogout2").on("click", function() {
-			location.href = "logout.me";
-		});
-		$("#getPw").on("click", function() {
-			var width=(window.screen.width/2)-(600/2);
-			var height=window.screen.height/2-400/2;
-			open("getPw.me", "_brank", "width=600px,height=400px,left="+width+",top="+height);
-		});
-		$("#signUp_btn").on("click", function() {
-			location.href = "signUpGo.me";
-		});
-		$(".mPageGo").on("click", function() {
-			location.href = "mPageGo.me";
-		});
-		$("#storeSerchBtn").on("click", function() {
-			var width=window.screen.width/2-800/2;
-			var height=window.screen.height/2-600/2;
-			open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
-		});
-		$(".withdrawalBtn").on("click", function() {
-			var width=window.screen.width/2-600/2;
-			var height=window.screen.height/2-600/2;
-			open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+width+",top="+height);
-		});
-		
-			
-	});
+   $(function() {
+      
+      $("#emailLogout").on("click", function() {
+         location.href = "logout.me";
+      });
+      $("#emailLogout2").on("click", function() {
+         location.href = "logout.me";
+      });
+      $("#getPw").on("click", function() {
+         var width=(window.screen.width/2)-(600/2);
+         var height=window.screen.height/2-400/2;
+         open("getPw.me", "_brank", "width=600px,height=400px,left="+width+",top="+height);
+      });
+      $("#signUp_btn").on("click", function() {
+         location.href = "signUpGo.me";
+      });
+      $(".mPageGo").on("click", function() {
+         location.href = "mPageGo.me?currentPage=1";
+      });
+      $("#storeSerchBtn").on("click", function() {
+         var width=window.screen.width/2-800/2;
+         var height=window.screen.height/2-600/2;
+         open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
+      });
+      $(".withdrawalBtn").on("click", function() {
+         var width=window.screen.width/2-600/2;
+         var height=window.screen.height/2-600/2;
+         open("goWithdrawal.me", "_brank", "width=600px,height=600px,left="+width+",top="+height);
+      });
+      $("#adminPage").on("click", function() {
+         location.href = "goAdmin.admin";
+      });
+      $("#supportBtn").on("click", function() {
+         var width=window.screen.width/2-900/2;
+         var height=window.screen.height/2-600/2;
+         open("goSupport.su", "_brank", "width=900px,height=600px,left="+width+",top="+height);
+      });
+      $(".infoBtn").on("click",function(){
+    	 $(".moreBtn").attr("href","list.board03?currentPage=1");
+      });	 
+       $(".freeBtn").on("click",function(){
+          $(".moreBtn").attr("href","list.board01?currentPage=1"); 
+      });
+       $(".qnaBtn").on("click",function(){
+          $(".moreBtn").attr("href","list.board02?currentPage=1");
+      });
+   });
 </script>
 </head>
 <body>
@@ -193,7 +225,7 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
-	<!-- 	점보트론 -->
+	<!--    점보트론 -->
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<div class="row startPage">
@@ -206,9 +238,9 @@ a[class="more"] {
 					<p class="pb-2">
 						처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
 					</p>
-					<a class="btn btn-primary btn-lg mr-2" href="#" role="button">둘러보기</a>
-					<a class="btn btn-primary btn-lg" href="#" role="button">체험
-						시작하기</a>
+					<a class="btn btn-primary btn-lg mr-2" href="goInfo.win"
+						role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="#"
+						role="button">체험 시작하기</a>
 				</div>
 				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
 					<iframe width="95%" height="315"
@@ -219,10 +251,10 @@ a[class="more"] {
 			</div>
 		</div>
 	</div>
-	<!-- 	본문 -->
+	<!--    본문 -->
 	<div class="container mainPage pt-2">
 		<div class="row mb-5">
-			<!-- 	슬라이드 -->
+			<!--    슬라이드 -->
 			<div
 				class="col-lg-8 col-md-12 col-sm-12 col-xs-12 order-lg-1 order-2">
 				<div class="bd-example">
@@ -236,31 +268,39 @@ a[class="more"] {
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="https://scratch.mit.edu/images/scratch-og.png"
-									class="d-block w-100" alt="slide_img1">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>First slide label</h5>
-									<p>Nulla vitae elit libero, a pharetra augue mollis
-										interdum.</p>
+								<img src="Resources/img/carousel1.jpg " class="d-block w-100 "
+									alt="slide_img1" width="350px" height="400px">
+								<div class="carousel-caption d-none d-md-block ">
+									<h3 class="carousel_h3">노인을 위한 세상은 없다</h3>
+									<p>
+										<a
+											href="http://www.mediatoday.co.kr/news/articleView.html?mod=news&act=articleView&idxno=148319"
+											target="_blank">기사 바로가기</a>
+									</p>
 								</div>
 							</div>
 							<div class="carousel-item">
-								<img
-									src="https://img.docslide.net/img/1200x630/reader008/image/20180829/5790560c1a28ab900c978eab.png"
-									class="d-block w-100" alt="slide_img2">
+								<img src="Resources/img/carousel2.jpg" class="d-block w-100"
+									alt="slide_img2" width="350px" height="400px">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>Second slide label</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									<h3 class="carousel_h3">햄버거 던지고... 무인주문기계 '키오스크'가 펼친 지옥도</h3>
+									<p>
+										<a
+											href="http://www.ohmynews.com/NWS_Web/Event/Premium/at_pg.aspx?CNTN_CD=A0002535977&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
+											target="_blank"> 기사 바로가기 </a>
+									</p>
 								</div>
 							</div>
 							<div class="carousel-item">
-								<img
-									src="https://holyokecodes.org/wp-content/uploads/2017/11/ScratchIntro-1200.jpg"
-									class="d-block w-100" alt="slide_img3">
+								<img src="Resources/img/carousel3.jpg" class="d-block w-100"
+									alt="slide_img3" width="350px" height="400px">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>Third slide label</h5>
-									<p>Praesent commodo cursus magna, vel scelerisque nisl
-										consectetur.</p>
+									<h3 class="carousel_h3">"사람보다 기계가 편해" 비대면 쇼핑·결제 부상</h3>
+									<p>
+										<a
+											href="https://view.asiae.co.kr/news/view.htm?idxno=2019052710552826120"
+											target="_blank">기사 바로가기</a>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -276,60 +316,80 @@ a[class="more"] {
 					</div>
 				</div>
 			</div>
-			<!-- 	로그인 폼 -->
+			<!--    로그인 폼 -->
 			<div
 				class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-1 text-center pt-3 pb-5 login">
 				<c:choose>
 					<c:when test="${type==1}">
 						<form>
-							<div class="form-group pb-1">
-								<label for="comment">안녕하세요! ${nickname}님</label>
+							<div
+								style="border-radius: 10px; background: #b8daff; height: 250px">
+								<div class="form-group pb-1 pt-5 pb-2" style="font-size: 1.4em">
+									<label for="comment"><strong>${nickname}</strong>님
+										환영합니다! </label>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<br> <br> <a href="logout.na"><img height="49"
+									width="150" src="Resources/img/nlogout.PNG" /></a>
 							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<br> <br> <a href="logout.na"><img height="49"
-								width="150" src="Resources/img/nlogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
-							<div class="form-group pb-1">
-								<label for="comment">안녕하세요! ${nickname}님</label>
+							<div
+								style="border-radius: 10px; background: #b8daff; height: 250px">
+								<div class="form-group  pt-5" style="font-size: 1.4em">
+									<label for="comment"> <strong>${nickname}</strong>님
+										환영합니다!
+									</label>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<br> <br> <a href="logout.ka"><img height="49"
+									width="222" src="Resources/img/klogout.PNG" /></a>
 							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<br> <br> <a href="logout.ka"><img height="49"
-								width="222" src="Resources/img/klogout.PNG" /></a>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
 						<form>
-							<div class="form-group pb-1">
-								<label for="comment">안녕하세요! ${nickname}님</label>
+							<div
+								style="border-radius: 10px; background: #b8daff; height: 150px">
+								<div class="form-group p-3 " style="font-size: 1.2em">
+									<label for="comment"> <strong>${nickname}</strong>님
+										환영합니다!
+									</label>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<button type="button" class="btn btn-outline-secondary mr-2"
+									id="emailLogout">로그아웃</button>
+								<br> <br>
 							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="emailLogout">로그아웃</button>
-							<br> <br>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
 						<form>
-							<div class="form-group pb-1">
-								<label for="comment">안녕하세요! admin님!</label>
+							<div
+								style="border-radius: 10px; height: 200px; background: #b8daff">
+								<div class="form-group pt-3">
+									<label for="comment"> 어서오세요 <strong>admin</strong>님!
+										환영합니다!
+									</label>
+								</div>
+								<button type="button" class="btn btn-outline-secondary  mr-2"
+									id="emailLogout2">로그아웃</button>
+								<br> <br>
+								<button type="button" class="btn btn-outline-secondary mr-2"
+									id="adminPage">관리자 페이지</button>
+								<br>
 							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="emailLogout2">로그아웃</button>
-							<br>
-							<li class="nav-item"><a class="nav-link"
-								href="goAdmin.admin">관리자 게시판</a></li> <br>
 						</form>
 					</c:when>
 					<c:otherwise>
@@ -357,13 +417,12 @@ a[class="more"] {
 				</c:choose>
 			</div>
 		</div>
-		<!-- 	본문2 -->
-		<!-- 	학습 툴 -->
+		<!--    본문2 -->
+		<!--    학습 툴 -->
 		<div class="row pt-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 				<h1 class="display-5 font-weight-bold">시작하기</h1>
 				<p class="lead font-weight-bold">새로운 디지털 기술을 체험하고 이웃들과 공유하세요!</p>
-
 			</div>
 		</div>
 		<div class="row mb-4">
@@ -375,7 +434,7 @@ a[class="more"] {
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">클릭 한 번으로 메뉴 이름 이해하기</h5>
 						<p class="card-text">모르는 단어를 클릭해보세요. 즉시 한글로 번역해 드립니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="startGame." class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -388,7 +447,7 @@ a[class="more"] {
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수
 							있습니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="startGame.kiosk" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -405,7 +464,7 @@ a[class="more"] {
 				</div>
 			</div>
 		</div>
-		<!-- 	본문3 -->
+		<!--    본문3 -->
 		<div class="row pt-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 				<h1 class="display-5 font-weight-bold">소통하기</h1>
@@ -413,69 +472,48 @@ a[class="more"] {
 			</div>
 		</div>
 		<div class="row pb-5">
-			<!-- 	배너 -->
+			<!--    배너 -->
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mt-4">
-				<div class="card text-center text-white bg-dark p-2">
+				<div class="card text-center text-white bg-light p-2">
 					<div class="bd-example">
 						<div id="carouselExampleCaptions" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators my-card">
 								<li data-target="#carouselExampleCaptions" data-slide-to="0"
 									class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 							</ol>
 							<div class="carousel-inner pt-3 pb-1">
 								<div class="carousel-item active my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="1">
-									<div class="carousel-caption">
-										<h5>First slide</h5>
-										<p>Nulla vitae elit libero</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="2">
-									<div class="carousel-caption">
-										<h5>Second slide</h5>
-										<p>Lorem ipsum dolor sit amet</p>
-									</div>
-								</div>
-								<div class="carousel-item my-card myBanner">
-									<img
-										src="https://uploads.scratch.mit.edu/projects/thumbnails/310945537.png"
-										class="d-block" alt="3">
-									<div class="carousel-caption">
-										<h5>Third slide</h5>
-										<p>Praesent commodo cursus magna</p>
-									</div>
+									<img src="Resources/img/support.jpg" class="d-block" alt="1">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<button type="button" class="btn btn-outline-secondary"
-							data-toggle="tooltip" data-placement="top" title="Tooltip on top">배너
-							구경하기</button>
+						<button type="button" class="btn btn-primary"
+							data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+							id="supportBtn">후원하기</button>
 					</div>
 				</div>
 			</div>
-			<!-- 	공지사항, 게시판 -->
+			<!--    공지사항, 게시판 -->
 			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 mt-5">
 				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link active infoBtn"
 						data-toggle="tab" href="#info">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#freeBoard">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#qna">질문게시판</a></li>
+					<li class="nav-item"><a class="nav-link freeBtn"
+						data-toggle="tab" href="#freeBoard">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link qnaBtn"
+						data-toggle="tab" href="#qna">질문게시판</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="info">
 						<h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
+						<div class="row text-center">
+							<div>공지사항 코드</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="freeBoard">
 						<div class="row text-center">
 							<div
 								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
@@ -487,69 +525,74 @@ a[class="more"] {
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
 							<div
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">1</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">2</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">3</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">4</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">5</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">6</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">7</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
-								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+
+							<c:choose>
+								<c:when test="${freeRecordCount == 0 }">
+									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="list" items="${mainFreeList}">
+										<div
+											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div
+											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+											<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
+										</div>
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="freeBoard">
-						<p>Nunc vitae turpis id nibh sodales commodo et non augue.
-							Proin fringilla ex nunc. Integer tincidunt risus ut facilisis
-							tristique.</p>
-					</div>
 					<div class="tab-pane fade" id="qna">
-						<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
-							mattis leo, vel fermentum tellus. Sed sagittis rhoncus venenatis.
-							Quisque commodo consectetur faucibus. Aenean eget ultricies
-							justo.</p>
+						<div class="row text-center">
+							<div
+								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div
+								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div
+								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+
+							<c:choose>
+								<c:when test="${qnaRecordCount == 0 }">
+									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="list" items="${mainQnaList}">
+										<div
+											class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+										<div
+											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+											<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
+										</div>
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board01?currentPage=1" class="more">더 보기 ></a>
+					<a href="list.board03?currentPage=1" class="moreBtn">더 보기 ></a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 	footer -->
+	<!--    footer -->
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -573,22 +616,23 @@ a[class="more"] {
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- NAVER KAKAO -->
 	<script type='text/javascript'>
-		Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
-		Kakao.Auth.createLoginButton({
-			container : '#kakao-login-btn',
-			success : function(authObj) {
-				location.href = "login.ka";
-			},
-			fail : function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-	</script>
+      Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
+      Kakao.Auth.createLoginButton({
+         container : '#kakao-login-btn',
+         success : function(authObj) {
+            location.href = "login.ka";
+         },
+         fail : function(err) {
+            alert(JSON.stringify(err));
+         }
+      });
+   </script>
 </body>
 </html>

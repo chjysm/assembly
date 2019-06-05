@@ -12,6 +12,6 @@
 	<script>
 		location.href = "goMain.admin";
 	</script>
-</body>
+</body>  
 </html>
 

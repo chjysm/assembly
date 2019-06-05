@@ -72,7 +72,7 @@ public class NaController extends HttpServlet {
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 				request.getSession().setAttribute("refresh_token", null);
-				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				request.getRequestDispatcher("goMain.win").forward(request, response);
 			}else if(cmd.equals("/withdrawal.na")) {
 				int id=(int)request.getSession().getAttribute("id");
 				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
