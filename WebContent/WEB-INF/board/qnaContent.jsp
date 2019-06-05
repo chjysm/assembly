@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
         <meta charset="UTF-8">
-        <title>Document</title>
+        <title>Qna Board Content</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -13,28 +13,28 @@
         <script>
             $(function(){
                  $(".listBtn").on("click",function(){// 목록으로돌아가기
-                	 location.href="list.board01?currentPage=${currentPage}";
+                	 location.href="list.board02?currentPage=${currentPage}";
                 });
                  $(".deleteBtn").on("click",function(){ // 글 삭제 버튼
                 	 var result = confirm("글을 삭제하시겠습니까?")
                 	 
                 	 if(result == true){
-                		 location.href="deleteContent.board01?seq=${content.seq}&&currentPage=${currentPage}" ;
+                		 location.href="deleteContent.board02?seq=${content.seq}&&currentPage=${currentPage}" ;
 
                          /* $("img").each(function(i, item){
              				var src = $(item).attr("src");
              				console.log(src);
              				$.ajax({
-             					url:"deleteFile.board01",
+             					url:"deleteFile.board02",
              					type:"post",
              					data:{img:src},
              					cache:false
              				}).done(function(resp){
                  				console.log(resp)
                  				if(resp == "삭제성공"){
-                         			location.href="deleteContent.board01?seq=${content.seq}" ;
+                         			location.href="deleteContent.board02?seq=${content.seq}" ;
                  				}else{
-                 					location.href="deleteContent.board01?seq=${content.seq}" ;
+                 					location.href="deleteContent.board02?seq=${content.seq}" ;
                  				}
                  			});
              			})  */
@@ -42,7 +42,7 @@
                    
                 });
                 $(".alterBtn").on("click",function(){// 글 수정 버튼 -> 글 수정 페이지로 이동
-                	location.href="alterForm.board01?seq=${content.seq}";
+                	location.href="alterForm.board02?seq=${content.seq}";
                 })
 
                 
@@ -54,8 +54,21 @@
         				if($(".comment-writeBox").val() == ""){
         					alert("내용을 입력해주세요.");
         				}else{
+        					if(${email == 'admin@admin.com'}){ // 관리자가 댓글을 등록했다면
+        						$.ajax({
+                            		url:"changeAnswer.board02",
+                            		type:"post",
+                            		data:{comments:JSON.stringify({comment:$(".comment-writeBox").val(),
+                            					    postNum:'${content.seq }',
+                            						postTitle:'${content.title }'             					    
+                            						})
+                            	}
+                            	}).done(function(resp){
+                            		location.href="wirteComment.board02?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                            	});
+        					}else{//그냥 회원이 댓글을 등록했다면
         					$.ajax({
-                        		url:"comment.board01",
+                        		url:"comment.board02",
                         		type:"post",
                         		data:{comments:JSON.stringify({comment:$(".comment-writeBox").val(),
                         					    postNum:'${content.seq }',
@@ -63,12 +76,12 @@
                         						})
                         	}
                         	}).done(function(resp){
-                        		location.href="wirteComment.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                        		location.href="wirteComment.board02?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                         	});
+        					}
         				}
-        				
-        			};
-                });
+        			}
+        			});
                 
                 $(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
               			var seq = $(this).attr("seq");
@@ -76,7 +89,7 @@
               			var result = confirm("댓글을 삭제하시겠습니까?");
               			
               			if(result == true){
-                  			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
+                  			location.href="deleteComment.board02?seq="+seq+"&&postNum=${content.seq}";
               			}
               		});
                 $(".alterBox").hide();//수정 댓글입력창 숨기기
@@ -107,13 +120,13 @@
                  			alert("내용을 입력해주세요.");
                  		}else{
                  			 $.ajax({
-                          		url:"alterComment.board01",
+                          		url:"alterComment.board02",
                           		data:{comment:$(alterTextarea).val(),seq:btnSeq}
                           	}).done(function(resp){
                           		if(resp == "수정됨"){
                           			$(alterTextarea).val("");
                           			$(".alterBox").hide();
-                          			location.href="freeContent.board01?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
+                          			location.href="qnaContent.board02?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                           		}else if(resp == "수정안됨"){
                           			alter("수정이 정상적으로 완료되지 못하였습니다.")
                           		}
@@ -203,7 +216,7 @@
 	</div>
         <!-- ------------------------------------------------------------------------------------- -->
 
-        <div class="head"><h1>자유게시판</h1><div></div></div>
+        <div class="head"><h1>건의 게시판</h1><div></div></div>
         <div id="wrapper" class="container">
            
             <div class="row titleBox">
@@ -247,8 +260,8 @@
            
            
              <c:choose>
-            <c:when test="${countComment == 0 }">
-            <div class="noneRecord">등록된 댓글이 없습니다. 댓글을 달아보세요!</div>
+            <c:when test="${countComment == 0 and email == content.email}">
+            <div class="noneRecord">등록된 댓글이 없습니다.</div>
             </c:when>
             <c:otherwise >
              <c:forEach var="list" items="${comList }">
@@ -289,15 +302,28 @@
             </div>
              </c:otherwise>
           </c:choose>
+          
             <div class="row  mb-5 writeBox">
+            <c:choose>
+         	 <c:when test="${type != 4 and email != content.email}">
                 <div class="col-lg-11 col-md-9 col-sm-10 col-10">
+                    <textarea name="comment-writeBox" class="comment-writeBox" maxlength="200" hidden></textarea>
+                </div>
+                <div class="col-lg-1 col-md-3 col-sm-2 col-2">
+                    <input type="button" value="등록" class="commentBtn btn btn-primary" hidden>
+                </div>
+ 			</c:when>
+            <c:when test="${ type == 4 or email == content.email}">
+             <div class="col-lg-11 col-md-9 col-sm-10 col-10">
                     <textarea name="comment-writeBox" class="comment-writeBox" maxlength="200"></textarea>
                 </div>
                 <div class="col-lg-1 col-md-3 col-sm-2 col-2">
                     <input type="button" value="등록" class="commentBtn btn btn-primary">
                 </div>
-
+            </c:when>
+            </c:choose>
             </div>
+           
             </div>
         
        

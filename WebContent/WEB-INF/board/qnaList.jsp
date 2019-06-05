@@ -1,40 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Free Baord List</title>
+<title>Suggestion Board List</title>
 <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- JQuery -->
-
 <script>
-    	$(function(){
-    		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
-    			if(${type == null}){
-    				alert("로그인 후 이용해주세요");
-    			}else{
-    			location.href="freeWrite.board01";
-    			}
-    		});
-    		  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
-    	             var option = $("#option option:selected").val();
-    	             var searchWord = $(".searchWord").val();
-    	             if(searchWord == ""){
-    	                alert("검색어를 입력해주세요");
-    	             }else{
-    	                if(option == "글제목"){
-    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
-    	                 }else if(option == "작성자"){
-    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
-    	                 }
-    	             };
-    	          });
-    	});
-    </script>
+$(function(){
+	$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
+		if(${type == null}){
+			alert("로그인 후 이용해주세요");
+		}else{
+		location.href="qnaWrite.board02";
+		}
+	});
+	  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
+             var option = $("#option option:selected").val();
+             var searchWord = $(".searchWord").val();
+             if(searchWord == ""){
+                alert("검색어를 입력해주세요");
+             }else{
+                if(option == "글제목"){
+                     location.href="searchContent.board02?currentPage=1&&searchWord="+searchWord+"&&option=title";
+                 }else if(option == "작성자"){
+                     location.href="searchContent.board02?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+                 }
+             };
+          });
+});
+
+</script>
 <style>
 	*{margin: 0 auto;}
 	.fixedMenu{position: fixed; background: #fff;z-index: 999;}
@@ -65,7 +65,6 @@
 </style>
 </head>
 <body>
-
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
@@ -89,15 +88,10 @@
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
-
-		
 	</div>
-
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
-	<div class="head"><h1>자유게시판</h1><div></div></div>
-
-
+	<div class="head"><h1>건의게시판</h1><div></div></div>
+	
 	<div class="container" id="wrapper">
 			
 		<div class="header row">
@@ -112,25 +106,22 @@
 				<div class="noneRecord">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-					<c:forEach var="list" items="${freeList }">
+					<c:forEach var="list" items="${qnaList }">
 			<div class="content row">
 				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
-					<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
+					<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
 			</div>
 		</c:forEach>
-
-		
 			</c:otherwise>
 		</c:choose>
 				<div class="navi row">
 			<div>${getNavi }</div>
 		</div>
-
 		<div class="footer row">
 			<div class="col-lg-11 col-md-11 col-sm-11 col-10">
 				<select name="option" id="option">
@@ -139,16 +130,10 @@
 				</select> <input type="text" class="searchWord"> <input type="button" class="searchBtn"
 					value="검색">
 			</div>
-
 			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
 				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
-
 		</div>	
-		
-
-
 		</div>
-	
 </body>
 </html>

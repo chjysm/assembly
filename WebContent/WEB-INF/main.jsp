@@ -82,8 +82,9 @@ head>.nav-item {
    color: black;
 }
 .myTitle a:hover{
-   color: black;
-   font-weight: bold;
+	color: black;
+	font-weight: bold;
+   
 }
 .tabStuff {
    font-size: 13px;
@@ -149,16 +150,13 @@ a:hover[class="moreBtn"]{
          open("goSupport.su", "_brank", "width=900px,height=600px,left="+width+",top="+height);
       });
       $(".infoBtn").on("click",function(){
-        $(".moreBtn").attr("href","list.board03?currentPage=1");
-        
-      });
+    	 $(".moreBtn").attr("href","list.board03?currentPage=1");
+      });	 
        $(".freeBtn").on("click",function(){
           $(".moreBtn").attr("href","list.board01?currentPage=1"); 
-
       });
        $(".qnaBtn").on("click",function(){
           $(".moreBtn").attr("href","list.board02?currentPage=1");
-
       });
    });
 </script>
@@ -478,10 +476,10 @@ a:hover[class="moreBtn"]{
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
-                        </c:forEach>
-                     </c:otherwise>
+                  		</c:forEach>
+                  	</c:otherwise>
                   </c:choose>
-                     </div>
+                  	</div>
                </div>
                <div class="tab-pane fade" id="qna">
                  <div class="row text-center">
@@ -502,7 +500,7 @@ a:hover[class="moreBtn"]{
                      </c:when>
                      <c:otherwise>
                      <c:forEach var="list" items="${mainQnaList}">
-                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
                      <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>

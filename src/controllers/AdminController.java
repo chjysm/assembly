@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AdminDAO;
 import dao.FreeBoardDAO;
+import dao.QnaBoardDAO;
 import dto.AdminDTO;
 import dto.FreeBoardDTO;
+import dto.QnaBoardDTO;
 
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
@@ -25,6 +27,8 @@ public class AdminController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String cmd = requestURI.substring(contextPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
+		QnaBoardDAO qb = new QnaBoardDAO();
+
 		try {
 			// ========================================== 방문자 수 ==========================================
 			if(cmd.equals("/goMain.admin")) {
@@ -44,8 +48,10 @@ public class AdminController extends HttpServlet {
 							);
 				}
 				int FreeRecordCount = 0 ;
+				int qnaRecordCount = 0; 
 				try {
 				FreeRecordCount = fb.recordCount();
+				qnaRecordCount = qb.recordCount();
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -60,6 +66,18 @@ public class AdminController extends HttpServlet {
 					response.sendRedirect("error.html");
 				}
 				request.setAttribute("mainFreeList", mainFreeList);
+				}
+				if(qnaRecordCount == 0) {//질문 게시판 게시글이 0 일경우
+					request.setAttribute("qnaRecordCount", qnaRecordCount);
+				}else {
+					List<QnaBoardDTO> mainQnaList = null;
+					try {
+					mainQnaList = qb.mainQnaBoardList(1);
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("mainQnaList", mainQnaList);
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			} 
