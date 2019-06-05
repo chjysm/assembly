@@ -450,7 +450,31 @@ a:hover[class="moreBtn"]{
                <div class="tab-pane fade show active" id="info">
                   <h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
                   <div class="row text-center">
-                     <div>공지사항 코드 </div>
+                     <div
+                        class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+                     <div
+                        class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                     <div
+                        class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                     <div
+                        class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                     <div
+                        class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+                
+                  <c:choose>
+                     <c:when test="${noticeRecordCount == 0 }">
+                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                     </c:when>
+                     <c:otherwise>
+                     <c:forEach var="list" items="${mainNoticeList}">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+                     <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+                  		</c:forEach>
+                  	</c:otherwise>
+                  </c:choose>
                   </div>
                </div>
                <div class="tab-pane fade" id="freeBoard">
