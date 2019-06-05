@@ -51,7 +51,7 @@ public class WinController extends HttpServlet {
 				}
 				request.setAttribute("mainFreeList", mainFreeList);
 				}
-				if(qnaRecordCount == 0) {
+				if(qnaRecordCount == 0) {//질문 게시판 게시글이 0 일경우
 					request.setAttribute("qnaRecordCount", qnaRecordCount);
 				}else {
 					List<QnaBoardDTO> mainQnaList = null;
