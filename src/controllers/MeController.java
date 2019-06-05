@@ -144,7 +144,7 @@ public class MeController extends HttpServlet {
 				String nickname = request.getParameter("nickname");
 				String gender = request.getParameter("gender");
 				String age = request.getParameter("age");
-				int result = me.mpUpdate(nickname, gender,age, seq);
+				int result = me.mpUpdate(nickname, gender, age, seq);
 				request.getSession().setAttribute("nickname", nickname);
 
 				if (result == 1) {
@@ -154,7 +154,6 @@ public class MeController extends HttpServlet {
 					response.getWriter().append(
 							"<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				}
-
 			} else if (cmd.equals("/goWithdrawal.me")) {// 회원 탈퇴 가기
 				String email = (String) request.getSession().getAttribute("email");
 				Pattern p = Pattern.compile("^((.*) |(.*))");

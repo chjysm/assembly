@@ -100,22 +100,35 @@ select :hover {
 						$("#pwRegex").css("color", "red");
 						$("#pwRegex").text(
 								"적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
+
 					} else {
 						$("#pwRegex").css("color", "green");
 						$("#pwRegex").text("사용할 수 있는 비밀번호 입니다. ");
+
 					}
 				});
+		$("#pw").on("input", function() {
+			if ($("#pw").val() == $("pwcheck").val()) {
+				$("#pwCheck").css("color", "green");
+				$("#pwCheck").text("사용할 수 있는 비밀번호 입니다. ");
+			} else {
+				$("#pwCheck").css("color", "red");
+				$("#pwCheck").text("비밀번호가 일치하지 않습니다.");
+			}
+		})
 		//패스워드 일치 
 		$("#pwcheck").on("input", function() {
 			if ($("#pwcheck").val() == $("#pw").val()) {
 				$("#pwCheck").css("color", "green");
 				$("#pwCheck").text("비밀번호 확인 되었습니다.");
+
 			} else {
 				$("#pwCheck").css("color", "red");
 				$("#pwCheck").text("비밀번호를 다시 확인해 주세요. ");
 
 			}
 		});
+
 		$("#sub").on(
 				"click",
 				function() {

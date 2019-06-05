@@ -72,6 +72,7 @@
               			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
               			
               		});
+              		
                 $(".alterBox").hide();//수정 댓글입력창 숨기기
                 //수정하기 
                 $(".cmAlterBtn").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
@@ -126,14 +127,12 @@
 
 .head {
 	position: relative;
-	top: 200px;
 	text-align: center;
 }
 
 #wrapper {
 	border: 0px solid black;
 	position: relative;
-	top: 250px;
 }
 
 #wrapper * {
@@ -173,7 +172,7 @@ h1+div {
 }
 
 * /
-            .header div:nth-child(5)+div, .content div:last-child {
+ .header div:nth-child(5)+div, .content div:last-child {
 	background-color: #e0e2e5;
 }
 
@@ -223,20 +222,41 @@ h1+div {
 	text-align: right;
 }
 
-.cmAlterBtn ${list .seq
-	
-}
+.cmAlterBtn
 
+ 
+
+${
+list
+
+
+
+.seq
+
+
+}
 ,
 .cmDeleteBtn {
 	border: 0px;
 	background-color: #eaeaea;
 }
 
-.cmAlterBtn ${list .seq
-	
-}
+.cmAlterBtn
 
+ 
+
+${
+list
+
+ 
+
+.seq
+
+
+
+
+
+}
 :hover, .cmDeleteBtn:hover {
 	font-weight: bold;
 }

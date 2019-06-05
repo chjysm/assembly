@@ -14,25 +14,31 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- JQuery -->
 <script>
-    	$(function(){
-    		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
-    			if(${type == null}){
-    				alert("로그인 후 이용해주세요");
-    			}else{
-    			location.href="freeWrite.board01";
-    			}
-    		});
-    		
-    		$(".searchBtn").on("click",function(){ // 검색버튼 누르면
-    			var option = $("#option option:selected").val();
-    			var searchWord = $(".searchWord").val();
-    			if(option == "글제목"){
-    				location.href="selectByTitle.board01?currentPage=1&&searchWord="+searchWord;
-    			}else if(option == "작성자"){
-    				location.href="selectByWriter.baord01?currentPage=1&&searchWord="+searchWord;
-    			}
-    		})
-    	});
+       $(function(){
+          $(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
+             if(${type == null}){
+                alert("로그인 후 이용해주세요");
+             }else{
+             location.href="freeWrite.board01";
+             }
+          });
+          
+          $(".searchBtn").on("click",function(){ // 검색버튼 누르면
+             var option = $("#option option:selected").val();
+             var searchWord = $(".searchWord").val();
+             if(searchWord == ""){
+                alert("검색어를 입력해주세요");
+             }else{
+                if(option == "글제목"){
+                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
+                 }else if(option == "작성자"){
+                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+                 }
+             };
+            
+          });
+          
+       });
     </script>
 <style>
 * {
@@ -64,6 +70,10 @@
 	border: 0px solid black;
 	position: relative;
 	top: 250px;
+}
+
+#wrapper div:first-child {
+	text-align: center;
 }
 
 #wrapper * {
@@ -110,17 +120,23 @@ h1+div {
 }
 
 .writeBtn {
+	border: none;
+	background: none;
 	margin-top: 5px;
-	border-radius: 10px;
-	text-align: right;
 }
 
 .writeBtn:hover {
 	font-weight: bold;
 }
 
+.footer div:first-child {
+	text-align: center;
+}
+
 .searchBtn {
-	border-radius: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	background: none;
 	margin-left: 1px;
 }
 
@@ -139,16 +155,14 @@ a {
 a:hover {
 	color: black;
 	font-weight: bold;
-	text-decoration: none;
 }
 
-select {
-	width: 130px;
-	height: 43px;
+.noneRecord {
+	text-align: center;
 }
 
-.boardnavi {
-	letter-spacing: 5px;
+.footer div:last-child {
+	text-align: right;
 }
 </style>
 </head>
@@ -194,14 +208,16 @@ select {
 		</div>
 	</div>
 
-
-
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+
 
 	<div class="head">
 		<h1>자유게시판</h1>
 		<div></div>
 	</div>
+
+
+
 
 
 	<div class="container" id="wrapper">
@@ -213,44 +229,47 @@ select {
 			<div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div>
 			<div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div>
 		</div>
+		<c:choose>
+			<c:when test="${recordCount == 0 }">
+				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="list" items="${freeList }">
+					<div class="content row">
+						<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-6">
+							<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
+					</div>
+				</c:forEach>
 
-		<c:forEach var="list" items="${freeList }">
-			<div class="content row">
-				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
-				<div class="col-lg-4 col-md-5 col-sm-6 col-6"
-					style="text-align: left">
-					<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
-			</div>
-		</c:forEach>
 
+			</c:otherwise>
+		</c:choose>
+		<div class="navi row">
+			<div>${getNavi }</div>
+		</div>
 
 		<div class="footer row">
-
-
-
-
-			<div class="col-lg-11 col-sm-11 p-2 boardnavi "
-				style="text-align: center">
-				<i>${getNavi }</i>
-
-			</div>
-			<div class="col-lg-1 col-sm-1 p-2">
-				<input type="button" class="writeBtn btn-primary " value="글쓰기">
-			</div>
-			<div class="col-lg-12  m-3" style="text-align: center;">
+			<div class="col-lg-11 col-md-10.5 col-sm-6 col-12">
 				<select name="option" id="option">
-					<option>제 목</option>
-					<option>작 성 자</option>
+					<option>글제목</option>
+					<option>작성자</option>
 				</select> <input type="text" class="searchWord"> <input type="button"
-					class="searchBtn btn-primary" value="검색">
+					class="searchBtn" value="검색">
+			</div>
+
+			<div class="col-lg-1 col-md-1.5 col-sm-6 col-12">
+				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
 		</div>
 
+
 	</div>
+
 
 </body>
 </html>

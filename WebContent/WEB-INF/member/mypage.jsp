@@ -123,6 +123,7 @@ select :hover {
 				"checked", true);
 		$("input[name='age']").filter("[value=${list[0].age}]").prop(
 				"selected", true);
+
 	})
 </script>
 </head>
@@ -231,10 +232,19 @@ select :hover {
 								<tr class="pt-4">
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>나이</strong></span>
-									<td colspan="2"
-										style="text-align: left; vertical-align: middle">${i.age }
-										<select name="age">
+										<c:choose>
+											<c:when test="${empty i.age }">
 
+												<td colspan="2"
+													style="text-align: left; vertical-align: middle">없 음
+											</c:when>
+											<c:otherwise>
+												<td colspan="2"
+													style="text-align: left; vertical-align: middle">${i.age }
+											</c:otherwise>
+										</c:choose> <select name="age" required>
+
+											<option value="" selected disabled hidden>연령대 수정</option>
 											<option value="10-19">10 - 19</option>
 											<option value="20-29">20 - 29</option>
 											<option value="30-39">30 - 39</option>
@@ -250,8 +260,8 @@ select :hover {
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>성별</strong></span>
 									<td style="text-align: left; vertical-align: middle"><span><input
-											type="radio" name="gender" value="M" checked>남자<input
-											class=" ml-3" type="radio" name="gender" value="F">여자</span>
+											type="radio" name="gender" value="M" required>남자<input
+											class=" ml-3" type="radio" name="gender" value="F" required>여자</span>
 									<td>
 								</tr>
 

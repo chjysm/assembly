@@ -86,7 +86,7 @@
 						})
 					}
 				})
-		
+
 		$("#pwchange_btn").on("click", function() {
 			$("#dataForm").submit();
 		});
@@ -119,7 +119,7 @@
 
 				<input type="password" class="form-control" id="newPw"
 					placeholder="새 비밀번호를 입력해 주세요." aria-label="Recipient's username"
-					aria-describedby="button-addon2"  required>
+					aria-describedby="button-addon2" required>
 
 			</div>
 			<div id="pwRegex"></div>
