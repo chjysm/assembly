@@ -75,7 +75,6 @@
 }
 
 td {
-
 	font-size: 25px;
 	font-weight: 600;
 	color: #819FF7;
@@ -90,9 +89,7 @@ input[type=submit]:hover {
 	background: #6133FF;
 	color: white;
 }
-.a td{
-	text-align:center;
-}
+
 .header{
 	text-align:center;
 	font-size: 25px;
@@ -114,7 +111,16 @@ select {
 .table td{
 	border-top:0px;
 }
-
+.a td{
+	font-size: 20px;
+	font-weight: 600;
+	color: black;
+	text-align:center;
+}
+.navi{
+	contents-align:center;
+	text-align:center;
+}
 select :hover {
 	cursor: pointer;
 }
@@ -279,19 +285,19 @@ select :hover {
 						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
 				<tbody >
 				<tr class="pt-4">
-					<td>상표
-					<td>나의 답변
+					<td>상표 
+					<td colspan=3>나의 답변
 					<td>완료한 시간 			
 				</tr>
 				<c:forEach var="i" items="${s_list}">
 				<tr class="pt-4 ">
 					<td >${i.brand}
-					<td>${i.answer}
+					<td colspan=3>${i.answer}
 					<td>${i.comp_date}
 				</tr>
 				</c:forEach>
-				<tr class="pt-4">
-				<td >${navi }
+				<tr class="pt-4 navi">
+				<td colspan=5>${navi }
 				</tr >
 				</tbody>
 			</table>
