@@ -18,11 +18,10 @@
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 	charset="utf-8"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap&subset=korean"
-	rel="stylesheet">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
 <style>
 * {
 	margin: 0 auto;
@@ -135,15 +134,25 @@ a:hover[class="moreBtn"] {
 	color: green;
 	font-family: 'Gamja Flower', cursive;
 }
+
+#kaLogout {
+	border: 0px;
+	padding: 0px;
+}
+
+#naLogout {
+	border: 0px;
+	padding: 0px;
+}
 </style>
 <script>
    $(function() {
       
       $("#emailLogout").on("click", function() {
-         location.href = "logout.me";
+         location.href = "logout.ka";
       });
       $("#emailLogout2").on("click", function() {
-         location.href = "logout.me";
+    	  location.href = "logout.me";
       });
       $("#getPw").on("click", function() {
          var width=(window.screen.width/2)-(600/2);
@@ -183,10 +192,35 @@ a:hover[class="moreBtn"] {
        $(".qnaBtn").on("click",function(){
           $(".moreBtn").attr("href","list.board02?currentPage=1");
       });
+       $("#kaLogout").on("click",function(){
+    	   $.ajax({
+    		   url:"logout.ka",
+    		   type:"get"
+    	   }).done(function(){
+    		   var kakao=open("https://developers.kakao.com/logout", "_blank", "width=100,height=100");
+    		   setTimeout(function(){
+    			   kakao.close();
+    			   location.reload(true);
+    		   },1000);
+    	   });
+       });//"https://developers.kakao.com/logout"
+		$("#naLogout").on("click",function(){
+			$.ajax({
+	    		   url:"logout.na",
+	    		   type:"get"
+	    	   }).done(function(){
+	    		   var naver=open("https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/", "_blank", "width=100,height=100");
+	    		   setTimeout(function(){
+	    			   naver.close();
+	    			   location.reload(true);
+	    		   },1000);
+	    	   });//https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/
+       });
    });
 </script>
 </head>
 <body>
+
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
@@ -322,73 +356,76 @@ a:hover[class="moreBtn"] {
 				<c:choose>
 					<c:when test="${type==1}">
 						<form>
-							<div
-								style="border-radius: 10px; background: #b8daff; height: 250px">
-								<div class="form-group pb-1 pt-5 pb-2" style="font-size: 1.4em">
-									<label for="comment"><strong>${nickname}</strong>님
+						<div style="border-radius: 10px; background: #b8daff; height: 250px">
+							<div class="form-group pb-1 1 pt-5 pb-2" style="font-size: 1.4em">
+								<label for="comment"><strong>${nickname}</strong>님
 										환영합니다! </label>
-								</div>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-								<br> <br> <a href="logout.na"><img height="49"
-									width="150" src="Resources/img/nlogout.PNG" /></a>
+							</div>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+							<br> <br>
+							<button type="button" id="naLogout">
+								<img height="49" width="150" src="Resources/img/nlogout.PNG" />
+							</button>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
-							<div
+						<div
 								style="border-radius: 10px; background: #b8daff; height: 250px">
-								<div class="form-group  pt-5" style="font-size: 1.4em">
+							<div class="form-group pb-1" style="font-size: 1.4em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
 									</label>
-								</div>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-								<br> <br> <a href="logout.ka"><img height="49"
-									width="222" src="Resources/img/klogout.PNG" /></a>
+							</div>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+							<br> <br>
+							<button type="button" id="kaLogout">
+								<img height="49" width="222" src="Resources/img/klogout.PNG" />
+							</button>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
 						<form>
-							<div
+						<div
 								style="border-radius: 10px; background: #b8daff; height: 150px">
-								<div class="form-group p-3 " style="font-size: 1.2em">
+							<div class="form-group pb-1" style="font-size: 1.2em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
 									</label>
-								</div>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-								<button type="button"
-									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-								<button type="button" class="btn btn-outline-secondary mr-2"
-									id="emailLogout">로그아웃</button>
-								<br> <br>
+							</div>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="emailLogout">로그아웃</button>
+							<br> <br>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
 						<form>
-							<div
+						<div
 								style="border-radius: 10px; height: 200px; background: #b8daff">
-								<div class="form-group pt-3">
-									<label for="comment"> 어서오세요 <strong>admin</strong>님!
+							<div class="form-group pb-3">
+								<label for="comment"> 어서오세요 <strong>admin</strong>님!
 										환영합니다!
 									</label>
-								</div>
-								<button type="button" class="btn btn-outline-secondary  mr-2"
-									id="emailLogout2">로그아웃</button>
-								<br> <br>
-								<button type="button" class="btn btn-outline-secondary mr-2"
-									id="adminPage">관리자 페이지</button>
-								<br>
+							</div>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="emailLogout2">로그아웃</button>
+							<br> <br>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="adminPage">관리자 페이지</button>
+							<br>
 							</div>
 						</form>
 					</c:when>
@@ -510,7 +547,39 @@ a:hover[class="moreBtn"] {
 					<div class="tab-pane fade show active" id="info">
 						<h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
 						<div class="row text-center">
-							<div>공지사항 코드</div>
+							<div
+								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div
+								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div
+								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div
+								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+
+							<c:choose>
+								<c:when test="${noticeRecordCount == 0 }">
+									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="list" items="${mainNoticeList}">
+										<div
+											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div
+											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+											<a
+												href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
+										</div>
+										<div
+											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div
+											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="freeBoard">
@@ -616,23 +685,24 @@ a:hover[class="moreBtn"] {
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- NAVER KAKAO -->
 	<script type='text/javascript'>
-      Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
-      Kakao.Auth.createLoginButton({
-         container : '#kakao-login-btn',
-         success : function(authObj) {
-            location.href = "login.ka";
-         },
-         fail : function(err) {
-            alert(JSON.stringify(err));
-         }
-      });
-   </script>
+     Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
+     Kakao.Auth.createLoginButton({
+          container : '#kakao-login-btn',
+       success : function(authObj) {            
+       location.href = "login.ka";         
+       },         
+       fail : function(err) { 
+              alert(JSON.stringify(err));
+          }
+       });
+ </script>
+
+	>>>>>>> 120156d6b292b5a79be866982f7664b815626639
 </body>
 </html>

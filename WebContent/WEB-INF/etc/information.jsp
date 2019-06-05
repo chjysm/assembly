@@ -16,6 +16,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean"
 	rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
 * {
@@ -75,9 +76,8 @@ h3 {
 .containFont {
 	font-family: "Jua", sans-serif;
 }
-
 strong {
-	color:  #819FF7;
+	color: #819FF7;	
 }
 </style>
 </head>
@@ -258,5 +258,6 @@ strong {
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
