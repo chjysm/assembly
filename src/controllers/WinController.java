@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FreeBoardDAO;
+import dao.NoticeBoardDAO;
 import dao.QnaBoardDAO;
 import dto.FreeBoardDTO;
+import dto.NoticeBoardDTO;
 import dto.QnaBoardDTO;
 
 
@@ -26,15 +28,18 @@ public class WinController extends HttpServlet {
 		String cmd = reqUri.substring(ctxPath.length());
 		FreeBoardDAO fb= new FreeBoardDAO();
 		QnaBoardDAO qb = new QnaBoardDAO();
+		NoticeBoardDAO nb = new NoticeBoardDAO();
 
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
 				
 				int freeRecordCount = 0 ;
 				int qnaRecordCount = 0; 
+				int noticeRecordCount = 0;
 				try {
 				freeRecordCount = fb.recordCount();
 				qnaRecordCount = qb.recordCount();
+				noticeRecordCount = nb.recordCount();
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -62,6 +67,18 @@ public class WinController extends HttpServlet {
 						response.sendRedirect("error.html");
 					}
 					request.setAttribute("mainQnaList", mainQnaList);
+				}
+				if(noticeRecordCount == 0) {// 공지게시판 게시글이 0일 경우
+					request.setAttribute("noticeRecordCount", noticeRecordCount);
+				}else {
+					List<NoticeBoardDTO> mainNoticeList = null;
+					try {
+						mainNoticeList = nb.mainNoticeBoardList(1);
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("mainNoticeList", mainNoticeList);
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 				
