@@ -11,13 +11,6 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
@@ -28,8 +21,11 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
-* {margin: 0 auto;}
-.fixedMenu {position: fixed;
+* {
+	margin: 0 auto;
+}
+.fixedMenu {
+	position: fixed;
 	background: #fff;
 	z-index: 999;
 }
@@ -82,19 +78,6 @@ head>.nav-item {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.myTitle p{
-	margin: 0;
-}
-.myTitle a{
-	color: black;
-}
-.myTitle a:hover{
-	color: black;
-	font-weight: bold;
-}
-.noneRecord{
-	text-align: center;
-}
 .tabStuff {
 	font-size: 13px;
 	color: #555;
@@ -138,7 +121,7 @@ a[class="more"] {
 			location.href = "signUpGo.me";
 		});
 		$(".mPageGo").on("click", function() {
-			location.href = "mPageGo.me";
+			location.href = "mPageGo.me?currentPage=1";
 		});
 		$("#storeSerchBtn").on("click", function() {
 			var width=window.screen.width/2-800/2;
@@ -240,17 +223,18 @@ a[class="more"] {
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="http://www.newspost.kr/news/photo/201707/55742_60442_159.jpg"
+								<img src="https://scratch.mit.edu/images/scratch-og.png"
 									class="d-block w-100" alt="slide_img1">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>[기회취재]</h5>
-									<a href="http://www.newspost.kr/news/articleView.html?idxno=55742"><p>무인자동주문기 ‘키오스크’ 확산, 노년층 진땀.</p></a>
+									<h5>First slide label</h5>
+									<p>Nulla vitae elit libero, a pharetra augue mollis
+										interdum.</p>
 								</div>
 							</div>
 							<div class="carousel-item">
 								<img
 									src="https://img.docslide.net/img/1200x630/reader008/image/20180829/5790560c1a28ab900c978eab.png"
-									class="d-block w-100" alt="slide_img2"  height="362.25px">
+									class="d-block w-100" alt="slide_img2">
 								<div class="carousel-caption d-none d-md-block">
 									<h5>Second slide label</h5>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -371,7 +355,7 @@ a[class="more"] {
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">클릭 한 번으로 메뉴 이름 이해하기</h5>
 						<p class="card-text">모르는 단어를 클릭해보세요. 즉시 한글로 번역해 드립니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="startGame." class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -413,17 +397,17 @@ a[class="more"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mt-4">
 				<div class="card text-center text-white bg-light p-2">
 					<div class="bd-example">
-						<div id="carouselExampleCaptions" class="carousel "
+						<div id="carouselExampleCaptions" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators my-card">
-								<li data-target="#carouselExampleCaptions" 
+								<li data-target="#carouselExampleCaptions" data-slide-to="0"
 									class="active"></li>
 							</ol>
 							<div class="carousel-inner pt-3 pb-1">
 								<div class="carousel-item active my-card myBanner">
 									<img
 										src="Resources/img/support.jpg"
-										class="d-block" >
+										class="d-block" alt="1">
 								</div>
 							</div>
 						</div>
@@ -458,43 +442,54 @@ a[class="more"] {
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
 							<div
 								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-							<%--  <c:forEach var="list" items="${mainFreeList }">
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${list.seq }</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">${list.timeForm }</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.writer }</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.viewCount }</div>
-							</c:forEach>  --%>
-			
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">1</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">2</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">3</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">4</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">5</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">6</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">7</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle">글
+								작성이 되는 칸 글 작성이 되는 칸 글 작성이 되는 칸</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">2019.01.01</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">12</div>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="freeBoard">
-						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-							<c:choose>
-							<c:when test="${FreeRecordCount == 0 }">
-								<div class="noneRecord ">등록된 게시글이 없습니다.</div>
-							</c:when>
-							<c:otherwise>
-							<c:forEach var="list" items="${mainFreeList }">
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${list.seq }</div>
-							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 myTitle"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 tabStuff">${list.timeForm }</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.writer }</div>
-							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 tabStuff">${list.viewCount }</div>
-							</c:forEach> 
-							</c:otherwise>
-							</c:choose>
-						</div>
+						<p>Nunc vitae turpis id nibh sodales commodo et non augue.
+							Proin fringilla ex nunc. Integer tincidunt risus ut facilisis
+							tristique.</p>
 					</div>
 					<div class="tab-pane fade" id="qna">
 						<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
@@ -530,6 +525,13 @@ a[class="more"] {
 			</div>
 		</div>
 	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- NAVER KAKAO -->
 	<script type='text/javascript'>
 		Kakao.init('49283e307f214dc8c2edee1cae89f2cb');

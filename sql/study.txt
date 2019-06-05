@@ -1,0 +1,6 @@
+create table study(
+   id number,
+   brand varchar(20) not null,
+   answer varchar(100) not null,
+   comp_date date default sysdate
+); 

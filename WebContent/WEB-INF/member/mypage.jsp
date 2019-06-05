@@ -75,6 +75,7 @@
 }
 
 td {
+
 	font-size: 25px;
 	font-weight: 600;
 	color: #819FF7;
@@ -89,6 +90,15 @@ input[type=submit]:hover {
 	background: #6133FF;
 	color: white;
 }
+.a td{
+	text-align:center;
+}
+.header{
+	text-align:center;
+	font-size: 25px;
+	font-weight: 600;
+	color: #819FF7;
+}
 
 select {
 	width: 200px; /* 원하는 너비설정 */
@@ -101,6 +111,9 @@ select {
 	-moz-appearance: none;
 	appearance: none;
 }
+.table td{
+	border-top:0px;
+}
 
 select :hover {
 	cursor: pointer;
@@ -108,7 +121,6 @@ select :hover {
 </style>
 <script>
 	$(function() {
-
 		$("#pwChange_btn").on("click", function() {
 			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
@@ -127,7 +139,6 @@ select :hover {
 </script>
 </head>
 <body>
-
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
@@ -167,8 +178,6 @@ select :hover {
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<form method="post" action="modify.me" id="mpForm">
 			<div class="row">
@@ -182,9 +191,7 @@ select :hover {
 									페이지 (회원 정보 수정)</span>
 						</tr>
 						<c:forEach var="i" items="${ list}">
-
 							<tbody>
-
 								<tr class="pt-4">
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>이름</strong></span>
@@ -207,8 +214,6 @@ select :hover {
 												value="비밀번호 변경하기">
 										</tr>
 									</c:when>
-
-
 									<c:otherwise>
 										<tr class="pt-4">
 											<td
@@ -233,7 +238,7 @@ select :hover {
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>나이</strong></span>
 									<td colspan="2"
 										style="text-align: left; vertical-align: middle">${i.age }
-										<select name="age">
+										<select name]="age">
 
 											<option value="10-19">10 - 19</option>
 											<option value="20-29">20 - 29</option>
@@ -254,9 +259,7 @@ select :hover {
 											class=" ml-3" type="radio" name="gender" value="F">여자</span>
 									<td>
 								</tr>
-
 								<tr class="pt-4">
-
 									<td style="text-align: center" colspan="3"><input
 										class="btn btn-primary float-center" style="width: 10rem"
 										id="modify_btn" type="submit" value="수정"><input
@@ -264,12 +267,37 @@ select :hover {
 										id="back_btn" type="button" value="뒤로가기">
 								</tr>
 							</tbody>
-
 						</c:forEach>
 					</table>
 				</div>
 			</div>
-		</form>
+			</form>
+			<div class="col-lg-8 ">
+				<div class = "header">나의 연습 기록</div>
+				<div class="row">
+			<table class="table a"
+						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
+				<tbody >
+				<tr class="pt-4">
+					<td>상표
+					<td>나의 답변
+					<td>완료한 시간 			
+				</tr>
+				<c:forEach var="i" items="${s_list}">
+				<tr class="pt-4 ">
+					<td >${i.brand}
+					<td>${i.answer}
+					<td>${i.comp_date}
+				</tr>
+				</c:forEach>
+				<tr class="pt-4">
+				<td >${navi }
+				</tr >
+				</tbody>
+			</table>
+			</div>
+			</div>
+		
 	</div>
 </body>
 </html>

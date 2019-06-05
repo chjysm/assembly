@@ -2,9 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.List;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDAO;
+import dao.StudyDAO;
 import dto.MemberDTO;
+import dto.StudyDTO;
 
 @WebServlet("*.me")
 public class MeController extends HttpServlet {
@@ -29,6 +29,7 @@ public class MeController extends HttpServlet {
 		String cmd = reqUri.substring(ctxPath.length());
 		PrintWriter pt = response.getWriter();
 		MemberDAO me = new MemberDAO();
+		StudyDAO st = new StudyDAO();
 		try {
 			if (cmd.equals("/login.me")) {// 로그인
 				String email = request.getParameter("id");
@@ -101,9 +102,12 @@ public class MeController extends HttpServlet {
 				// 마이페이지로
 			} else if (cmd.equals("/mPageGo.me")) {
 				int seq = (int) request.getSession().getAttribute("id");
+				String currentPage=request.getParameter("currentPage");
+				List<StudyDTO> study_dto= st.getStudy(Integer.parseInt(currentPage),seq);
 				List<MemberDTO> dto = me.select_Member(seq);
-				System.out.println(dto.get(0).getType());
 				request.setAttribute("list", dto);
+				request.setAttribute("s_list", study_dto);
+				request.setAttribute("navi", st.getNavi(seq, Integer.parseInt(currentPage)));
 				request.getRequestDispatcher("/WEB-INF/member/mypage.jsp").forward(request, response);
 				// 마이페이지에서 패스워드 변경하는 페이지로 이동
 			} else if (cmd.equals("/pwChangeGo.me")) {
