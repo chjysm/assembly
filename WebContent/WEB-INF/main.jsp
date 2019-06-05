@@ -18,7 +18,7 @@
 <script type="text/javascript"
    src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
    charset="utf-8"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <style>
@@ -111,6 +111,14 @@ a:hover[class="moreBtn"]{
    color: black;
    font-weight: bold;
 }
+#kaLogout{
+	border:0px;
+	padding:0px;
+}
+#naLogout{
+	border:0px;
+	padding:0px;
+}
 </style>
 <script>
    $(function() {
@@ -159,6 +167,30 @@ a:hover[class="moreBtn"]{
        $(".qnaBtn").on("click",function(){
           $(".moreBtn").attr("href","list.board02?currentPage=1");
       });
+       $("#kaLogout").on("click",function(){
+    	   $.ajax({
+    		   url:"logout.ka",
+    		   type:"get"
+    	   }).done(function(){
+    		   var kakao=open("https://developers.kakao.com/logout", "_blank", "width=100,height=100");
+    		   setTimeout(function(){
+    			   kakao.close();
+    			   location.reload(true);
+    		   },1000);
+    	   });
+       });//"https://developers.kakao.com/logout"
+		$("#naLogout").on("click",function(){
+			$.ajax({
+	    		   url:"logout.na",
+	    		   type:"get"
+	    	   }).done(function(){
+	    		   var naver=open("https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/", "_blank", "width=100,height=100");
+	    		   setTimeout(function(){
+	    			   naver.close();
+	    			   location.reload(true);
+	    		   },1000);
+	    	   });//https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/
+       });
    });
 </script>
 </head>
@@ -293,8 +325,9 @@ a:hover[class="moreBtn"]{
                      <button type="button" class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
                      <button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
                      <br>
-                     <br> <a href="logout.na"><img height="49" width="150"
-                        src="Resources/img/nlogout.PNG" /></a>   
+                     <br> <button type="button" 
+                        id="naLogout" ><img height="49" width="150"
+                        src="Resources/img/nlogout.PNG" /></button>  
                   </form>
                </c:when>
                <c:when test="${type==2}">
@@ -305,8 +338,10 @@ a:hover[class="moreBtn"]{
                      <button type="button" class="btn btn-outline-secondary mr-2 mPageGo" >마이페이지</button>
                      <button type="button" class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
                      <br>
-                     <br> <a href="logout.ka"><img height="49" width="222"
-                        src="Resources/img/klogout.PNG" /></a>
+                     <br>
+                     <button type="button" 
+                        id="kaLogout" ><img height="49" width="222"
+                        src="Resources/img/klogout.PNG" /></button>
                   </form>
                </c:when>
                <c:when test="${type==3}">
@@ -348,9 +383,8 @@ a:hover[class="moreBtn"]{
                      <button type="button" class="btn btn-secondary" id="signUp_btn">가입하기</button>
                      <button type="button" class="btn btn-secondary" id="getPw">비밀번호
                         찾기</button>
-                     <br> <br> <a id="kakao-login-btn"></a><a
-                        href="http://developers.kakao.com/logout"></a> <a
-                        href="login.na"><img height="49" width="222" src="Resources/img/naver.PNG" /></a>
+                     <br> <br> <a id="kakao-login-btn"></a><a href="http://developers.kakao.com/logout"></a> 
+                        <a href="login.na"><img height="49" width="222" src="Resources/img/naver.PNG" /></a>
                   </form>
                </c:otherwise>
             </c:choose>
@@ -572,17 +606,17 @@ a:hover[class="moreBtn"]{
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <!-- NAVER KAKAO -->
    <script type='text/javascript'>
-      Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
-      Kakao.Auth.createLoginButton({
-         container : '#kakao-login-btn',
-         success : function(authObj) {
-            location.href = "login.ka";
-         },
-         fail : function(err) {
-            alert(JSON.stringify(err));
-         }
-      });
-   </script>
+     Kakao.init('49283e307f214dc8c2edee1cae89f2cb');
+     Kakao.Auth.createLoginButton({
+          container : '#kakao-login-btn',
+       success : function(authObj) {            
+       location.href = "login.ka";         
+       },         
+       fail : function(err) { 
+              alert(JSON.stringify(err));
+          }
+       });
+ </script>
    
 </body>
 </html>

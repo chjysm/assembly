@@ -98,9 +98,11 @@ public class WinController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch3.jsp").forward(request, response);
 				//response.sendRedirect("http://map.daum.net/?sName="+addr+"&eName="+brand);
 				//request.getRequestDispatcher("http://map.daum.net/?sName="+addr+"&eName="+brand).forward(request, response);
-			}else if (cmd.equals("/goInfo.win")) { // 메인페이지로 이동
+			}else if (cmd.equals("/goInfo.win")) { 
 				request.getRequestDispatcher("/WEB-INF/etc/information.jsp").forward(request, response);
 			}
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
