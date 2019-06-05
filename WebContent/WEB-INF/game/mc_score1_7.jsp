@@ -93,7 +93,6 @@
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>	
 	</div>
-
 <!-- 	본문 -->
 	<div class="container mainPage">
 		<div class="row my text-center">
@@ -170,8 +169,10 @@
 								<p>수고하셨습니다 이제 실제로 주변에 있는 매장을 찾아 주문해보세요!</p>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<button id="goMain">메인으로 가기</button>
+									<button id="goMain">게임 메인으로 가기</button>
+									<button id="comp">게임 완료하기</button>
 									<button id="findMap">지도 찾아보기</button>
+									
 								</div>
 							</div>
 						</div>
@@ -185,14 +186,37 @@
 								url : "session_end.kiosk",
 								type : "post"
 							});
-							$(location).attr("href", "returnMain.kiosk");
+							$.ajax({
+								url : "insert.st",
+								type : "post",
+								date:{
+									brand:"mcdonald",
+									answer:"${dto.takeIOY }:${dto.burgerNameY }:${dto.sideNameY }:${dto.beverageNameY }"
+								}
+							}).done(function(){
+								$(location).attr("href", "returnMain.kiosk");
+							});
+						});
+						$("#comp").on('click', function(){
+							$.ajax({
+								url : "insert.st",
+								type : "post",
+								date:{
+									brand:"mcdonald",
+									answer:"${dto.takeIOY }:${dto.burgerNameY }:${dto.sideNameY }:${dto.beverageNameY }"
+								}
+							}).done(function(){
+								$(location).attr("href", "goMain.win");
+							});
 						});
 						$('#findMap').on('click', function(){
 							$.ajax({
 								url : "session_end.kiosk",
 								type : "post"
 							});
-							$(location).attr("href", "returnMain.kiosk");
+							var width=window.screen.width/2-800/2;//에러 나는거 아닙니다. 강사님도 그냥 두라고 하셨어요! 
+							var height=window.screen.height/2-600/2;
+							open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
 						});
 					</script>
 <!-- -------machine view end----------------------------------------------->

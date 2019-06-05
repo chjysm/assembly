@@ -79,11 +79,12 @@ head>.nav-item {
    white-space: nowrap;
 }
 .myTitle a{
-	color: black;
+   color: black;
 }
 .myTitle a:hover{
 	color: black;
 	font-weight: bold;
+   
 }
 .tabStuff {
    font-size: 13px;
@@ -150,15 +151,12 @@ a:hover[class="moreBtn"]{
       });
       $(".infoBtn").on("click",function(){
     	 $(".moreBtn").attr("href","list.board03?currentPage=1");
-    	 
-      });
+      });	 
        $(".freeBtn").on("click",function(){
-      	 $(".moreBtn").attr("href","list.board01?currentPage=1"); 
-
+          $(".moreBtn").attr("href","list.board01?currentPage=1"); 
       });
        $(".qnaBtn").on("click",function(){
-      	 $(".moreBtn").attr("href","list.board02?currentPage=1");
-
+          $(".moreBtn").attr("href","list.board02?currentPage=1");
       });
    });
 </script>
@@ -468,12 +466,12 @@ a:hover[class="moreBtn"]{
                         class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
                 
                   <c:choose>
-                  	<c:when test="${freeRecordCount == 0 }">
-                  		<div class="noneRecord">등록된 게시물이 없습니다.</div>
-                  	</c:when>
-                  	<c:otherwise>
-                  	<c:forEach var="list" items="${mainFreeList}">
-                  	 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+                     <c:when test="${freeRecordCount == 0 }">
+                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                     </c:when>
+                     <c:otherwise>
+                     <c:forEach var="list" items="${mainFreeList}">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
                      <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
@@ -497,20 +495,20 @@ a:hover[class="moreBtn"]{
                         class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
                 
                   <c:choose>
-                  	<c:when test="${qnaRecordCount == 0 }">
-                  		<div class="noneRecord">등록된 게시물이 없습니다.</div>
-                  	</c:when>
-                  	<c:otherwise>
-                  	<c:forEach var="list" items="${mainQnaList}">
-                  	 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+                     <c:when test="${qnaRecordCount == 0 }">
+                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                     </c:when>
+                     <c:otherwise>
+                     <c:forEach var="list" items="${mainQnaList}">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
                      <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
-                  		</c:forEach>
-                  	</c:otherwise>
+                        </c:forEach>
+                     </c:otherwise>
                   </c:choose>
-                  	</div>
+                     </div>
                </div>
             </div>
             <div class="more">

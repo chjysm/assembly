@@ -1,0 +1,20 @@
+
+create table SupportBoard(
+    seq number primary key,
+    email varchar(50) ,
+    id number ,
+    name varchar(50) ,
+    supporttimestamp timestamp default sysdate,
+    supportdate date default sysdate,
+    amount number
+); 
+select * from supportboard;
+select sum(amount) sum from supportboard;
+drop table SupportBoard;
+create SEQUENCE Support_seq
+start with 1
+INCREMENT by 1
+nocache
+nomaxvalue;
+
+COMMIT;
