@@ -19,7 +19,8 @@
    src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
    charset="utf-8"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <style>
 *{
    margin: 0 auto;
@@ -115,10 +116,10 @@ a:hover[class="moreBtn"]{
    $(function() {
       
       $("#emailLogout").on("click", function() {
-         location.href = "logout.me";
+         location.href = "logout.ka";
       });
       $("#emailLogout2").on("click", function() {
-         location.href = "logout.me";
+    	  location.href = "logout.me";
       });
       $("#getPw").on("click", function() {
          var width=(window.screen.width/2)-(600/2);
@@ -558,5 +559,6 @@ a:hover[class="moreBtn"]{
          }
       });
    </script>
+   
 </body>
 </html>

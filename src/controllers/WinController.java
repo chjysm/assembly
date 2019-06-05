@@ -64,10 +64,6 @@ public class WinController extends HttpServlet {
 					request.setAttribute("mainQnaList", mainQnaList);
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
-				
-
-				
-				
 
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);

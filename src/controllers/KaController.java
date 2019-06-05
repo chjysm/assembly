@@ -83,7 +83,7 @@ public class KaController extends HttpServlet {
 				request.getSession().setAttribute("nickname", null);
 				request.getSession().setAttribute("refresh_token", null);
 				ka.logout(access_token);
-				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+				response.sendRedirect("goMain.win");
 			}else if(cmd.equals("/withdrawal.ka")) {
 				int id=(int)request.getSession().getAttribute("id");
 				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
