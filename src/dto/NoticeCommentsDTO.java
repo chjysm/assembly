@@ -3,33 +3,35 @@ package dto;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class NoticeBoardDTO {
+public class NoticeCommentsDTO {
 	private int seq;
-	private String title;
-	private String content;
-	private String writer; // 이메일의 앞부분
-	private int viewCount;
+	private String comment;
+	private int postNum;
+	private String postTitle;
+	private String writer;
 	private String ip;
 	private Timestamp writeDate;
-	private int id;
 	private String email;
+	private int id;
 	private String timeForm;
-	public NoticeBoardDTO() {
+	
+	
+	public NoticeCommentsDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public NoticeBoardDTO(int seq, String title, String content, String writer, int viewCount, String ip,
-			Timestamp writeDate, int id, String email) {
+	public NoticeCommentsDTO(int seq, String comment, int postNum, String postTitle, String writer, String ip,
+			Timestamp writeDate, String email, int id) {
 		super();
 		this.seq = seq;
-		this.title = title;
-		this.content = content;
+		this.comment = comment;
+		this.postNum = postNum;
+		this.postTitle = postTitle;
 		this.writer = writer;
-		this.viewCount = viewCount;
 		this.ip = ip;
 		this.writeDate = writeDate;
-		this.id = id;
 		this.email = email;
+		this.id = id;
 		if(writeDate != null) {
 			this.timeForm = getFormedTime();
 		}
@@ -40,29 +42,29 @@ public class NoticeBoardDTO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public String getTitle() {
-		return title;
+	public String getComment() {
+		return comment;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-	public String getContent() {
-		return content;
+	public int getPostNum() {
+		return postNum;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
+	}
+	public String getPostTitle() {
+		return postTitle;
+	}
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 	public String getWriter() {
 		return writer;
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
-	}
-	public int getViewCount() {
-		return viewCount;
-	}
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
 	}
 	public String getIp() {
 		return ip;
@@ -76,19 +78,18 @@ public class NoticeBoardDTO {
 	public void setWriteDate(Timestamp writeDate) {
 		this.writeDate = writeDate;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTimeForm() {
 		return timeForm;
 	}
