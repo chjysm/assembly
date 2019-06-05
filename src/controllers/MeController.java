@@ -145,7 +145,7 @@ public class MeController extends HttpServlet {
 				String nickname = request.getParameter("nickname");
 				String gender = request.getParameter("gender");
 				String age = request.getParameter("age");
-				int result = me.mpUpdate(nickname, gender,age, seq);
+				int result = me.mpUpdate(nickname, gender, age, seq);
 				request.getSession().setAttribute("nickname", nickname);
 
 				if (result == 1) {

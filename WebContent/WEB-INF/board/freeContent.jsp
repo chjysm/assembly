@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
         <meta charset="UTF-8">
@@ -11,6 +12,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- JQuery -->
         <script>
+
             $(function(){
                  $(".listBtn").on("click",function(){// 목록으로돌아가기
                 	 location.href="list.board01?currentPage=${currentPage}";
@@ -45,12 +47,11 @@
                 	location.href="alterForm.board01?seq=${content.seq}";
                 })
 
-                
-
                $(".commentBtn").on("click",function(){// 댓글 등록버튼 누르면
                 	if(${type == null}){
         				alert("로그인 후 이용해주세요");
         			}else{
+
         				if($(".comment-writeBox").val() == ""){
         					alert("내용을 입력해주세요.");
         				}else{
@@ -67,23 +68,29 @@
                         	});
         				}
         				
+
         			};
+         
                 });
                 
                 $(".cmDeleteBtn").on("click",function(){ // 댓글삭제하기 
               			var seq = $(this).attr("seq");
               			console.log(seq);
               			var result = confirm("댓글을 삭제하시겠습니까?");
+
               			
               			if(result == true){
                   			location.href="deleteComment.board01?seq="+seq+"&&postNum=${content.seq}";
               			}
+
               		});
+              		
                 $(".alterBox").hide();//수정 댓글입력창 숨기기
                 //수정하기 
                 $(".cmAlterBtn").on("click",function(){ // 댓글수정버튼 누르면 댓글입력창 보이기
                 	var seq = $(this).attr("seq");
                 	var id= "#"+seq;
+
 					$(id).show();
 				var alterTextarea = "#alterTextarea" + seq;
                	 $(alterTextarea).html("");
@@ -103,6 +110,7 @@
                      var alterTextarea = "#alterTextarea" + btnSeq;
                      $(alterTextarea).val();
                      $(commentAlterBtn).on("click",function(){ // 댓글 수정에서 등록버튼 누르면 댓글입력창 숨기기                		
+
                  		if($(alterTextarea).val() == ""){
                  			alert("내용을 입력해주세요.");
                  		}else{
@@ -163,6 +171,7 @@
              a:hover{color:black; font-weight:bold;}
             .noneRecord{text-align:center; margin-top:10px; margin-bottom:10px;}
         </style>
+
 </head>
 <body>
 	<!-- 고정메뉴 -->
@@ -181,6 +190,7 @@
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
 					</c:if>
+
 				</ul>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -201,6 +211,7 @@
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
+
         <!-- ------------------------------------------------------------------------------------- -->
 
         <div class="head"><h1>자유게시판</h1><div></div></div>
@@ -302,5 +313,6 @@
         
        
     </body>
+
 
 </html>

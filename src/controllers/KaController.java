@@ -16,10 +16,9 @@ import dao.KakaoDAO;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
-
 @WebServlet("*.ka")
 public class KaController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
@@ -30,53 +29,61 @@ public class KaController extends HttpServlet {
 		Gson g = new Gson();
 		JsonParser parse = new JsonParser();
 		try {
-			if(cmd.equals("/login.ka")) {
-				String apiURL=ka.login();
+			if (cmd.equals("/login.ka")) {
+				String apiURL = ka.login();
 				response.sendRedirect(apiURL);
-			}else if(cmd.equals("/callback.ka")) {
+			} else if (cmd.equals("/callback.ka")) {
 				String code = request.getParameter("code");
-				String res=ka.getToken(code);
-				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
-				String refresh_token=parse.parse(res.toString()).getAsJsonObject().get("refresh_token").getAsString();
-				String info=ka.getInfo(access_token);
+				String res = ka.getToken(code);
+				String access_token = parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				String refresh_token = parse.parse(res.toString()).getAsJsonObject().get("refresh_token").getAsString();
+				String info = ka.getInfo(access_token);
 				try {
-					String nickname=parse.parse(info).getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
-					String email=null;
-					String age=null;
-					String gender=null;
-					if(parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsString().equals("true")) {
-						email = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+					String nickname = parse.parse(info).getAsJsonObject().get("properties").getAsJsonObject()
+							.get("nickname").getAsString();
+					String email = null;
+					String age = null;
+					String gender = null;
+					if (parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email")
+							.getAsString().equals("true")) {
+						email = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("email")
+								.getAsString();
 					}
-					if(parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_age_range").getAsString().equals("true")) {
-						age = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("age_range").getAsString();
+					if (parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_age_range")
+							.getAsString().equals("true")) {
+						age = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject()
+								.get("age_range").getAsString();
 					}
-					if(parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_gender").getAsString().equals("true")) {
-						gender = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("gender").getAsString();
+					if (parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_gender")
+							.getAsString().equals("true")) {
+						gender = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject()
+								.get("gender").getAsString();
 					}
 					int type = 2;
-					email+=" "+type;
-					if(me.check(email)==0) {
-						me.insert_member(new MemberDTO(0,email,null,nickname,nickname,null,gender,age,type));
+					email += " " + type;
+					if (me.check(email) == 0) {
+						me.insert_member(new MemberDTO(0, email, null, nickname, nickname, null, gender, age, type));
 					}
-					int id=me.getId(email);
-					String realNickname=me.getNickname(email);
+					int id = me.getId(email);
+					String realNickname = me.getNickname(email);
 					request.getSession().setAttribute("id", id);
 					request.getSession().setAttribute("email", email);
 					request.getSession().setAttribute("type", type);
 					request.getSession().setAttribute("nickname", realNickname);
 					request.getSession().setAttribute("refresh_token", refresh_token);
 					response.sendRedirect("goMain.win");
-				}catch(Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					ka.remove(access_token);
 					request.setAttribute("type", 2);
 					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
 				}
-			}else if(cmd.equals("/reprompt.ka")) {
+			} else if (cmd.equals("/reprompt.ka")) {
 				response.sendRedirect(ka.login());
-			}else if(cmd.equals("/logout.ka")) {
-				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
-				String access_token=parse.parse(ka.getAccessToken(refresh_token)).getAsJsonObject().get("access_token").getAsString();
+			} else if (cmd.equals("/logout.ka")) {
+				String refresh_token = (String) request.getSession().getAttribute("refresh_token");
+				String access_token = parse.parse(ka.getAccessToken(refresh_token)).getAsJsonObject()
+						.get("access_token").getAsString();
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
@@ -86,22 +93,26 @@ public class KaController extends HttpServlet {
 			}else if(cmd.equals("/withdrawal.ka")) {
 				int id=(int)request.getSession().getAttribute("id");
 				String refresh_token=(String)request.getSession().getAttribute("refresh_token");
+
 				request.getSession().setAttribute("id", null);
 				request.getSession().setAttribute("email", null);
 				request.getSession().setAttribute("type", null);
 				request.getSession().setAttribute("nickname", null);
 				request.getSession().setAttribute("refresh_token", null);
 				int result = me.delete(id);
-				String res=ka.getAccessToken(refresh_token);
-				String access_token=parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
+				String res = ka.getAccessToken(refresh_token);
+				String access_token = parse.parse(res.toString()).getAsJsonObject().get("access_token").getAsString();
 				ka.remove(access_token);
-				response.getWriter().append("<script> if(alert('탈퇴가 완료 되었습니다!.')!= 0){ opener.location.reload(true); window.close(); }</script>");
+				response.getWriter().append(
+						"<script> if(alert('탈퇴가 완료 되었습니다!.')!= 0){ opener.location.reload(true); window.close(); }</script>");
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

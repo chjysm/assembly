@@ -15,8 +15,8 @@
 <title>SB Admin 2 - Dashboard</title>
 
 <!-- Custom fonts for this template-->
-<link href="Resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+<link href="Resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -47,12 +47,14 @@
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active"
+						href="goMain.win">메인페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
+							소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="list.board01?currentPage=1">자유게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
 					<c:if test="${type==4}">
 						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
@@ -295,9 +297,10 @@
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
 										<div
-											class="text-xs font-weight-bold text-success text-uppercase mb-1">학습
-											프로그램 1</div>
-										<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+											class="text-xs font-weight-bold text-success text-uppercase mb-1">총
+											기부액</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800"
+											style="text-align: left">￦ ${donation }</div>
 									</div>
 									<div class="col-auto">
 										<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -314,19 +317,13 @@
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
 										<div
-											class="text-xs font-weight-bold text-info text-uppercase mb-1">학습
-											프로그램 2</div>
+											class="text-xs font-weight-bold text-info text-uppercase mb-1">맥도날드
+											학습 프로그램 진행 총 횟수</div>
 										<div class="row no-gutters align-items-center">
 											<div class="col-auto">
-												<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+												<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${studyCount }</div>
 											</div>
-											<div class="col">
-												<div class="progress progress-sm mr-2">
-													<div class="progress-bar bg-info" role="progressbar"
-														style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-														aria-valuemax="100"></div>
-												</div>
-											</div>
+
 										</div>
 									</div>
 									<div class="col-auto">
@@ -448,100 +445,102 @@
 							</div>
 							<div class="card-body">
 								<c:if test="${agedto.teenage > 0}">
-								<h4 class="small font-weight-bold">
-									10대 <span class="float-right">${agedto.teenage }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-warning" role="progressbar"
-										style="width: ${agePerdto.perTeenage }%" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										10대 <span class="float-right">${agedto.teenage }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-warning" role="progressbar"
+											style="width: ${agePerdto.perTeenage }%" aria-valuenow="40"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.twenty > 0}">
-								<h4 class="small font-weight-bold">
-									20대 <span class="float-right">${agedto.twenty }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-primary" role="progressbar" style="width: ${agePerdto.perTwenty }%"
-										aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										20대 <span class="float-right">${agedto.twenty }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-primary" role="progressbar"
+											style="width: ${agePerdto.perTwenty }%" aria-valuenow="60"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.thirty > 0}">
-								<h4 class="small font-weight-bold">
-									30대 <span class="float-right">${agedto.thirty }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-success" role="progressbar"
-										style="width: ${agePerdto.perThirty }%" aria-valuenow="80" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										30대 <span class="float-right">${agedto.thirty }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-success" role="progressbar"
+											style="width: ${agePerdto.perThirty }%" aria-valuenow="80"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.forty > 0}">
-								<h4 class="small font-weight-bold">
-									40대 <span class="float-right">${agedto.forty }명</span>
-								</h4>
-								<div class="progress">
-									<div class="progress-bar bg-info" role="progressbar"
-										style="width: ${agePerdto.perForty }%" aria-valuenow="100" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div><br>
+									<h4 class="small font-weight-bold">
+										40대 <span class="float-right">${agedto.forty }명</span>
+									</h4>
+									<div class="progress">
+										<div class="progress-bar bg-info" role="progressbar"
+											style="width: ${agePerdto.perForty }%" aria-valuenow="100"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									<br>
 								</c:if>
 								<c:if test="${agedto.fifty > 0}">
-								<h4 class="small font-weight-bold">
-									50대 <span class="float-right">${agedto.fifty }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-secondary" role="progressbar"
-										style="width: ${agePerdto.perFifty }%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										50대 <span class="float-right">${agedto.fifty }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-secondary" role="progressbar"
+											style="width: ${agePerdto.perFifty }%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.sixty > 0}">
-								<h4 class="small font-weight-bold">
-									60대 <span class="float-right">${agedto.sixty }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-danger" role="progressbar"
-										style="width: ${agePerdto.perSixty }%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										60대 <span class="float-right">${agedto.sixty }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${agePerdto.perSixty }%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.seventy > 0}">
-								<h4 class="small font-weight-bold">
-									70대 <span class="float-right">${agedto.seventy }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-warning" role="progressbar"
-										style="width: ${agePerdto.perSeventy }%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										70대 <span class="float-right">${agedto.seventy }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-warning" role="progressbar"
+											style="width: ${agePerdto.perSeventy }%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.eighty > 0}">
-								<h4 class="small font-weight-bold">
-									80대 <span class="float-right">${agedto.eighty }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-primary" role="progressbar"
-										style="width: ${agePerdto.perEighty }%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										80대 <span class="float-right">${agedto.eighty }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-primary" role="progressbar"
+											style="width: ${agePerdto.perEighty }%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 								<c:if test="${agedto.ninety > 0}">
-								<h4 class="small font-weight-bold">
-									90대 <span class="float-right">${agedto.ninety }명</span>
-								</h4>
-								<div class="progress mb-4">
-									<div class="progress-bar bg-success" role="progressbar"
-										style="width: ${agePerdto.perNinety }%" aria-valuenow="20" aria-valuemin="0"
-										aria-valuemax="100"></div>
-								</div>
+									<h4 class="small font-weight-bold">
+										90대 <span class="float-right">${agedto.ninety }명</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-success" role="progressbar"
+											style="width: ${agePerdto.perNinety }%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</c:if>
 							</div>
 						</div>
 
 						<!-- Color System -->
 						<div class="row">
-						<div class="col-lg-6 mb-4">
+							<div class="col-lg-6 mb-4">
 								<div class="card bg-warning text-white shadow">
 									<div class="card-body">
 										Teenage / Seventy
