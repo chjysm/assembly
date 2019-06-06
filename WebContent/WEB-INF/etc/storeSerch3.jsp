@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주변매장검색</title>
 <style>
 	#btn{
         width: 100%;

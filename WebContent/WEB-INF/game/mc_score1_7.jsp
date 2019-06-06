@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<title>Insert title here</title>
+<title>학습1_7</title>
 	<style>
 		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
@@ -64,33 +64,18 @@
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-				  <li class="nav-item">
-				    <a class="nav-link active" href="#">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
-				</ul>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+				  <li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+					</c:if>
+					</ul>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-				  <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>	
 	</div>
 <!-- 	본문 -->
@@ -229,11 +214,16 @@
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				<h1 class="display-5 font-weight-bold">사이트맵</h1>
-				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
-			</div>				
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				홈페이지 이용약관 등
+				<div class="">
+					<span class="logo">Logo</span>
+					<dl>
+						<dt>Assembly(주)</dt>
+						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+						<dd>대표이사: 홍길동 사업자등록번호 : 815-81-00000</dd>
+						<dd>Tel: 1599-0000 Fax: 02-894-0000</dd>
+						<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+					</dl>
+				</div>
 			</div>
 		</div>
 	</div>	

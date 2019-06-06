@@ -13,13 +13,13 @@
         <script>
             $(function(){
                  $(".listBtn").on("click",function(){// 목록으로돌아가기
-                	 location.href="list.board02?currentPage=${currentPage}";
+                	 location.href="list.board02?qnaCurrentPage=${qnaCurrentPage}";
                 });
                  $(".deleteBtn").on("click",function(){ // 글 삭제 버튼
                 	 var result = confirm("글을 삭제하시겠습니까?")
                 	 
                 	 if(result == true){
-                		 location.href="deleteContent.board02?seq=${content.seq}&&currentPage=${currentPage}" ;
+                		 location.href="deleteContent.board02?seq=${content.seq}&&qnaCurrentPage=${qnaCurrentPage}" ;
 
                          /* $("img").each(function(i, item){
              				var src = $(item).attr("src");
@@ -184,34 +184,18 @@
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-
-					<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
         <!-- ------------------------------------------------------------------------------------- -->

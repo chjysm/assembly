@@ -83,7 +83,7 @@ public class MeController extends HttpServlet {
 				dto.setPw(pw);
 				dto.setName(name);
 				dto.setNickname(nickname);
-				dto.setBirthday("");
+				dto.setBan("");
 				dto.setGender(gender);
 				dto.setAge(age);
 				dto.setType(3);
@@ -176,6 +176,7 @@ public class MeController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.jsp");
 		}
 	}
 

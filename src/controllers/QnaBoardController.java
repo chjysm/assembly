@@ -33,9 +33,15 @@ import dto.QnaCommentsDTO;
 @WebServlet("*.board02")
 public class QnaBoardController extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter pw = response.getWriter();
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			response.sendRedirect("error.jsp");
+		}
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
@@ -43,8 +49,8 @@ public class QnaBoardController extends HttpServlet {
 		QnaCommentsDAO cdao = new QnaCommentsDAO();
 		if(command.equals("/list.board02")) {//질문게시판 목록페이지로
 			int recordCount = 0;
-			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			request.getSession().setAttribute("currentPage", currentPage);
+			int qnaCurrentPage = Integer.parseInt(request.getParameter("qnaCurrentPage"));
+			request.getSession().setAttribute("qnaCurrentPage", qnaCurrentPage);
 
 			List<QnaBoardDTO> qnaList = null;
 			try {
@@ -58,16 +64,17 @@ public class QnaBoardController extends HttpServlet {
 				request.setAttribute("recordCount", recordCount);
 			}else {
 				try {
-					qnaList = dao.selectByPage(currentPage);;
+					qnaList = dao.selectByPage(qnaCurrentPage);;
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				String getNavi = null;
 				try {
-					getNavi = dao.getNavi(currentPage); // 페이지 네비 보여주기 
+					getNavi = dao.getNavi(qnaCurrentPage); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.jsp");
 				}
 				request.setAttribute("qnaList", qnaList);
 				request.setAttribute("getNavi", getNavi);
@@ -114,6 +121,7 @@ public class QnaBoardController extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.jsp");
 		}
 //---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board02")){//flag 바꿔주기
@@ -146,7 +154,7 @@ public class QnaBoardController extends HttpServlet {
 			}
 			request.setAttribute("result", result);
 			if(result > 0) {
-				response.sendRedirect("list.board02?currentPage="+request.getSession().getAttribute("currentPage"));
+				response.sendRedirect("list.board02?qnaCurrentPage="+request.getSession().getAttribute("qnaCurrentPage"));
 			}else {System.out.println("입력안됨");}
 			//---------------------------------------------------------------------------------------------------------------------			
 		}else if(command.equals("/deleteFile.board02")){//서버에 있는 파일 삭제
@@ -176,6 +184,7 @@ public class QnaBoardController extends HttpServlet {
 				countComment = cdao.countComment(seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			try {
 				int viewCount = dao.viewCount(seq); //조회수 올리기
@@ -203,6 +212,7 @@ public class QnaBoardController extends HttpServlet {
 					commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.jsp");
 				}
 
 				String navi = null;
@@ -210,6 +220,7 @@ public class QnaBoardController extends HttpServlet {
 					navi = cdao.getNavi(commentPage, seq);
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.jsp");
 
 				}
 				request.setAttribute("comList", commentList);
@@ -223,12 +234,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -297,6 +310,7 @@ public class QnaBoardController extends HttpServlet {
 				result = cdao.insertComment(qcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			if(result > 0) {
 				System.out.println("등록");
@@ -321,12 +335,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 
 			}
 			request.setAttribute("content", content);
@@ -375,7 +391,7 @@ public class QnaBoardController extends HttpServlet {
 			//---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/searchContent.board02")) { //검색버튼 누르면
-			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			int qnaCurrentPage = Integer.parseInt(request.getParameter("qnaCurrentPage"));
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
 
@@ -391,16 +407,17 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				List<QnaBoardDTO> qnaSelectList = null;
 				try {			
-					qnaSelectList = dao.selectBySearchPage(currentPage, searchWord, option);
+					qnaSelectList = dao.selectBySearchPage(qnaCurrentPage, searchWord, option);
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				String getNaviSelect = null;
 				try {
-					getNaviSelect = dao.getNaviSelect(currentPage, option, searchWord); // 페이지 네비 보여주기 
+					getNaviSelect = dao.getNaviSelect(qnaCurrentPage, option, searchWord); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.jsp");
 				}
 				request.setAttribute("qnaList", qnaSelectList);
 				request.setAttribute("getNavi", getNaviSelect);
@@ -429,20 +446,17 @@ public class QnaBoardController extends HttpServlet {
 				int changeY = dao.changeAnswer(postNum);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.jsp");
 			}
 			if(result > 0) {
 				System.out.println("등록");
 			}else {
 				System.out.println("등록 ㄴ");
 			}
-			
-			
 		}
 	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
