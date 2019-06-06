@@ -11,7 +11,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>메인</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
@@ -147,11 +147,8 @@ a:hover[class="moreBtn"] {
 </style>
 <script>
    $(function() {
-      
+
       $("#emailLogout").on("click", function() {
-         location.href = "logout.ka";
-      });
-      $("#emailLogout2").on("click", function() {
     	  location.href = "logout.me";
       });
       $("#getPw").on("click", function() {
@@ -184,13 +181,13 @@ a:hover[class="moreBtn"] {
          open("goSupport.su", "_brank", "width=900px,height=600px,left="+width+",top="+height);
       });
       $(".infoBtn").on("click",function(){
-    	 $(".moreBtn").attr("href","list.board03?currentPage=1");
+    	 $(".moreBtn").attr("href","list.board03?noticeCurrentPage=1");
       });	 
        $(".freeBtn").on("click",function(){
-          $(".moreBtn").attr("href","list.board01?currentPage=1"); 
+          $(".moreBtn").attr("href","list.board01?freeCurrentPage=1"); 
       });
        $(".qnaBtn").on("click",function(){
-          $(".moreBtn").attr("href","list.board02?currentPage=1");
+          $(".moreBtn").attr("href","list.board02?qnaCurrentPage=1");
       });
        $("#kaLogout").on("click",function(){
     	   $.ajax({
@@ -227,18 +224,14 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center head">
-					<li class="nav-item"><a class="nav-link active"
-						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
-								게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -273,7 +266,7 @@ a:hover[class="moreBtn"] {
 						처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
 					</p>
 					<a class="btn btn-primary btn-lg mr-2" href="goInfo.win"
-						role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="#"
+						role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="startGame.kiosk"
 						role="button">체험 시작하기</a>
 				</div>
 				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -421,7 +414,7 @@ a:hover[class="moreBtn"] {
 									</label>
 							</div>
 							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="emailLogout2">로그아웃</button>
+								id="emailLogout">로그아웃</button>
 							<br> <br>
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="adminPage">관리자 페이지</button>
@@ -471,7 +464,7 @@ a:hover[class="moreBtn"] {
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">클릭 한 번으로 메뉴 이름 이해하기</h5>
 						<p class="card-text">모르는 단어를 클릭해보세요. 즉시 한글로 번역해 드립니다.</p>
-						<a href="startGame." class="btn btn-primary">체험하기</a>
+						<a href="#" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>
@@ -656,7 +649,7 @@ a:hover[class="moreBtn"] {
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board03?currentPage=1" class="moreBtn">더 보기 ></a>
+					<a href="list.board03?noticeCurrentPage=1" class="moreBtn">더 보기 ></a>
 				</div>
 			</div>
 		</div>
@@ -702,7 +695,5 @@ a:hover[class="moreBtn"] {
           }
        });
  </script>
-
-	>>>>>>> 120156d6b292b5a79be866982f7664b815626639
 </body>
 </html>

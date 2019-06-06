@@ -4,12 +4,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.TimerTask;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import controllers.AdminController;
 import dto.AdminDTO;
+import dto.MemberDTO;
 
 public class AdminDAO extends TimerTask {
 	public void run() {
@@ -24,13 +28,12 @@ public class AdminDAO extends TimerTask {
 	}
 
 	private Connection getConnection() throws Exception{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "kh";
-		String pw = "kh";
-		return DriverManager.getConnection(url, user, pw);
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env"); 
+		DataSource ds = (DataSource)compenv.lookup("jdbc"); 
+		Connection con = ds.getConnection();
+		return con;
 	}
-
 	public int insertVisitCount() throws Exception{
 		String sql = "insert into visit(visitCount) values(?)";
 		try(
@@ -134,6 +137,78 @@ public class AdminDAO extends TimerTask {
 				con.commit();
 			}
 			return agePerdto;
+		}
+	}
+
+	private PreparedStatement pstatForEmailcheck(Connection con, String email) throws Exception{
+		String sql = "select * from members where email=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, email);
+		return pstat;
+	}
+
+	public int emailCheck(String pram) throws Exception{
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatForEmailcheck(con, pram);
+				ResultSet rs = pstat.executeQuery();				
+				){
+			if(rs.next()) {
+				String email = rs.getString("email");
+				return 1;
+			} 
+			return 0;
+		}
+	}
+
+	private PreparedStatement pstatForSearchByEmail(Connection con, String email) throws Exception{
+		String sql = "select * from members where email=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, email);
+		return pstat;
+	}
+	public MemberDTO searchByEmail(String pram) throws Exception{
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatForSearchByEmail(con, pram);
+				ResultSet rs = pstat.executeQuery();				
+				){
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String email = rs.getString("email");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+				String age = rs.getString("age");
+				String ban = null;
+				try {
+					if(rs.getString("ban").equals("N")) {	
+						ban = "N";
+						}else {
+							ban = "Y";
+						}
+				}catch(Exception e){
+					ban = "N";
+				}
+				MemberDTO mdto = new MemberDTO(id, email, name, gender, age, ban);
+				return mdto;
+			} 
+		}
+		return null;
+	}
+
+	public int banUpdate(String ban, String email) {
+		String sql = "update members set ban=? where email=?";
+		try (Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, ban);
+			pstat.setString(2, email);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 }

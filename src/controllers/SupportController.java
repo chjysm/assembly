@@ -13,8 +13,8 @@ import dto.SupportDTO;
 @WebServlet("*.su")
 public class SupportController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
+			 {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String cmd = requestURI.substring(contextPath.length());
@@ -38,6 +38,7 @@ public class SupportController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.jsp");
 		}
 
 	}

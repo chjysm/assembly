@@ -12,7 +12,7 @@ import dao.StudyDAO;
 import dto.StudyDTO;
 @WebServlet("*.st")
 public class StudyController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String cmd = requestURI.substring(contextPath.length());
@@ -34,9 +34,10 @@ public class StudyController extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.jsp");
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		doGet(request, response);
 	}
 

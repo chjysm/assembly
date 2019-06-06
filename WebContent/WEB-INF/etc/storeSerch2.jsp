@@ -18,7 +18,7 @@
     "Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier."
     name="description">
         <title>
-          주변매장 찾기
+          주변매장검색
         </title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script>
     <link href="https://plus.google.com/100585555255542998765" rel="publisher">

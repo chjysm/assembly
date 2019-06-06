@@ -26,9 +26,9 @@ $(function(){
                 alert("검색어를 입력해주세요");
              }else{
                 if(option == "글제목"){
-                     location.href="searchContent.board02?currentPage=1&&searchWord="+searchWord+"&&option=title";
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=title";
                  }else if(option == "작성자"){
-                     location.href="searchContent.board02?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
                  }
              };
           });
@@ -71,18 +71,14 @@ $(function(){
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-
-					<li class="nav-item"><a class="nav-link active"
-						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +37,32 @@
 	color: #fff;
 	font-weight: bold;
 }
+.card-body a{color: gray;}
+.card-body a:hover{font-weight: bold;}
+.boardTitle div:nth-child(2){text-align: right;}
+.moreBtn:hover{font-weight: bold;}
+
 </style>
+<script>
+$(function() {										// 회원 아이디 조회 결과 반환
+		$("#button-addon2").click(function(){
+    		$.ajax({
+    			url : "emailCheck.admin",
+    			type : "post",
+    			data : {
+    				email : $("#email").val()
+    			}
+    		}).done(function(resp){
+				    if(resp==1){
+							window.open("userManage.admin", "width=300px, height=300px");
+						$("#email").val(""); 
+				    }else{
+				    	alert("존재하지 않는 아이디 입니다.");
+				    }
+    		})
+		})
+})
+</script>
 </head>
 <body id="page-top">
 	<!-- ================================================= 고정메뉴 ================================================= -->
@@ -47,35 +71,18 @@
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active"
-						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
 					</c:if>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 
@@ -336,14 +343,19 @@
 
 					<!-- Pending Requests Card Example -->
 					<div class="col-xl-3 col-md-6 mb-4">
-						<div class="card border-left-warning shadow h-100 py-2">
+						<div class="card border-left-warning shadow">
 							<div class="card-body">
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
-										<div
-											class="text-xs font-weight-bold text-warning text-uppercase mb-1">학습
-											프로그램 3</div>
-										<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+										<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">유저 관리</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">
+											<div class="input-group mt-3 mb-3">
+												<input type="search" id=email class="form-control" placeholder="Email을 입력하세요" aria-label="Search">
+												<div class="input-group-append">
+													<button class="btn btn-outline-secondary" type="button" id="button-addon2">찾기</button>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="col-auto">
 										<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -597,28 +609,83 @@
 						<!-- Illustrations -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">답변 게시판</h6>
+								<div class="row boardTitle">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><h6 class="m-0 font-weight-bold text-primary">질문 게시판</h6></div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="list.board02?qnaCurrentPage=1" class="moreBtn">더 보기 ></a></div>
+							</div>
 							</div>
 							<div class="card-body">
-								<div class="text-center">
-									<img class="img-fluid px-3 px-sm-4 mt-3 mb-4"
-										style="width: 25rem;" src="img/undraw_posting_photo.svg"
-										alt="">
+					<div class="text">
+					<div class="row text-center">
+                 	 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">글번호</div>
+                     <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">관리자 답변</div>
+                
+                  <c:choose>
+                     <c:when test="${qnaRecordCount == 0 }">
+                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                     </c:when>
+                     <c:otherwise>
+                     <c:forEach var="list" items="${qnaList}">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+                     <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block answer ${list.seq }"  seq="${list.seq }">${list.answer }</div>
+                        </c:forEach>
+                     </c:otherwise>
+                  </c:choose>
+                     </div>
 								</div>
+								
 							</div>
 						</div>
+
 
 						<!-- Approach -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">자유 게시판</h6>
+							<div class="row boardTitle">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><h6 class="m-0 font-weight-bold text-primary">자유 게시판</h6></div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="list.board01?freeCurrentPage=1" class="moreBtn">더 보기 ></a></div>
 							</div>
-							<div class="card-body"></div>
+							</div>
+							<div class="card-body">
+								<div class="text">
+					<div class="row text-center">
+					
+                 	 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">글번호</div>
+                     <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+                
+                  <c:choose>
+                     <c:when test="${freeRecordCount == 0 }">
+                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                     </c:when>
+                     <c:otherwise>
+                     <c:forEach var="list" items="${freeList}">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+                     <div  class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block"><a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a></div>
+                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block" >${list.viewCount }</div>
+                        </c:forEach>
+                     </c:otherwise>
+                  </c:choose>
+                     </div>
+								</div>
+								
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
@@ -830,6 +897,14 @@
 					},
 					cutoutPercentage : 80,
 				},
+			});
+			
+			$(".answer").each(function(i,item){
+				var seq = $(this).attr('seq');
+				var answer = "." + seq;
+				if($(answer).html() == 'n'){
+					$(answer).css('color','red');
+				}else{$(answer).css('color','blue');}
 			});
 		</script>
 </body>

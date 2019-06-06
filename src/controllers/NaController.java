@@ -19,7 +19,7 @@ import dto.MemberDTO;
 
 @WebServlet("*.na")
 public class NaController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
@@ -89,6 +89,7 @@ public class NaController extends HttpServlet {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.jsp");
 
 		}
 	}

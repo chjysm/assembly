@@ -8,16 +8,19 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import dto.NoticeBoardDTO;
 
 public class NoticeBoardDAO {
-	private Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.60.24:1521:xe";
-		String user = "kh";
-		String pw = "kh";
-		return DriverManager.getConnection(url, user, pw);
+	private Connection getConnection() throws Exception{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env"); 
+		DataSource ds = (DataSource)compenv.lookup("jdbc"); 
+		Connection con = ds.getConnection();
+		return con;
 	}
 	public int insert(NoticeBoardDTO param) throws Exception { // 내용 등록
 		String sql = "insert into NoticeBoard values(NoticeBoard_seq.nextval,?,?,?,0,?,default,?,?)";
@@ -158,13 +161,13 @@ public class NoticeBoardDAO {
 		}
 		StringBuilder sb = new StringBuilder();
 		if (needPrev) {
-			sb.append("<a href='list.board03?currentPage=" + (startNavi - 1) + "'> <이전 </a>");
+			sb.append("<a href='list.board03?noticeCurrentPage=" + (startNavi - 1) + "'> <이전 </a>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='list.board03?currentPage=" + i + "'>  " + i + "  </a>");
+			sb.append("<a href='list.board03?noticeCurrentPage=" + i + "'>  " + i + "  </a>");
 		}
 		if (needNext) {
-			sb.append("<a href='list.board03?currentPage=" + (endNavi + 1) + "'> 다음> </a>");
+			sb.append("<a href='list.board03?noticeCurrentPage=" + (endNavi + 1) + "'> 다음> </a>");
 		}
 		return sb.toString();
 	}
@@ -280,13 +283,13 @@ public class NoticeBoardDAO {
 			}
 			StringBuilder sb = new StringBuilder();
 			if(needPrev) {
-				sb.append("<a href='searchContent.board03?currentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
+				sb.append("<a href='searchContent.board03?noticeCurrentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
 			}
 			for(int i = startNavi; i <= endNavi; i++) {
-				sb.append("<a href='searchContent.board03?currentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
+				sb.append("<a href='searchContent.board03?noticeCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
 			}
 			if(needNext) {
-				sb.append("<a href='searchContent.board03?currentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");
+				sb.append("<a href='searchContent.board03?noticeCurrentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");
 			}
 			return sb.toString();
 		}
