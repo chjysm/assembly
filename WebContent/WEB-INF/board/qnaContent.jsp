@@ -151,7 +151,7 @@
             #wrapper *{font-size:25px;}
             .titleBox *{border-bottom: 1px solid black; }
             .header{background-color: #9baec850; border-bottom: 1px solid black;}
-            .content{min-height: 300px;}
+            .content{height: 450px; overflow: auto;}
             .content div:nth-child(2){overflow-y:scroll;}
             .footer{border-top:1px solid black; }
             .footer>div{text-align: right; border-bottom: 1px solid black;}
@@ -219,7 +219,7 @@
 
             <!--------------------------------------------------------------------------------------------------->
             <div class="content row"> 
-                <div class="col-lg-12 col-md-12 col-sm-12 secondcol">${content.content }</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 secondcol contentBox">${content.content }</div>
             </div>
             <!--------------------------------------------------------------------------------------->
             <div class="footer row">

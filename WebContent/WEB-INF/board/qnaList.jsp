@@ -32,6 +32,21 @@ $(function(){
                  }
              };
           });
+	  $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
+		  if(e.keyCode==13){
+			  var option = $("#option option:selected").val();
+	             var searchWord = $(".searchWord").val();
+	            if(searchWord == ""){
+                alert("검색어를 입력해주세요");
+             }else{
+                if(option == "글제목"){
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=title";
+                 }else if(option == "작성자"){
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
+                 }
+             };
+		  }
+	  });
 });
 
 </script>

@@ -86,8 +86,10 @@ public class QnaBoardController extends HttpServlet {
 //---------------------------------------------------------------------------------------------------------------------			
 	}else if(command.equals("/imageUpload.board02")) {//서버에 이미지 업로드
 		response.setCharacterEncoding("utf8");
+		request.setCharacterEncoding("utf8");
 		FileDTO fdto = new FileDTO();
 		String rootPath = this.getServletContext().getRealPath("/"); // 서블릿에 대한 환경정보 꺼내옴 -> getRealPath: 코드가 실행되는 진짜 경로
+		System.out.println(rootPath);
 		String nickForderPath = rootPath + (String)request.getSession().getAttribute("email");
 		String dateForderPath = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 		String filePath = nickForderPath +"/"+ dateForderPath; // 파일이 업로드될 경로
@@ -95,6 +97,9 @@ public class QnaBoardController extends HttpServlet {
 		if(!uploadPath.exists()) {// 폴더 생성
 			uploadPath.mkdir();
 		}
+		
+		
+		
 		DiskFileItemFactory diskFactory = new DiskFileItemFactory();
 		diskFactory.setRepository(new File(rootPath + "/WEB-INF/temp")); // 임시폴더 생성
 		ServletFileUpload sfu = new ServletFileUpload(diskFactory);
@@ -114,7 +119,10 @@ public class QnaBoardController extends HttpServlet {
 						break;
 					}
 				}
+				response.setCharacterEncoding("utf8");
+				
 				String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
+				System.out.println(realFilePath);
 				fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
 				request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
 				response.getWriter().append(realFilePath);
@@ -126,7 +134,9 @@ public class QnaBoardController extends HttpServlet {
 //---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board02")){//flag 바꿔주기
 			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
+			
 			fdto.setFlag(true);
+			
 			fdto.setFilePath(null);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/qnaBaord.board02")) {//등록버튼 누르면
@@ -162,6 +172,7 @@ public class QnaBoardController extends HttpServlet {
 			String imgPath = request.getParameter("img");
 			FileDTO files = (FileDTO)request.getSession().getAttribute("files");
 			boolean flag = files.isFlag();
+			System.out.println("파일삭제:" + flag);
 			if( flag == false) {
 				File file = new File(rootPath + imgPath);
 				if(file.exists()) { // 이미지가 서버에 존재 할 경우

@@ -42,6 +42,7 @@
 .boardTitle div:nth-child(2){text-align: right;}
 .moreBtn:hover{font-weight: bold;}
 
+
 </style>
 <script>
 $(function() {										// 회원 아이디 조회 결과 반환
@@ -621,11 +622,11 @@ $(function() {										// 회원 아이디 조회 결과 반환
                      <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">관리자 답변</div>
-                
+                     <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">답변</div>
+              
                   <c:choose>
                      <c:when test="${qnaRecordCount == 0 }">
-                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                        <div>등록된 게시물이 없습니다.</div>
                      </c:when>
                      <c:otherwise>
                      <c:forEach var="list" items="${qnaList}">
@@ -661,10 +662,10 @@ $(function() {										// 회원 아이디 조회 결과 반환
                      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
                      <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-                
+                	
                   <c:choose>
                      <c:when test="${freeRecordCount == 0 }">
-                        <div class="noneRecord">등록된 게시물이 없습니다.</div>
+                        <div>등록된 게시물이 없습니다.</div>
                      </c:when>
                      <c:otherwise>
                      <c:forEach var="list" items="${freeList}">
