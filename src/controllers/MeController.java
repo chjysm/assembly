@@ -111,7 +111,6 @@ public class MeController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/member/mypage.jsp").forward(request, response);
 				// 마이페이지에서 패스워드 변경하는 페이지로 이동
 			} else if (cmd.equals("/pwChangeGo.me")) {
-
 				request.getRequestDispatcher("/WEB-INF/member/pwChange.jsp").forward(request, response);
 
 			} else if (cmd.equals("/pwChange.me")) {

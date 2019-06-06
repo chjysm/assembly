@@ -108,7 +108,7 @@ select :hover {
 </style>
 <script>
 	$(function() {
-
+		
 		$("#pwChange_btn").on("click", function() {
 			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
@@ -183,16 +183,8 @@ select :hover {
 												value="비밀번호 변경하기">
 										</tr>
 									</c:when>
-
-
 									<c:otherwise>
-										<tr class="pt-4">
-											<td
-												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>비밀번호</strong></span>
-											<td colspan="2"><input type="button"
-												class=" btn btn-primary float-left" id="pwChange_btn"
-												value="비밀번호 변경하기" disabled>
-										</tr>
+										
 									</c:otherwise>
 								</c:choose>
 								<tr class="pt-4">
