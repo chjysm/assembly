@@ -642,7 +642,7 @@
                                                         <div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:forEach var="list" items="${mainNoticeList}">
+                                                        <c:forEach var="list" items="${noticeList}">
                                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
                                                             <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
                                                                 <a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
