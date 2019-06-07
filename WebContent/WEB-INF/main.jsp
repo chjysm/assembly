@@ -49,7 +49,7 @@
 
 .mainPage {
 	margin-top: -32px;
-	background: #F2F2F2;
+	/*background: #F2F2F2;*/
 }
 
 .carousel-indicators>li {
@@ -483,7 +483,7 @@ a:hover[class="moreBtn"] {
 			</div>
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-warning myCard" style="width: 18rem;">
-					<img src="Resources/img/photo3.png" class="card-img-top"
+					<img src="Resources/img/photo3.png" class="card-img-top" height="162.05px"
 						alt="card_img1">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
