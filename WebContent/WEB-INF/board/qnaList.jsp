@@ -51,7 +51,7 @@ $(function(){
 	  $(".answer").each(function(i,item){
 			var seq = $(this).attr('seq');
 			var answer = "." + seq;
-			if($(answer).html() == 'n'){
+			if($(answer).html() == 'N'){
 				$(answer).css('color','red');
 			}else{$(answer).css('color','blue');}
 		});
