@@ -138,8 +138,7 @@
             #wrapper *{font-size:25px;}
             .titleBox *{border-bottom: 1px solid black; }
             .header{background-color: #9baec850; border-bottom: 1px solid black;}
-            .content{min-height: 300px;}
-            .content div:nth-child(2){overflow-y:scroll;}
+            .content{height: 450px; overflow: auto;}
             .footer{border-top:1px solid black; }
             .footer>div{text-align: right; border-bottom: 1px solid black;}
             .footer input[type="button"]{margin-bottom: 4px; margin-top:4px;}
@@ -178,7 +177,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>

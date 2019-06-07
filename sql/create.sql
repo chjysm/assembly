@@ -44,7 +44,7 @@ create table QuestionBoard(
     writeDate timestamp default sysdate,
     email varchar(100) not null,
     id number not null,   
-    answer varchar(1) default 'n' check (answer in ('n','y')) /*´äº¯ ´Þ¸®¸é y ¾È´Þ¸®¸é n ±âº»°ª n*/
+    answer varchar(1) default 'N' check (answer in ('N','Y')) /*ï¿½äº¯ ï¿½Þ¸ï¿½ï¿½ï¿½ y ï¿½È´Þ¸ï¿½ï¿½ï¿½ n ï¿½âº»ï¿½ï¿½ n*/
 );
 
 create sequence QuestionBoard_seq
@@ -88,7 +88,7 @@ increment by 1
 nomaxvalue
 nocache;
 
--- °øÁö °Ô½ÃÆÇ ´ñ±Û
+-- ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 create table NoticeComments(
     seq number primary key,
     comments varchar(400) not null,
@@ -208,7 +208,7 @@ nomaxvalue;
 create table study(
    id number,
    brand varchar(20) not null,
-   answer varchar(100) not null,
+   answer varchar(300) not null,
    comp_date date default sysdate
 ); 
 create table SupportBoard(
@@ -225,5 +225,137 @@ start with 1
 INCREMENT by 1
 nocache
 nomaxvalue;
+
+create table coffee_coffee(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(300),
+    menuprice varchar(80) not null
+);
+create table coffee_latte(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(300),
+    menuprice varchar(80) not null
+);
+create table coffee_holly(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(300),
+    menuprice varchar(80) not null
+);
+create table coffee_tea(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(300),
+    menuprice varchar(80) not null
+);
+create table coffee_bakery(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(300),
+    menuprice varchar(80) not null
+);
+-----------------------------------------
+create table lotte_burgerset(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_chickenset(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_good(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_burger(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_chicken(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_desert(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table lotte_drink(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+-----------------------------------------
+create table pizza_seed(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table pizza_prm(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table pizza_cls(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table pizza_side(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table pizza_beverage(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+create table pizza_souce(
+    seq  number not null,
+    imgaddr varchar(200) not null,
+    menuname varchar(80)  not null,
+    menuNameEng varchar(70),
+    menuprice varchar(80) not null
+);
+
+
+
 
 commit;

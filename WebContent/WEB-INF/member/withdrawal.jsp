@@ -32,6 +32,7 @@
 	</style>
 	<script>
 		$(function(){
+			var certi=0;
 			$("#emailbtn").on("click",function(){
 						$.ajax({
 							url:"post.ma",
@@ -39,39 +40,41 @@
 							type:"get"
 						}).done(function(resp2){
 							alert("해당 이메일로 인증 번호가 발송 되었습니다");
-							var certi=resp2;
-							$("#certibtn").on("click",function(){
-								if($("#certi").val()== certi ){
-									if(alert("인증성공")!=0){
-										if(${type==1}){//네이버
-											var flag=confirm("정말 탈퇴 하시겠습니까??");
-											if(flag==true){
-												location.href="withdrawal.na";
-											}else{
-												window.close();
-											}
-										}else if(${type==2}){//카카오
-											var flag=confirm("정말 탈퇴 하시겠습니까??");
-											if(flag==true){
-												location.href="withdrawal.ka";
-											}else{
-												window.close();
-											}
-										}else if(${type==3}){//이메일
-											var flag=confirm("정말 탈퇴 하시겠습니까??");
-											if(flag==true){
-												location.href="withdrawal.me";
-											}else{
-												window.close();
-											}
-										}
-									}
-								}else{
-									alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-								}
-							});
+							certi=resp2;
+							$("#certi").attr("disabled",false);
 						});
+						
 					});
+			$("#certibtn").on("click",function(){
+				if($("#certi").val()== certi ){
+					if(alert("인증성공")!=0){
+						if(${type==1}){//네이버
+							var flag=confirm("정말 탈퇴 하시겠습니까??");
+							if(flag==true){
+								location.href="withdrawal.na";
+							}else{
+								window.close();
+							}
+						}else if(${type==2}){//카카오
+							var flag=confirm("정말 탈퇴 하시겠습니까??");
+							if(flag==true){
+								location.href="withdrawal.ka";
+							}else{
+								window.close();
+							}
+						}else if(${type==3}){//이메일
+							var flag=confirm("정말 탈퇴 하시겠습니까??");
+							if(flag==true){
+								location.href="withdrawal.me";
+							}else{
+								window.close();
+							}
+						}
+					}
+				}else{
+					alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+				}
+			});
 			$("#cancelbtn").on("click",function(){
 				window.close();
 			});
@@ -93,7 +96,7 @@
 		</div>
 		<div class="row ">
 			<div class="col-lg-10 input-group mb-3">
-				<input type="text" class="form-control" id="certi" placeholder="인증번호"
+				<input type="text" class="form-control" id="certi" disabled placeholder="인증번호"
 					aria-label="Recipient's username" aria-describedby="button-addon2">
 				<div class="input-group-append">
 					<button class="btn btn-outline-primary" type="button"

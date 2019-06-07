@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Error Page</title>
+<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- JQuery -->
+<script>
+
+	$(function(){
+		
+	
+	$(".btn1").on("click",function(){
+		location.href="goMain.win";
+	})
+	$(".btn2").on("click",function(){
+		window.history.back();
+	})
+	})
+</script>
+<style>
+	*{margin: 0 auto;}
+	.fixedMenu{position: fixed; background: #fff;z-index: 999;}
+	.fixedMenuNav{background: #007bff;}
+	.fixedMenu,.nav-link{color: #fff; font-weight: bold;}
+	/*--------------------------------------------------------------------------*/
+	
+	.error{position: relative;top: 200px;text-align: center;}
+	h1{font-weight:bold;}
+	.btnBox{position: relative;top: 300px;text-align: center;}
+	input[type="button"]{ font-size:30px;}
+</style>
+
+</head>
+<body>
+	<!-- 고정메뉴 -->
+	<div class="container-fluid fixedMenu">
+		<div class="row fixedMenuNav p-2">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+					</c:if>
+				</ul>
+			</div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>
+	</div>
+	<!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+	
+	<div class="error"><h1>오류가 발생하였습니다.</h1></div>
+	<div class="btnBox">
+		<input type="button" class="btn1 btn btn-primary mr-1" value="메인페이지로">
+		<input type="button" class="btn2 btn btn-primary ml-1" value="뒤로가기">
+	</div>
+</body>
+</html>

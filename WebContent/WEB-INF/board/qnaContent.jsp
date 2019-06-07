@@ -20,24 +20,6 @@
                 	 
                 	 if(result == true){
                 		 location.href="deleteContent.board02?seq=${content.seq}&&qnaCurrentPage=${qnaCurrentPage}" ;
-
-                         /* $("img").each(function(i, item){
-             				var src = $(item).attr("src");
-             				console.log(src);
-             				$.ajax({
-             					url:"deleteFile.board02",
-             					type:"post",
-             					data:{img:src},
-             					cache:false
-             				}).done(function(resp){
-                 				console.log(resp)
-                 				if(resp == "삭제성공"){
-                         			location.href="deleteContent.board02?seq=${content.seq}" ;
-                 				}else{
-                 					location.href="deleteContent.board02?seq=${content.seq}" ;
-                 				}
-                 			});
-             			})  */
                 	 }
                    
                 });
@@ -67,6 +49,7 @@
                             		location.href="wirteComment.board02?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                             	});
         					}else{//그냥 회원이 댓글을 등록했다면
+        						
         					$.ajax({
                         		url:"comment.board02",
                         		type:"post",
@@ -151,7 +134,7 @@
             #wrapper *{font-size:25px;}
             .titleBox *{border-bottom: 1px solid black; }
             .header{background-color: #9baec850; border-bottom: 1px solid black;}
-            .content{min-height: 300px;}
+            .content{height: 450px; overflow: auto;}
             .content div:nth-child(2){overflow-y:scroll;}
             .footer{border-top:1px solid black; }
             .footer>div{text-align: right; border-bottom: 1px solid black;}
@@ -191,7 +174,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -200,7 +183,7 @@
 	</div>
         <!-- ------------------------------------------------------------------------------------- -->
 
-        <div class="head"><h1>건의 게시판</h1><div></div></div>
+        <div class="head"><h1>질문 게시판</h1><div></div></div>
         <div id="wrapper" class="container">
            
             <div class="row titleBox">
@@ -219,7 +202,7 @@
 
             <!--------------------------------------------------------------------------------------------------->
             <div class="content row"> 
-                <div class="col-lg-12 col-md-12 col-sm-12 secondcol">${content.content }</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 secondcol contentBox">${content.content }</div>
             </div>
             <!--------------------------------------------------------------------------------------->
             <div class="footer row">
@@ -286,7 +269,7 @@
             </div>
              </c:otherwise>
           </c:choose>
-          
+         
             <div class="row  mb-5 writeBox">
             <c:choose>
          	 <c:when test="${type != 4 and email != content.email}">
@@ -307,7 +290,7 @@
             </c:when>
             </c:choose>
             </div>
-           
+         
             </div>
         
        

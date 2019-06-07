@@ -315,7 +315,7 @@ public class QnaBoardDAO {
 		}
 	}
 	public int changeAnswer(int seq)throws Exception { // answer n -> y 바꾸기 
-		String sql = "update QuestionBoard set answer = 'y' where seq = ?";
+		String sql = "update QuestionBoard set answer = 'Y' where seq = ?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);

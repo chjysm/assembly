@@ -20,6 +20,8 @@
     			location.href="freeWrite.board01";
     			}
     		});
+    		
+    		
     		  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
     	             var option = $("#option option:selected").val();
     	             var searchWord = $(".searchWord").val();
@@ -33,6 +35,26 @@
     	                 }
     	             };
     	          });
+    		  
+ $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
+    			  
+    			  if(e.keyCode==13){
+    				  var option = $("#option option:selected").val();
+     	             var searchWord = $(".searchWord").val();
+     	            if(searchWord == ""){
+    	                alert("검색어를 입력해주세요");
+    	             }else{
+    	                if(option == "글제목"){
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=title";
+    	                 }else if(option == "작성자"){
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
+    	                 }
+    	             };
+    			  }
+    		  });
+    		 
+    			  
+    		  
     	});
     </script>
 <style>
@@ -79,7 +101,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -103,7 +125,7 @@
 		</div>
 		<c:choose>
 			<c:when test="${recordCount == 0 }">
-				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+				<div class="noneRecord mt-2 mb-2">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
 					<c:forEach var="list" items="${freeList }">

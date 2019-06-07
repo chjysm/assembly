@@ -122,7 +122,22 @@
                  	});
                 });
                  	 
-             
+                $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
+      			  
+      			  if(e.keyCode==13){
+      				  var option = $("#option option:selected").val();
+       	             var searchWord = $(".searchWord").val();
+       	            if(searchWord == ""){
+      	                alert("검색어를 입력해주세요");
+      	             }else{
+      	                if(option == "글제목"){
+      	                     location.href="searchContent.board03?noticeCurrentPage=1&&searchWord="+searchWord+"&&option=title";
+      	                 }else if(option == "작성자"){
+      	                     location.href="searchContent.board03?noticeCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
+      	                 }
+      	             };
+      			  }
+      		  });
 
             });
         </script>
@@ -138,7 +153,7 @@
             #wrapper *{font-size:25px;}
             .titleBox *{border-bottom: 1px solid black; }
             .header{background-color: #9baec850; border-bottom: 1px solid black;}
-            .content{min-height: 300px;}
+            .content{height: 450px; overflow: auto;}
             .content div:nth-child(2){overflow-y:scroll;}
             .footer{border-top:1px solid black; }
             .footer>div{text-align: right; border-bottom: 1px solid black;}
@@ -178,7 +193,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>

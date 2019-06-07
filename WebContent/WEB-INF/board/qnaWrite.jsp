@@ -13,6 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
     <script>
     	$(function(){
     		$(".cancelBtn").on("click",function(){//취소버튼 -> 목록페이지로
@@ -22,7 +23,7 @@
     			$("#inputContent").val($('#summernote').summernote("code"));
     			if($("#title").val() != "" && $("#inputContent").val() != ""){
     				$.ajax({
-						url:'flag.board02',
+ 						url:'flag.board02',
 					});
     				$("#writeForm").submit();	
     			}else if($("#title").val() == ""){
@@ -32,28 +33,29 @@
     			}		
     		});
     		$("#summernote").summernote({
-    			lang:'ko-KR',
+    			lang: 'ko-KR',
     			placeholder:'글을 입력해주세요.',
     			tabsize:2,
     			width:1500,
     			height:400,
     			focus:true,
     			callbacks:{
-    				onImageUpload : function(files, editor, welEditable){//이미지 서버에 업로드
-    					var data = new FormData();
-    					data.append('file',files[0]);
-    					console.log(files)
-    					$.ajax({
-    						url:'imageUpload.board02',
-    						data: data,
-    						type:'post',
-    						cache: false,
-    						contentType:false,
-    						enctype:'multipart/form-data',
-    						processData: false
-    					}).done(function(resp){
-    						$(".note-editable").append("<img src='" + resp + "'>");
-    						console.log(resp);
+    				
+    						onImageUpload : function(files, editor, welEditable){//이미지 서버에 업로드
+    	    					var data = new FormData();
+    	    					data.append('file',files[0]);
+    	    					console.log(files)
+    	    					$.ajax({
+    	    						url:'imageUpload.board01',
+    	    						data: data,
+    	    						type:'post',
+    	    						cache: false,
+    	    						contentType:false,
+    	    						enctype:'multipart/form-data',
+    	    						processData: false
+    	    					}).done(function(resp){
+    	    						$(".note-editable").append("<img src='" + resp + "'>");
+    	    						console.log(resp);
     					})
     				}
     			}
@@ -109,7 +111,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -120,7 +122,7 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h1>건의 게시판</h1><div></div></div>
+       <div class="head"><h1>질문 게시판</h1><div></div></div>
        <form action="qnaBaord.board02" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">

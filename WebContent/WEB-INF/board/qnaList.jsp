@@ -32,6 +32,29 @@ $(function(){
                  }
              };
           });
+	  $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
+		  if(e.keyCode==13){
+			  var option = $("#option option:selected").val();
+	             var searchWord = $(".searchWord").val();
+	            if(searchWord == ""){
+                alert("검색어를 입력해주세요");
+             }else{
+                if(option == "글제목"){
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=title";
+                 }else if(option == "작성자"){
+                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
+                 }
+             };
+		  }
+	  });
+	  
+	  $(".answer").each(function(i,item){
+			var seq = $(this).attr('seq');
+			var answer = "." + seq;
+			if($(answer).html() == 'n'){
+				$(answer).css('color','red');
+			}else{$(answer).css('color','blue');}
+		});
 });
 
 </script>
@@ -78,7 +101,7 @@ $(function(){
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -86,31 +109,57 @@ $(function(){
 		</div>
 	</div>
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-	<div class="head"><h1>건의게시판</h1><div></div></div>
+	<div class="head"><h1>질문 게시판</h1><div></div></div>
 	
 	<div class="container" id="wrapper">
 			
 		<div class="header row">
+		<c:choose>
+		<c:when test="${type == 4 }">
+			<div class="col-lg-2 col-md-1 col-sm-6 col-6 ">NO.</div>
+			<div class="col-lg-3 col-md-4 col-sm-5 col-5">제목</div>
+			<div class="col-lg-2 col-md-2 d-none d-md-block">작성자</div>
+			<div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div>
+			<div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-1">답변</div>
+		</c:when>
+		<c:otherwise>
 			<div class="col-lg-2 col-md-1 col-sm-6 col-6 ">NO.</div>
 			<div class="col-lg-4 col-md-5 col-sm-6 col-6">제목</div>
 			<div class="col-lg-2 col-md-2 d-none d-md-block">작성자</div>
 			<div class="col-lg-2 col-md-2  d-none d-md-block">작성일</div>
 			<div class="col-lg-2 col-md-2  d-none d-md-block">조회수</div>
+		</c:otherwise>
+		</c:choose>
 		</div>
 		<c:choose>
 			<c:when test="${recordCount == 0 }">
-				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+				<div class="noneRecord mt-2 mb-2">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
 					<c:forEach var="list" items="${qnaList }">
 			<div class="content row">
+				<c:choose>
+				<c:when test="${type == 4 }">
 				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
+				<div class="col-lg-3 col-md-4 col-sm-5 col-5">
+					<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
+				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
+				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-1 answer ${list.seq }" seq="${list.seq }">${list.answer}</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
 					<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</c:forEach>
 			</c:otherwise>
