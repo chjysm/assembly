@@ -51,6 +51,13 @@
                     .moreBtn:hover {
                         font-weight: bold;
                     }
+                    .card80{background-color: pink; border-radius:4px;}
+                    .card90{background-color:#ffa03a; border-radius:4px;}
+                    .bar80{background-color: pink;}
+                    .bar90{background-color:#ffa03a;}
+                   
+                    .fixMenu-text{postion:relative; top:20px;} 
+                    .fixedMenuNav div{text-align: center; font-size: 30px;} 
                 </style>
                 <script>
                     $(function() {										// 회원 아이디 조회 결과 반환
@@ -76,10 +83,12 @@
             <body id="page-top">
                 <!-- ================================================= 고정메뉴 ================================================= -->
                 <div class="container-fluid fixedMenu" id=nav_menu>
-                    <div class="row fixedMenuNav p-2">
-                        <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-                        <div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-                            <ul class="nav justify-content-center">
+                   <div class="row fixedMenuNav p-2">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " >
+				<img src="/Resources/img/logo.png" width="150px" height="100px">
+			</div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
                                 <li class="nav-item">
                                 	<a class="nav-link active" href="goMain.win">메인페이지</a></li>
                                 <li class="nav-item"><a class="nav-link"
@@ -462,12 +471,12 @@
                                 <!-- Project Card Example -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">일일 방문자 수</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">연령대별  회원 수</h6>
                                     </div>
                                     <div class="card-body">
                                         <c:if test="${agedto.teenage > 0}">
                                             <h4 class="small font-weight-bold">
-                                                10대 <span class="float-right">${agedto.teenage }명</span>
+                                                10~20대 <span class="float-right">${agedto.teenage }명</span>
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar bg-warning" role="progressbar"
@@ -477,7 +486,7 @@
                                         </c:if>
                                         <c:if test="${agedto.twenty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                20대 <span class="float-right">${agedto.twenty }명</span>
+                                                30대 <span class="float-right">${agedto.twenty }명</span>
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar bg-primary" role="progressbar"
@@ -487,7 +496,7 @@
                                         </c:if>
                                         <c:if test="${agedto.thirty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                30대 <span class="float-right">${agedto.thirty }명</span>
+                                                40대 <span class="float-right">${agedto.thirty }명</span>
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar bg-success" role="progressbar"
@@ -497,7 +506,7 @@
                                         </c:if>
                                         <c:if test="${agedto.forty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                40대 <span class="float-right">${agedto.forty }명</span>
+                                                50대 <span class="float-right">${agedto.forty }명</span>
                                             </h4>
                                             <div class="progress">
                                                 <div class="progress-bar bg-info" role="progressbar"
@@ -508,7 +517,7 @@
                                         </c:if>
                                         <c:if test="${agedto.fifty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                50대 <span class="float-right">${agedto.fifty }명</span>
+                                                60대 <span class="float-right">${agedto.fifty }명</span>
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar bg-secondary" role="progressbar"
@@ -518,7 +527,7 @@
                                         </c:if>
                                         <c:if test="${agedto.sixty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                60대 <span class="float-right">${agedto.sixty }명</span>
+                                                70대 <span class="float-right">${agedto.sixty }명</span>
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar bg-danger" role="progressbar"
@@ -528,20 +537,20 @@
                                         </c:if>
                                         <c:if test="${agedto.seventy > 0}">
                                             <h4 class="small font-weight-bold">
-                                                70대 <span class="float-right">${agedto.seventy }명</span>
+                                                80대 <span class="float-right">${agedto.seventy }명</span>
                                             </h4>
                                             <div class="progress mb-4">
-                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                <div class="progress-bar bar80" role="progressbar"
                                                      style="width: ${agePerdto.perSeventy }%" aria-valuenow="20"
                                                      aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </c:if>
                                         <c:if test="${agedto.eighty > 0}">
                                             <h4 class="small font-weight-bold">
-                                                80대 <span class="float-right">${agedto.eighty }명</span>
+                                                90대 <span class="float-right">${agedto.eighty }명</span>
                                             </h4>
                                             <div class="progress mb-4">
-                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                <div class="progress-bar bar90" role="progressbar"
                                                      style="width: ${agePerdto.perEighty }%" aria-valuenow="20"
                                                      aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -564,48 +573,57 @@
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-warning text-white shadow">
                                             <div class="card-body">
-                                                Teenage / Seventy
-                                                <div class="text-white-50 small">#f6c23e</div>
+                                                10~20대
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-primary text-white shadow">
                                             <div class="card-body">
-                                                Twenty / Eighty
-                                                <div class="text-white-50 small">#4e73df</div>
+                                                30대
+                                               
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-success text-white shadow">
                                             <div class="card-body">
-                                                Thirty / Ninety
-                                                <div class="text-white-50 small">#1cc88a</div>
+                                                40대
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-info text-white shadow">
                                             <div class="card-body">
-                                                Forty
-                                                <div class="text-white-50 small">#36b9cc</div>
+                                               50대
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-secondary text-white shadow">
                                             <div class="card-body">
-                                                Fifty
-                                                <div class="text-white-50 small">#858796</div>
+                                               60대
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-danger text-white shadow">
                                             <div class="card-body">
-                                                Ninety
-                                                <div class="text-white-50 small">#e74a3b</div>
+                                                70대
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="col-lg-6 mb-4">
+                                        <div class="card80 shadow text-white shadow">
+                                            <div class="card-body">
+                                               80대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card90 text-white shadow">
+                                            <div class="card-body">
+                                               90대
                                             </div>
                                         </div>
                                     </div>
@@ -642,7 +660,7 @@
                                                         <div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:forEach var="list" items="${mainNoticeList}">
+                                                        <c:forEach var="list" items="${noticeList}">
                                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
                                                             <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
                                                                 <a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
@@ -983,7 +1001,7 @@
                         $(".answer").each(function(i,item){
                             var seq = $(this).attr('seq');
                             var answer = "." + seq;
-                            if($(answer).html() == 'n'){
+                            if($(answer).html() == 'N'){
                                 $(answer).css('color','red');
                             }else{$(answer).css('color','blue');}
                         });

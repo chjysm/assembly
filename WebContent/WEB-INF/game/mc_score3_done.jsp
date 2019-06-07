@@ -23,7 +23,10 @@
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
 		.fixedMenuNav{background:#007bff;}
 		.fixedMenu .nav-link{color:#fff; font-weight:bold;}
+		 .fixMenu-text{position: relative; top: 20px;}
+		.fixedMenu div{text-align: center; font-size:30px;} 
 		.jumbotron{padding-top:180px; background:#b8daff;}
+		
 		.mainPage{padding-top:200px; background:#F2F2F2;} /*수정*/
 		.myCard{border:none;}
 		.nav-tabs .nav-link{color:#000; font-weight:bold;}
@@ -51,39 +54,23 @@
 <!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-				  <li class="nav-item">
-				    <a class="nav-link active" href="#">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-				  <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+		</div>
 	</div>
-
 <!-- 	본문 -->
 	<div class="container mainPage">
 		<div class="row my text-center">
