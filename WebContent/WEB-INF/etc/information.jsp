@@ -139,7 +139,7 @@ strong {
 			<div class="col-lg-6">
 				<div>
 					<iframe width="80%" height="315"
-						src="https://www.youtube.com/embed/cwdOMOdGgzU" frameborder="0"
+						src="https://www.youtube.com/embed/bV6mNHSCdWs" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
 				</div>
