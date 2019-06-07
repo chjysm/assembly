@@ -20,24 +20,6 @@
                 	 
                 	 if(result == true){
                 		 location.href="deleteContent.board02?seq=${content.seq}&&qnaCurrentPage=${qnaCurrentPage}" ;
-
-                         /* $("img").each(function(i, item){
-             				var src = $(item).attr("src");
-             				console.log(src);
-             				$.ajax({
-             					url:"deleteFile.board02",
-             					type:"post",
-             					data:{img:src},
-             					cache:false
-             				}).done(function(resp){
-                 				console.log(resp)
-                 				if(resp == "삭제성공"){
-                         			location.href="deleteContent.board02?seq=${content.seq}" ;
-                 				}else{
-                 					location.href="deleteContent.board02?seq=${content.seq}" ;
-                 				}
-                 			});
-             			})  */
                 	 }
                    
                 });
@@ -67,6 +49,7 @@
                             		location.href="wirteComment.board02?seq=${content.seq}&&commentPage=${cmCurrnetPage}";
                             	});
         					}else{//그냥 회원이 댓글을 등록했다면
+        						
         					$.ajax({
                         		url:"comment.board02",
                         		type:"post",
@@ -286,7 +269,7 @@
             </div>
              </c:otherwise>
           </c:choose>
-          
+         
             <div class="row  mb-5 writeBox">
             <c:choose>
          	 <c:when test="${type != 4 and email != content.email}">
@@ -307,7 +290,7 @@
             </c:when>
             </c:choose>
             </div>
-           
+         
             </div>
         
        

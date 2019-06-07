@@ -121,7 +121,7 @@
 		</div>
 		<c:choose>
 			<c:when test="${recordCount == 0 }">
-				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+				<div class="noneRecord mt-2 mb-2">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
 					<c:forEach var="list" items="${noticeList }">

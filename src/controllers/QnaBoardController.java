@@ -307,6 +307,7 @@ public class QnaBoardController extends HttpServlet {
 			String comment = root.get("comment").getAsString(); // 댓글
 			int postNum = Integer.parseInt(root.get("postNum").getAsString()); // 글번호
 			String postTitle = root.get("postTitle").getAsString();//글제목
+			
 			String email = (String)request.getSession().getAttribute("email");//댓글쓴사람 이메일
 			Pattern p = Pattern.compile("^[a-z0-9]*");
 			Matcher m = p.matcher(email); // 이메일 앞부분 -작성자
@@ -328,6 +329,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+		
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/wirteComment.board02")) {//댓글 등록하기 - 조회수 안 올라감!
 			int seq = Integer.parseInt(request.getParameter("seq"));
@@ -464,6 +466,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+			response.sendRedirect("writeComment.board02");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
