@@ -180,7 +180,8 @@
 								type : "post",
 								data:{
 									brand:"mcdonald",
-									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }'
+									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
+									id:'${id}'
 								}
 							}).done(function(){
 								$(location).attr("href", "goMain.win");

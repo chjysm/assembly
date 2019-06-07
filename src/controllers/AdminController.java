@@ -136,7 +136,7 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("donation", formatterDonationResult);			
 
 				StudyDAO st = new StudyDAO();										// 학습 완료 수
-				String study1 = "macdonald";
+				String study1 = "mcdonald";
 				int studyCount = st.getCount(study1);
 				request.setAttribute("studyCount", studyCount);
 				
