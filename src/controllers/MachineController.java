@@ -34,7 +34,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(100, "burger");
 				machine.mcSaveDB(110, "set_menu");
 				machine.mcSaveDB(140, "mc_morning");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -44,7 +44,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(130, "happy");
 				machine.mcSaveDB(180, "happy_meal");
 				machine.mcSaveDB(150, "snack_side");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -54,7 +54,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(190, "mc_cafe");
 				machine.mcSaveDB(170, "beverage");
 				machine.mcSaveDB(160, "desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
@@ -70,7 +70,7 @@ public class MachineController extends HttpServlet {
 				machine.mcUpdateDB("mc_cafe");
 				machine.mcUpdateDB("beverage");
 				machine.mcUpdateDB("desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
@@ -191,6 +191,8 @@ public class MachineController extends HttpServlet {
 		
 		//WEB-INF우회
 		else if(cmd.equals("/startGame.kiosk")) {
+			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
+		}else if(cmd.equals("/goMcFirst.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
 		}else if(cmd.equals("/returnMain.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);

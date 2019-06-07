@@ -29,4 +29,3 @@ drop sequence support_seq;
 COMMIT;
 
 select * from user_tables;
-select * from members;

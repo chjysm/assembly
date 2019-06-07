@@ -111,7 +111,7 @@
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -122,7 +122,7 @@
 	</div>
 <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
  
-       <div class="head"><h1>건의 게시판</h1><div></div></div>
+       <div class="head"><h1>질문 게시판</h1><div></div></div>
        <form action="qnaBaord.board02" method="get" id="writeForm">
        <div class="container" id="wrapper">
        <div class="header row">
