@@ -51,7 +51,11 @@ $(function(){
 	  $(".answer").each(function(i,item){
 			var seq = $(this).attr('seq');
 			var answer = "." + seq;
+<<<<<<< HEAD
 			if($(answer).html() == 'n'){
+=======
+			if($(answer).html() == 'N'){
+>>>>>>> 710ea33bc804603e26d82244cd9404d55557f213
 				$(answer).css('color','red');
 			}else{$(answer).css('color','blue');}
 		});
@@ -63,6 +67,8 @@ $(function(){
 	.fixedMenu{position: fixed; background: #fff;z-index: 999;}
 	.fixedMenuNav{background: #007bff;}
 	.fixedMenu,.nav-link{color: #fff; font-weight: bold;}
+	 .fixMenu-text{position: relative; top: 20px;}
+		.fixedMenu div{text-align: center; font-size:30px;} 
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 	.head {position: relative;top: 200px;text-align: center;}
 	#wrapper {border: 0px solid black;position: relative;top: 250px;}
@@ -91,9 +97,9 @@ $(function(){
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
 				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
