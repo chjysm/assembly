@@ -149,6 +149,7 @@ public class NaverDAO {
 		}
 		br.close();
 		if(responseCode==200) {
+			System.out.println(res.toString());
 			return res.toString();
 		}
 		else

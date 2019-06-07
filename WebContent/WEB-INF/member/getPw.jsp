@@ -33,6 +33,7 @@
 	<script>
 		$(function(){
 			$("#emailbtn").on("click",function(){
+				var certi =0;
 				$.ajax({
 					url:"check.ma",
 					data:{email : $("#email").val()},
@@ -47,19 +48,20 @@
 							data:{email : $("#email").val()},
 							type:"get"
 						}).done(function(resp2){
-							var certi=resp2;
-							$("#certibtn").on("click",function(){
-								if($("#certi").val()== certi ){
-									if(alert("인증성공")!=0){
-										location.href="goPwReset.me?email="+$("#email").val();
-									}
-								}else{
-									alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-								}
-							});
+							certi=resp2;
+							$("#certi").attr("disabled",false);
 						});
 					}
 				});
+			});
+			$("#certibtn").on("click",function(){
+				if($("#certi").val()== certi ){
+					if(alert("인증성공")!=0){
+						location.href="goPwReset.me?email="+$("#email").val();
+					}
+				}else{
+					alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+				}
 			});
 		});
 	</script>
@@ -84,7 +86,7 @@
 		<div class="row ">
 			<div class="col-lg-10 input-group mb-3">
 				<input type="text" class="form-control" id="certi" placeholder="인증번호"
-					aria-label="Recipient's username" aria-describedby="button-addon2">
+					aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
 				<div class="input-group-append">
 					<button class="btn btn-outline-primary" type="button"
 						id="certibtn">인증번호 입력</button>

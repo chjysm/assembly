@@ -64,7 +64,7 @@ public class FreeBoardController extends HttpServlet {
 					getNavi = dao.getNavi(freeCurrentPage); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("freeList", freeList);
 				request.setAttribute("getNavi", getNavi);
@@ -111,7 +111,7 @@ public class FreeBoardController extends HttpServlet {
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board01")){//flag 바꿔주기
@@ -201,7 +201,7 @@ public class FreeBoardController extends HttpServlet {
 					commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 
 				String navi = null;
@@ -209,7 +209,7 @@ public class FreeBoardController extends HttpServlet {
 					navi = cdao.getNavi(commentPage, seq);
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("comList", commentList);
 				request.setAttribute("navi", navi);
@@ -222,14 +222,14 @@ public class FreeBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -298,7 +298,7 @@ public class FreeBoardController extends HttpServlet {
 				result = cdao.insertComment(fcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
@@ -323,14 +323,14 @@ public class FreeBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -397,7 +397,7 @@ public class FreeBoardController extends HttpServlet {
 					getNaviSelect = dao.getNaviSelect(freeCurrentPage, option, searchWord); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("freeList", freeSelectList);
 				request.setAttribute("getNavi", getNaviSelect);
