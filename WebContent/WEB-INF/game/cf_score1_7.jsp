@@ -42,6 +42,15 @@
 		.choice{cursor:pointer;}
 		td{border:1px solid #000}
 		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:yellow; opacity:0.6;}
+		.insta:hover{color: #ad2e7f;}
+		.facebook{color: #1448e5;}
+		.facebook:hover{color: #022a60;}
+		.youtube{color: #ff0000;}
+		.youtube:hover{color: #600202;}
+		.twitter{color:#00d0ff;}
+		.twitter:hover{color:#329bc1;}
+		.connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
+		.connect li{margin:0;}
 	</style>
 </head>
 <body>
