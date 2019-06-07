@@ -86,8 +86,10 @@ public class QnaBoardController extends HttpServlet {
 //---------------------------------------------------------------------------------------------------------------------			
 	}else if(command.equals("/imageUpload.board02")) {//서버에 이미지 업로드
 		response.setCharacterEncoding("utf8");
+		request.setCharacterEncoding("utf8");
 		FileDTO fdto = new FileDTO();
 		String rootPath = this.getServletContext().getRealPath("/"); // 서블릿에 대한 환경정보 꺼내옴 -> getRealPath: 코드가 실행되는 진짜 경로
+		System.out.println(rootPath);
 		String nickForderPath = rootPath + (String)request.getSession().getAttribute("email");
 		String dateForderPath = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 		String filePath = nickForderPath +"/"+ dateForderPath; // 파일이 업로드될 경로
@@ -95,6 +97,9 @@ public class QnaBoardController extends HttpServlet {
 		if(!uploadPath.exists()) {// 폴더 생성
 			uploadPath.mkdir();
 		}
+		
+		
+		
 		DiskFileItemFactory diskFactory = new DiskFileItemFactory();
 		diskFactory.setRepository(new File(rootPath + "/WEB-INF/temp")); // 임시폴더 생성
 		ServletFileUpload sfu = new ServletFileUpload(diskFactory);
@@ -114,7 +119,10 @@ public class QnaBoardController extends HttpServlet {
 						break;
 					}
 				}
+				response.setCharacterEncoding("utf8");
+				
 				String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
+				System.out.println(realFilePath);
 				fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
 				request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
 				response.getWriter().append(realFilePath);
@@ -126,7 +134,9 @@ public class QnaBoardController extends HttpServlet {
 //---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board02")){//flag 바꿔주기
 			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
+			
 			fdto.setFlag(true);
+			
 			fdto.setFilePath(null);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/qnaBaord.board02")) {//등록버튼 누르면
@@ -162,6 +172,7 @@ public class QnaBoardController extends HttpServlet {
 			String imgPath = request.getParameter("img");
 			FileDTO files = (FileDTO)request.getSession().getAttribute("files");
 			boolean flag = files.isFlag();
+			System.out.println("파일삭제:" + flag);
 			if( flag == false) {
 				File file = new File(rootPath + imgPath);
 				if(file.exists()) { // 이미지가 서버에 존재 할 경우
@@ -296,6 +307,7 @@ public class QnaBoardController extends HttpServlet {
 			String comment = root.get("comment").getAsString(); // 댓글
 			int postNum = Integer.parseInt(root.get("postNum").getAsString()); // 글번호
 			String postTitle = root.get("postTitle").getAsString();//글제목
+			
 			String email = (String)request.getSession().getAttribute("email");//댓글쓴사람 이메일
 			Pattern p = Pattern.compile("^[a-z0-9]*");
 			Matcher m = p.matcher(email); // 이메일 앞부분 -작성자
@@ -317,6 +329,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+		
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/wirteComment.board02")) {//댓글 등록하기 - 조회수 안 올라감!
 			int seq = Integer.parseInt(request.getParameter("seq"));
@@ -453,6 +466,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+			response.sendRedirect("writeComment.board02");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
