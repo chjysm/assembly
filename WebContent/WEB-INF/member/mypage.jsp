@@ -250,7 +250,7 @@ select :hover {
 			</div>
 		</form>
 		<div class="row ">
-				<div class="col-lg-8">
+				<div class="col-lg-12">
 					<table class="table "
 						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
 						<tr class="st_row">

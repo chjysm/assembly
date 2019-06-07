@@ -208,7 +208,7 @@ nomaxvalue;
 create table study(
    id number,
    brand varchar(20) not null,
-   answer varchar(100) not null,
+   answer varchar(300) not null,
    comp_date date default sysdate
 ); 
 create table SupportBoard(
