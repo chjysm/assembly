@@ -35,7 +35,7 @@ public class AddMenuItems extends HttpServlet {
 				request.getRequestDispatcher("db.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/updatemc.additems")) {
 			try {
@@ -64,7 +64,9 @@ public class AddMenuItems extends HttpServlet {
 				request.getRequestDispatcher("db.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+
+
+				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/updatecoffee.additems")) {
 			try {
@@ -90,7 +92,10 @@ public class AddMenuItems extends HttpServlet {
 				request.getRequestDispatcher("db.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+
+
+				request.getRequestDispatcher("error.html").forward(request, response);
+
 			}
 		}else if(cmd.equals("/updatelotte.additems")) {
 			try {
@@ -118,7 +123,7 @@ public class AddMenuItems extends HttpServlet {
 				request.getRequestDispatcher("db.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/updatepizza.additems")) {
 			try {

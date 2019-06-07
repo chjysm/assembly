@@ -35,7 +35,9 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB(int num, String table_name) {
-		System.setProperty("webdriver.chrome.driver", "D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+
+		System.setProperty("webdriver.chrome.driver", "/Users/parksohee/Desktop/KH정보교육원ㅎㅎ/project02/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -260,7 +262,8 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB_coffee(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver", "D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/Users/parksohee/Desktop/KH정보교육원ㅎㅎ/project02/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -285,6 +288,7 @@ public class MenuDataDAO {
 			String sql = "insert into "+ table_name +" values(?, ?, ?, ?, ?)";
 			try(
 					Connection con = this.ready();
+
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -299,7 +303,7 @@ public class MenuDataDAO {
 	}	
 	
 	public int mcSaveDB_pizza(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver","D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","/Users/parksohee/Desktop/KH정보교육원ㅎㅎ/project02/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -323,7 +327,9 @@ public class MenuDataDAO {
 			int randomPrice = Integer.parseInt(price[0]+price[1]); 
 			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
 			try(
+
 					Connection con = this.ready();
+
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -337,7 +343,7 @@ public class MenuDataDAO {
 	}	
 
 	public int mcSaveDB_pizzads(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver","D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","/Users/parksohee/Desktop/KH정보교육원ㅎㅎ/project02/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -347,6 +353,7 @@ public class MenuDataDAO {
 		WebElement result = driver.findElement(By.cssSelector(".tab_category"));
 		String menuResult = result.getAttribute("innerHTML");
 		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?)\" alt=\"(.+?)\"></div>");
+
 		Matcher m = p.matcher(menuResult);
 		Pattern p2 = Pattern.compile("<p class=\"price_num\">(.+?)<em>원</em></p>");
 		Matcher m2 = p2.matcher(menuResult);
@@ -368,6 +375,7 @@ public class MenuDataDAO {
 			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
 			try(
 					Connection con = this.ready();
+
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -381,7 +389,7 @@ public class MenuDataDAO {
 	}	
 	
 	public int mcSaveDB_lotte(String selector, String table_name) {
-		System.setProperty("webdriver.chrome.driver","D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","/Users/parksohee/Desktop/KH정보교육원ㅎㅎ/project02/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");

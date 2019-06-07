@@ -40,7 +40,7 @@ public class QnaBoardController extends HttpServlet {
 			pw = response.getWriter();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("error.html");
 		}
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -74,7 +74,7 @@ public class QnaBoardController extends HttpServlet {
 					getNavi = dao.getNavi(qnaCurrentPage); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("qnaList", qnaList);
 				request.setAttribute("getNavi", getNavi);
@@ -129,7 +129,7 @@ public class QnaBoardController extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("error.html");
 		}
 //---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board02")){//flag 바꿔주기
@@ -195,7 +195,7 @@ public class QnaBoardController extends HttpServlet {
 				countComment = cdao.countComment(seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			try {
 				int viewCount = dao.viewCount(seq); //조회수 올리기
@@ -223,7 +223,7 @@ public class QnaBoardController extends HttpServlet {
 					commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 
 				String navi = null;
@@ -231,7 +231,7 @@ public class QnaBoardController extends HttpServlet {
 					navi = cdao.getNavi(commentPage, seq);
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 
 				}
 				request.setAttribute("comList", commentList);
@@ -245,14 +245,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -322,7 +322,7 @@ public class QnaBoardController extends HttpServlet {
 				result = cdao.insertComment(qcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
@@ -348,14 +348,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 
 			}
 			request.setAttribute("content", content);
@@ -430,7 +430,7 @@ public class QnaBoardController extends HttpServlet {
 					getNaviSelect = dao.getNaviSelect(qnaCurrentPage, option, searchWord); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("qnaList", qnaSelectList);
 				request.setAttribute("getNavi", getNaviSelect);
@@ -459,14 +459,14 @@ public class QnaBoardController extends HttpServlet {
 				int changeY = dao.changeAnswer(postNum);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
 			}else {
 				System.out.println("등록 ㄴ");
 			}
-			response.sendRedirect("writeComment.board02");
+
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
