@@ -66,6 +66,7 @@ $(function() {
     var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
     var idCount = 0;
     var pwCount = 0;
+    var certi = 0;
     //아이디 중복 ajax +정규표현식
     $("#email").on("input", function() {
        if (emailRex.exec($("#email").val()) == null) {
@@ -156,26 +157,28 @@ $(function() {
              },
              type : "get"
           }).done(function(resp2) {
-             var certi = resp2;
-             $("#certibtn").on("click", function() {
-                if ($("#certi").val() == certi) {
-                   if (alert("인증성공") != 0) {
-                      $("#certi").attr("flag", "true");
-                      $("#certiRegex").css("color", "green");
-                      $("#certiRegex").text("인증완료!");
-                   }
-                } else {
-                   alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-                   $("#certi").attr("flag", "fales");
-                   $("#certiRegex").css("color", "red");
-                   $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-                }
-             });
+             certi = resp2;
+             $("#certi").attr("disabled",false);
           });
        } else {
           alert("이메일이 중복 되거나 양식에 맞지 않습니다");
        }
     });
+    $("#certibtn").on("click", function() {
+        if ($("#certi").val() == certi) {
+           if (alert("인증성공") != 0) {
+              $("#certi").attr("flag", "true");
+              $("#certiRegex").css("color", "green");
+              $("#certiRegex").text("인증완료!");
+           }
+        } else {
+           alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+           $("#certi").attr("flag", "fales");
+           $("#certiRegex").css("color", "red");
+           $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+        }
+     });
+    
  })
 </script>
 <title>회원가입</title>
@@ -234,7 +237,7 @@ $(function() {
 										<input type="text" class="form-control" id="certi"
 											name="certi" flag="false" placeholder="인증번호를 입력해 주세요."
 											aria-label="인증번호를 입력해 주세요." aria-describedby="button-addon2"
-											required>
+											required disabled>
 										<div class="input-group-append">
 											<button class="btn btn-outline-primary" type="button"
 												id="certibtn">확인</button>

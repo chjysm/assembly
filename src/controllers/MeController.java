@@ -25,6 +25,7 @@ public class MeController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF8");
 		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF8");
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());

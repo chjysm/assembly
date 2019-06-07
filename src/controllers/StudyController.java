@@ -21,10 +21,10 @@ public class StudyController extends HttpServlet {
 			if(cmd.equals("/insert.st")) {
 				String brand = request.getParameter("brand");
 				String answer = request.getParameter("answer");
-				if(request.getSession().getAttribute("id").equals("")) {
+				if(request.getParameter("id").equals("")) {
 					st.insert(new StudyDTO(0,brand,answer,null));
 				}else {
-					int id =(int)request.getSession().getAttribute("id");
+					int id =Integer.parseInt(request.getParameter("id"));
 					st.insert(new StudyDTO(id,brand,answer,null));
 				}
 			}else if (cmd.equals("/getList.st")) {

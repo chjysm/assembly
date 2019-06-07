@@ -175,14 +175,27 @@
 								url : "session_end.kiosk",
 								type : "post"
 							});
-							$(location).attr("href", "main.jsp");
+							$.ajax({
+								url : "insert.st",
+								type : "post",
+								data:{
+									brand:"mcdonald",
+									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
+									id:'${id}'
+								}
+							}).done(function(){
+								$(location).attr("href", "goMain.win");
+							});
+							
 						});
 						$('#findMap').on('click', function(){
 							$.ajax({
 								url : "session_end.kiosk",
 								type : "post"
 							});
-							$(location).attr("href", "main.jsp");
+							var width=window.screen.width/2-800/2;//에러 나는거 아닙니다. 강사님도 그냥 두라고 하셨어요! 
+							var height=window.screen.height/2-600/2;
+							open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
 						});
 					</script>
 <!-- -------machine view end----------------------------------------------->

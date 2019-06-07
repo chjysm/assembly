@@ -154,8 +154,7 @@
 								<p>수고하셨습니다 이제 실제로 주변에 있는 매장을 찾아 주문해보세요!</p>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<button id="goMain">게임 메인으로 가기</button>
-									<button id="comp">게임 완료하기</button>
+									<button id="goMain">메인으로 가기</button>
 									<button id="findMap">지도 찾아보기</button>
 									
 								</div>
@@ -174,26 +173,16 @@
 							$.ajax({
 								url : "insert.st",
 								type : "post",
-								date:{
+								data:{
 									brand:"mcdonald",
-									answer:"${dto.takeIOY }:${dto.burgerNameY }:${dto.sideNameY }:${dto.beverageNameY }"
+									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
+									id:'${id}'
 								}
 							}).done(function(){
 								$(location).attr("href", "returnMain.kiosk");
 							});
 						});
-						$("#comp").on('click', function(){
-							$.ajax({
-								url : "insert.st",
-								type : "post",
-								date:{
-									brand:"mcdonald",
-									answer:"${dto.takeIOY }:${dto.burgerNameY }:${dto.sideNameY }:${dto.beverageNameY }"
-								}
-							}).done(function(){
-								$(location).attr("href", "goMain.win");
-							});
-						});
+						
 						$('#findMap').on('click', function(){
 							$.ajax({
 								url : "session_end.kiosk",
