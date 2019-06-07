@@ -8,17 +8,20 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import dto.FreeBoardDTO;
 import dto.FreeCommentsDTO;
 
 public class FreeCommentsDAO {
-	private Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@192.168.60.24:1521:xe";
-		String user = "kh";
-		String pw = "kh";
-
-		return DriverManager.getConnection(url, user, pw);
+	private Connection getConnection() throws Exception{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env"); 
+		DataSource ds = (DataSource)compenv.lookup("jdbc"); 
+		Connection con = ds.getConnection();
+		return con;
 	}
 
 	public int insertComment(FreeCommentsDTO param) throws Exception { // 댓글 정보 데베에 저장

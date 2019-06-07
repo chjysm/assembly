@@ -5,15 +5,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import dto.SupportDTO;
 
 public class SupportDAO {
 	private Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "kh";
-		String pw = "kh";
-		return DriverManager.getConnection(url, user, pw);
+		Context ctx = new InitialContext();
+		Context compenv = (Context) ctx.lookup("java:/comp/env");
+		DataSource ds = (DataSource) compenv.lookup("jdbc");
+		Connection con = ds.getConnection();
+		return con;
 	}
 
 	public int insert(SupportDTO param) throws Exception { // 내용 등록

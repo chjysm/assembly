@@ -309,7 +309,7 @@ a:hover[class="moreBtn"] {
 									<p>
 										<a
 											href="http://www.mediatoday.co.kr/news/articleView.html?mod=news&act=articleView&idxno=148319"
-											target="_blank">기사 바로가기</a>
+											target="_blank" style="text-decoration: none;">기사 바로가기</a>
 									</p>
 								</div>
 							</div>
@@ -321,7 +321,7 @@ a:hover[class="moreBtn"] {
 									<p>
 										<a
 											href="http://www.ohmynews.com/NWS_Web/Event/Premium/at_pg.aspx?CNTN_CD=A0002535977&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
-											target="_blank"> 기사 바로가기 </a>
+											target="_blank" style="text-decoration: none;"> 기사 바로가기 </a>
 									</p>
 								</div>
 							</div>
@@ -333,7 +333,7 @@ a:hover[class="moreBtn"] {
 									<p>
 										<a
 											href="https://view.asiae.co.kr/news/view.htm?idxno=2019052710552826120"
-											target="_blank">기사 바로가기</a>
+											target="_blank" style="text-decoration: none;">기사 바로가기</a>
 									</p>
 								</div>
 							</div>
@@ -356,76 +356,78 @@ a:hover[class="moreBtn"] {
 				<c:choose>
 					<c:when test="${type==1}">
 						<form>
-						<div style="border-radius: 10px; background: #b8daff; height: 250px">
-							<div class="form-group pb-1 1 pt-5 pb-2" style="font-size: 1.4em">
-								<label for="comment"><strong>${nickname}</strong>님
+							<div
+								style="border-radius: 10px; background: #b8daff; height: 250px">
+								<div class="form-group pb-1 1 pt-5 pb-2"
+									style="font-size: 1.4em">
+									<label for="comment"><strong>${nickname}</strong>님
 										환영합니다! </label>
-							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<br> <br>
-							<button type="button" id="naLogout">
-								<img height="49" width="150" src="Resources/img/nlogout.PNG" />
-							</button>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<br> <br>
+								<button type="button" id="naLogout">
+									<img height="49" width="150" src="Resources/img/nlogout.PNG" />
+								</button>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
-						<div
+							<div
 								style="border-radius: 10px; background: #b8daff; height: 250px">
-							<div class="form-group pb-1" style="font-size: 1.4em">
+								<div class="form-group pb-1" style="font-size: 1.4em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
 									</label>
-							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<br> <br>
-							<button type="button" id="kaLogout">
-								<img height="49" width="222" src="Resources/img/klogout.PNG" />
-							</button>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<br> <br>
+								<button type="button" id="kaLogout">
+									<img height="49" width="222" src="Resources/img/klogout.PNG" />
+								</button>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
 						<form>
-						<div
+							<div
 								style="border-radius: 10px; background: #b8daff; height: 150px">
-							<div class="form-group pb-1" style="font-size: 1.2em">
+								<div class="form-group pb-1" style="font-size: 1.2em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
 									</label>
-							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="emailLogout">로그아웃</button>
-							<br> <br>
+								</div>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+								<button type="button"
+									class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+								<button type="button" class="btn btn-outline-secondary mr-2"
+									id="emailLogout">로그아웃</button>
+								<br> <br>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
 						<form>
-						<div
+							<div
 								style="border-radius: 10px; height: 200px; background: #b8daff">
-							<div class="form-group pb-3">
-								<label for="comment"> 어서오세요 <strong>admin</strong>님!
+								<div class="form-group pb-3">
+									<label for="comment"> 어서오세요 <strong>admin</strong>님!
 										환영합니다!
 									</label>
-							</div>
-							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="emailLogout2">로그아웃</button>
-							<br> <br>
-							<button type="button" class="btn btn-outline-secondary mr-2"
-								id="adminPage">관리자 페이지</button>
-							<br>
+								</div>
+								<button type="button" class="btn btn-outline-secondary mr-2"
+									id="emailLogout2">로그아웃</button>
+								<br> <br>
+								<button type="button" class="btn btn-outline-secondary mr-2"
+									id="adminPage">관리자 페이지</button>
+								<br>
 							</div>
 						</form>
 					</c:when>
