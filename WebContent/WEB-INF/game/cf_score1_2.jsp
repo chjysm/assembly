@@ -23,6 +23,8 @@
 		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
 		.fixedMenuNav{background:#007bff;}
+		.fixMenu-text{position: relative; top: 20px;}
+		.fixedMenu div{text-align: center; font-size:30px;} 
 		.fixedMenu .nav-link{color:#fff; font-weight:bold;}
 		.jumbotron{padding-top:180px; background:#b8daff;}
 		.mainPage{padding-top:200px; background:#F2F2F2;} /*수정*/
