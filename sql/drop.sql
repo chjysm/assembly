@@ -26,6 +26,27 @@ drop sequence member_seq;
 drop table study;
 drop table supportboard;
 drop sequence support_seq;
+drop table coffee_coffee;
+drop table coffee_latte;
+drop table coffee_holly;
+drop table coffee_tea;
+drop table coffee_bakery;
+drop table lotte_bugerset;
+drop table lotte_chickenset;
+drop table lotte_good;
+drop table lotte_burger;
+drop table lotte_chicken;
+drop table lotte_desert;
+drop table lotte_drink;
+drop table pizza_seed;
+drop table pizza_prm;
+drop table pizza_cls;
+drop table pizza_side;
+drop table pizza_beverage;
+drop table pizza_souce;
+
+
+
 COMMIT;
 
 select * from user_tables;

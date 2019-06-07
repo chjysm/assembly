@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +35,7 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB(int num, String table_name) {
-		System.setProperty("webdriver.chrome.driver","D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -235,4 +237,170 @@ public class MenuDataDAO {
 		}catch(Exception e) {e.printStackTrace();}
 		return null;
 	}
+
+	public int mcSaveDB_coffee(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver", "D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://www.hollys.co.kr/menu/" + num); 
+		WebElement result = driver.findElement(By.cssSelector(".content"));
+		//espresso.do //signature.do //hollyccino.do //tea.do //bakery.do
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<img src=\"(.+?)\" alt=\"(.+?)\" class.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+menu_info\">(.+?)</p>");
+		Matcher m = p.matcher(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find()) {
+			int randomPrice = (int)Math.floor((Math.random() * (90-10+1))+10) * 100; //10~90 사이 랜덤 수 *
+			String imgAddr = "https:" + m.group(1);
+			String menuName = m.group(2);
+			String menuNameEng = m.group(3);
+			String sql = "insert into "+ table_name +" values(?, ?, ?, ?, ?)";
+			try(
+					Connection con = this.ready1();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setString(4, menuNameEng);
+				pstat.setInt(5, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+	
+	public int mcSaveDB_pizza(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver","D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://web.dominos.co.kr/goods/list?dsp_ctgr="+num); //C0101,C0102,C0104,C0201,C0202,C0203 
+		WebElement result = driver.findElement(By.cssSelector(".tab_content"));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?)\" alt=\"(.+?)\">.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+span>(.+?)<em>원");
+		Matcher m = p.matcher(menuResult);
+		System.out.println(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find()) {
+			String imgAddr = m.group(1);
+			String menuName = m.group(2);
+			String[] price = m.group(3).split(",");
+			int randomPrice = Integer.parseInt(price[0]+price[1]); 
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready1();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+
+	public int mcSaveDB_pizzads(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver","D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://web.dominos.co.kr/goods/list?dsp_ctgr="+num); //C0101,C0102,C0104,C0201,C0202,C0203 
+		WebElement result = driver.findElement(By.cssSelector(".tab_category"));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?) alt=\"(.+?)\"></div>");
+		Matcher m = p.matcher(menuResult);
+		Pattern p2 = Pattern.compile("<p class=\"price_num\">(.+?)<em>원</em></p>");
+		Matcher m2 = p2.matcher(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find() && m2.find()) {
+			String imgAddr = m.group(1);
+			String menuName = m.group(2);
+			String[] price = m2.group(1).split(",");
+			int randomPrice = 0;
+				if(price.length>1) {
+					randomPrice = Integer.parseInt(price[0]+price[1]); 
+				}else {
+					randomPrice = Integer.parseInt(price[0]); 
+				}
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready1();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+	
+	public int mcSaveDB_lotte(String selector, String table_name) {
+		System.setProperty("webdriver.chrome.driver","D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("http://www.lotteria.com/menu/Menu_All.asp");
+		WebElement result = driver.findElement(By.cssSelector(selector));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<img src=\"(.+?)\" width.+alt=\"(.+?)\">");
+		Matcher m = p.matcher(menuResult);
+		Pattern p2 = Pattern.compile("<strong>(.+?)<span class=\"ir hiddenSpan\">원</span></strong>");
+		Matcher m2 = p2.matcher(menuResult);
+		
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find() && m2.find()) {
+			String[] price = m2.group(1).split(",");
+			int randomPrice = 0;
+				if(price.length>1) {
+					randomPrice = Integer.parseInt(price[0]+price[1]); 
+				}else {
+					randomPrice = Integer.parseInt(price[0]); 
+				}
+			String imgAddr = "http://www.lotteria.com" + m.group(1);
+			String menuName = m.group(2);
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready1();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+
 }
