@@ -211,6 +211,26 @@ public class AdminDAO extends TimerTask {
 			return -1;
 		}
 	}
+	
+	private PreparedStatement pstatForCheckBan(Connection con, String email) throws Exception{
+		String sql = "select ban from members where email=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, email);
+		return pstat;
+	}
+	public String CheckBan(String pram) throws Exception{
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = this.pstatForSearchByEmail(con, pram);
+				ResultSet rs = pstat.executeQuery();				
+				){
+			if(rs.next()) {
+				String result = rs.getString("ban");
+				return result;
+			} 
+		}
+		return null;
+	}
 }
 
 

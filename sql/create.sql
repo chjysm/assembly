@@ -44,7 +44,7 @@ create table QuestionBoard(
     writeDate timestamp default sysdate,
     email varchar(100) not null,
     id number not null,   
-    answer varchar(1) default 'n' check (answer in ('n','y')) /*´äº¯ ´Þ¸®¸é y ¾È´Þ¸®¸é n ±âº»°ª n*/
+    answer varchar(1) default 'N' check (answer in ('N','Y')) /*ï¿½äº¯ ï¿½Þ¸ï¿½ï¿½ï¿½ y ï¿½È´Þ¸ï¿½ï¿½ï¿½ n ï¿½âº»ï¿½ï¿½ n*/
 );
 
 create sequence QuestionBoard_seq
@@ -88,7 +88,7 @@ increment by 1
 nomaxvalue
 nocache;
 
--- °øÁö °Ô½ÃÆÇ ´ñ±Û
+-- ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 create table NoticeComments(
     seq number primary key,
     comments varchar(400) not null,
