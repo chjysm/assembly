@@ -41,6 +41,7 @@
 		.menuList{height:700px; overflow-y:auto;}
 		.choice{cursor:pointer;}
 		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:yellow; opacity:0.6;}
+		.choice1 img{width:80%; height:80%;}
 	</style>
 </head>
 <body>
@@ -48,7 +49,7 @@
 	<script>
 		$(function(){
 			$('#btnBefore').on('click', function(){
-				$(location).attr('href', 'returntakeio.kiosk');
+				$(location).attr('href', 'returntakeio.coffeone');
 			}); //뒤로가면 이전 단계로 새로고침
 			$('.device-slider__item img').on('click', function(){
 				$('.device-slider__item img').css("opacity", "0.4");
@@ -92,7 +93,7 @@
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 						<form id="speakerForm">
-							<div id="fake" style="display:none;">${burgers.get(Math.floor(Math.random()*(5+1))).menuName }</div>
+							<div id="fake" style="display:none;">${coffee_coffees.get(Math.floor(Math.random()*(5+1))).menuName }</div>
 						    <input type="text" id="speakerTxt" class="text-center" style="width:100%; border:none; background:none;" disabled>
 								<script>
 									document.getElementById('speakerTxt').value="①왼쪽 메뉴에서 '버거'를 고르고, ②"+document.getElementById('fake').innerText+" 를 선택한 후, ③[다음]버튼을 누르세요";
@@ -157,12 +158,12 @@
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my menuList">
 								  <h1 class="h1">(1)메인메뉴 주문하기</h1>
 									<div class="row">
-										<c:forEach var="burger" items="${burgers }">
+										<c:forEach var="coffee_coffee" items="${coffee_coffees }">
 											<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 my text-center choice1">
-												<img id="menuImg" src="${burger.imgAddr}"><i></i>
-												<p class="h5" id="menuName">${burger.menuName }</p>
-												<p id="menuEng">${burger.menuNameEng }</p>
-												<p class="h5" id="price">${burger.price }원</p>
+												<img id="menuImg" src="${coffee_coffee.imgAddr}"><i></i>
+												<p class="h5" id="menuName">${coffee_coffee.menuName }</p>
+<%-- 												<p id="menuEng">${coffee_coffee.menuNameEng }</p> --%>
+												<p class="h5" id="price">${coffee_coffee.price }원</p>
 											</div>
 										</c:forEach>
 									</div>
@@ -200,13 +201,13 @@
 								});
 								$('.nextViewBtn').on('click', function(){
 									$.ajax({
-										url : "burger_value.kiosk",
+										url : "burger_value.coffeone",
 										type : "post",
 										data : {key1 : $('#fake').html(), key2 : burgerNameY}
 									}).done(function(resp){
 										alert(resp);
 									});
-									$(location).attr('href', 'mc_sideMenu.kiosk');
+									$(location).attr('href', 'mc_sideMenu.coffeone');
 								});
 							});
 						</script>

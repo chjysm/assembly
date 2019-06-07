@@ -93,6 +93,26 @@
 				  </div>
 				</div>
 			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-5">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">게임3</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="goFirstStep.coffeone" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-5">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">게임4</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="goSecStep.coffesec" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
 		</div>
 	</div>
 		

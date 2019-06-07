@@ -219,7 +219,7 @@
 									    <button id="slideBtn1">이전</button>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-									    <button>주문취소</button>
+									    <button id="ordercancel">주문취소</button>
 										<button id="payButton">결제하기</button>
 									</div>
 							    </div>
@@ -235,6 +235,10 @@
 	$('#slideBtn1').on('click', function(){
 		var index = $('.carousel-inner').find('.active').index();
 		$('#slideBtn1').attr({"data-target" : "#carouselExampleIndicators", "data-slide-to" : index-1});
+	});
+	$('#ordercancel').on("click", function(){
+		alert('초기화면으로 돌아갑니다');
+		$(location).attr("href", "startGame.kiosk");
 	});
 	$('#payButton').on("click", function(){
 		$('#popup').removeAttr("class", "d-none");

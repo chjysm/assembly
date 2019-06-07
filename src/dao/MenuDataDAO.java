@@ -109,6 +109,27 @@ public class MenuDataDAO {
 			return lists;
 		}catch(Exception e) {e.printStackTrace(); return null;}
 	}
+	
+	public ArrayList<McdonaldDTO> getAllInfo(String table_name) {
+		String sql = "select * from " + table_name;
+		try(
+				Connection con = this.ready();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				){
+			ArrayList<McdonaldDTO> lists = new ArrayList();
+			while(rs.next()) {
+				int seq = rs.getInt("seq");
+				String imgAddr = rs.getString("imgAddr");
+				String menuName = rs.getString("menuName");
+				String menuNameEng = rs.getString("menuNameEng");
+				int price = rs.getInt("price");
+				McdonaldDTO dto = new McdonaldDTO(seq, imgAddr, menuName, menuNameEng, price);
+				lists.add(dto);
+			}
+			return lists;
+		}catch(Exception e) {e.printStackTrace(); return null;}
+	}
 
 	public String personalCode() {
 		String[] ALPHA = new String[] {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"};
@@ -139,19 +160,19 @@ public class MenuDataDAO {
 	
 
 	//테스트용
-	public Connection ready1() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "kh";
-			String password = "kh";
-			Connection con = DriverManager.getConnection(url, user, password);
-			return con;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public Connection ready1() {
+//		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String user = "kh";
+//			String password = "kh";
+//			Connection con = DriverManager.getConnection(url, user, password);
+//			return con;
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	public int updateGameStuff(String val, String value, String code) {
 		String sql = "update game set "+val+"=? where code=?";
@@ -188,7 +209,7 @@ public class MenuDataDAO {
 	public McFinalDTO selectMcFinal(String personalCode){
 		String sql = "select * from game where code='"+personalCode+"'";
 		try(
-				Connection con = this.ready1();
+				Connection con = this.ready();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();
 				){
@@ -263,7 +284,7 @@ public class MenuDataDAO {
 			String menuNameEng = m.group(3);
 			String sql = "insert into "+ table_name +" values(?, ?, ?, ?, ?)";
 			try(
-					Connection con = this.ready1();
+					Connection con = this.ready();
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -302,7 +323,7 @@ public class MenuDataDAO {
 			int randomPrice = Integer.parseInt(price[0]+price[1]); 
 			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
 			try(
-					Connection con = this.ready1();
+					Connection con = this.ready();
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -325,7 +346,7 @@ public class MenuDataDAO {
 		driver.get("https://web.dominos.co.kr/goods/list?dsp_ctgr="+num); //C0101,C0102,C0104,C0201,C0202,C0203 
 		WebElement result = driver.findElement(By.cssSelector(".tab_category"));
 		String menuResult = result.getAttribute("innerHTML");
-		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?) alt=\"(.+?)\"></div>");
+		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?)\" alt=\"(.+?)\"></div>");
 		Matcher m = p.matcher(menuResult);
 		Pattern p2 = Pattern.compile("<p class=\"price_num\">(.+?)<em>원</em></p>");
 		Matcher m2 = p2.matcher(menuResult);
@@ -346,7 +367,7 @@ public class MenuDataDAO {
 				}
 			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
 			try(
-					Connection con = this.ready1();
+					Connection con = this.ready();
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);
@@ -390,7 +411,7 @@ public class MenuDataDAO {
 			String menuName = m.group(2);
 			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
 			try(
-					Connection con = this.ready1();
+					Connection con = this.ready();
 					PreparedStatement pstat = con.prepareStatement(sql);
 					){
 				pstat.setInt(1, i++);

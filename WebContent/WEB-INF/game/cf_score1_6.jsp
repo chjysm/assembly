@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<title>Insert title here</title>
+<title>학습1_6</title>
 	<style>
 		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
@@ -42,6 +42,7 @@
 		.card{padding:10px 0px 0 0px;}
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
+		.choice{cursor:pointer;}
 		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:yellow; opacity:0.6;}
 	</style>
 </head>
@@ -51,6 +52,10 @@
 		$(function(){
 			$('#btnBefore').on('click', function(){
 				window.history.back();
+			});
+			$('.choice1').on('click', function(){
+				$('.choice1').css("background", "none");
+				$(this).css("background", "rgba(0,0,0,0.6)");
 			});
 		});
 	</script>
@@ -66,33 +71,18 @@
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-6 col-md-6col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center">
-				  <li class="nav-item">
-				    <a class="nav-link active" href="#">메인페이지</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴1</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴2</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="#">메뉴3</a>
-				  </li>
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+				  <li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+					<c:if test="${type==4}">
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>	
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-				  <input type="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">찾아보기</button>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>	
 	</div>
 
@@ -150,10 +140,10 @@
 											    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 											      <div class="card-body">
 											          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${burgerResult.menuName }</p>
-														<p id="menuEng">${burgerResult.menuNameEng }</p>
-														<p class="h5" id="price">${burgerResult.price }원</p>
+														<img id="menuImg" src="${coffeeResult.imgAddr}"><i></i>
+														<p class="h5" id="menuName">${coffeeResult.menuName }</p>
+														<p id="menuEng">${coffeeResult.menuNameEng }</p>
+														<p class="h5" id="price">${coffeeResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -169,10 +159,10 @@
 											    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 											      <div class="card-body">
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${sideResult.menuName }</p>
-														<p id="menuEng">${sideResult.menuNameEng }</p>
-														<p class="h5" id="price">${sideResult.price }원</p>
+														<img id="menuImg" src="${hollyResult.imgAddr}"><i></i>
+														<p class="h5" id="menuName">${hollyResult.menuName }</p>
+														<p id="menuEng">${hollyResult.menuNameEng }</p>
+														<p class="h5" id="price">${hollyResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -188,22 +178,10 @@
 											    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 											      <div class="card-body">
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${beverageResult.imgAddr}">
-														<p class="h5" id="menuName">${beverageResult.menuName }</p>
-														<p id="menuEng">${beverageResult.menuNameEng }</p>
-														<p class="h5" id="price">${beverageResult.price }원</p>
-													  </div>
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${cafeResult.imgAddr}">
-														<p class="h5" id="menuName">${cafeResult.menuName }</p>
-														<p id="menuEng">${cafeResult.menuNameEng }</p>
-														<p class="h5" id="price">${cafeResult.price }원</p>
-													  </div>
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${desertResult.imgAddr}">
-														<p class="h5" id="menuName">${desertResult.menuName }</p>
-														<p id="menuEng">${desertResult.menuNameEng }</p>
-														<p class="h5" id="price">${desertResult.price }원</p>
+														<img id="menuImg" src="${bakeryResult.imgAddr}"><i></i>
+														<p class="h5" id="menuName">${bakeryResult.menuName }</p>
+														<p id="menuEng">${bakeryResult.menuNameEng }</p>
+														<p class="h5" id="price">${bakeryResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -211,8 +189,7 @@
 											</div>
 										</div>
 							<!-- 		탭 화면 끝 -->
-										<button id="btnBefore">이전단계</button>
-										<button id="slideBtn2">선택완료</button>
+										<button id="slideBtn2">장바구니</button>
 	   							</div>
 							    <div class="carousel-item">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
@@ -220,35 +197,23 @@
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 								          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-											<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-											<p class="h5" id="menuName">${burgerResult.menuName }</p>
-											<p id="menuEng">${burgerResult.menuNameEng }</p>
-											<p class="h5" id="price">${burgerResult.price }원</p>
+											<img id="menuImg" src="${coffeeResult.imgAddr}"><i></i>
+											<p class="h5" id="menuName">${coffeeResult.menuName }</p>
+											<p id="menuEng">${coffeeResult.menuNameEng }</p>
+											<p class="h5" id="price">${coffeeResult.price }원</p>
 										  </div>
 									      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-												<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-												<p class="h5" id="menuName">${sideResult.menuName }</p>
-												<p id="menuEng">${sideResult.menuNameEng }</p>
-											<p class="h5" id="price">${sideResult.price }원</p>
+												<img id="menuImg" src="${hollyResult.imgAddr}"><i></i>
+												<p class="h5" id="menuName">${hollyResult.menuName }</p>
+												<p id="menuEng">${hollyResult.menuNameEng }</p>
+											<p class="h5" id="price">${hollyResult.price }원</p>
 											  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${beverageResult.imgAddr}">
-													<p class="h5" id="menuName">${beverageResult.menuName }</p>
-													<p id="menuEng">${beverageResult.menuNameEng }</p>
-													<p class="h5" id="price">${beverageResult.price }원</p>
-												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${cafeResult.imgAddr}">
-													<p class="h5" id="menuName">${cafeResult.menuName }</p>
-													<p id="menuEng">${cafeResult.menuNameEng }</p>
-													<p class="h5" id="price">${cafeResult.price }원</p>
-												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${desertResult.imgAddr}">
-													<p class="h5" id="menuName">${desertResult.menuName }</p>
-													<p id="menuEng">${desertResult.menuNameEng }</p>
-													<p class="h5" id="price">${desertResult.price }원</p>
-												  </div>
+								      	 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<img id="menuImg" src="${bakeryResult.imgAddr}"><i></i>
+											<p class="h5" id="menuName">${bakeryResult.menuName }</p>
+											<p id="menuEng">${bakeryResult.menuNameEng }</p>
+											<p class="h5" id="price">${bakeryResult.price }원</p>
+										  </div>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 									    <button id="slideBtn1">이전</button>
@@ -280,7 +245,7 @@
 	});
 	$('#close').on('click', function(){
 		$('#popup').attr("class", "d-none");
-		$(location).attr("href", "mc_fin.third");
+		$(location).attr("href", "mc_fin.coffeone");
 	});
 </script>
 				<!-- carousel end-->
@@ -300,11 +265,16 @@
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				<h1 class="display-5 font-weight-bold">사이트맵</h1>
-				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
-			</div>				
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				홈페이지 이용약관 등
+				<div class="">
+					<span class="logo">Logo</span>
+					<dl>
+						<dt>Assembly(주)</dt>
+						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+						<dd>대표이사: 홍길동 사업자등록번호 : 815-81-00000</dd>
+						<dd>Tel: 1599-0000 Fax: 02-894-0000</dd>
+						<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+					</dl>
+				</div>
 			</div>
 		</div>
 	</div>	

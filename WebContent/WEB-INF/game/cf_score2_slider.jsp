@@ -125,12 +125,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row burgerView">
-						<c:forEach var="burger" items="${burgers }">
+						<c:forEach var="coffee_coffee" items="${coffee_coffees }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
-								<p id="menuEng">${burger.menuNameEng }</p>
-								<p class="h5" id="price">${burger.price }원</p>
+								<img id="menuImg" src="${coffee_coffee.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${coffee_coffee.menuName }</p>
+								<p id="menuEng">${coffee_coffee.menuNameEng }</p>
+								<p class="h5" id="price">${coffee_coffee.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -146,12 +146,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row sideView">
-						<c:forEach var="snack_side" items="${snack_sides }">
+						<c:forEach var="coffee_latte" items="${coffee_lattes }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${snack_side.menuName }</p>
-								<p id="menuEng">${snack_side.menuNameEng }</p>
-								<p class="h5" id="price">${snack_side.price }원</p>
+								<img id="menuImg" src="${coffee_latte.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${coffee_latte.menuName }</p>
+								<p id="menuEng">${coffee_latte.menuNameEng }</p>
+								<p class="h5" id="price">${coffee_latte.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -167,12 +167,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row beverageView">
-						<c:forEach var="beverage" items="${beverages }">
+						<c:forEach var="coffee_holly" items="${coffee_hollys }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${beverage.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${beverage.menuName }</p>
-								<p id="menuEng">${beverage.menuNameEng }</p>
-								<p class="h5" id="price">${beverage.price }원</p>
+								<img id="menuImg" src="${coffee_holly.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${coffee_holly.menuName }</p>
+								<p id="menuEng">${coffee_holly.menuNameEng }</p>
+								<p class="h5" id="price">${coffee_holly.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -188,12 +188,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row cafeView">
-						<c:forEach var="mc_cafe" items="${mc_cafes }">
+						<c:forEach var="coffee_tea" items="${coffee_teas }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${mc_cafe.menuName }</p>
-								<p id="menuEng">${mc_cafe.menuNameEng }</p>
-								<p class="h5" id="price">${mc_cafe.price }원</p>
+								<img id="menuImg" src="${coffee_tea.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${coffee_tea.menuName }</p>
+								<p id="menuEng">${coffee_tea.menuNameEng }</p>
+								<p class="h5" id="price">${coffee_tea.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -209,12 +209,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row desertView">
-						<c:forEach var="desert" items="${deserts }">
+						<c:forEach var="coffee_bakery" items="${coffee_bakerys }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${desert.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${desert.menuName }</p>
-								<p id="menuEng">${desert.menuNameEng }</p>
-								<p class="h5" id="price">${desert.price }원</p>
+								<img id="menuImg" src="${coffee_bakery.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${coffee_bakery.menuName }</p>
+								<p id="menuEng">${coffee_bakery.menuNameEng }</p>
+								<p class="h5" id="price">${coffee_bakery.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -254,7 +254,7 @@
 					$(this).css("background", "darkgreen");
 					console.log($(this).find('#menuName').html());
 						$.ajax({
-							url : "burger_value.third",
+							url : "burger_value.coffesec",
 							type : "post",
 							data : {key2 : $(this).find('#menuName').html()}
 						});
@@ -263,7 +263,7 @@
 					$('.sideView .choice1').css("background", "none");
 					$(this).css("background", "darkgreen");
 						$.ajax({
-							url : "snack_value.third",
+							url : "snack_value.coffesec",
 							type : "post",
 							data : {key2 : $(this).find('#menuName').html()}
 						});
@@ -272,7 +272,7 @@
 					$('.beverageView .choice1').css("background", "none");
 					$(this).css("background", "darkgreen");
 						$.ajax({
-							url : "beverage_value.third",
+							url : "beverage_value.coffesec",
 							type : "post",
 							data : {key2 : $(this).find('#menuName').html()}
 						});
@@ -281,7 +281,7 @@
 					$('.cafeView .choice1').css("background", "none");
 					$(this).css("background", "darkgreen");
 						$.ajax({
-							url : "cafe_value.third",
+							url : "cafe_value.coffesec",
 							type : "post",
 							data : {key2 : $(this).find('#menuName').html()}
 						});
@@ -290,7 +290,7 @@
 					$('.desertView .choice1').css("background", "none");
 					$(this).css("background", "darkgreen");
 						$.ajax({
-							url : "desert_value.third",
+							url : "desert_value.coffesec",
 							type : "post",
 							data : {key2 : $(this).find('#menuName').html()}
 						});
@@ -300,7 +300,7 @@
 					$(location).attr("href", "startGame.kiosk");
 				});
 				$('#btnShopBox').on("click", function(){
-					$(location).attr("href", "mc_slide.third");
+					$(location).attr("href", "mc_slide.coffesec");
 				});
 			</script>
 <!----------machine view end----------------------------------------------->

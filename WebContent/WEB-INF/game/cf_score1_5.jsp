@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<title>학습1_3</title>
+<title>학습1_5</title>
 	<style>
 		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
@@ -30,12 +30,12 @@
 		.tab-pane{padding:30px; background:#fff; border-radius:0 0 5px 5px; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
 		.myTitle{text-align:left; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 		.tabStuff{font-size:13px; color:#555;}
-		.myBanner img{padding-top:10px; width:90%; height:250px; border-radius:50%;}
+		.myBanner img{paddingtop:10px; width:90%; height:250px; border-radius:50%;}
 		.footer{background:#b8daff;}
 /* 		(위쪽)수정하지 마세요 */
 		.my{border:1px solid #000;}
 		.lcd{border:30px solid #000; border-bottom:55px solid #000; border-radius:5px;}
-		.machine{width:100%; height:550px; background:url(img/Resources/mc_machine.png) no-repeat; background-size:cover;}
+		.machine{width:100%; height:550px; background:url(img/mc_machine.png) no-repeat; background-size:cover;}
 		.card{padding:10px 0px 0 0px;}
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
@@ -48,8 +48,8 @@
 	<script>
 		$(function(){
 			$('#btnBefore').on('click', function(){
-				$(location).attr('href', 'returntakeio.kiosk');
-			}); //뒤로가면 이전 단계로 새로고침
+				window.history.back();
+			});
 			$('.device-slider__item img').on('click', function(){
 				$('.device-slider__item img').css("opacity", "0.4");
 				$(this).css("opacity", "1.0");
@@ -92,10 +92,10 @@
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 						<form id="speakerForm">
-							<div id="fake" style="display:none;">${burgers.get(Math.floor(Math.random()*(5+1))).menuName }</div>
+							<div id="fake" style="display:none;">${coffee_bakerys.get(Math.floor(Math.random()*(5+1))).menuName }</div>
 						    <input type="text" id="speakerTxt" class="text-center" style="width:100%; border:none; background:none;" disabled>
 								<script>
-									document.getElementById('speakerTxt').value="①왼쪽 메뉴에서 '버거'를 고르고, ②"+document.getElementById('fake').innerText+" 를 선택한 후, ③[다음]버튼을 누르세요";
+									document.getElementById('speakerTxt').value="①왼쪽 메뉴에서 '음료'를 고르고, ②"+document.getElementById('fake').innerText+" 를 선택한 후, ③[다음]버튼을 누르세요";
 								</script>
 						    <button id="play" type="submit">Play</button>
 						    <div style="display:none;">
@@ -114,8 +114,8 @@
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 					<div class="row my">
-						<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-							<div class="row lcd">
+						<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pl-4 pr-4">
+							<div class="row lcd" id="mcClick">
 					<!-- 	좌측메뉴 슬라이드 시작 -->
 								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 my">
 							      <div class="device-slider js-device-slider">
@@ -127,16 +127,13 @@
 							               <img src="Resources/img/mcdonald1.jpg"/>
 							            </li>
 							            <li class="device-slider__item">
-							               	<img src="Resources/img/menu1.png"/>
-							            </li>
-							            <li class="device-slider__item">
-							               <img src="Resources/img/menu2.png"/>
-							            </li>
-							            <li class="device-slider__item">
 							               <img src="Resources/img/menu3.png"/>
 							            </li>
 							            <li class="device-slider__item">
 							               <img src="Resources/img/menu4.png"/>
+							            </li>
+							            <li class="device-slider__item">
+							               <img src="Resources/img/menu2.png"/>
 							            </li>
 							            <li class="device-slider__item">
 							               <img src="Resources/img/menu5.png"/>
@@ -155,14 +152,14 @@
 						<div class="col-lg-9 col-md-6 col-sm-6 col-xs-6 my">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my menuList">
-								  <h1 class="h1">(1)메인메뉴 주문하기</h1>
+								  <h1 class="h1">(3)음료 주문하기</h1>
 									<div class="row">
-										<c:forEach var="burger" items="${burgers }">
+										<c:forEach var="coffee_bakery" items="${coffee_bakerys }">
 											<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 my text-center choice1">
-												<img id="menuImg" src="${burger.imgAddr}"><i></i>
-												<p class="h5" id="menuName">${burger.menuName }</p>
-												<p id="menuEng">${burger.menuNameEng }</p>
-												<p class="h5" id="price">${burger.price }원</p>
+												<img id="menuImg" src="${coffee_bakery.imgAddr}"><i></i>
+												<p class="h5" id="menuName">${coffee_bakery.menuName }</p>
+												<p id="menuEng">${coffee_bakery.menuNameEng }</p>
+												<p class="h5" id="price">${coffee_bakery.price }원</p>
 											</div>
 										</c:forEach>
 									</div>
@@ -175,9 +172,9 @@
 						</div>
 						<script>
 							$(function(){
-								var burgerNameY;
-								$('.device-slider__item:nth-child(2)').prepend("<span class='animated infinite bounce'></span>");
-								$('.device-slider__item:nth-child(2)').on("click", function(){
+								var beverageNameY;
+								$('.device-slider__item:nth-child(3)').prepend("<span class='animated infinite bounce'></span>");
+								$('.device-slider__item:nth-child(3)').on("click", function(){
 									$('.device-slider__item').css("pointer-events","none");
 									var boxValue = $('#fake').text();
 									var result = $('.choice1').find('#menuName');
@@ -189,24 +186,24 @@
 											break;
 										}
 									}
+	
 									$('.animated').parent().parent().on("click", function(){
-										burgerNameY=$('.animated').parent().parent().find('#menuName').html();
-// 										console.log(chooseBurgerY);
+										beverageNameY=$('.animated').parent().parent().find('#menuName').html();
 										$( ".animated" ).remove();
 										$('.choice1').css("pointer-events","none");
 										$('.nextViewBtn').removeAttr("class", "d-none");
 										$('.nextAnimated').find('i').append("<span class='animated infinite bounce'></span>");
 									});
-								});
-								$('.nextViewBtn').on('click', function(){
-									$.ajax({
-										url : "burger_value.kiosk",
-										type : "post",
-										data : {key1 : $('#fake').html(), key2 : burgerNameY}
-									}).done(function(resp){
-										alert(resp);
+									$('.nextViewBtn').on('click', function(){
+										$.ajax({
+											url : "beverage_value.coffeone",
+											type : "post",
+											data : {key1 : $('#fake').html(), key2 : beverageNameY}
+										}).done(function(resp){
+											alert(resp);
+										});
+										$(location).attr('href', 'mc_slide.coffeone');
 									});
-									$(location).attr('href', 'mc_sideMenu.kiosk');
 								});
 							});
 						</script>

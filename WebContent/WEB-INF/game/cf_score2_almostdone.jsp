@@ -150,10 +150,10 @@
 											    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 											      <div class="card-body">
 											          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${burgerResult.menuName }</p>
-														<p id="menuEng">${burgerResult.menuNameEng }</p>
-														<p class="h5" id="price">${burgerResult.price }원</p>
+														<img id="menuImg" src="${coffeeResult.imgAddr}"><i></i>
+														<p class="h5" id="menuName">${coffeeResult.menuName }</p>
+														<p id="menuEng">${coffeeResult.menuNameEng }</p>
+														<p class="h5" id="price">${coffeeResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -169,10 +169,10 @@
 											    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 											      <div class="card-body">
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${sideResult.menuName }</p>
-														<p id="menuEng">${sideResult.menuNameEng }</p>
-														<p class="h5" id="price">${sideResult.price }원</p>
+														<img id="menuImg" src="${latteResult.imgAddr}"><i></i>
+														<p class="h5" id="menuName">${latteResult.menuName }</p>
+														<p id="menuEng">${latteResult.menuNameEng }</p>
+														<p class="h5" id="price">${latteResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -188,22 +188,22 @@
 											    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 											      <div class="card-body">
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${beverageResult.imgAddr}">
-														<p class="h5" id="menuName">${beverageResult.menuName }</p>
-														<p id="menuEng">${beverageResult.menuNameEng }</p>
-														<p class="h5" id="price">${beverageResult.price }원</p>
+														<img id="menuImg" src="${hollyResult.imgAddr}">
+														<p class="h5" id="menuName">${hollyResult.menuName }</p>
+														<p id="menuEng">${hollyResult.menuNameEng }</p>
+														<p class="h5" id="price">${hollyResult.price }원</p>
 													  </div>
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${cafeResult.imgAddr}">
-														<p class="h5" id="menuName">${cafeResult.menuName }</p>
-														<p id="menuEng">${cafeResult.menuNameEng }</p>
-														<p class="h5" id="price">${cafeResult.price }원</p>
+														<img id="menuImg" src="${teaResult.imgAddr}">
+														<p class="h5" id="menuName">${teaResult.menuName }</p>
+														<p id="menuEng">${teaResult.menuNameEng }</p>
+														<p class="h5" id="price">${teaResult.price }원</p>
 													  </div>
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${desertResult.imgAddr}">
-														<p class="h5" id="menuName">${desertResult.menuName }</p>
-														<p id="menuEng">${desertResult.menuNameEng }</p>
-														<p class="h5" id="price">${desertResult.price }원</p>
+														<img id="menuImg" src="${bakeryResult.imgAddr}">
+														<p class="h5" id="menuName">${bakeryResult.menuName }</p>
+														<p id="menuEng">${bakeryResult.menuNameEng }</p>
+														<p class="h5" id="price">${bakeryResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -219,36 +219,36 @@
 									  (5)아래는 결제될 내역입니다
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-								          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-											<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-											<p class="h5" id="menuName">${burgerResult.menuName }</p>
-											<p id="menuEng">${burgerResult.menuNameEng }</p>
-											<p class="h5" id="price">${burgerResult.price }원</p>
+							          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+										<img id="menuImg" src="${coffeeResult.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${coffeeResult.menuName }</p>
+										<p id="menuEng">${coffeeResult.menuNameEng }</p>
+										<p class="h5" id="price">${coffeeResult.price }원</p>
+									  </div>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<img id="menuImg" src="${latteResult.imgAddr}"><i></i>
+											<p class="h5" id="menuName">${latteResult.menuName }</p>
+											<p id="menuEng">${latteResult.menuNameEng }</p>
+											<p class="h5" id="price">${latteResult.price }원</p>
 										  </div>
-									      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-												<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-												<p class="h5" id="menuName">${sideResult.menuName }</p>
-												<p id="menuEng">${sideResult.menuNameEng }</p>
-											<p class="h5" id="price">${sideResult.price }원</p>
-											  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${beverageResult.imgAddr}">
-													<p class="h5" id="menuName">${beverageResult.menuName }</p>
-													<p id="menuEng">${beverageResult.menuNameEng }</p>
-													<p class="h5" id="price">${beverageResult.price }원</p>
-												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${cafeResult.imgAddr}">
-													<p class="h5" id="menuName">${cafeResult.menuName }</p>
-													<p id="menuEng">${cafeResult.menuNameEng }</p>
-													<p class="h5" id="price">${cafeResult.price }원</p>
-												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-													<img id="menuImg" src="${desertResult.imgAddr}">
-													<p class="h5" id="menuName">${desertResult.menuName }</p>
-													<p id="menuEng">${desertResult.menuNameEng }</p>
-													<p class="h5" id="price">${desertResult.price }원</p>
-												  </div>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<img id="menuImg" src="${hollyResult.imgAddr}">
+											<p class="h5" id="menuName">${hollyResult.menuName }</p>
+											<p id="menuEng">${hollyResult.menuNameEng }</p>
+											<p class="h5" id="price">${hollyResult.price }원</p>
+										  </div>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<img id="menuImg" src="${teaResult.imgAddr}">
+											<p class="h5" id="menuName">${teaResult.menuName }</p>
+											<p id="menuEng">${teaResult.menuNameEng }</p>
+											<p class="h5" id="price">${teaResult.price }원</p>
+										  </div>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<img id="menuImg" src="${bakeryResult.imgAddr}">
+											<p class="h5" id="menuName">${bakeryResult.menuName }</p>
+											<p id="menuEng">${bakeryResult.menuNameEng }</p>
+											<p class="h5" id="price">${bakeryResult.price }원</p>
+										  </div>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 									    <button id="slideBtn1">이전</button>

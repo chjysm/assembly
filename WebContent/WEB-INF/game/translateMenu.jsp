@@ -201,7 +201,56 @@
 				    </div>
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						<div class="row">
+					        <c:forEach var="pizza_seed" items="${pizza_seeds }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${pizza_seed.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_seed.menuName}</p>
+										<p id="menuEng">${pizza_seed.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_seed.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="pizza_prm" items="${pizza_prms }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${pizza_prm.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_prm.menuName}</p>
+										<p id="menuEng">${pizza_prm.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_prm.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="pizza_cls" items="${pizza_clss }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${pizza_cls.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_cls.menuName}</p>
+										<p id="menuEng">${pizza_cls.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_cls.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="pizza_side" items="${pizza_sides }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${pizza_side.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_side.menuName}</p>
+										<p id="menuEng">${pizza_side.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_side.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="pizza_beverage" items="${pizza_beverages }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${lotte_chicken.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_beverage.menuName}</p>
+										<p id="menuEng">${pizza_beverage.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_beverage.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="pizza_souce" items="${pizza_souces }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${pizza_souce.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${pizza_souce.menuName}</p>
+										<p id="menuEng">${pizza_souce.menuNameEng }</p>
+										<p class="h5" id="price">${pizza_souce.price }원</p>
+									</div>
+								</c:forEach>
+							</div>	
 				      </div>
 				    </div>
 				  </div>
@@ -215,7 +264,119 @@
 				    </div>
 				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							<div class="row">
+							<c:forEach var="lotte_burgerset" items="${lotte_burgersets }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_burgerset.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_burgerset.menuName}</p>
+									<p id="menuEng">${lotte_burgerset.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_burgerset.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_chickenset" items="${lotte_chickensets }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_chickenset.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_chickenset.menuName}</p>
+									<p id="menuEng">${lotte_chickenset.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_chickenset.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_good" items="${lotte_goods }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_good.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_good.menuName}</p>
+									<p id="menuEng">${lotte_good.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_good.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_burger" items="${lotte_burgers }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_burger.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_burger.menuName}</p>
+									<p id="menuEng">${lotte_burger.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_burger.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_chicken" items="${lotte_chickens }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_chicken.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_chicken.menuName}</p>
+									<p id="menuEng">${lotte_chicken.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_chicken.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_desert" items="${lotte_deserts }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_bakery.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_bakery.menuName}</p>
+									<p id="menuEng">${coffee_bakery.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_bakery.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="lotte_drink" items="${lotte_drinks }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${lotte_drink.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${lotte_drink.menuName}</p>
+									<p id="menuEng">${lotte_drink.menuNameEng }</p>
+									<p class="h5" id="price">${lotte_drink.price }원</p>
+								</div>
+							</c:forEach>
+							</div>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingFour">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+				          Collapsible Group Item #3
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+				      <div class="card-body">
+						<div class="row">
+							<c:forEach var="coffee_coffee" items="${coffee_coffees }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_coffee.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_coffee.menuName}</p>
+									<p id="menuEng">${coffee_coffee.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_coffee.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="coffee_latte" items="${coffee_lattes }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_latte.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_latte.menuName}</p>
+									<p id="menuEng">${coffee_latte.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_latte.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="coffee_holly" items="${coffee_hollys }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_holly.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_holly.menuName}</p>
+									<p id="menuEng">${coffee_holly.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_holly.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="coffee_tea" items="${coffee_teas }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_tea.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_tea.menuName}</p>
+									<p id="menuEng">${coffee_tea.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_tea.price }원</p>
+								</div>
+							</c:forEach>
+							<c:forEach var="coffee_bakery" items="${coffee_bakerys }">
+								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+									<img id="menuImg" src="${coffee_bakery.imgAddr}"><i></i>
+									<p class="h5" id="menuName">${coffee_bakery.menuName}</p>
+									<p id="menuEng">${coffee_bakery.menuNameEng }</p>
+									<p class="h5" id="price">${coffee_bakery.price }원</p>
+								</div>
+							</c:forEach>
+						</div>
 				      </div>
 				    </div>
 				  </div>
