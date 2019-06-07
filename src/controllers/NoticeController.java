@@ -67,7 +67,7 @@ public class NoticeController extends HttpServlet {
 					getNavi = dao.getNavi(noticeCurrentPage); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("noticeList", noticeList);
 				request.setAttribute("getNavi", getNavi);
@@ -114,7 +114,7 @@ public class NoticeController extends HttpServlet {
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board03")){//flag 바꿔주기
@@ -177,7 +177,7 @@ public class NoticeController extends HttpServlet {
 				countComment = cdao.countComment(seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			try {
 				int viewCount = dao.viewCount(seq); //조회수 올리기
@@ -205,7 +205,7 @@ public class NoticeController extends HttpServlet {
 					commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 
 				String navi = null;
@@ -213,7 +213,7 @@ public class NoticeController extends HttpServlet {
 					navi = cdao.getNavi(commentPage, seq);
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("comList", commentList);
 				request.setAttribute("navi", navi);
@@ -226,14 +226,14 @@ public class NoticeController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -302,7 +302,7 @@ public class NoticeController extends HttpServlet {
 				result = cdao.insertComment(fcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
@@ -327,14 +327,14 @@ public class NoticeController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -403,7 +403,7 @@ public class NoticeController extends HttpServlet {
 					getNaviSelect = dao.getNaviSelect(noticeCurrentPage, option, searchWord); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("noticeList", noticeSelectList);
 				request.setAttribute("getNavi", getNaviSelect);

@@ -37,7 +37,7 @@ public class MachineController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/happy_snack.kiosk")) { 
 			try {
@@ -47,7 +47,7 @@ public class MachineController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/cafe_desert.kiosk")) {
 			try {

@@ -17,7 +17,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean"
 	rel="stylesheet">
-
+<script src="https://kit.fontawesome.com/650a47b167.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
 * {
@@ -37,8 +37,9 @@
 .fixedMenu .nav-link {
 	color: #fff;
 	font-weight: bold;
+	
 }
-.fixMenu-text{position: relative; top: 30px;}
+.fixMenu-text{position: relative; top: 20px;}
 .fixedMenu div{text-align: center; font-size:30px;} 
 .container {
 	padding-top: 150px;
@@ -81,6 +82,16 @@ h3 {
 strong {
 	color: #819FF7;	
 }
+.insta{ color: #f442b3; }
+.insta:hover{color: #ad2e7f;}
+.facebook{color: #1448e5;}
+.facebook:hover{color: #022a60;}
+.youtube{color: #ff0000;}
+.youtube:hover{color: #600202;}
+.twitter{color:#00d0ff;}
+.twitter:hover{color:#329bc1;}
+.connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
+.connect li{margin:0;}
 </style>
 </head>
 <body>
@@ -231,8 +242,16 @@ strong {
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+				<h1 class="display-5 font-weight-bold">사이트맵</h1>
+				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 				<div class="">
-					<span class="logo">Logo</span>
+					<span class="logo"><img src="/Resources/img/logo.png" width="150px" height="100px"></span>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				<div class="">
 					<dl>
 						<dt>Assembly(주)</dt>
 						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
@@ -242,8 +261,15 @@ strong {
 					</dl>
 				</div>
 			</div>
-		</div>
-	</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				 <div class="connectBox">
+				  <ul class="nav connect">
+                <li class="nav-item"><a href="#" class="nav-link active insta"><i class="fab fa-instagram fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link facebook"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link youtube "><i class="fab fa-youtube fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link twitter "><i class="fab fa-twitter-square fa-3x"></i></a></li>
+            </ul>
+            </div>
 	
 </body>
 </html>

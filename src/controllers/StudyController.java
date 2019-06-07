@@ -34,7 +34,7 @@ public class StudyController extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("error.html");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {

@@ -20,7 +20,8 @@
 	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
+<script src="https://kit.fontawesome.com/650a47b167.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&display=swap&subset=korean" rel="stylesheet">
 
 <style>
 * {
@@ -132,8 +133,11 @@ a:hover[class="moreBtn"] {
 }
 
 .carousel_h3 {
-	color: green;
-	font-family: 'Gamja Flower', cursive;
+   font-family: 'Nanum Gothic Coding', monospace;
+   color: black;
+   font-weight: bold;
+   background-color: #fcfcfc70;
+   font-size:40px;
 }
 
 #kaLogout {
@@ -146,8 +150,33 @@ a:hover[class="moreBtn"] {
 	padding: 0px;
 }
 .loginBox{position: relative; top: 100px;}
+.article{
+   font-family: 'Nanum Gothic Coding', monospace;
+   color: #05398c;
+   background-color: #fcfcfc70;
+   font-weight: bold;
+   font-size:18px;
+}
+.article:hover{
+   font-family: 'Nanum Gothic Coding', monospace;
+   color: #05398c;
+   font-weight: bold;
+   background-color: #fcfcfc70;
+   font-size:18px;
+}
 
 
+
+.insta{ color: #f442b3; }
+.insta:hover{color: #ad2e7f;}
+.facebook{color: #1448e5;}
+.facebook:hover{color: #022a60;}
+.youtube{color: #ff0000;}
+.youtube:hover{color: #600202;}
+.twitter{color:#00d0ff;}
+.twitter:hover{color:#329bc1;}
+.connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
+.connect li{margin:0;}
 
 
 </style>
@@ -309,7 +338,7 @@ a:hover[class="moreBtn"] {
 									<p>
 										<a
 											href="http://www.mediatoday.co.kr/news/articleView.html?mod=news&act=articleView&idxno=148319"
-											target="_blank">기사 바로가기</a>
+											target="_blank" class="article">기사 바로가기</a>
 									</p>
 								</div>
 							</div>
@@ -317,11 +346,11 @@ a:hover[class="moreBtn"] {
 								<img src="Resources/img/carousel2.jpg" class="d-block w-100"
 									alt="slide_img2" width="350px" height="400px">
 								<div class="carousel-caption d-none d-md-block">
-									<h3 class="carousel_h3">햄버거 던지고... 무인주문기계 '키오스크'가 펼친 지옥도</h3>
+									<h3 class="carousel_h3">무인주문기계 '키오스크'가 펼친 지옥도</h3>
 									<p>
 										<a
 											href="http://www.ohmynews.com/NWS_Web/Event/Premium/at_pg.aspx?CNTN_CD=A0002535977&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
-											target="_blank"> 기사 바로가기 </a>
+											target="_blank" class="article"> 기사 바로가기 </a>
 									</p>
 								</div>
 							</div>
@@ -333,7 +362,7 @@ a:hover[class="moreBtn"] {
 									<p>
 										<a
 											href="https://view.asiae.co.kr/news/view.htm?idxno=2019052710552826120"
-											target="_blank">기사 바로가기</a>
+											target="_blank" class="article">기사 바로가기</a>
 									</p>
 								</div>
 							</div>
@@ -648,9 +677,13 @@ a:hover[class="moreBtn"] {
 				<h1 class="display-5 font-weight-bold">사이트맵</h1>
 				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 				<div class="">
-					<span class="logo">Logo</span>
+					<span class="logo"><img src="/Resources/img/logo.png" width="150px" height="100px"></span>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				<div class="">
 					<dl>
 						<dt>Assembly(주)</dt>
 						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
@@ -659,6 +692,16 @@ a:hover[class="moreBtn"] {
 						<dd>E-mail: custimerservice@aaaa.co.kr</dd>
 					</dl>
 				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				 <div class="connectBox">
+				  <ul class="nav connect">
+                <li class="nav-item"><a href="#" class="nav-link active insta"><i class="fab fa-instagram fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link facebook"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link youtube "><i class="fab fa-youtube fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link twitter "><i class="fab fa-twitter-square fa-3x"></i></a></li>
+            </ul>
+            </div>
 			</div>
 		</div>
 	</div>

@@ -45,7 +45,7 @@ public class WinController extends HttpServlet {
 				noticeRecordCount = nb.recordCount();
 				}catch(Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("error.jsp");
+					response.sendRedirect("error.html");
 				}
 				if(freeRecordCount == 0 ) { // 자유게시판 게시글 0 일 경우
 					request.setAttribute("freeRecordCount", freeRecordCount);
@@ -105,7 +105,7 @@ public class WinController extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("error.html");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	<script src="https://kit.fontawesome.com/650a47b167.js"></script>
 <title>Insert title here</title>
 	<style>
 		*{margin:0 auto;}
@@ -45,6 +46,17 @@
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
 		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:yellow; opacity:0.6;}
+		.insta{ color: #f442b3; }
+.insta:hover{color: #ad2e7f;}
+.facebook{color: #1448e5;}
+.facebook:hover{color: #022a60;}
+.youtube{color: #ff0000;}
+.youtube:hover{color: #600202;}
+.twitter{color:#00d0ff;}
+.twitter:hover{color:#329bc1;}
+.connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
+.connect li{margin:0;}
+		
 	</style>
 </head>
 <body>
@@ -256,16 +268,40 @@
 		</div>
 	</div>		
 <!-- 	footer -->
-	<div class="container-fluid footer pt-5">
+	
+<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 				<h1 class="display-5 font-weight-bold">사이트맵</h1>
 				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
-			</div>				
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				홈페이지 이용약관 등
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+				<div class="">
+					<span class="logo"><img src="/Resources/img/logo.png" width="150px" height="100px"></span>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				<div class="">
+					<dl>
+						<dt>Assembly(주)</dt>
+						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
+						<dd>대표이사: 홍길동 사업자등록번호 : 815-81-00000</dd>
+						<dd>Tel: 1599-0000 Fax: 02-894-0000</dd>
+						<dd>E-mail: custimerservice@aaaa.co.kr</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				 <div class="connectBox">
+				  <ul class="nav connect">
+                <li class="nav-item"><a href="#" class="nav-link active insta"><i class="fab fa-instagram fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link facebook"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link youtube "><i class="fab fa-youtube fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link twitter "><i class="fab fa-twitter-square fa-3x"></i></a></li>
+            </ul>
+            </div>
 			</div>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>
