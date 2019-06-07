@@ -49,8 +49,12 @@ public class MachineMcCourseThird extends HttpServlet {
 				request.setAttribute("burgers", burgers);
 				ArrayList<McdonaldDTO> snack_sides = machine.getMcInfo("snack_side");
 				request.setAttribute("snack_sides", snack_sides);
+				ArrayList<McdonaldDTO> mc_cafes = machine.getMcInfo("mc_cafe");
+				request.setAttribute("mc_cafes", mc_cafes);
 				ArrayList<McdonaldDTO> beverages = machine.getMcInfo("beverage");
 				request.setAttribute("beverages", beverages);
+				ArrayList<McdonaldDTO> deserts = machine.getMcInfo("desert");
+				request.setAttribute("deserts", deserts);
 				request.getRequestDispatcher("/WEB-INF/game/mc_score3_slider.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -79,6 +83,10 @@ public class MachineMcCourseThird extends HttpServlet {
 				request.setAttribute("sideResult", dto2);
 				McdonaldDTO dto3 = machine.joinquery("beverage", "beverageNameY", request.getSession().getAttribute("personalCode").toString());
 				request.setAttribute("beverageResult", dto3);
+				McdonaldDTO dto4 = machine.joinquery("mc_cafe", "cafeNameY", request.getSession().getAttribute("personalCode").toString());
+				request.setAttribute("cafeResult", dto4);
+				McdonaldDTO dto5 = machine.joinquery("desert", "desertNaemY", request.getSession().getAttribute("personalCode").toString());
+				request.setAttribute("desertResult", dto5);
 				request.getRequestDispatcher("/WEB-INF/game/mc_score3_almostdone.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -103,6 +111,10 @@ public class MachineMcCourseThird extends HttpServlet {
 				request.setAttribute("sideResult", dto2);
 				McdonaldDTO dto3 = machine.joinquery("beverage", "beverageNameY", request.getSession().getAttribute("personalCode").toString());
 				request.setAttribute("beverageResult", dto3);
+				McdonaldDTO dto4 = machine.joinquery("mc_cafe", "cafeNameY", request.getSession().getAttribute("personalCode").toString());
+				request.setAttribute("cafeResult", dto4);
+				McdonaldDTO dto5 = machine.joinquery("desert", "desertNaemY", request.getSession().getAttribute("personalCode").toString());
+				request.setAttribute("desertResult", dto5);
 				request.getRequestDispatcher("/WEB-INF/game/mc_score3_done.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();

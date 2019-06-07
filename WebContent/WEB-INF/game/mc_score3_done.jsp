@@ -135,24 +135,29 @@
 										<p id="menuEng">${beverageResult.menuNameEng }</p>
 										<p class="h5" id="price">${beverageResult.price }원</p>
 									  </div>
-									  <p>총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price }원</p>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<p class="h5" id="menuName">${cafeResult.menuName }</p>
+											<p id="menuEng">${cafeResult.menuNameEng }</p>
+											<p class="h5" id="price">${cafeResult.price }원</p>
+										  </div>
+								      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											<p class="h5" id="menuName">${desertResult.menuName }</p>
+											<p id="menuEng">${desertResult.menuNameEng }</p>
+											<p class="h5" id="price">${desertResult.price }원</p>
+										  </div>
+									  <p>총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price+cafeResult.price+desertResult.price }원</p>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<p>결과 확인하기</p>
 									<table>
-										<tr><td colspan="4">요구사항</td></tr>
-										<tr>
-											<td>${dto.takeIOM }</td>
-											<td>${dto.burgerNameM }</td>
-											<td>${dto.sideNameM }</td>
-											<td>${dto.beverageNameM }</td>
-										</tr>	
 										<tr><td colspan="4">내 답안<td></tr>
 										<tr>
 											<td>${dto.takeIOY }</td>
 											<td>${dto.burgerNameY }</td>
 											<td>${dto.sideNameY }</td>
 											<td>${dto.beverageNameY }</td>
+											<td>${dto.cafeNameY }</td>
+											<td>${dto.desertNaemY }</td>
 										</tr>	
 									</table>
 									<hr>
@@ -170,20 +175,33 @@
 						</div>
 					</div>
 					<script>
-						$('#goMain').on('click', function(){
-							$.ajax({
-								url : "session_end.kiosk",
-								type : "post"
-							});
-							$(location).attr("href", "main.jsp");
-						});
-						$('#findMap').on('click', function(){
-							$.ajax({
-								url : "session_end.kiosk",
-								type : "post"
-							});
-							$(location).attr("href", "main.jsp");
-						});
+					$('#goMain').on('click', function(){
+	                     $.ajax({
+	                        url : "session_end.kiosk",
+	                        type : "post"
+	                     });
+	                     $.ajax({
+	                        url : "insert.st",
+	                        type : "post",
+	                        data:{
+	                           brand:"mcdonald",
+	                           answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
+	                           id:'${id}'
+	                        }
+	                     }).done(function(){
+	                        $(location).attr("href", "returnMain.kiosk");
+	                     });
+	                  });
+	                  
+	                  $('#findMap').on('click', function(){
+	                     $.ajax({
+	                        url : "session_end.kiosk",
+	                        type : "post"
+	                     });
+	                     var width=window.screen.width/2-800/2;//에러 나는거 아닙니다. 강사님도 그냥 두라고 하셨어요! 
+	                     var height=window.screen.height/2-600/2;
+	                     open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
+	                  });
 					</script>
 <!-- -------machine view end----------------------------------------------->
 					</div>

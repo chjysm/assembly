@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,15 +112,79 @@
 				      </h2>
 				    </div>
 				
-				    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body">
 							<div class="row">
+								<c:forEach var="burger" items="${burgers }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${burger.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${burger.menuName}</p>
+										<p id="menuEng">${burger.menuNameEng }</p>
+										<p class="h5" id="price">${burger.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="set_menu" items="${set_menus }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${set_menu.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${set_menu.menuName}</p>
+										<p id="menuEng">${set_menu.menuNameEng }</p>
+										<p class="h5" id="price">${set_menu.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="mc_morning" items="${mc_mornings }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${mc_morning.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${mc_morning.menuName}</p>
+										<p id="menuEng">${mc_morning.menuNameEng }</p>
+										<p class="h5" id="price">${mc_morning.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="happy" items="${happys }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${happy.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${happy.menuName}</p>
+										<p id="menuEng">${happy.menuNameEng }</p>
+										<p class="h5" id="price">${happy.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="happy_meal" items="${happy_meals }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${happy_meal.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${happy_meal.menuName}</p>
+										<p id="menuEng">${happy_meal.menuNameEng }</p>
+										<p class="h5" id="price">${happy_meal.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="snack_side" items="${snack_sides }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${snack_side.menuName}</p>
+										<p id="menuEng">${snack_side.menuNameEng }</p>
+										<p class="h5" id="price">${snack_side.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="mc_cafe" items="${mc_cafes }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${mc_cafe.menuName}</p>
+										<p id="menuEng">${mc_cafe.menuNameEng }</p>
+										<p class="h5" id="price">${mc_cafe.price }원</p>
+									</div>
+								</c:forEach>
 								<c:forEach var="beverage" items="${beverages }">
 									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
 										<img id="menuImg" src="${beverage.imgAddr}"><i></i>
 										<p class="h5" id="menuName">${beverage.menuName}</p>
 										<p id="menuEng">${beverage.menuNameEng }</p>
 										<p class="h5" id="price">${beverage.price }원</p>
+									</div>
+								</c:forEach>
+								<c:forEach var="desert" items="${deserts }">
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+										<img id="menuImg" src="${desert.imgAddr}"><i></i>
+										<p class="h5" id="menuName">${desert.menuName}</p>
+										<p id="menuEng">${desert.menuNameEng }</p>
+										<p class="h5" id="price">${desert.price }원</p>
 									</div>
 								</c:forEach>
 							</div>

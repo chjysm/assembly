@@ -464,7 +464,7 @@ a:hover[class="moreBtn"] {
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">클릭 한 번으로 메뉴 이름 이해하기</h5>
 						<p class="card-text">모르는 단어를 클릭해보세요. 즉시 한글로 번역해 드립니다.</p>
-						<a href="#" class="btn btn-primary">체험하기</a>
+						<a href="translateMenu.go" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>

@@ -146,12 +146,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row sideView">
-						<c:forEach var="burger" items="${burgers }">
+						<c:forEach var="snack_side" items="${snack_sides }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
-								<p id="menuEng">${burger.menuNameEng }</p>
-								<p class="h5" id="price">${burger.price }원</p>
+								<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${snack_side.menuName }</p>
+								<p id="menuEng">${snack_side.menuNameEng }</p>
+								<p class="h5" id="price">${snack_side.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -167,12 +167,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row beverageView">
-						<c:forEach var="burger" items="${burgers }">
+						<c:forEach var="beverage" items="${beverages }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
-								<p id="menuEng">${burger.menuNameEng }</p>
-								<p class="h5" id="price">${burger.price }원</p>
+								<img id="menuImg" src="${beverage.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${beverage.menuName }</p>
+								<p id="menuEng">${beverage.menuNameEng }</p>
+								<p class="h5" id="price">${beverage.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -188,12 +188,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row cafeView">
-						<c:forEach var="burger" items="${burgers }">
+						<c:forEach var="mc_cafe" items="${mc_cafes }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
-								<p id="menuEng">${burger.menuNameEng }</p>
-								<p class="h5" id="price">${burger.price }원</p>
+								<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${mc_cafe.menuName }</p>
+								<p id="menuEng">${mc_cafe.menuNameEng }</p>
+								<p class="h5" id="price">${mc_cafe.price }원</p>
 							</div>
 						</c:forEach>
 					</div>
@@ -209,12 +209,12 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row desertView">
-						<c:forEach var="burger" items="${burgers }">
+						<c:forEach var="desert" items="${deserts }">
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
-								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
-								<p id="menuEng">${burger.menuNameEng }</p>
-								<p class="h5" id="price">${burger.price }원</p>
+								<img id="menuImg" src="${desert.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${desert.menuName }</p>
+								<p id="menuEng">${desert.menuNameEng }</p>
+								<p class="h5" id="price">${desert.price }원</p>
 							</div>
 						</c:forEach>
 					</div>

@@ -188,10 +188,22 @@
 											    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 											      <div class="card-body">
 											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-														<img id="menuImg" src="${beverageResult.imgAddr}"><i></i>
+														<img id="menuImg" src="${beverageResult.imgAddr}">
 														<p class="h5" id="menuName">${beverageResult.menuName }</p>
 														<p id="menuEng">${beverageResult.menuNameEng }</p>
 														<p class="h5" id="price">${beverageResult.price }원</p>
+													  </div>
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+														<img id="menuImg" src="${cafeResult.imgAddr}">
+														<p class="h5" id="menuName">${cafeResult.menuName }</p>
+														<p id="menuEng">${cafeResult.menuNameEng }</p>
+														<p class="h5" id="price">${cafeResult.price }원</p>
+													  </div>
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+														<img id="menuImg" src="${desertResult.imgAddr}">
+														<p class="h5" id="menuName">${desertResult.menuName }</p>
+														<p id="menuEng">${desertResult.menuNameEng }</p>
+														<p class="h5" id="price">${desertResult.price }원</p>
 													  </div>
 											      </div>
 											    </div>
@@ -219,12 +231,24 @@
 												<p id="menuEng">${sideResult.menuNameEng }</p>
 											<p class="h5" id="price">${sideResult.price }원</p>
 											  </div>
-								      	 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-											<img id="menuImg" src="${beverageResult.imgAddr}"><i></i>
-											<p class="h5" id="menuName">${beverageResult.menuName }</p>
-											<p id="menuEng">${beverageResult.menuNameEng }</p>
-											<p class="h5" id="price">${beverageResult.price }원</p>
-										  </div>
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+													<img id="menuImg" src="${beverageResult.imgAddr}">
+													<p class="h5" id="menuName">${beverageResult.menuName }</p>
+													<p id="menuEng">${beverageResult.menuNameEng }</p>
+													<p class="h5" id="price">${beverageResult.price }원</p>
+												  </div>
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+													<img id="menuImg" src="${cafeResult.imgAddr}">
+													<p class="h5" id="menuName">${cafeResult.menuName }</p>
+													<p id="menuEng">${cafeResult.menuNameEng }</p>
+													<p class="h5" id="price">${cafeResult.price }원</p>
+												  </div>
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+													<img id="menuImg" src="${desertResult.imgAddr}">
+													<p class="h5" id="menuName">${desertResult.menuName }</p>
+													<p id="menuEng">${desertResult.menuNameEng }</p>
+													<p class="h5" id="price">${desertResult.price }원</p>
+												  </div>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 									    <button id="slideBtn1">이전</button>

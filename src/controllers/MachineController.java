@@ -28,54 +28,7 @@ public class MachineController extends HttpServlet {
 //		int[] randomNumber = new int[] {1000, 1500, 2000, 3500, 4500, 5800, 6300, 7000};
 //		int num = randomNumber[(int) (Math.floor(Math.random()*(randomNumber.length-1)+1))];
 		
-		if(cmd.equals("/burger_morning.kiosk")) {
-			//100=버거/110=세트메뉴/140=맥모닝/130=행복의 나라 메뉴/180=해피밀/150=스낵과 사이드/190=맥카페/170=음료/160=디저트
-			try {
-				machine.mcSaveDB(100, "burger");
-				machine.mcSaveDB(110, "set_menu");
-				machine.mcSaveDB(140, "mc_morning");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
-			}
-		}else if(cmd.equals("/happy_snack.kiosk")) { 
-			try {
-				machine.mcSaveDB(130, "happy");
-				machine.mcSaveDB(180, "happy_meal");
-				machine.mcSaveDB(150, "snack_side");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-				request.getRequestDispatcher("error.jsp").forward(request, response);
-			}
-		}else if(cmd.equals("/cafe_desert.kiosk")) {
-			try {
-				machine.mcSaveDB(190, "mc_cafe");
-				machine.mcSaveDB(170, "beverage");
-				machine.mcSaveDB(160, "desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-				request.getRequestDispatcher("error.html").forward(request, response);
-			}
-		}else if(cmd.equals("/updateTableNull.kiosk")) {
-			try {
-				machine.mcUpdateDB("burger");
-				machine.mcUpdateDB("set_menu");
-				machine.mcUpdateDB("mc_morning");
-				machine.mcUpdateDB("happy");
-				machine.mcUpdateDB("happy_meal");
-				machine.mcUpdateDB("snack_side");
-				machine.mcUpdateDB("mc_cafe");
-				machine.mcUpdateDB("beverage");
-				machine.mcUpdateDB("desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-		}else if(cmd.equals("/getCode.kiosk")) {
+		if(cmd.equals("/getCode.kiosk")) {
 				String personalCode = machine.personalCode();
 			try {
 				machine.insertGameCode(personalCode);
