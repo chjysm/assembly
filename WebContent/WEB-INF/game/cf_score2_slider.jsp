@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="Resources/css/mCSB_buttons.png"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="Resources/js/jquery.mCustomScrollbar.js"></script>
+	<script src="https://kit.fontawesome.com/650a47b167.js"></script>
 <title>Insert title here</title>
 	<style>
 		*{margin:0 auto;}
