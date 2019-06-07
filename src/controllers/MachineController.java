@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FreeBoardDAO;
 import dao.MenuDataDAO;
+import dao.NoticeBoardDAO;
+import dao.QnaBoardDAO;
+import dto.FreeBoardDTO;
 import dto.McFinalDTO;
 import dto.McdonaldDTO;
+import dto.NoticeBoardDTO;
+import dto.QnaBoardDTO;
 
 @WebServlet("*.kiosk")
 public class MachineController extends HttpServlet {
@@ -201,6 +208,56 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/goMcFirst.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
 		}else if(cmd.equals("/returnMain.kiosk")) {
+			FreeBoardDAO fb= new FreeBoardDAO();
+			QnaBoardDAO qb = new QnaBoardDAO();
+			NoticeBoardDAO nb = new NoticeBoardDAO();
+			int freeRecordCount = 0 ;
+			int qnaRecordCount = 0; 
+			int noticeRecordCount = 0;
+			try {
+			freeRecordCount = fb.recordCount();
+			qnaRecordCount = qb.recordCount();
+			noticeRecordCount = nb.recordCount();
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+			if(freeRecordCount == 0 ) { // 자유게시판 게시글 0 일 경우
+				request.setAttribute("freeRecordCount", freeRecordCount);
+			}else{
+			List<FreeBoardDTO> mainFreeList = null;
+			try {
+			mainFreeList = fb.mainFreeBoardList(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+			request.setAttribute("mainFreeList", mainFreeList);
+			}
+			if(qnaRecordCount == 0) {//질문 게시판 게시글이 0 일경우
+				request.setAttribute("qnaRecordCount", qnaRecordCount);
+			}else {
+				List<QnaBoardDTO> mainQnaList = null;
+				try {
+				mainQnaList = qb.mainQnaBoardList(1);
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				request.setAttribute("mainQnaList", mainQnaList);
+			}
+			if(noticeRecordCount == 0) {// 공지게시판 게시글이 0일 경우
+				request.setAttribute("noticeRecordCount", noticeRecordCount);
+			}else {
+				List<NoticeBoardDTO> mainNoticeList = null;
+				try {
+					mainNoticeList = nb.mainNoticeBoardList(1);
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				request.setAttribute("mainNoticeList", mainNoticeList);
+			}
 			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 		}else if(cmd.equals("/returntakeio.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_2.jsp").forward(request, response);
