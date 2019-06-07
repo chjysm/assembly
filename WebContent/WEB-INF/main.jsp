@@ -147,7 +147,6 @@ a:hover[class="moreBtn"] {
 </style>
 <script>
    $(function() {
-
       $("#emailLogout").on("click", function() {
     	  location.href = "logout.me";
       });
@@ -231,7 +230,7 @@ a:hover[class="moreBtn"] {
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -540,36 +539,26 @@ a:hover[class="moreBtn"] {
 					<div class="tab-pane fade show active" id="info">
 						<h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+						</div>
+						<div class="row text-center">
 							<c:choose>
 								<c:when test="${noticeRecordCount == 0 }">
-									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainNoticeList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
-											<a
-												href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+											<a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -577,35 +566,26 @@ a:hover[class="moreBtn"] {
 					</div>
 					<div class="tab-pane fade" id="freeBoard">
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+						</div>
+						<div class="row text-center">
 							<c:choose>
 								<c:when test="${freeRecordCount == 0 }">
-									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainFreeList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
 											<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -613,35 +593,26 @@ a:hover[class="moreBtn"] {
 					</div>
 					<div class="tab-pane fade" id="qna">
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
-
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+						</div>
+						<div class="row text-center">
 							<c:choose>
 								<c:when test="${qnaRecordCount == 0 }">
-									<div class="noneRecord">등록된 게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainQnaList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
 											<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>

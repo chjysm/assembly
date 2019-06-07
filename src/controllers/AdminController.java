@@ -41,14 +41,14 @@ public class AdminController extends HttpServlet {
 		AdminDAO adao = new AdminDAO();
 		FreeBoardDAO fb = new FreeBoardDAO();
 		QnaBoardDAO qb = new QnaBoardDAO();
+		NoticeBoardDAO nb = new NoticeBoardDAO();
 
 		DecimalFormat formatter = new DecimalFormat("###,###");
 
-		NoticeBoardDAO nb = new NoticeBoardDAO();
-
 		try {
+// ==================================== 방문자 카운트 ====================================
 			if (cmd.equals("/goMain.admin")) {
-				++visitCount;																// 방문자 카운트 (스케줄러)
+				++visitCount;																
 				request.getServletContext().setAttribute("visitCount", visitCount);
 				if (visitCount < 2) {														
 					Timer timer = new Timer();
@@ -60,11 +60,11 @@ public class AdminController extends HttpServlet {
 					timer.schedule(new AdminDAO(), date.getTime(), 1000 * 60 * 60 * 24);
 				}
 
-				int FreeRecordCount = 0;
+				int freeRecordCount = 0;
 				int qnaRecordCount = 0;
 				int noticeRecordCount = 0;
 				try {
-					FreeRecordCount = fb.recordCount();
+					freeRecordCount = fb.recordCount();
 					qnaRecordCount = qb.recordCount();
 					noticeRecordCount = nb.recordCount();
 				} catch (Exception e) {
@@ -72,8 +72,8 @@ public class AdminController extends HttpServlet {
 					e.printStackTrace();
 				}			
 				
-				if (FreeRecordCount == 0) {											// 자유 게시판 게시글이 0일 경우
-					request.setAttribute("FreeRecordCount", FreeRecordCount);
+				if (freeRecordCount == 0) {											// 자유 게시판 게시글이 0일 경우
+					request.setAttribute("FreeRecordCount", freeRecordCount);
 				} else {
 					List<FreeBoardDTO> mainFreeList = null;
 					try {
@@ -111,7 +111,7 @@ public class AdminController extends HttpServlet {
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 			}
-			// ========================================== 관리자 페이지_그래프 // ==========================================
+// ========================================== 관리자 페이지_그래프 // ==========================================
 			if (cmd.equals("/goAdmin.admin")) { 							   		// 일일 방문자
 				AdminDAO vdao = new AdminDAO();
 				List<AdminDTO> vList = new ArrayList<>();
@@ -138,11 +138,25 @@ public class AdminController extends HttpServlet {
 				StudyDAO st = new StudyDAO();										// 학습 완료 수
 				String study1 = "macdonald";
 				int studyCount = st.getCount(study1);
-				System.out.println(studyCount);
 				request.setAttribute("studyCount", studyCount);
+				
+// ========================================== 공지사항  ==========================================
+				int noticeRecordCount = 0;
+				try {
+					noticeRecordCount = nb.recordCount();
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				
+				if(noticeRecordCount == 0) {		
+					request.setAttribute("noticeRecordCount", noticeRecordCount);
+				}else {
+					List<NoticeBoardDTO> noticeList = nb.selectByPage(1);
+					request.setAttribute("noticeList", noticeList);
+				}				
+				
 // ========================================== 질문 게시판 답변 Y/N ==========================================
-				
-				
 				int qnaRecordCount = 0;
 				try {
 					qnaRecordCount = qb.recordCount();
@@ -151,14 +165,14 @@ public class AdminController extends HttpServlet {
 					response.sendRedirect("error.html");
 				}
 				
-				if(qnaRecordCount == 0) { // 게시글이 없다면
+				if(qnaRecordCount == 0) { 											// 건의 게시글이 없다면
 					request.setAttribute("qnaRecordCount", qnaRecordCount);
 				}else {
-					List<QnaBoardDTO> qnaList = qb.selectByPage(1);//한페이지에 몇개 보여줄건지
+					List<QnaBoardDTO> qnaList = qb.selectByPage(1);					//한페이지에 몇개 보여줄건지
 					request.setAttribute("qnaList", qnaList);
 					
 				}
-				// ========================================== 자유 게시판  ==========================================
+// ========================================== 자유 게시판  ==========================================
 				int freeRecordCount = 0;
 				try {
 					freeRecordCount = fb.recordCount();
@@ -167,17 +181,16 @@ public class AdminController extends HttpServlet {
 					response.sendRedirect("error.html");
 				}
 				
-				if(freeRecordCount == 0) {
+				if(freeRecordCount == 0) {											// 자유 게시글이 없다면
 					request.setAttribute("freeRecordCount", freeRecordCount);
 				}else {
 					List<FreeBoardDTO> freeList = fb.selectByPage(1);
 					request.setAttribute("freeList", freeList);
 					
 				}
-				request.getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
 				
-			
-
+				request.getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
+//==================================================================================================
 
 			}else if(cmd.equals("/emailCheck.admin")) {														// 회원 조회 결과 확인
 				String email = request.getParameter("email");
@@ -196,8 +209,8 @@ public class AdminController extends HttpServlet {
 			}else if(cmd.equals("/ban.admin")) { 															// 회원 차단 / 해제
 				String ban = request.getParameter("key");
 				String email = (String)request.getSession().getAttribute("email"); 
-				adao.banUpdate(ban, email); }
-
+				adao.banUpdate(ban, email); 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");

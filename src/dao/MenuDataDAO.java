@@ -5,8 +5,6 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +33,7 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB(int num, String table_name) {
-		System.setProperty("webdriver.chrome.driver","/WEB-INF/lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","D:/디지털컨버전스(2월반)/workspace/Project/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -153,15 +151,14 @@ public class MenuDataDAO {
 		return null;
 	}
 
-	public int updateGameStuff(String serverVal, String serverValue, String clientVal, String clientValue, String code) {
-		String sql = "update game set "+serverVal+"=?, "+clientVal+"=? where code=?";
+	public int updateGameStuff(String val, String value, String code) {
+		String sql = "update game set "+val+"=? where code=?";
 		try(
 				Connection con = this.ready();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, serverValue);
-			pstat.setString(2, clientValue);
-			pstat.setString(3, code);
+			pstat.setString(1, value);
+			pstat.setString(2, code);
 			int result = pstat.executeUpdate();
 			return result;
 		}catch(Exception e) {
