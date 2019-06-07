@@ -55,6 +55,9 @@
                     .card90{background-color:#ffa03a; border-radius:4px;}
                     .bar80{background-color: pink;}
                     .bar90{background-color:#ffa03a;}
+                   
+                    .fixMenu-text{postion:relative; top:20px;} 
+                    .fixedMenuNav div{text-align: center; font-size: 30px;} 
                 </style>
                 <script>
                     $(function() {										// 회원 아이디 조회 결과 반환
@@ -80,10 +83,12 @@
             <body id="page-top">
                 <!-- ================================================= 고정메뉴 ================================================= -->
                 <div class="container-fluid fixedMenu" id=nav_menu>
-                    <div class="row fixedMenuNav p-2">
-                        <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-                        <div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-                            <ul class="nav justify-content-center">
+                   <div class="row fixedMenuNav p-2">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " >
+				<img src="/Resources/img/logo.png" width="150px" height="100px">
+			</div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
                                 <li class="nav-item">
                                 	<a class="nav-link active" href="goMain.win">메인페이지</a></li>
                                 <li class="nav-item"><a class="nav-link"

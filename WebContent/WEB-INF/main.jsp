@@ -41,9 +41,10 @@
 	color: #fff;
 	font-weight: bold;
 }
-
+.fixedMenuNav div{text-align: center; font-size: 30px;}
+.fixMenu-text{position: relative; top: 20px;}
 .jumbotron {
-	padding-top: 180px;
+	padding-top: 250px;
 	background: #b8daff;
 }
 
@@ -144,6 +145,11 @@ a:hover[class="moreBtn"] {
 	border: 0px;
 	padding: 0px;
 }
+.loginBox{position: relative; top: 100px;}
+
+
+
+
 </style>
 <script>
    $(function() {
@@ -220,9 +226,11 @@ a:hover[class="moreBtn"] {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " >
+				<img src="/Resources/img/logo.png" width="150px" height="100px">
+			</div>
 			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center head">
+				<ul class="nav justify-content-center fixMenu-text">
 				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
@@ -344,11 +352,12 @@ a:hover[class="moreBtn"] {
 			</div>
 			<!--    로그인 폼 -->
 			<div
-				class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-1 text-center pt-3 pb-5 login">
+				class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-1 text-center  p-0 login" heignt="400px">
 				<c:choose>
 					<c:when test="${type==1}">
 						<form>
-						<div style="border-radius: 10px; background: #b8daff; height: 250px">
+						<div style="border-radius: 10px; background: #b8daff; height: 400px">
+							<div class="loginBox">
 							<div class="form-group pb-1 1 pt-5 pb-2" style="font-size: 1.4em">
 								<label for="comment"><strong>${nickname}</strong>님
 										환영합니다! </label>
@@ -362,12 +371,14 @@ a:hover[class="moreBtn"] {
 								<img height="49" width="150" src="Resources/img/nlogout.PNG" />
 							</button>
 							</div>
+							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
 						<div
-								style="border-radius: 10px; background: #b8daff; height: 250px">
+								style="border-radius: 10px; background: #b8daff; height: 400px">
+							<div class="loginBox">
 							<div class="form-group pb-1" style="font-size: 1.4em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
@@ -382,12 +393,14 @@ a:hover[class="moreBtn"] {
 								<img height="49" width="222" src="Resources/img/klogout.PNG" />
 							</button>
 							</div>
+							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
 						<form>
 						<div
-								style="border-radius: 10px; background: #b8daff; height: 150px">
+								style="border-radius: 10px; background: #b8daff; height: 400px">
+							<div class="loginBox">
 							<div class="form-group pb-1" style="font-size: 1.2em">
 									<label for="comment"> <strong>${nickname}</strong>님
 										환영합니다!
@@ -401,12 +414,14 @@ a:hover[class="moreBtn"] {
 								id="emailLogout">로그아웃</button>
 							<br> <br>
 							</div>
+							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
 						<form>
 						<div
-								style="border-radius: 10px; height: 200px; background: #b8daff">
+								style="border-radius: 10px; height: 400px; background: #b8daff">
+							<div class="loginBox">
 							<div class="form-group pb-3">
 								<label for="comment"> 어서오세요 <strong>admin</strong>님!
 										환영합니다!
@@ -418,6 +433,7 @@ a:hover[class="moreBtn"] {
 							<button type="button" class="btn btn-outline-secondary mr-2"
 								id="adminPage">관리자 페이지</button>
 							<br>
+							</div>
 							</div>
 						</form>
 					</c:when>
@@ -536,7 +552,7 @@ a:hover[class="moreBtn"] {
 						data-toggle="tab" href="#qna">질문게시판</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="info">
+					<div class="tab-pane fade show active" id="info" >
 						<h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
 						<div class="row text-center">
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
