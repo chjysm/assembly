@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
+import dao.AdminDAO;
 import dao.MemberDAO;
 import dao.StudyDAO;
 import dto.MemberDTO;
@@ -22,7 +24,6 @@ public class MeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF8");
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
@@ -37,14 +38,25 @@ public class MeController extends HttpServlet {
 				int result = me.loginCheck(email, pw);
 				if (result == 1) {
 					int id = me.getId(email);
-					String nickname = me.getNickname(email);
-					int type = me.getType(email);
-					request.getSession().setAttribute("id", id);
-					request.getSession().setAttribute("email", email);
-					request.getSession().setAttribute("type", type);
-					request.getSession().setAttribute("nickname", nickname);
-					response.sendRedirect("goMain.win");
-				} else {
+
+					AdminDAO adao = new AdminDAO();					// 정지회원 여부 체크
+					String checkBan = adao.CheckBan(email);
+					try {
+						if(checkBan.equals("Y")) {
+							request.getRequestDispatcher("/WEB-INF/admin/ban.jsp").forward(request, response);
+						} else {
+							throw new Exception();
+						} 
+					}catch(Exception e){
+						String nickname = me.getNickname(email);
+						int type = me.getType(email);
+						request.getSession().setAttribute("id", id);
+						request.getSession().setAttribute("email", email);
+						request.getSession().setAttribute("type", type);
+						request.getSession().setAttribute("nickname", nickname);
+						response.sendRedirect("goMain.win");
+					}
+				}else {
 					response.getWriter().append("<script>;"
 							+ "if(alert('로그인 실패! 아이디와 비밀번호를 확인 하세요!')!=0){  location.href='goMain.win';}</script>");
 				}
@@ -90,7 +102,7 @@ public class MeController extends HttpServlet {
 				int result = me.insert_member(dto);
 				if (result == 1) {
 					response.getWriter()
-							.append("<script> if(alert('가입을 축하드립니다.')!= 0){ location.href='goMain.win' }</script>");
+					.append("<script> if(alert('가입을 축하드립니다.')!= 0){ location.href='goMain.win' }</script>");
 				} else {
 					response.getWriter().append(
 							"<script> if(alert('가입 실패 다시 시도 해주세요!')!= 0){ location.href='goMain.win' }</script>");
@@ -150,7 +162,7 @@ public class MeController extends HttpServlet {
 
 				if (result == 1) {
 					response.getWriter()
-							.append("<script> if(alert('회원정보를 수정했습니다.')!= 0){ location.href='goMain.win' }</script>");
+					.append("<script> if(alert('회원정보를 수정했습니다.')!= 0){ location.href='goMain.win' }</script>");
 				} else {
 					response.getWriter().append(
 							"<script> if(alert('회원정보 수정을 실패했습니다.')!= 0){ location.href='goMain.win' }</script>");
@@ -178,6 +190,11 @@ public class MeController extends HttpServlet {
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");
 		}
+	}
+
+	private void showMessageDialog(Object object, String string) {
+		// TODO Auto-generated method stub
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

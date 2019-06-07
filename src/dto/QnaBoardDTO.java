@@ -92,8 +92,8 @@ public class QnaBoardDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAnswer() {
-		return id;
+	public String getAnswer() {
+		return answer;
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;

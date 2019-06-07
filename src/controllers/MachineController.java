@@ -34,7 +34,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(100, "burger");
 				machine.mcSaveDB(110, "set_menu");
 				machine.mcSaveDB(140, "mc_morning");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -44,7 +44,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(130, "happy");
 				machine.mcSaveDB(180, "happy_meal");
 				machine.mcSaveDB(150, "snack_side");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -54,7 +54,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(190, "mc_cafe");
 				machine.mcSaveDB(170, "beverage");
 				machine.mcSaveDB(160, "desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
@@ -70,7 +70,7 @@ public class MachineController extends HttpServlet {
 				machine.mcUpdateDB("mc_cafe");
 				machine.mcUpdateDB("beverage");
 				machine.mcUpdateDB("desert");
-				request.getRequestDispatcher("db.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
@@ -152,8 +152,9 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/takeio.kiosk")) {
 			String takeIOM = request.getParameter("key1");
 			String takeIOY = request.getParameter("key2");
-			int result = machine.updateGameStuff("takeIOM", takeIOM, "takeIOY", takeIOY, request.getSession().getAttribute("personalCode").toString());
-			if(result>0) {
+			int result1 = machine.updateGameStuff("takeIOM", takeIOM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("takeIOY", takeIOY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			}else {
 				out.print("오류발생");
@@ -161,8 +162,9 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/burger_value.kiosk")) {
 			String burgerNameM = request.getParameter("key1");
 			String burgerNameY = request.getParameter("key2");
-			int result = machine.updateGameStuff("burgerNameM", burgerNameM, "burgerNameY", burgerNameY, request.getSession().getAttribute("personalCode").toString());
-			if(result>0) {
+			int result1 = machine.updateGameStuff("burgerNameM", burgerNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("burgerNameY", burgerNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			}else {
 				out.print("오류발생");
@@ -170,8 +172,9 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/snack_value.kiosk")) {
 			String sideNameM = request.getParameter("key1");
 			String sideNameY = request.getParameter("key2");
-			int result = machine.updateGameStuff("sideNameM", sideNameM, "sideNameY", sideNameY, request.getSession().getAttribute("personalCode").toString());
-			if(result>0) {
+			int result1 = machine.updateGameStuff("sideNameM", sideNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("sideNameY", sideNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			}else {
 				out.print("오류발생");
@@ -179,8 +182,9 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/beverage_value.kiosk")) {
 			String beverageNameM = request.getParameter("key1");
 			String beverageNameY = request.getParameter("key2");
-			int result = machine.updateGameStuff("beverageNameM", beverageNameM, "beverageNameY", beverageNameY, request.getSession().getAttribute("personalCode").toString());
-			if(result>0) {
+			int result1 = machine.updateGameStuff("beverageNameM", beverageNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("beverageNameY", beverageNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			}else {
 				out.print("오류발생");
@@ -191,6 +195,8 @@ public class MachineController extends HttpServlet {
 		
 		//WEB-INF우회
 		else if(cmd.equals("/startGame.kiosk")) {
+			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
+		}else if(cmd.equals("/goMcFirst.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
 		}else if(cmd.equals("/returnMain.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);

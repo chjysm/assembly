@@ -1,7 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 
+import dao.AdminDAO;
 import dao.MemberDAO;
 import dao.NaverDAO;
 import dto.MemberDTO;
@@ -53,13 +54,24 @@ public class NaController extends HttpServlet {
 						int result = me.insert_member(new MemberDTO(0,email,null,name,nickname,birthday,gender,age,type));
 					}
 					int id=me.getId(email);
-					String realNickname=me.getNickname(email);
-					request.getSession().setAttribute("id", id);
-					request.getSession().setAttribute("email", email);
-					request.getSession().setAttribute("type", type);
-					request.getSession().setAttribute("nickname", realNickname);
-					request.getSession().setAttribute("refresh_token", refresh_token);
-					response.sendRedirect("goMain.win");
+
+					AdminDAO adao = new AdminDAO();					// 정지회원 여부 체크
+					String checkBan = adao.CheckBan(email);
+					try {
+						if(checkBan.equals("Y")) {
+							request.getRequestDispatcher("/WEB-INF/admin/ban.jsp").forward(request, response);
+						} else {
+							throw new Exception();
+						}
+					}catch(Exception e) {
+						String realNickname=me.getNickname(email);
+						request.getSession().setAttribute("id", id);
+						request.getSession().setAttribute("email", email);
+						request.getSession().setAttribute("type", type);
+						request.getSession().setAttribute("nickname", realNickname);
+						request.getSession().setAttribute("refresh_token", refresh_token);
+						response.sendRedirect("goMain.win");
+					}
 				}catch(Exception e) {
 					request.setAttribute("type", 1);
 					request.getRequestDispatcher("/WEB-INF/member/reprompt.jsp").forward(request, response);
