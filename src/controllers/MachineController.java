@@ -195,6 +195,8 @@ public class MachineController extends HttpServlet {
 		
 		//WEB-INF우회
 		else if(cmd.equals("/startGame.kiosk")) {
+			request.getRequestDispatcher("/WEB-INF/game/game_start.jsp").forward(request, response);
+		}else if(cmd.equals("/goFirstStep.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
 		}else if(cmd.equals("/goMcFirst.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);

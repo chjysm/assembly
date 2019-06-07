@@ -105,10 +105,16 @@ select {
 select :hover {
 	cursor: pointer;
 }
+.st_row{
+	text-align:center;
+}
+.st_row td{
+	border-top:0px;
+}
 </style>
 <script>
 	$(function() {
-
+		
 		$("#pwChange_btn").on("click", function() {
 			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
@@ -149,7 +155,6 @@ select :hover {
 		<form method="post" action="modify.me" id="mpForm">
 			<div class="row">
 				<div class="col-lg-8">
-
 					<table class="table "
 						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
 						<tr>
@@ -158,9 +163,7 @@ select :hover {
 									페이지 (회원 정보 수정)</span>
 						</tr>
 						<c:forEach var="i" items="${ list}">
-
 							<tbody>
-
 								<tr class="pt-4">
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>이름</strong></span>
@@ -183,16 +186,8 @@ select :hover {
 												value="비밀번호 변경하기">
 										</tr>
 									</c:when>
-
-
 									<c:otherwise>
-										<tr class="pt-4">
-											<td
-												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>비밀번호</strong></span>
-											<td colspan="2"><input type="button"
-												class=" btn btn-primary float-left" id="pwChange_btn"
-												value="비밀번호 변경하기" disabled>
-										</tr>
+										
 									</c:otherwise>
 								</c:choose>
 								<tr class="pt-4">
@@ -249,11 +244,31 @@ select :hover {
 										id="back_btn" type="button" value="뒤로가기">
 								</tr>
 							</tbody>
-						</c:forEach>
+						</c:forEach >
 					</table>
 				</div>
 			</div>
 		</form>
+		<div class="row ">
+				<div class="col-lg-8">
+					<table class="table "
+						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
+						<tr class="st_row">
+							<td>상표
+							<td colspan=3>내 답안
+							<td>완료한 날짜
+						</tr>
+						<c:forEach var="i" items="${s_list}">
+						<tr class="st_row">
+							<td>${ i.brand}
+							<td colspan=3>${ i.answer}
+							<td>${ i.comp_date}
+						</tr>
+						</c:forEach>
+					</table>
+				</div>
+		</div>
+						
 	</div>
 </body>
 </html>

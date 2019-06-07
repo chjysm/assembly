@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <!DOCTYPE html>
         <html>
             <head>
@@ -81,8 +80,8 @@
                         <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
                         <div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
                             <ul class="nav justify-content-center">
-                                <li class="nav-item"><a class="nav-link active"
-                                                        href="goMain.win">메인페이지</a></li>
+                                <li class="nav-item">
+                                	<a class="nav-link active" href="goMain.win">메인페이지</a></li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="startGame.kiosk">학습하기</a></li>
                                 <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트  소개</a></li>
