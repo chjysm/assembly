@@ -138,8 +138,7 @@
             #wrapper *{font-size:25px;}
             .titleBox *{border-bottom: 1px solid black; }
             .header{background-color: #9baec850; border-bottom: 1px solid black;}
-            .content{min-height: 300px;}
-            .content div:nth-child(2){overflow-y:scroll;}
+            .content{height: 450px; overflow: auto;}
             .footer{border-top:1px solid black; }
             .footer>div{text-align: right; border-bottom: 1px solid black;}
             .footer input[type="button"]{margin-bottom: 4px; margin-top:4px;}
