@@ -60,55 +60,7 @@ select :hover {
 }
 </style>
 <script>
-<<<<<<< HEAD
-$(function() {
-    var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
-    var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
-    var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
-    var idCount = 0;
-    var pwCount = 0;
-    var certi = 0;
-    //아이디 중복 ajax +정규표현식
-    $("#email").on("input", function() {
-       if (emailRex.exec($("#email").val()) == null) {
-          $("#idRegex").css("color", "red");
-          $("#idRegex").text("적합한 형식이 아닙니다. ex) cwg94@naver.com ");
-          $("#email").attr("flag", "fales");
-       } else {
-          $("#idRegex").text("");
-          $.ajax({
-             url : "check.me",
-             type : "post",
-             data : {
-                id : $("#email").val()
-             }
-          }).done(function(resp) {
-             console.log(resp);
-             if (resp == 1) {
-                $("#idRegex").css("color", "red");
-                $("#idRegex").text(" *이미 사용중인 계정 입니다.");
-                $("#email").attr("flag", "fales");
-             } else {
-                $("#idRegex").css("color", "green");
-                $("#idRegex").text(" *사용할 수 있는 계정 입니다.");
-                $("#email").attr("flag", "true");
-             }
-          })
-       }
-    });
-    //패스워드 regex 
-    $("#pw").on(
-          "input",
-          function() {
-             if (pwRex.exec($("#pw").val()) == null) {
-                $("#pwRegex").css("color", "red");
-                $("#pwRegex").text(
-                      "적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
 
-             } else {
-                $("#pwRegex").css("color", "green");
-                $("#pwRegex").text("사용할 수 있는 비밀번호 입니다. ");
-=======
    $(function() {
       var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
       var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
@@ -157,10 +109,7 @@ $(function() {
                   $("#pwRegex").css("color", "green");
                   $("#pwRegex").text("적합한 형식의 비밀번호 입니다. ");
                   $("#pw").attr("flag", "true")
->>>>>>> 710ea33bc804603e26d82244cd9404d55557f213
-
                }
-
             });
       //패스워드 일치 
       $("#pwcheck").on("input", function() {
@@ -267,16 +216,6 @@ $(function() {
      });
     
  })
-=======
-          } else {
-             alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-             $("#certi").attr("flag", "false");
-             $("#certiRegex").css("color", "red");
-             $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-          }
-       });
-   })
->>>>>>> 710ea33bc804603e26d82244cd9404d55557f213
 </script>
 <title>회원가입</title>
 </head>
