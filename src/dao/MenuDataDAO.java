@@ -153,15 +153,14 @@ public class MenuDataDAO {
 		return null;
 	}
 
-	public int updateGameStuff(String serverVal, String serverValue, String clientVal, String clientValue, String code) {
-		String sql = "update game set "+serverVal+"=?, "+clientVal+"=? where code=?";
+	public int updateGameStuff(String val, String value, String code) {
+		String sql = "update game set "+val+"=? where code=?";
 		try(
 				Connection con = this.ready();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, serverValue);
-			pstat.setString(2, clientValue);
-			pstat.setString(3, code);
+			pstat.setString(1, value);
+			pstat.setString(2, code);
 			int result = pstat.executeUpdate();
 			return result;
 		}catch(Exception e) {
