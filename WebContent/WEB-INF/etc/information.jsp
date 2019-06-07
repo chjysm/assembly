@@ -241,10 +241,6 @@ strong {
 	</div>
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				<h1 class="display-5 font-weight-bold">사이트맵</h1>
-				<p class="lead font-weight-bold">ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</p>
-			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 				<div class="">
 					<span class="logo"><img src="/Resources/img/logo.png" width="150px" height="100px"></span>
@@ -269,6 +265,9 @@ strong {
                 <li class="nav-item"><a href="#" class="nav-link youtube "><i class="fab fa-youtube fa-3x"></i></a></li>
                 <li class="nav-item"><a href="#" class="nav-link twitter "><i class="fab fa-twitter-square fa-3x"></i></a></li>
             </ul>
+            </div>
+            </div>
+            </div>
             </div>
 	
 </body>
