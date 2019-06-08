@@ -28,7 +28,7 @@
 		.logoLi{font-family: 'Noto Sans KR', sans-serif; text-shadow : 0 0 1px #5882FA;}
 		.logoLi:hover{opacity:0.7;}
 		.fixedMenu div{text-align: center; font-size:20px;} 
-		.mainPage{padding-top:100px;} /*수정*/
+		.mainPage{padding-top:100px; margin-bottom:100px;} /*수정*/
 		.myCard{border:none;}
 		.nav-tabs .nav-link{color:#000; font-weight:bold;}
 		.tab-pane{padding:30px; background:#fff; border-radius:0 0 5px 5px; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
@@ -113,7 +113,7 @@
 						    	var randomPick = takeInOut[Math.floor(Math.random()*2)];
 						    	$('#speakerTxt').val("아래 그림들 중 '"+randomPick + "' 를 선택하세요");
 						    </script>
-						    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리로 들어보세요</button>
+						    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리를 들어보세요</button>
 						    <div style="display:none;">
 						      <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
 						      <div class="rate-value">1</div>

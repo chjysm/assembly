@@ -108,8 +108,8 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center my">
-			  <h1 class="h3 mt-4 mb-4">키워드</h1>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center my ybtn">
+			  <h1 class="h3 mt-4 mb-4">키워드를 선택해보세요!</h1>
 				<button type="button" class="btn btn-primary btn-lg mt-2 mr-2">키오스크</button>
 				<button type="button" class="btn btn-outline-primary btn-lg mt-2 mr-2">황혼</button>
 				<button type="button" class="btn btn-secondary btn-lg mt-2 mr-2">디지털</button>
@@ -125,6 +125,11 @@
 				<button type="button" class="btn btn-dark btn-lg mt-2 mr-2">건강</button>
 				<button type="button" class="btn btn-outline-dark btn-lg mt-2 mr-2">청춘</button>
 			</div>
+			<script>
+				$('.ybtn').find('.btn').on('click', function(){
+					$('#search_box').val($(this).text());
+				});
+			</script>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center my">
 				<div class="row my mt-3">
 					<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 text-center my">
