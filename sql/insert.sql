@@ -3283,22 +3283,20 @@ insert into supportboard values (Support_seq.nextval,'',5540,'','','',750000);
 insert into supportboard values (Support_seq.nextval,'',5538,'','','',450000);
 insert into supportboard values (Support_seq.nextval,'',5547,'','','',230000);
 
-insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~','잘부탁드립니다~','2abcd',10,'aaaa',default,"2abcd@naver.com",2);
-insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~1','잘부탁드립니다~','2abcd',10,'aaaa',default,"2abcd@naver.com",2);
-insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~2','잘부탁드립니다~','2abcd',10,'aaaa',default,"2abcd@naver.com",2);
-insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~3','잘부탁드립니다~','2abcd',10,'aaaa',default,"2abcd@naver.com",2);
-insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~','2abcd',10,'aaaa',default,"2abcd@naver.com",2,default);
-insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~2','2abcd',10,'aaaa',default,"2abcd@naver.com",2,default);
-insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~3','2abcd',10,'aaaa',default,"2abcd@naver.com",2,default);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 맥도날드 키오스크가 추가 되었습니다.',' 맥도날드 키오스크가 추가 되었습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 광고 문의.','광고문의. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 후원 문의',' 맥도날드 키오스크가 추가 되었습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 사용자 분들 잘부탁 드립니다.',' 아직 미숙한 점이 많습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 건의 게시판이 오픈했습니다.',' 건의 게시판이 오픈했습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 유튜브 찾기 기능이 추가됬습니다.',' 유튜브 찾기 기능이 추가됬습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
-insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 길찾기 기능이 추가됬습니다.','  길찾기 기능이 추가됬습니다. 많은 이용 부탁드립니다','admin',10,null,default,"admin@admin.com",1);
+insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~','잘부탁드립니다~','2abcd',10,'aaaa',default,'2abcd@naver.com',2);
+insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~1','잘부탁드립니다~','2abcd',10,'aaaa',default,'2abcd@naver.com',2);
+insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~2','잘부탁드립니다~','2abcd',10,'aaaa',default,'2abcd@naver.com',2);
+insert into freeBoard values(FreeBoard_seq.nextval, '안녕하세요~3','잘부탁드립니다~','2abcd',10,'aaaa',default,'2abcd@naver.com',2);
+insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~','2abcd',10,'aaaa',default,'2abcd@naver.com',2,default);
+insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~2','2abcd',10,'aaaa',default,'2abcd@naver.com',2,default);
+insert into QuestionBoard values(QuestionBoard_seq.nextval, '안녕하세요~','문의 입니다~3','2abcd',10,'aaaa',default,'2abcd@naver.com',2,default);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 맥도날드 키오스크가 추가 되었습니다.',' 맥도날드 키오스크가 추가 되었습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 광고 문의.','광고문의. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 후원 문의',' 맥도날드 키오스크가 추가 되었습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 사용자 분들 잘부탁 드립니다.',' 아직 미숙한 점이 많습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 건의 게시판이 오픈했습니다.',' 건의 게시판이 오픈했습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 유튜브 찾기 기능이 추가됬습니다.',' 유튜브 찾기 기능이 추가됬습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
+insert into NoticeBoard values(NoticeBoard_seq.nextval, '[공지사항] 길찾기 기능이 추가됬습니다.','  길찾기 기능이 추가됬습니다. 많은 이용 부탁드립니다','admin',10,'aaaa',default,'admin@admin.com',1);
 
-insert into study values(2,"mcdonald","매장에서식사 : 햄버거 : 콜라 : 후렌치 후라이 ",default);
-
-
+insert into study values(2,'mcdonald','매장에서식사 : 햄버거 : 콜라 : 후렌치 후라이 ',default);
 COMMIT;

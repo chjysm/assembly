@@ -1,62 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>회원가입</title>
 <script type="text/javascript"
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
-	charset="utf-8"></script>
+   src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+   charset="utf-8"></script>
 <script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-	charset="utf-8"></script>
+   src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+   charset="utf-8"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
+@import
+   url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+   ;
+
 * {
-	margin: 0 auto;
+   margin: 0 auto;
 }
 
 .fixedMenu {
-	position: fixed;
-	background: #fff;
-	z-index: 999;
+   position: fixed;
+   background: #fff;
+   z-index: 999;
 }
 
 .fixedMenuNav {
-	background: #007bff;
+   background: #007bff;
+   box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu .nav-link {
-	color: #fff;
-	font-weight: bold;
+   color: #fff;
+   font-weight: bold;
 }
- .fixMenu-text{position: relative; top: 20px;}
-.fixedMenu div{text-align: center; font-size:30px;} 
-   
+
+#logo {
+   font-family: 'Poiret One', cursive;
+   font-weight: bold;
+   text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+      1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+   position: relative;
+   top: 10px;
+}
+
+.logoLi {
+   font-family: 'Noto Sans KR', sans-serif;
+   text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+   opacity: 0.7;
+}
+
+.fixedMenu div {
+   text-align: center;
+   font-size: 20px;
+}
+
 .container {
-	padding-top: 150px;
+   padding-top: 150px;
 }
 
 select {
-	width: 200px; /* 원하는 너비설정 */
-	padding: .8em .5em; /* 여백으로 높이 설정 */
-	font-family: inherit; /* 폰트 상속 */
-	border: 1px solid #999;
-	border-radius: 10px; /* iOS 둥근모서리 제거 */
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
-	-moz-appearance: none;
-	appearance: none;
+   width: 200px; /* 원하는 너비설정 */
+   padding: .8em .5em; /* 여백으로 높이 설정 */
+   font-family: inherit; /* 폰트 상속 */
+   border: 1px solid #999;
+   border-radius: 10px; /* iOS 둥근모서리 제거 */
+   -webkit-appearance: none; /* 네이티브 외형 감추기 */
+   -moz-appearance: none;
+   appearance: none;
 }
 
 select :hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 </style>
 <script>
@@ -83,7 +112,6 @@ select :hover {
                   id : $("#email").val()
                }
             }).done(function(resp) {
-               console.log(resp);
                if (resp == 1) {
                   $("#idRegex").css("color", "red");
                   $("#idRegex").text(" *이미 사용중인 계정 입니다.");
@@ -153,34 +181,7 @@ select :hover {
                   alert("입력하지 않은 값이 있습니다.");
                }
             });
-      $("#emailbtn").on("click", function() {
-         if ($("#email").attr("flag") == "true") {
-            alert("해당 이메일로 인증 번호가 발송 되었습니다!");
-            $("#certiRegex").css("color", "green");
-            $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-            $.ajax({
-               url : "post.ma",
-               data : {
-                  email : $("#email").val()
-               },
-               type : "get"
-            }).done(function(resp2) {
-               var certi = resp2;
-               $("#certi").attr("disabled",false);
-            });
-         } else {
-            alert("이메일이 중복 되거나 양식에 맞지 않습니다");
-         }
-      });
-      $("#certibtn").on("click", function() {
-          if ($("#certi").val() == certi) {
-             if (alert("인증성공") != 0) {
-                $("#certi").attr("flag", "true");
-                $("#certiRegex").css("color", "green");
-                $("#certiRegex").text("인증완료!");
-             }
-<<<<<<< HEAD
-          });
+      
     $("#emailbtn").on("click", function() {
        if ($("#email").attr("flag") == "true") {
           alert("해당 이메일로 인증 번호가 발송 되었습니다!");
@@ -206,6 +207,7 @@ select :hover {
               $("#certi").attr("flag", "true");
               $("#certiRegex").css("color", "green");
               $("#certiRegex").text("인증완료!");
+              $("#email").attr("readonly",true);
            }
         } else {
            alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
@@ -220,136 +222,147 @@ select :hover {
 <title>회원가입</title>
 </head>
 <body>
-	<!-- 고정메뉴 -->
-	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center fixMenu-text">
-				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
-					
-				</ul>
-			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-	</div>
-	<div class="container">
-		<form method="post" action="signUp_insert.me" id="form">
-			<div class="row">
-				<div class="col-lg-8">
-					<table class="table  table-hover"
-						style="text-align: center; border: 1px solid #dddddd">
-						<thead>
-							<th colspan="3" class=" btn-primary"><h4>회원 가입</h4></th>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 200px; vertical-align: middle" class="pt-4"><h5>아이디</h5>
-								<td colspan="2">
-									<div class="input-group ">
-										<input type="text" class="form-control" id="email"
-											name="email" flag="false"
-											placeholder="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
-											aria-label="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
-											aria-describedby="button-addon2"
-											pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
-											required>
-										<div class="input-group-append">
-											<button class="btn btn-outline-primary" type="button"
-												id="emailbtn">인증</button>
-										</div>
-									</div>
-									<div class="float-left" id='idRegex'></div>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>이메일 인증</h5>
-								<td colspan="2">
-									<div class="input-group">
-										<input type="text" class="form-control" id="certi"
-											name="certi" flag="false" placeholder="인증번호를 입력해 주세요."
-											aria-label="인증번호를 입력해 주세요." aria-describedby="button-addon2"
-											required disabled>
-										<div class="input-group-append">
-											<button class="btn btn-outline-primary" type="button"
-												id="certibtn">확인</button>
-										</div>
-									</div>
-									<div class="float-left" id='certiRegex'></div>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>비밀번호</h5> <br>
-								<td colspan="2"><input class="form-control" type="password"
-									id="pw" placeholder="비밀번호를 입력 해주세요."
-									pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
-									flag="false" required><span class="float-left" id="pwRegex"></span><br>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>비밀번호 확인</h5> <br>
-								<td colspan="2"><input class="form-control" type="password"
-									id="pwcheck" name="pwcheck" placeholder="비밀번호를 재입력 해주세요."
-									pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
-									flag="false" required><span class="float-left" id="pwCheck"></span><br>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>이름</h5> <br>
-								<td colspan="2"><input class="form-control" type="text"
-									name="name" placeholder="이름을 입력해 주세요." maxlength="6" required><br>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>닉네임</h5> <br>
-								<td colspan="2"><input class="form-control" type="text"
-									name="nickname" placeholder="닉네임을 입력해 주세요." maxlength="8"
-									required><br>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>나이</h5>
-								<td style="width: 200px"><select class="float-left"
-									name="age">
+   <!-- 고정메뉴 -->
+   <div class="container-fluid fixedMenu">
+      <div class="row fixedMenuNav">
+         <div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+         <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <ul class="nav justify-content-center fixMenu-text pb-3">
+               <li id="logo" class="nav-item"><a class="nav-link active"
+                  href="#">WUYAKO</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="goMain.win">메인페이지</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="translateMenu.go">학습하기</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="goInfo.win">사이트 소개</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+               <li class="nav-item logoLi"><a class="nav-link"
+                  href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 
-										<option value="10-19">10 - 19</option>
-										<option value="20-29">20 - 29</option>
-										<option value="30-39">30 - 39</option>
-										<option value="40-49">40 - 49</option>
-										<option value="50-59">50 - 59</option>
-										<option value="60-69">60 - 69</option>
-										<option value="70-79">70 - 79</option>
-										<option value="80-89">80 - 89</option>
-										<option value="90-99">90 - 99</option>
-								</select>
-								<td>
-							</tr>
-							<tr>
-								<td style="width: 200px" class="pt-4"><h5>성별</h5>
-								<td colspan="2">
-									<div class="form-group"
-										style="text-align: center; margin: 0 auto;">
-										<div class="btn-group " data-toggle="buttons"
-											style="float: left">
-											<label class="btn btn-primary active"> <input
-												type="radio" name="gender" value="M" checked
-												autocomplete="off" checked>남자
-											</label> <label class="btn btn-danger"> <input type="radio"
-												name="gender" value="F" autocomplete="off">여자
-											</label>
-										</div>
-									</div> <br> <br>
-							</tr>
-							<tr>
-								<td style="text-align: center" colspan="3"><input
-									class="btn btn-primary float-center" style="width: 10rem"
-									type="button" id="sub" value="회원가입">
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</form>
-	</div>
+            </ul>
+         </div>
+         <div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+      </div>
+   </div>
+
+   <div class="container">
+      <form method="post" action="signUp_insert.me" id="form">
+         <div class="row">
+            <div class="col-lg-8">
+               <table class="table  table-hover"
+                  style="text-align: center; border: 1px solid #dddddd">
+                  <thead>
+                     <th colspan="3" class=" btn-primary"><h4>회원 가입</h4></th>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="width: 200px; vertical-align: middle" class="pt-4"><h5>아이디</h5>
+                        <td colspan="2">
+                           <div class="input-group ">
+                              <input type="text" class="form-control" id="email"
+                                 name="email" flag="false"
+                                 placeholder="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
+                                 aria-label="이메일을 입력해 주세요. (이메일주소를 아이디로 사용합니다.)"
+                                 aria-describedby="button-addon2"
+                                 pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
+                                 required>
+                              <div class="input-group-append">
+                                 <button class="btn btn-outline-primary" type="button"
+                                    id="emailbtn">인증</button>
+                              </div>
+                           </div>
+                           <div class="float-left" id='idRegex'></div>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>이메일 인증</h5>
+                        <td colspan="2">
+                           <div class="input-group">
+                              <input type="text" class="form-control" id="certi"
+                                 name="certi" flag="false" placeholder="인증번호를 입력해 주세요."
+                                 aria-label="인증번호를 입력해 주세요." aria-describedby="button-addon2"
+                                 required disabled>
+                              <div class="input-group-append">
+                                 <button class="btn btn-outline-primary" type="button"
+                                    id="certibtn">확인</button>
+                              </div>
+                           </div>
+                           <div class="float-left" id='certiRegex'></div>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>비밀번호</h5> <br>
+                        <td colspan="2"><input class="form-control" type="password"
+                           id="pw" placeholder="비밀번호를 입력 해주세요."
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+                           flag="false" required><span class="float-left"
+                           id="pwRegex"></span><br>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>비밀번호 확인</h5> <br>
+                        <td colspan="2"><input class="form-control" type="password"
+                           id="pwcheck" name="pwcheck" placeholder="비밀번호를 재입력 해주세요."
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+                           flag="false" required><span class="float-left"
+                           id="pwCheck"></span><br>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>이름</h5> <br>
+                        <td colspan="2"><input class="form-control" type="text"
+                           name="name" id="name" placeholder="이름을 입력해 주세요." maxlength="10" required><br>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>닉네임</h5> <br>
+                        <td colspan="2"><input class="form-control" type="text"
+                           name="nickname" placeholder="닉네임을 입력해 주세요." maxlength="8"
+                           required><br>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>나이</h5>
+                        <td style="width: 200px"><select class="float-left"
+                           name="age">
+
+                              <option value="10-19">10 - 19</option>
+                              <option value="20-29">20 - 29</option>
+                              <option value="30-39">30 - 39</option>
+                              <option value="40-49">40 - 49</option>
+                              <option value="50-59">50 - 59</option>
+                              <option value="60-69">60 - 69</option>
+                              <option value="70-79">70 - 79</option>
+                              <option value="80-89">80 - 89</option>
+                              <option value="90-99">90 - 99</option>
+                        </select>
+                        <td>
+                     </tr>
+                     <tr>
+                        <td style="width: 200px" class="pt-4"><h5>성별</h5>
+                        <td colspan="2">
+                           <div class="form-group"
+                              style="text-align: center; margin: 0 auto;">
+                              <div class="btn-group " data-toggle="buttons"
+                                 style="float: left">
+                                 <label class="btn btn-primary active"> <input
+                                    type="radio" name="gender" value="M" checked
+                                    autocomplete="off" checked>남자
+                                 </label> <label class="btn btn-danger"> <input type="radio"
+                                    name="gender" value="F" autocomplete="off">여자
+                                 </label>
+                              </div>
+                           </div> <br> <br>
+                     </tr>
+                     <tr>
+                        <td style="text-align: center" colspan="3"><input
+                           class="btn btn-primary float-center" style="width: 10rem"
+                           type="button" id="sub" value="회원가입">
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </form>
+   </div>
 
 </body>
 </html>

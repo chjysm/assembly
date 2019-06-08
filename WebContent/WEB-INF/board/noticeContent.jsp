@@ -196,6 +196,9 @@
 	top: 250px;
 	text-align: center;
 }
+.head>div {
+	margin: auto;
+} 
 
 h1+div {
 	border: 1.5px solid #0a47ff;
