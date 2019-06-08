@@ -9,7 +9,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>회원가입</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
@@ -37,7 +37,9 @@
 	color: #fff;
 	font-weight: bold;
 }
-
+ .fixMenu-text{position: relative; top: 20px;}
+.fixedMenu div{text-align: center; font-size:30px;} 
+   
 .container {
 	padding-top: 150px;
 }
@@ -59,89 +61,125 @@ select :hover {
 </style>
 <script>
 
-$(function() {
-    var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
-    var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
-    var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
-    var idCount = 0;
-    var pwCount = 0;
-    //아이디 중복 ajax +정규표현식
-    $("#email").on("input", function() {
-       if (emailRex.exec($("#email").val()) == null) {
-          $("#idRegex").css("color", "red");
-          $("#idRegex").text("적합한 형식이 아닙니다. ex) cwg94@naver.com ");
-          $("#email").attr("flag", "fales");
-       } else {
-          $("#idRegex").text("");
-          $.ajax({
-             url : "check.me",
-             type : "post",
-             data : {
-                id : $("#email").val()
+   $(function() {
+      var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
+      var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
+      var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
+      var idCount = 0;
+      var pwCount = 0;
+      var certi =0;
+      //아이디 중복 ajax +정규표현식
+      $("#email").on("input", function() {
+         if (emailRex.exec($("#email").val()) == null) {
+            $("#idRegex").css("color", "red");
+            $("#idRegex").text("적합한 형식이 아닙니다. ex) cwg94@naver.com ");
+            $("#email").attr("flag", "false");
+         } else {
+            $("#idRegex").text("");
+            $.ajax({
+               url : "check.me",
+               type : "post",
+               data : {
+                  id : $("#email").val()
+               }
+            }).done(function(resp) {
+               console.log(resp);
+               if (resp == 1) {
+                  $("#idRegex").css("color", "red");
+                  $("#idRegex").text(" *이미 사용중인 계정 입니다.");
+                  $("#email").attr("flag", "false");
+               } else {
+                  $("#idRegex").css("color", "green");
+                  $("#idRegex").text(" *사용할 수 있는 계정 입니다.");
+                  $("#email").attr("flag", "true");
+               }
+            })
+         }
+      });
+      //패스워드 regex 
+      $("#pw").on(
+            "input",
+            function() {
+               if (pwRex.exec($("#pw").val()) == null) {
+                  $("#pwRegex").css("color", "red");
+                  $("#pwRegex").text(
+                        "적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
+                  $("#pw").attr("flag", "false")
+               } else {
+                  $("#pwRegex").css("color", "green");
+                  $("#pwRegex").text("적합한 형식의 비밀번호 입니다. ");
+                  $("#pw").attr("flag", "true")
+               }
+            });
+      //패스워드 일치 
+      $("#pwcheck").on("input", function() {
+         if ($("#pwcheck").val() == $("#pw").val()) {
+            $("#pwCheck").css("color", "green");
+            $("#pwCheck").text("비밀번호 확인 되었습니다.");
+            $("#pwCheck").attr("flag", "true")
+         } else {
+            $("#pwCheck").css("color", "red");
+            $("#pwCheck").text("비밀번호를 다시 확인해 주세요. ");
+            $("#pwCheck").attr("flag", "false")
+         }
+      });
+      $("#name").on("focus", function() {
+         if ($("#pw").val() == $("#pwcheck").val()) {
+            $("#pwCheck").css("color", "green");
+            $("#pwCheck").text("사용할 수 있는 비밀번호 입니다. ");
+            $("#pw").attr("flag", "true")
+         } else {
+            $("#pwCheck").css("color", "red");
+            $("#pwCheck").text("비밀번호가 일치하지 않습니다.");
+            $("#pwcheck").val("");
+            $("#pw").val("");
+            $("#pw").focus();
+            $("#pw").attr("flag", "false")
+         }
+      })
+
+      $("#sub").on(
+            "click",
+            function() {
+               if ($("#email").attr("flag") == "true"
+                     && $("#certi").attr("flag") == "true"
+                     && $("#pw").attr("flag") == "true"
+                     && $("#pwCheck").attr("flag") == "true") {
+                  $("#form").submit();
+               } else if ($("#email").attr("flag") == "false"
+                     || $("#certi").attr("flag") == "false") {
+                  alert("이메일이 중복되거나 인증하지 않았습니다.");
+               } else {
+                  alert("입력하지 않은 값이 있습니다.");
+               }
+            });
+      $("#emailbtn").on("click", function() {
+         if ($("#email").attr("flag") == "true") {
+            alert("해당 이메일로 인증 번호가 발송 되었습니다!");
+            $("#certiRegex").css("color", "green");
+            $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+            $.ajax({
+               url : "post.ma",
+               data : {
+                  email : $("#email").val()
+               },
+               type : "get"
+            }).done(function(resp2) {
+               var certi = resp2;
+               $("#certi").attr("disabled",false);
+            });
+         } else {
+            alert("이메일이 중복 되거나 양식에 맞지 않습니다");
+         }
+      });
+      $("#certibtn").on("click", function() {
+          if ($("#certi").val() == certi) {
+             if (alert("인증성공") != 0) {
+                $("#certi").attr("flag", "true");
+                $("#certiRegex").css("color", "green");
+                $("#certiRegex").text("인증완료!");
              }
-          }).done(function(resp) {
-             console.log(resp);
-             if (resp == 1) {
-                $("#idRegex").css("color", "red");
-                $("#idRegex").text(" *이미 사용중인 계정 입니다.");
-                $("#email").attr("flag", "fales");
-             } else {
-                $("#idRegex").css("color", "green");
-                $("#idRegex").text(" *사용할 수 있는 계정 입니다.");
-                $("#email").attr("flag", "true");
-             }
-          })
-       }
-    });
-    //패스워드 regex 
-    $("#pw").on(
-          "input",
-          function() {
-             if (pwRex.exec($("#pw").val()) == null) {
-                $("#pwRegex").css("color", "red");
-                $("#pwRegex").text(
-                      "적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
-
-             } else {
-                $("#pwRegex").css("color", "green");
-                $("#pwRegex").text("사용할 수 있는 비밀번호 입니다. ");
-
-             }
-          });
-    $("#pw").on("input", function() {
-       if ($("#pw").val() == $("pwcheck").val()) {
-          $("#pwCheck").css("color", "green");
-          $("#pwCheck").text("사용할 수 있는 비밀번호 입니다. ");
-       } else {
-          $("#pwCheck").css("color", "red");
-          $("#pwCheck").text("비밀번호가 일치하지 않습니다.");
-       }
-    })
-    //패스워드 일치 
-    $("#pwcheck").on("input", function() {
-       if ($("#pwcheck").val() == $("#pw").val()) {
-          $("#pwCheck").css("color", "green");
-          $("#pwCheck").text("비밀번호 확인 되었습니다.");
-
-       } else {
-          $("#pwCheck").css("color", "red");
-          $("#pwCheck").text("비밀번호를 다시 확인해 주세요. ");
-
-       }
-    });
-
-    $("#sub").on(
-          "click",
-          function() {
-             if ($("#email").attr("flag") == "true"
-                   && $("#certi").attr("flag") == "true") {
-                $("#form").submit();
-             } else if ($("#email").attr("flag") == "fales"
-                   || $("#certi").attr("flag") == "fales") {
-                alert("이메일이 중복되거나 인증하지 않았습니다.");
-             } else {
-                alert("입력하지 않은 값이 있습니다.");
-             }
+<<<<<<< HEAD
           });
     $("#emailbtn").on("click", function() {
        if ($("#email").attr("flag") == "true") {
@@ -155,28 +193,29 @@ $(function() {
              },
              type : "get"
           }).done(function(resp2) {
-             var certi = resp2;
-             $("#certibtn").on("click", function() {
-                if ($("#certi").val() == certi) {
-                   if (alert("인증성공") != 0) {
-                      $("#certi").attr("flag", "true");
-                      $("#certiRegex").css("color", "green");
-                      $("#certiRegex").text("인증완료!");
-                   }
-                } else {
-                   alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-                   $("#certi").attr("flag", "fales");
-                   $("#certiRegex").css("color", "red");
-                   $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-                }
-             });
+             certi = resp2;
+             $("#certi").attr("disabled",false);
           });
        } else {
           alert("이메일이 중복 되거나 양식에 맞지 않습니다");
        }
     });
+    $("#certibtn").on("click", function() {
+        if ($("#certi").val() == certi) {
+           if (alert("인증성공") != 0) {
+              $("#certi").attr("flag", "true");
+              $("#certiRegex").css("color", "green");
+              $("#certiRegex").text("인증완료!");
+           }
+        } else {
+           alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+           $("#certi").attr("flag", "fales");
+           $("#certiRegex").css("color", "red");
+           $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+        }
+     });
+    
  })
-
 </script>
 <title>회원가입</title>
 </head>
@@ -184,35 +223,19 @@ $(function() {
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active"
-						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
+				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+					
 				</ul>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 	<div class="container">
@@ -250,7 +273,7 @@ $(function() {
 										<input type="text" class="form-control" id="certi"
 											name="certi" flag="false" placeholder="인증번호를 입력해 주세요."
 											aria-label="인증번호를 입력해 주세요." aria-describedby="button-addon2"
-											required>
+											required disabled>
 										<div class="input-group-append">
 											<button class="btn btn-outline-primary" type="button"
 												id="certibtn">확인</button>
@@ -263,14 +286,14 @@ $(function() {
 								<td colspan="2"><input class="form-control" type="password"
 									id="pw" placeholder="비밀번호를 입력 해주세요."
 									pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
-									required><span class="float-left" id="pwRegex"></span><br>
+									flag="false" required><span class="float-left" id="pwRegex"></span><br>
 							</tr>
 							<tr>
 								<td style="width: 200px" class="pt-4"><h5>비밀번호 확인</h5> <br>
 								<td colspan="2"><input class="form-control" type="password"
 									id="pwcheck" name="pwcheck" placeholder="비밀번호를 재입력 해주세요."
 									pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
-									required><span class="float-left" id="pwCheck"></span><br>
+									flag="false" required><span class="float-left" id="pwCheck"></span><br>
 							</tr>
 							<tr>
 								<td style="width: 200px" class="pt-4"><h5>이름</h5> <br>

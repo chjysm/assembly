@@ -12,10 +12,10 @@ import javax.sql.DataSource;
 import dto.SupportDTO;
 
 public class SupportDAO {
-	private Connection getConnection() throws Exception {
+	private Connection getConnection() throws Exception{
 		Context ctx = new InitialContext();
-		Context compenv = (Context) ctx.lookup("java:/comp/env");
-		DataSource ds = (DataSource) compenv.lookup("jdbc");
+		Context compenv = (Context)ctx.lookup("java:/comp/env"); 
+		DataSource ds = (DataSource)compenv.lookup("jdbc"); 
 		Connection con = ds.getConnection();
 		return con;
 	}

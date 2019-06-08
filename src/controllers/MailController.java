@@ -36,6 +36,7 @@ public class MailController extends HttpServlet {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

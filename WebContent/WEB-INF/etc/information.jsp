@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>소개합니다!</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
@@ -16,9 +17,13 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean"
 	rel="stylesheet">
-
+<script src="https://kit.fontawesome.com/650a47b167.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
+
 * {
 	margin: 0 auto;
 }
@@ -31,6 +36,7 @@
 
 .fixedMenuNav {
 	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu .nav-link {
@@ -38,8 +44,34 @@
 	font-weight: bold;
 }
 
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenu div {
+	text-align: center;
+	font-size: 20px;
+}
+
 .container {
-	padding-top: 150px;
+	padding-top: 250px;
 }
 
 h1 {
@@ -76,47 +108,84 @@ h3 {
 .containFont {
 	font-family: "Jua", sans-serif;
 }
+
 strong {
-	color: #819FF7;	
+	color: #819FF7;
+}
+
+.insta {
+	color: #f442b3;
+}
+
+.insta:hover {
+	color: #ad2e7f;
+}
+
+.facebook {
+	color: #1448e5;
+}
+
+.facebook:hover {
+	color: #022a60;
+}
+
+.youtube {
+	color: #ff0000;
+}
+
+.youtube:hover {
+	color: #600202;
+}
+
+.twitter {
+	color: #00d0ff;
+}
+
+.twitter:hover {
+	color: #329bc1;
+}
+
+.connectBox {
+	text-align: right;
+	position: absolute;
+	right: 10px;
+	bottom: 1px;
+}
+
+.connect li {
+	margin: 0;
 }
 </style>
 </head>
 <body>
 	<!-- 고정메뉴 -->
+
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active"
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
 						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 	<div class="container fluid containFont">
@@ -156,7 +225,7 @@ strong {
 			<div class="col-lg-6">
 				<div>
 					<iframe width="80%" height="315"
-						src="https://www.youtube.com/embed/cwdOMOdGgzU" frameborder="0"
+						src="https://www.youtube.com/embed/bV6mNHSCdWs" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
 				</div>
@@ -244,9 +313,14 @@ strong {
 	</div>
 	<div class="container-fluid footer pt-5">
 		<div class="row pt-2 pb-5">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 				<div class="">
-					<span class="logo">Logo</span>
+					<span class="logo"><img src="/Resources/img/logo.png"
+						width="150px" height="100px"></span>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				<div class="">
 					<dl>
 						<dt>Assembly(주)</dt>
 						<dd>(04540)서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</dd>
@@ -256,8 +330,23 @@ strong {
 					</dl>
 				</div>
 			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<div class="connectBox">
+					<ul class="nav connect">
+						<li class="nav-item"><a href="#"
+							class="nav-link active insta"><i
+								class="fab fa-instagram fa-3x"></i></a></li>
+						<li class="nav-item"><a href="#" class="nav-link facebook"><i
+								class="fab fa-facebook-square fa-3x"></i></a></li>
+						<li class="nav-item"><a href="#" class="nav-link youtube "><i
+								class="fab fa-youtube fa-3x"></i></a></li>
+						<li class="nav-item"><a href="#" class="nav-link twitter "><i
+								class="fab fa-twitter-square fa-3x"></i></a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

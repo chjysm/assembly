@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
@@ -12,13 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 
+import dao.AdminDAO;
 import dao.KakaoDAO;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
 @WebServlet("*.ka")
 public class KaController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
@@ -65,14 +67,25 @@ public class KaController extends HttpServlet {
 						me.insert_member(new MemberDTO(0, email, null, nickname, nickname, null, gender, age, type));
 					}
 					int id = me.getId(email);
-					String realNickname = me.getNickname(email);
-					request.getSession().setAttribute("id", id);
-					request.getSession().setAttribute("email", email);
-					request.getSession().setAttribute("type", type);
-					request.getSession().setAttribute("nickname", realNickname);
-					request.getSession().setAttribute("refresh_token", refresh_token);
-					response.sendRedirect("goMain.win");
-				} catch (Exception e) {
+
+					AdminDAO adao = new AdminDAO();					// 정지회원 여부 체크
+					String checkBan = adao.CheckBan(email);
+					try {
+						if(checkBan.equals("Y")) {
+							request.getRequestDispatcher("/WEB-INF/admin/ban.jsp").forward(request, response);
+						} else {
+							throw new Exception();
+						} 
+					}catch(Exception e) {
+						String realNickname = me.getNickname(email);
+						request.getSession().setAttribute("id", id);
+						request.getSession().setAttribute("email", email);
+						request.getSession().setAttribute("type", type);
+						request.getSession().setAttribute("nickname", realNickname);
+						request.getSession().setAttribute("refresh_token", refresh_token);
+						response.sendRedirect("goMain.win");
+					}
+				}catch (Exception e) {
 					e.printStackTrace();
 					ka.remove(access_token);
 					request.setAttribute("type", 2);
@@ -108,6 +121,7 @@ public class KaController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
 	}
 

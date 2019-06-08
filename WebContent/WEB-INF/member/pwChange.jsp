@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 변경</title>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -37,61 +37,77 @@
 </style>
 </head>
 <script>
-	$(function() {
-		var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
-		$("#pwCheck_btn").on("click", function() {
-			$.ajax({
-				url : "pwChange.me",
-				data : {
-					pw : $("#pw").val()
-				},
-				type : "post"
+   $(function() {
+      var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
+      $("#pwCheck_btn").on("click", function() {
+         $.ajax({
+            url : "pwChange.me",
+            data : {
+               pw : $("#pw").val()
+            },
+            type : "post"
+         }).done(function(resp) {
+            console.log(resp)
+            if (resp == 1) {
+               alert("패스워드가 일치합니다. 새 비밀번호를 입력해 주세요.");
+               $("#pwchange_btn").attr("disabled", false);
+               $("#pwCheck_btn").attr("disabled", true);
+            } else {
+               alert("패스워드가 일치하지 않습니다. 비밀번호를 확인해 주세요.");
+               $("#pw").val("");
+            }
+         })
+      })
 
-			}).done(function(resp) {
-				console.log(resp)
-				if (resp == 1) {
-					alert("패스워드가 일치합니다. 새 비밀번호를 입력해 주세요.");
+      //패스워드 regex 
+      $("#newPw").on("input",function() {
+               if (pwRex.exec($("#newPw").val()) == null) {
+                  $("#pwRegex").css("color", "red");
+                  $("#pwRegex").text(
+                        "적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
+               } else {
+                  $("#pwRegex").css("color", "green");
+                  $("#pwRegex").text("사용할 수 있는 비밀번호 입니다. ");
+               }
+            })
+      $("#newPwCheck").on("input", function() {
 
-				} else {
-					alert("패스워드가 일치하지 않습니다. 비밀번호를 확인해 주세요.");
-					$("#pw").val("");
-				}
-			})
-		})
+         if ($("#newPw").val() == $("#newPwCheck").val()) {
+            $("#pwSpan").css("color", "green");
+            $("#pwSpan").text("비밀번호 확인 되었습니다.");
+            $("#newPw").attr("flag", "true");
+            $("#newPwCheck").attr("flag", "true");
+         } else {
+            $("#pwSpan").css("color", "red");
+            $("#pwSpan").text("비밀번호를 다시 확인해 주세요. ");
+            $("#newPw").attr("flag", "false");
+            $("#newPwCheck").attr("flag", "false");
+         }
+      })
 
-		//패스워드 regex 
-		$("#newPw").on(
-				"input",
-				function() {
-					if (pwRex.exec($("#newPw").val()) == null) {
-						$("#pwRegex").css("color", "red");
-						$("#pwRegex").text(
-								"적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
-					} else {
-						$("#pwRegex").css("color", "green");
-						$("#pwRegex").text("사용할 수 있는 비밀번호 입니다. ");
-						$("#newPwCheck").on("input", function() {
+      //패스워드 일치 
+      $("#newPw").on("input", function() {
+         if ($("#newPw").val() == $("#newPwCheck").val()) {
+            $("#pwSpan").css("color", "green");
+            $("#pwSpan").text("비밀번호 확인 되었습니다.");
+            $("#newPw").attr("flag", "true");
+            $("#newPwCheck").attr("flag", "true")
+         } else {
+            $("#pwSpan").css("color", "red");
+            $("#pwSpan").text("비밀번호를 다시 확인해 주세요. ");
+            $("#newPw").attr("flag", "false");
+            $("#newPwCheck").attr("flag", "false");
+         }
+      })
+      $("#pwchange_btn").on(
+            "click",
+            function() {
+               if ($("#newPw").attr("flag") == "true"
+                     && $("#newPwCheck").attr("flag") == "true")
+                  $("#dataForm").submit();
+            })
 
-							if ($("#newPw").val() == $("#newPwCheck").val()) {
-
-								$("#pwSpan").css("color", "green");
-								$("#pwSpan").text("비밀번호 확인 되었습니다.");
-
-							} else {
-
-								$("#pwSpan").css("color", "red");
-								$("#pwSpan").text("비밀번호를 다시 확인해 주세요. ");
-
-							}
-						})
-					}
-				})
-
-		$("#pwchange_btn").on("click", function() {
-			$("#dataForm").submit();
-		});
-
-	})
+   })
 </script>
 <body>
 	<div class="container ">
@@ -106,7 +122,7 @@
 			<div class="col-lg-10 input-group mb-2">
 				<input type="password" class="form-control" id="pw"
 					placeholder="이전 패스워드를 입력해 주세요." aria-label="Recipient's username"
-					aria-describedby="button-addon2" required>
+					aria-describedby="button-addon2" flag="false" required>
 				<div class="input-group-append">
 					<button class="btn btn-outline-primary" type="button"
 						id="pwCheck_btn">패스워드 확인</button>
@@ -119,7 +135,7 @@
 
 				<input type="password" class="form-control" id="newPw"
 					placeholder="새 비밀번호를 입력해 주세요." aria-label="Recipient's username"
-					aria-describedby="button-addon2" required>
+					aria-describedby="button-addon2" flag="false" required>
 
 			</div>
 			<div id="pwRegex"></div>

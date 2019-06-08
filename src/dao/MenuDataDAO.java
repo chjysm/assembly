@@ -35,7 +35,7 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB(int num, String table_name) {
-		System.setProperty("webdriver.chrome.driver","/WEB-INF/lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -109,6 +109,27 @@ public class MenuDataDAO {
 			return lists;
 		}catch(Exception e) {e.printStackTrace(); return null;}
 	}
+	
+	public ArrayList<McdonaldDTO> getAllInfo(String table_name) {
+		String sql = "select * from " + table_name;
+		try(
+				Connection con = this.ready();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				){
+			ArrayList<McdonaldDTO> lists = new ArrayList();
+			while(rs.next()) {
+				int seq = rs.getInt("seq");
+				String imgAddr = rs.getString("imgAddr");
+				String menuName = rs.getString("menuName");
+				String menuNameEng = rs.getString("menuNameEng");
+				int price = rs.getInt("price");
+				McdonaldDTO dto = new McdonaldDTO(seq, imgAddr, menuName, menuNameEng, price);
+				lists.add(dto);
+			}
+			return lists;
+		}catch(Exception e) {e.printStackTrace(); return null;}
+	}
 
 	public String personalCode() {
 		String[] ALPHA = new String[] {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"};
@@ -139,29 +160,28 @@ public class MenuDataDAO {
 	
 
 	//테스트용
-	public Connection ready1() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "kh";
-			String password = "kh";
-			Connection con = DriverManager.getConnection(url, user, password);
-			return con;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public Connection ready1() {
+//		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String user = "kh";
+//			String password = "kh";
+//			Connection con = DriverManager.getConnection(url, user, password);
+//			return con;
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
-	public int updateGameStuff(String serverVal, String serverValue, String clientVal, String clientValue, String code) {
-		String sql = "update game set "+serverVal+"=?, "+clientVal+"=? where code=?";
+	public int updateGameStuff(String val, String value, String code) {
+		String sql = "update game set "+val+"=? where code=?";
 		try(
 				Connection con = this.ready();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, serverValue);
-			pstat.setString(2, clientValue);
-			pstat.setString(3, code);
+			pstat.setString(1, value);
+			pstat.setString(2, code);
 			int result = pstat.executeUpdate();
 			return result;
 		}catch(Exception e) {
@@ -189,7 +209,7 @@ public class MenuDataDAO {
 	public McFinalDTO selectMcFinal(String personalCode){
 		String sql = "select * from game where code='"+personalCode+"'";
 		try(
-				Connection con = this.ready1();
+				Connection con = this.ready();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();
 				){
@@ -238,4 +258,170 @@ public class MenuDataDAO {
 		}catch(Exception e) {e.printStackTrace();}
 		return null;
 	}
+
+	public int mcSaveDB_coffee(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver",  "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://www.hollys.co.kr/menu/" + num); 
+		WebElement result = driver.findElement(By.cssSelector(".content"));
+		//espresso.do //signature.do //hollyccino.do //tea.do //bakery.do
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<img src=\"(.+?)\" alt=\"(.+?)\" class.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+menu_info\">(.+?)</p>");
+		Matcher m = p.matcher(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find()) {
+			int randomPrice = (int)Math.floor((Math.random() * (90-10+1))+10) * 100; //10~90 사이 랜덤 수 *
+			String imgAddr = "https:" + m.group(1);
+			String menuName = m.group(2);
+			String menuNameEng = m.group(3);
+			String sql = "insert into "+ table_name +" values(?, ?, ?, ?, ?)";
+			try(
+					Connection con = this.ready();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setString(4, menuNameEng);
+				pstat.setInt(5, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+	
+	public int mcSaveDB_pizza(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://web.dominos.co.kr/goods/list?dsp_ctgr="+num); //C0101,C0102,C0104,C0201,C0202,C0203 
+		WebElement result = driver.findElement(By.cssSelector(".tab_content"));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?)\" alt=\"(.+?)\">.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+\\n.+span>(.+?)<em>원");
+		Matcher m = p.matcher(menuResult);
+		System.out.println(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find()) {
+			String imgAddr = m.group(1);
+			String menuName = m.group(2);
+			String[] price = m.group(3).split(",");
+			int randomPrice = Integer.parseInt(price[0]+price[1]); 
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+
+	public int mcSaveDB_pizzads(String table_name, String num) {
+		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://web.dominos.co.kr/goods/list?dsp_ctgr="+num); //C0101,C0102,C0104,C0201,C0202,C0203 
+		WebElement result = driver.findElement(By.cssSelector(".tab_category"));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<div class=\"prd_img_view\"><img src=\"(.+?)\" alt=\"(.+?)\"></div>");
+		Matcher m = p.matcher(menuResult);
+		Pattern p2 = Pattern.compile("<p class=\"price_num\">(.+?)<em>원</em></p>");
+		Matcher m2 = p2.matcher(menuResult);
+
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find() && m2.find()) {
+			String imgAddr = m.group(1);
+			String menuName = m.group(2);
+			String[] price = m2.group(1).split(",");
+			int randomPrice = 0;
+				if(price.length>1) {
+					randomPrice = Integer.parseInt(price[0]+price[1]); 
+				}else {
+					randomPrice = Integer.parseInt(price[0]); 
+				}
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+	
+	public int mcSaveDB_lotte(String selector, String table_name) {
+		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		ChromeOptions opt = new ChromeOptions();
+		opt.addArguments("--silent");
+		opt.addArguments("--headless");
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("http://www.lotteria.com/menu/Menu_All.asp");
+		WebElement result = driver.findElement(By.cssSelector(selector));
+		String menuResult = result.getAttribute("innerHTML");
+		Pattern p = Pattern.compile("<img src=\"(.+?)\" width.+alt=\"(.+?)\">");
+		Matcher m = p.matcher(menuResult);
+		Pattern p2 = Pattern.compile("<strong>(.+?)<span class=\"ir hiddenSpan\">원</span></strong>");
+		Matcher m2 = p2.matcher(menuResult);
+		
+		driver.close();
+
+		int rst = 0;
+		int i = 1;
+		while(m.find() && m2.find()) {
+			String[] price = m2.group(1).split(",");
+			int randomPrice = 0;
+				if(price.length>1) {
+					randomPrice = Integer.parseInt(price[0]+price[1]); 
+				}else {
+					randomPrice = Integer.parseInt(price[0]); 
+				}
+			String imgAddr = "http://www.lotteria.com" + m.group(1);
+			String menuName = m.group(2);
+			String sql = "insert into "+ table_name +" values(?, ?, ?, 'null', ?)";
+			try(
+					Connection con = this.ready();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, i++);
+				pstat.setString(2, imgAddr);
+				pstat.setString(3, menuName);
+				pstat.setInt(4, randomPrice);
+				rst = pstat.executeUpdate();
+			}catch(Exception e) {e.printStackTrace(); rst=-1;}
+		}
+		return rst;
+	}	
+
 }

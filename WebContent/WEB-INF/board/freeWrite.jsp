@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>writeForm</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +24,7 @@
 <script>
 	$(function() {
 		$(".cancelBtn").on("click", function() {//취소버튼 -> 목록페이지로
-			location.href = "list.board01?currentPage=${currentPage}"; //현재페이지 붙여서 보내기
+			location.href = "list.board01?freeCurrentPage=${freeCurrentPage}"; //현재페이지 붙여서 보내기
 		})
 		$(".completeBtn").on("click", function() {//등록 버튼 -> 데이터베이스에 저장 -> 목록에 띄우기 
 			$("#inputContent").val($('#summernote').summernote("code"));
@@ -83,9 +82,9 @@
 	})
 </script>
 <style>
-*:not (.content * ){
-	margin: 0 auto;
-}
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
 
 .fixedMenu {
 	position: fixed;
@@ -95,11 +94,37 @@
 
 .fixedMenuNav {
 	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu, .nav-link {
 	color: #fff;
 	font-weight: bold;
+}
+
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenu div {
+	font-size: 20px;
 }
 /*---------------------------------------------------------------------------------------------------*/
 .head {
@@ -179,32 +204,32 @@ input[type="button"]:hover {
 <body>
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-
-
-					<li class="nav-item"><a class="nav-link active"
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
 						href="goMain.win">메인페이지</a></li>
-
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
-
-
-
 	</div>
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
 
@@ -234,6 +259,5 @@ input[type="button"]:hover {
 			</div>
 		</div>
 	</form>
-
 </body>
 </html>

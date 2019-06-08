@@ -15,7 +15,6 @@
 <!-- JQuery -->
 
 <script>
-
     	$(function(){
     		$(".writeBtn").on("click",function(){//글쓰기 버튼 -> 글쓰기 페이지로
     			if(${type == null}){
@@ -24,6 +23,8 @@
     			location.href="freeWrite.board01";
     			}
     		});
+    		
+    		
     		  $(".searchBtn").on("click",function(){ // 검색버튼 누르면
     	             var option = $("#option option:selected").val();
     	             var searchWord = $(".searchWord").val();
@@ -31,16 +32,44 @@
     	                alert("검색어를 입력해주세요");
     	             }else{
     	                if(option == "글제목"){
-    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=title";
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=title";
     	                 }else if(option == "작성자"){
-    	                     location.href="searchContent.board01?currentPage=1&&searchWord="+searchWord+"&&option=writer";
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
     	                 }
     	             };
     	          });
+    		  
+ $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
+    			  
+    			  if(e.keyCode==13){
+    				  var option = $("#option option:selected").val();
+     	             var searchWord = $(".searchWord").val();
+     	            if(searchWord == ""){
+    	                alert("검색어를 입력해주세요");
+    	             }else{
+    	                if(option == "글제목"){
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=title";
+    	                 }else if(option == "작성자"){
+    	                     location.href="searchContent.board01?freeCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
+    	                 }
+    	             };
+    			  }
+    		  });
+ $(".pageNum").each(function(i,item){
+     if(${freeCurrentPage} == $(this).html()){
+        $(this).css("color","blue");
+        $(this).css("font-weight","bold");
+     }
+  }); 
+    			  
+    		  
     	});
-
     </script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
+
 * {
 	margin: 0 auto;
 }
@@ -53,11 +82,38 @@
 
 .fixedMenuNav {
 	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu, .nav-link {
 	color: #fff;
 	font-weight: bold;
+}
+
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenu div {
+	text-align: center;
+	font-size: 20px;
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 .head {
@@ -166,42 +222,40 @@ a:hover {
 
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-
-					<li class="nav-item"><a class="nav-link active"
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
 						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
-
-
 	</div>
 
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
 
 	<div class="head">
 		<h1>자유게시판</h1>
 		<div></div>
 	</div>
-
-
-
-
 
 
 	<div class="container" id="wrapper">
@@ -215,10 +269,9 @@ a:hover {
 		</div>
 		<c:choose>
 			<c:when test="${recordCount == 0 }">
-				<div class="noneRecord">등록된 게시글이 없습니다.</div>
+				<div class="noneRecord mt-2 mb-2">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-
 				<c:forEach var="list" items="${freeList }">
 					<div class="content row">
 						<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
@@ -235,12 +288,10 @@ a:hover {
 			</c:otherwise>
 		</c:choose>
 		<div class="navi row">
-
 			<div>${getNavi }</div>
 		</div>
-
 		<div class="footer row">
-			<div class="col-lg-11 col-md-10.5 col-sm-6 col-12">
+			<div class="col-lg-11 col-md-11 col-sm-11 col-10">
 				<select name="option" id="option">
 					<option>글제목</option>
 					<option>작성자</option>
@@ -248,15 +299,10 @@ a:hover {
 					class="searchBtn" value="검색">
 			</div>
 
-			<div class="col-lg-1 col-md-1.5 col-sm-6 col-12">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
 				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
-
 		</div>
-
-
-
 	</div>
-
 </body>
 </html>

@@ -33,9 +33,15 @@ import dto.QnaCommentsDTO;
 @WebServlet("*.board02")
 public class QnaBoardController extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter pw = response.getWriter();
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			response.sendRedirect("error.html");
+		}
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
@@ -43,8 +49,8 @@ public class QnaBoardController extends HttpServlet {
 		QnaCommentsDAO cdao = new QnaCommentsDAO();
 		if(command.equals("/list.board02")) {//질문게시판 목록페이지로
 			int recordCount = 0;
-			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			request.getSession().setAttribute("currentPage", currentPage);
+			int qnaCurrentPage = Integer.parseInt(request.getParameter("qnaCurrentPage"));
+			request.getSession().setAttribute("qnaCurrentPage", qnaCurrentPage);
 
 			List<QnaBoardDTO> qnaList = null;
 			try {
@@ -58,16 +64,17 @@ public class QnaBoardController extends HttpServlet {
 				request.setAttribute("recordCount", recordCount);
 			}else {
 				try {
-					qnaList = dao.selectByPage(currentPage);;
+					qnaList = dao.selectByPage(qnaCurrentPage);;
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				String getNavi = null;
 				try {
-					getNavi = dao.getNavi(currentPage); // 페이지 네비 보여주기 
+					getNavi = dao.getNavi(qnaCurrentPage); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("qnaList", qnaList);
 				request.setAttribute("getNavi", getNavi);
@@ -79,8 +86,10 @@ public class QnaBoardController extends HttpServlet {
 //---------------------------------------------------------------------------------------------------------------------			
 	}else if(command.equals("/imageUpload.board02")) {//서버에 이미지 업로드
 		response.setCharacterEncoding("utf8");
+		request.setCharacterEncoding("utf8");
 		FileDTO fdto = new FileDTO();
 		String rootPath = this.getServletContext().getRealPath("/"); // 서블릿에 대한 환경정보 꺼내옴 -> getRealPath: 코드가 실행되는 진짜 경로
+		System.out.println(rootPath);
 		String nickForderPath = rootPath + (String)request.getSession().getAttribute("email");
 		String dateForderPath = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 		String filePath = nickForderPath +"/"+ dateForderPath; // 파일이 업로드될 경로
@@ -88,6 +97,9 @@ public class QnaBoardController extends HttpServlet {
 		if(!uploadPath.exists()) {// 폴더 생성
 			uploadPath.mkdir();
 		}
+		
+		
+		
 		DiskFileItemFactory diskFactory = new DiskFileItemFactory();
 		diskFactory.setRepository(new File(rootPath + "/WEB-INF/temp")); // 임시폴더 생성
 		ServletFileUpload sfu = new ServletFileUpload(diskFactory);
@@ -107,18 +119,24 @@ public class QnaBoardController extends HttpServlet {
 						break;
 					}
 				}
+				response.setCharacterEncoding("utf8");
+				
 				String realFilePath = (String)request.getSession().getAttribute("email") +"/"+ dateForderPath + "/" + tempFileName;
+				System.out.println(realFilePath);
 				fdto.getFilePath().add(realFilePath);//FileDTO에 파일 경로 담아줌 (arraylist)
 				request.getSession().setAttribute("files", fdto); //세션에 파일 경로 담아줌 
 				response.getWriter().append(realFilePath);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
 //---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/flag.board02")){//flag 바꿔주기
 			FileDTO fdto = (FileDTO)request.getSession().getAttribute("files");
+			
 			fdto.setFlag(true);
+			
 			fdto.setFilePath(null);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/qnaBaord.board02")) {//등록버튼 누르면
@@ -146,7 +164,7 @@ public class QnaBoardController extends HttpServlet {
 			}
 			request.setAttribute("result", result);
 			if(result > 0) {
-				response.sendRedirect("list.board02?currentPage="+request.getSession().getAttribute("currentPage"));
+				response.sendRedirect("list.board02?qnaCurrentPage="+request.getSession().getAttribute("qnaCurrentPage"));
 			}else {System.out.println("입력안됨");}
 			//---------------------------------------------------------------------------------------------------------------------			
 		}else if(command.equals("/deleteFile.board02")){//서버에 있는 파일 삭제
@@ -154,6 +172,7 @@ public class QnaBoardController extends HttpServlet {
 			String imgPath = request.getParameter("img");
 			FileDTO files = (FileDTO)request.getSession().getAttribute("files");
 			boolean flag = files.isFlag();
+			System.out.println("파일삭제:" + flag);
 			if( flag == false) {
 				File file = new File(rootPath + imgPath);
 				if(file.exists()) { // 이미지가 서버에 존재 할 경우
@@ -176,6 +195,7 @@ public class QnaBoardController extends HttpServlet {
 				countComment = cdao.countComment(seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			try {
 				int viewCount = dao.viewCount(seq); //조회수 올리기
@@ -203,6 +223,7 @@ public class QnaBoardController extends HttpServlet {
 					commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
 
 				String navi = null;
@@ -210,6 +231,7 @@ public class QnaBoardController extends HttpServlet {
 					navi = cdao.getNavi(commentPage, seq);
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 
 				}
 				request.setAttribute("comList", commentList);
@@ -223,12 +245,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			request.setAttribute("content", content);
 			request.setAttribute("comList", commentList);
@@ -283,6 +307,7 @@ public class QnaBoardController extends HttpServlet {
 			String comment = root.get("comment").getAsString(); // 댓글
 			int postNum = Integer.parseInt(root.get("postNum").getAsString()); // 글번호
 			String postTitle = root.get("postTitle").getAsString();//글제목
+			
 			String email = (String)request.getSession().getAttribute("email");//댓글쓴사람 이메일
 			Pattern p = Pattern.compile("^[a-z0-9]*");
 			Matcher m = p.matcher(email); // 이메일 앞부분 -작성자
@@ -297,12 +322,14 @@ public class QnaBoardController extends HttpServlet {
 				result = cdao.insertComment(qcdto);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+		
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/wirteComment.board02")) {//댓글 등록하기 - 조회수 안 올라감!
 			int seq = Integer.parseInt(request.getParameter("seq"));
@@ -321,12 +348,14 @@ public class QnaBoardController extends HttpServlet {
 				commentList = cdao.selectByComment(commentPage,seq);// 댓글 목록 불러오기
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			String navi = null;
 			try {
 				navi = cdao.getNavi(commentPage, seq);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 
 			}
 			request.setAttribute("content", content);
@@ -375,7 +404,7 @@ public class QnaBoardController extends HttpServlet {
 			//---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/searchContent.board02")) { //검색버튼 누르면
-			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			int qnaCurrentPage = Integer.parseInt(request.getParameter("qnaCurrentPage"));
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
 
@@ -391,16 +420,17 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				List<QnaBoardDTO> qnaSelectList = null;
 				try {			
-					qnaSelectList = dao.selectBySearchPage(currentPage, searchWord, option);
+					qnaSelectList = dao.selectBySearchPage(qnaCurrentPage, searchWord, option);
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				String getNaviSelect = null;
 				try {
-					getNaviSelect = dao.getNaviSelect(currentPage, option, searchWord); // 페이지 네비 보여주기 
+					getNaviSelect = dao.getNaviSelect(qnaCurrentPage, option, searchWord); // 페이지 네비 보여주기 
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
 				request.setAttribute("qnaList", qnaSelectList);
 				request.setAttribute("getNavi", getNaviSelect);
@@ -429,20 +459,17 @@ public class QnaBoardController extends HttpServlet {
 				int changeY = dao.changeAnswer(postNum);
 			}catch(Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			if(result > 0) {
 				System.out.println("등록");
 			}else {
 				System.out.println("등록 ㄴ");
 			}
-			
-			
 		}
 	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

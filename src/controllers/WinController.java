@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,9 +20,13 @@ import dto.QnaBoardDTO;
 
 @WebServlet("*.win")
 public class WinController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		response.setCharacterEncoding("UTF8");
-		request.setCharacterEncoding("UTF-8");
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		response.setContentType("text/html; charset=UTF-8 ");
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
@@ -29,10 +34,8 @@ public class WinController extends HttpServlet {
 		FreeBoardDAO fb= new FreeBoardDAO();
 		QnaBoardDAO qb = new QnaBoardDAO();
 		NoticeBoardDAO nb = new NoticeBoardDAO();
-
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
-				
 				int freeRecordCount = 0 ;
 				int qnaRecordCount = 0; 
 				int noticeRecordCount = 0;
@@ -42,8 +45,8 @@ public class WinController extends HttpServlet {
 				noticeRecordCount = nb.recordCount();
 				}catch(Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
-				
 				if(freeRecordCount == 0 ) { // 자유게시판 게시글 0 일 경우
 					request.setAttribute("freeRecordCount", freeRecordCount);
 				}else{
@@ -81,7 +84,6 @@ public class WinController extends HttpServlet {
 					request.setAttribute("mainNoticeList", mainNoticeList);
 				}
 				request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
-
 			}else if (cmd.equals("/goStoreSerch.win")) {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch2.win")) {
@@ -101,15 +103,12 @@ public class WinController extends HttpServlet {
 			}else if (cmd.equals("/goInfo.win")) { 
 				request.getRequestDispatcher("/WEB-INF/etc/information.jsp").forward(request, response);
 			}
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

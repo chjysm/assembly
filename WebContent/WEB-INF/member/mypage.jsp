@@ -15,6 +15,10 @@
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
+
 * {
 	margin: 0 auto;
 }
@@ -27,11 +31,38 @@
 
 .fixedMenuNav {
 	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu .nav-link {
 	color: #fff;
 	font-weight: bold;
+}
+
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenu div {
+	text-align: center;
+	font-size: 20px;
 }
 
 .container {
@@ -105,6 +136,14 @@ select {
 select :hover {
 	cursor: pointer;
 }
+
+.st_row {
+	text-align: center;
+}
+
+.st_row td {
+	border-top: 0px;
+}
 </style>
 <script>
 	$(function() {
@@ -128,53 +167,39 @@ select :hover {
 </script>
 </head>
 <body>
-
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-8 col-md-6col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center">
-
-					<li class="nav-item"><a class="nav-link active"
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
 						href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트
-							소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="list.board01?currentPage=1">자유게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
-
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-		</div>
-		<div class="row p-1">
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
-
-
 	<div class="container">
 		<form method="post" action="modify.me" id="mpForm">
 			<div class="row">
 				<div class="col-lg-8">
-
 					<table class="table "
 						style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
 						<tr>
@@ -183,9 +208,7 @@ select :hover {
 									페이지 (회원 정보 수정)</span>
 						</tr>
 						<c:forEach var="i" items="${ list}">
-
 							<tbody>
-
 								<tr class="pt-4">
 									<td
 										style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>이름</strong></span>
@@ -208,16 +231,8 @@ select :hover {
 												value="비밀번호 변경하기">
 										</tr>
 									</c:when>
-
-
 									<c:otherwise>
-										<tr class="pt-4">
-											<td
-												style="width: 200px; height: 80px; text-align: center; vertical-align: middle"><span><strong>비밀번호</strong></span>
-											<td colspan="2"><input type="button"
-												class=" btn btn-primary float-left" id="pwChange_btn"
-												value="비밀번호 변경하기" disabled>
-										</tr>
+
 									</c:otherwise>
 								</c:choose>
 								<tr class="pt-4">
@@ -274,12 +289,31 @@ select :hover {
 										id="back_btn" type="button" value="뒤로가기">
 								</tr>
 							</tbody>
-
 						</c:forEach>
 					</table>
 				</div>
 			</div>
 		</form>
+		<div class="row ">
+			<div class="col-lg-12">
+				<table class="table "
+					style="border: 1px solid #dddddd; border-radius: 1em; border-collapse: separate">
+					<tr class="st_row">
+						<td>상표
+						<td colspan=3>내 답안
+						<td>완료한 날짜
+					</tr>
+					<c:forEach var="i" items="${s_list}">
+						<tr class="st_row">
+							<td>${ i.brand}
+							<td colspan=3>${ i.answer}
+							<td>${ i.comp_date}
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>

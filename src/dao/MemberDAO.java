@@ -56,7 +56,7 @@ public class MemberDAO {
 			pstat.setString(3, dto.getName());
 			pstat.setString(4, dto.getNickname());
 			pstat.setString(5, dto.getGender());
-			pstat.setString(6, dto.getBirthday());
+			pstat.setString(6, dto.getBan());
 			pstat.setString(7, dto.getAge());
 			pstat.setInt(8, dto.getType());
 			int result = pstat.executeUpdate();
@@ -187,7 +187,7 @@ public class MemberDAO {
 			dto.setName(rs.getString(4));
 			dto.setNickname(rs.getString(5));
 			dto.setGender(rs.getString(6));
-			dto.setBirthday(rs.getString(7));
+			dto.setBan(rs.getString(7));
 			dto.setAge(rs.getString(8));
 			dto.setType(rs.getInt(9));
 			List<MemberDTO> list = new ArrayList<>();
