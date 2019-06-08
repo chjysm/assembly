@@ -95,7 +95,7 @@
                                 <li class="nav-item">
                                 	<a class="nav-link active" href="goMain.win">메인페이지</a></li>
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="startGame.kiosk">학습하기</a></li>
+                                                        href="translateMenu.go">학습하기</a></li>
                                 <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트  소개</a></li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="list.board03?noticeCurrentPage=1">공지사항</a></li>

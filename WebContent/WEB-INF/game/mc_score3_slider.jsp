@@ -4,33 +4,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Resources/css/leftMenuSliderUp.css">
 <!--     scroll -->
 	<link rel="stylesheet" href="Resources/css/jquery.mCustomScrollbar.css"/>
 	<link rel="stylesheet" href="Resources/css/mCSB_buttons.png"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="Resources/js/jquery.mCustomScrollbar.js"></script>
-	<script src="https://kit.fontawesome.com/650a47b167.js"></script>
-<title>Insert title here</title>
+<title>WUYAKO</title>
 	<style>
-		*{margin:0 auto;}
+	@import url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap');		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
-		.fixedMenuNav{background:#007bff;}
+		.fixedMenuNav{background:#007bff; box-shadow : 1px 1px 5px #444;}
 		.fixedMenu .nav-link{color:#fff; font-weight:bold;}
-		 .fixMenu-text{position: relative; top: 20px;}
-		.fixedMenu div{text-align: center; font-size:30px;} 
-		.jumbotron{padding-top:180px; background:#b8daff;}
-		.mainPage{padding-top:200px; background:#F2F2F2;} /*수정*/
+		#logo{font-family: 'Poiret One', cursive; font-weight:bold; text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00, 1px 1px 0 #FFBF00;}
+		.fixMenu-text{position: relative; top: 10px; }
+		.logoLi{font-family: 'Noto Sans KR', sans-serif; text-shadow : 0 0 1px #5882FA;}
+		.logoLi:hover{opacity:0.7;}
+		.fixedMenu div{text-align: center; font-size:20px;} 
+		.mainPage{padding-top:100px;} /*수정*/
 		.myCard{border:none;}
 		.nav-tabs .nav-link{color:#000; font-weight:bold;}
 		.tab-pane{padding:30px; background:#fff; border-radius:0 0 5px 5px; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
@@ -39,14 +43,13 @@
 		.myBanner img{paddingtop:10px; width:90%; height:250px; border-radius:50%;}
 		.footer{background:#b8daff;}
 /* 		(위쪽)수정하지 마세요 */
-		#machine{border-radius:5px; border:30px solid #000; border-bottom:55px solid #000;}
-		.my{border:1px solid #000;}
-		.scrollBar{padding:20px; overflow: auto;}
-		.scrollBar>img{cursor:pointer;}
-		.card{padding:15px 0px 0px 0px;}
+		.lcd{min-height:700px; border:30px solid #000; border-bottom:55px solid #000; border-radius:5px; box-shadow:0 0 15px #ddd;}
+		.card{padding:10px 0px 0 0px; border:none;}
 		.cardImg{display:inline-block; margin:0 auto;}
-		.choice1{cursor:pointer;}
-		.insta{ color: #f442b3; }
+		.menuList{height:700px; overflow-y:auto;}
+		.choice1{cursor:pointer; border-radius:10px;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:#0431B4; opacity:0.7;}
+.insta{ color: #f442b3; }
 .insta:hover{color: #ad2e7f;}
 .facebook{color: #1448e5;}
 .facebook:hover{color: #022a60;}
@@ -56,7 +59,12 @@
 .twitter:hover{color:#329bc1;}
 .connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
 .connect li{margin:0;}
-		
+.h1, .h2, .h3, .h4{font-family: 'Nanum Gothic', sans-serif;}
+		.machine{width:100%; height:550px; background:url(Resources/img/mc_machine.png) no-repeat; background-size:cover;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px;}
+		.takeClick{cursor:pointer;}
+		.scrollBar{padding:20px; overflow: auto; cursor:pointer;}
+		.scrollBar>img{cursor:pointer;}
 	</style>
 </head>
 <body>
@@ -64,29 +72,30 @@
 	<script>
 		$(function(){
 			$('#btnBefore').on('click', function(){
-				$(location).attr('href', 'mc_score3_start.jsp');
+				$(location).attr('href', 'startGame.third');
 			}); //뒤로가면 이전 단계로 새로고침
 		});
 	</script>
 <!-- 스크립트 끝 -->
-<!-- 고정메뉴 -->
+	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center fixMenu-text">
-				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+						<li id="logo" class="nav-item"><a class="nav-link active" href="#">WUYAKO</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="goMain.win">메인페이지</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item logoLi"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item logoLi"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 
@@ -95,13 +104,31 @@
 		<div class="row my">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 				<div class="row my">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-						광고
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-						추천메뉴 <button>이전</button>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center h1 pb-1 font-weight-bold">
+						2단계 : 선택하고 싶은 품목을 자유롭게 골라 보세요! <hr style="border-bottom:1px solid #fff;">
 					</div>
 					<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 my">
+						<form id="speakerForm">
+							<div id="fake" style="display:none;">원하는 메뉴를 자유롭게 고른 후 다음 단계를 진행하세요</div>
+							    <textarea id="speakerTxt" class="text-center h3" style="width:100%; height:100%; border:none; background:none; display:block;" disabled></textarea>
+									<script>
+										document.getElementById('speakerTxt').value=document.getElementById('fake').innerText;
+									</script>
+							    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리로 들어보세요</button>
+						    <div style="display:none;">
+						      <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
+						      <div class="rate-value">1</div>
+						      <div class="clearfix"></div>
+						    </div>
+						    <div style="display:none;">
+						      <label for="pitch">Pitch</label><input type="range" min="0" max="2" value="1" step="0.1" id="pitch">
+						      <div class="pitch-value">1</div>
+						      <div class="clearfix"></div>
+						    </div>
+						    <select id="speakerSelect" style="display:none;">
+						    </select>
+						</form>
+						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 						<div id="machine" class="row my">
 <!-- -------machine view content start--------------------------------------->
@@ -120,14 +147,14 @@
 <!-- 			1단계 : 메인메뉴 고르기 끝-->
 			<div class="row">	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-					메인메뉴 주문화면
+					<h1 class="h3 mt-4 mb-4">주메뉴 주문화면</h1>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row burgerView">
 						<c:forEach var="burger" items="${burgers }">
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1 h4">
 								<img id="menuImg" src="${burger.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${burger.menuName }</p>
+								<p class="h5 font-weight-bold" id="menuName">${burger.menuName }</p>
 								<p id="menuEng">${burger.menuNameEng }</p>
 								<p class="h5" id="price">${burger.price }원</p>
 							</div>
@@ -141,14 +168,14 @@
 <!-- 			2단계 : 사이드메뉴 고르기 시작-->
 			<div class="row">	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-					사이드메뉴 주문화면
+					<h1 class="h3 mt-4 mb-4">사이드메뉴 주문화면</h1>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row sideView">
 						<c:forEach var="snack_side" items="${snack_sides }">
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1 h4">
 								<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${snack_side.menuName }</p>
+								<p class="h5 font-weight-bold" id="menuName">${snack_side.menuName }</p>
 								<p id="menuEng">${snack_side.menuNameEng }</p>
 								<p class="h5" id="price">${snack_side.price }원</p>
 							</div>
@@ -162,14 +189,14 @@
 <!-- 			3단계 : 음료 고르기 시작-->
 			<div class="row">	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-					사이드메뉴 주문화면
+					<h1 class="h3 mt-4 mb-4">음료 주문화면</h1>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row beverageView">
 						<c:forEach var="beverage" items="${beverages }">
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1 h4">
 								<img id="menuImg" src="${beverage.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${beverage.menuName }</p>
+								<p class="h5 font-weight-bold" id="menuName">${beverage.menuName }</p>
 								<p id="menuEng">${beverage.menuNameEng }</p>
 								<p class="h5" id="price">${beverage.price }원</p>
 							</div>
@@ -183,14 +210,14 @@
 <!-- 			4단계 : 음료 고르기 시작-->
 			<div class="row">	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-					사이드메뉴 주문화면
+					<h1 class="h3 mt-4 mb-4">커피 주문화면</h1>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row cafeView">
 						<c:forEach var="mc_cafe" items="${mc_cafes }">
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1 h4">
 								<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${mc_cafe.menuName }</p>
+								<p class="h5 font-weight-bold" id="menuName">${mc_cafe.menuName }</p>
 								<p id="menuEng">${mc_cafe.menuNameEng }</p>
 								<p class="h5" id="price">${mc_cafe.price }원</p>
 							</div>
@@ -204,14 +231,14 @@
 <!-- 			5단계 : 음료 고르기 시작-->
 			<div class="row">	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-					사이드메뉴 주문화면
+					<h1 class="h3 mt-4 mb-4">후식 주문화면</h1>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 					<div class="row desertView">
 						<c:forEach var="desert" items="${deserts }">
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1">
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my text-center choice1 h4">
 								<img id="menuImg" src="${desert.imgAddr}"><i></i>
-								<p class="h5" id="menuName">${desert.menuName }</p>
+								<p class="h5 font-weight-bold" id="menuName">${desert.menuName }</p>
 								<p id="menuEng">${desert.menuNameEng }</p>
 								<p class="h5" id="price">${desert.price }원</p>
 							</div>
@@ -225,9 +252,10 @@
 	</div>
 </div>
 <!-- 캐러셀 끝 -->
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-		<button id="ordercancel">주문취소</button>
-		<button id="btnShopBox">장바구니</button>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+		 <button id="btnBefore" class="btn btn-secondary mt-5 mr-2 mb-5">이전</button>
+		<button id="ordercancel" class="btn btn-primary mt-5 mr-2 mb-5">주문취소</button>
+		<button id="btnShopBox" class="btn btn-primary mt-5 mb-5">장바구니</button>
 	</div>
 			<script>
 				//scroll
@@ -250,7 +278,7 @@
 				//carousel-contents
 				$('.burgerView .choice1').on('click', function(){
 					$('.burgerView .choice1').css("background", "none");
-					$(this).css("background", "darkgreen");
+					$(this).css("background", "#A9D0F5");
 					console.log($(this).find('#menuName').html());
 						$.ajax({
 							url : "burger_value.third",
@@ -260,7 +288,7 @@
 				});
 				$('.sideView .choice1').on('click', function(){
 					$('.sideView .choice1').css("background", "none");
-					$(this).css("background", "darkgreen");
+					$(this).css("background", "#A9D0F5");
 						$.ajax({
 							url : "snack_value.third",
 							type : "post",
@@ -269,7 +297,7 @@
 				});
 				$('.beverageView .choice1').on('click', function(){
 					$('.beverageView .choice1').css("background", "none");
-					$(this).css("background", "darkgreen");
+					$(this).css("background", "#A9D0F5");
 						$.ajax({
 							url : "beverage_value.third",
 							type : "post",
@@ -278,7 +306,7 @@
 				});
 				$('.cafeView .choice1').on('click', function(){
 					$('.cafeView .choice1').css("background", "none");
-					$(this).css("background", "darkgreen");
+					$(this).css("background", "#A9D0F5");
 						$.ajax({
 							url : "cafe_value.third",
 							type : "post",
@@ -287,7 +315,7 @@
 				});
 				$('.desertView .choice1').on('click', function(){
 					$('.desertView .choice1').css("background", "none");
-					$(this).css("background", "darkgreen");
+					$(this).css("background", "#A9D0F5");
 						$.ajax({
 							url : "desert_value.third",
 							type : "post",
@@ -296,7 +324,7 @@
 				});
 				$('#ordercancel').on("click", function(){
 					alert('초기화면으로 돌아갑니다');
-					$(location).attr("href", "startGame.kiosk");
+					$(location).attr("href", "startGame.third");
 				});
 				$('#btnShopBox').on("click", function(){
 					$(location).attr("href", "mc_slide.third");

@@ -261,7 +261,7 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center fixMenu-text">
 				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
@@ -506,9 +506,9 @@ a:hover[class="moreBtn"] {
 						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
 						class="card-img-top" alt="card_img1">
 					<div class="card-body">
-						<h5 class="card-title font-weight-bold">클릭 한 번으로 메뉴 이름 이해하기</h5>
-						<p class="card-text">모르는 단어를 클릭해보세요. 즉시 한글로 번역해 드립니다.</p>
-						<a href="translateMenu.go" class="btn btn-primary">체험하기</a>
+						<h5 class="card-title font-weight-bold">유튜브 영상 검색하기</h5>
+						<p class="card-text">유튜브로 더 많은 정보를 찾아보세요! 키워드만 입력하면 바로 검색됩니다.</p>
+						<a href="youtube.kiosk" class="btn btn-primary">알아보기</a>
 					</div>
 				</div>
 			</div>
@@ -521,7 +521,7 @@ a:hover[class="moreBtn"] {
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수
 							있습니다.</p>
-						<a href="startGame.kiosk" class="btn btn-primary">체험하기</a>
+						<a href="translateMenu.go" class="btn btn-primary">체험하기</a>
 					</div>
 				</div>
 			</div>

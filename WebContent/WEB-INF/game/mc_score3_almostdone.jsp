@@ -4,30 +4,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="Resources/css/leftMenuSliderUp.css">
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-	<script src="https://kit.fontawesome.com/650a47b167.js"></script>
-<title>Insert title here</title>
+<title>WUYAKO</title>
 	<style>
-		*{margin:0 auto;}
+	@import url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap');		*{margin:0 auto;}
 		.fixedMenu{position:fixed; background:#fff; z-index:999;}
-		.fixedMenuNav{background:#007bff;}
+		.fixedMenuNav{background:#007bff; box-shadow : 1px 1px 5px #444;}
 		.fixedMenu .nav-link{color:#fff; font-weight:bold;}
-		 .fixMenu-text{position: relative; top: 20px;}
-		.fixedMenu div{text-align: center; font-size:30px;} 
-		.jumbotron{padding-top:180px; background:#b8daff;}
-		.mainPage{padding-top:200px; background:#F2F2F2;} /*수정*/
+		#logo{font-family: 'Poiret One', cursive; font-weight:bold; text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00, 1px 1px 0 #FFBF00;}
+		.fixMenu-text{position: relative; top: 10px; }
+		.logoLi{font-family: 'Noto Sans KR', sans-serif; text-shadow : 0 0 1px #5882FA;}
+		.logoLi:hover{opacity:0.7;}
+		.fixedMenu div{text-align: center; font-size:20px;} 
+		.mainPage{padding-top:100px;} /*수정*/
 		.myCard{border:none;}
 		.nav-tabs .nav-link{color:#000; font-weight:bold;}
 		.tab-pane{padding:30px; background:#fff; border-radius:0 0 5px 5px; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
@@ -36,17 +38,13 @@
 		.myBanner img{paddingtop:10px; width:90%; height:250px; border-radius:50%;}
 		.footer{background:#b8daff;}
 /* 		(위쪽)수정하지 마세요 */
-		.my{border:1px solid #000;}
- 		#popup{background:rgba(0,0,0,0.6); padding:100px 150px; position:fixed; top:10%; left:50%; margin-left:-500px; z-index:999;}
-/*  		iframe{box-shadow:0 0 50px 15px #444;}  */
-		#close{width:45px; height:45px; background:#ddd; margin:0 auto; padding-top:15px;}
-		.lcd{border:30px solid #000; border-bottom:55px solid #000; border-radius:5px;}
-		.machine{width:100%; height:550px; background:url(img/mc_machine.png) no-repeat; background-size:cover;}
-		.card{padding:10px 0px 0 0px;}
+		.lcd{min-height:700px; border:30px solid #000; border-bottom:55px solid #000; border-radius:5px; box-shadow:0 0 15px #ddd;}
+		.card{padding:10px 0px 0 0px; border:none;}
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
-		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:yellow; opacity:0.6;}
-		.insta{ color: #f442b3; }
+		.choice1{cursor:pointer; border-radius:10px;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:#0431B4; opacity:0.7;}
+.insta{ color: #f442b3; }
 .insta:hover{color: #ad2e7f;}
 .facebook{color: #1448e5;}
 .facebook:hover{color: #022a60;}
@@ -56,7 +54,11 @@
 .twitter:hover{color:#329bc1;}
 .connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
 .connect li{margin:0;}
-		
+.h1, .h2, .h3, .h4{font-family: 'Nanum Gothic', sans-serif;}
+		.machine{width:100%; height:550px; background:url(Resources/img/mc_machine.png) no-repeat; background-size:cover;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px;}
+		.takeClick{cursor:pointer;}
+ 		#popup{background:#fff; border:1px solid #ddd; border-radius:5px; box-shadow:0 0 15px; padding:50px 100px; position:fixed; top:10%; left:50%; margin-left:-500px; z-index:999;}
 	</style>
 </head>
 <body>
@@ -71,46 +73,47 @@
 <!-- 스크립트 끝 -->
 <!-- popup -->
 	<div id="popup" class="d-none">
+		<h1 class="h4 mb-2">결제방법은 영상으로 대체합니다. <br> 영상을 주의깊게 시청 후 아래 버튼을 누르세요.</h1>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/xzGHzruXHbA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
-		<button id="close" class="d-flex justify-content-center">닫기</button>	
+		<button id="close" class="d-flex justify-content-center btn btn-primary">이곳을 눌러 결제완료를 진행하세요</button>	
 	</div>
-<!-- 고정메뉴 -->
+	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center fixMenu-text">
-				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+						<li id="logo" class="nav-item"><a class="nav-link active" href="#">WUYAKO</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="goMain.win">메인페이지</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
+						<li class="nav-item logoLi"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                        <li class="nav-item logoLi"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                        <li class="nav-item logoLi"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 
 <!-- 	본문 -->
 	<div class="container mainPage">
-		<div class="row my text-center">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center h1 pb-1 font-weight-bold">
+				2단계 : 선택하고 싶은 품목을 자유롭게 골라 보세요! <hr style="border-bottom:1px solid #fff;">
+			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-3 my">
-				<div class="row my">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-						광고
-					</div>
+				<div class="row my text-center">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
 						<form id="speakerForm">
-							<div id="fake" style="display:none;">각 칸을 눌러 품목을 올바르게 선택했는지 확인 후, [장바구니]를 눌러 [결제하기]까지 진행하세요</div>
-						    <input type="text" id="speakerTxt" class="text-center" style="width:100%; border:none; background:none;" disabled>
-								<script>
-									document.getElementById('speakerTxt').value=document.getElementById('fake').innerText;
-								</script>
-						    <button id="play" type="submit">Play</button>
+							<div id="fake" style="display:none;">각 칸을 눌러 품목을 올바르게 선택했는지 확인 후, [장바구니]를 눌러 [결제하기]까지 진행하세요.</div>
+							    <textarea id="speakerTxt" class="text-center h3" style="width:100%; height:100%; border:none; background:none; display:block;" disabled></textarea>
+									<script>
+										document.getElementById('speakerTxt').value=document.getElementById('fake').innerText;
+									</script>
+							    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리로 들어보세요</button>
 						    <div style="display:none;">
 						      <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
 						      <div class="rate-value">1</div>
@@ -136,23 +139,23 @@
 								    <div class="carousel-item active">
 	    					<!-- 		탭 화면 시작-->
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-											<h1>(4)선택내역 확인하기</h1>
+										  <h1 class="h3 mt-4 mb-4">선택내역을 확인하세요</h1>
 											<div class="accordion" id="accordionExample">
 											  <div class="card">
 											    <div class="card-header" id="headingOne">
 											      <h2 class="mb-0">
-											        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-											          1단계 : 선택한 상품(햄버거) 사진과 이름 / 버튼(상품 속성 빼기)
+											        <button class="btn btn-link font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											        	메인메뉴(주메뉴) 확인하기
 											        </button>
 											      </h2>
 											    </div>
 											    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 											      <div class="card-body">
-											          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 														<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${burgerResult.menuName }</p>
+														<p class="h5 font-weight-bold" id="menuName">${burgerResult.menuName }</p>
 														<p id="menuEng">${burgerResult.menuNameEng }</p>
-														<p class="h5" id="price">${burgerResult.price }원</p>
+														<p class="h5" id="price">${burgerResult.price }</p>
 													  </div>
 											      </div>
 											    </div>
@@ -160,18 +163,18 @@
 											  <div class="card">
 											    <div class="card-header" id="headingTwo">
 											      <h2 class="mb-0">
-											        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">  
-											          2단계 : 사이드 메뉴 선택하기(감자튀김 등)
+											        <button class="btn btn-link collapsed h5 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											          	사이드메뉴 확인하기
 											        </button>
 											      </h2>
 											    </div>
 											    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 											      <div class="card-body">
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 														<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-														<p class="h5" id="menuName">${sideResult.menuName }</p>
+														<p class="h5 font-weight-bold" id="menuName">${sideResult.menuName }</p>
 														<p id="menuEng">${sideResult.menuNameEng }</p>
-														<p class="h5" id="price">${sideResult.price }원</p>
+														<p class="h5" id="price">${sideResult.price }</p>
 													  </div>
 											      </div>
 											    </div>
@@ -179,30 +182,30 @@
 											  <div class="card">
 											    <div class="card-header" id="headingThree">
 											      <h2 class="mb-0">
-											        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-											          3단계 : 음료, 카페, 디저트 옵션
+											        <button class="btn btn-link collapsed h5 font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+											     	    음료, 커피, 디저트 확인하기
 											        </button>
 											      </h2>
 											    </div>
 											    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 											      <div class="card-body">
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 														<img id="menuImg" src="${beverageResult.imgAddr}">
-														<p class="h5" id="menuName">${beverageResult.menuName }</p>
+														<p class="h5 font-weight-bold" id="menuName">${beverageResult.menuName }</p>
 														<p id="menuEng">${beverageResult.menuNameEng }</p>
-														<p class="h5" id="price">${beverageResult.price }원</p>
+														<p class="h5" id="price">${beverageResult.price }</p>
 													  </div>
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 														<img id="menuImg" src="${cafeResult.imgAddr}">
-														<p class="h5" id="menuName">${cafeResult.menuName }</p>
+														<p class="h5 font-weight-bold" id="menuName">${cafeResult.menuName }</p>
 														<p id="menuEng">${cafeResult.menuNameEng }</p>
-														<p class="h5" id="price">${cafeResult.price }원</p>
+														<p class="h5" id="price">${cafeResult.price }</p>
 													  </div>
-											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+											      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 														<img id="menuImg" src="${desertResult.imgAddr}">
-														<p class="h5" id="menuName">${desertResult.menuName }</p>
+														<p class="h5 font-weight-bold" id="menuName">${desertResult.menuName }</p>
 														<p id="menuEng">${desertResult.menuNameEng }</p>
-														<p class="h5" id="price">${desertResult.price }원</p>
+														<p class="h5" id="price">${desertResult.price }</p>
 													  </div>
 											      </div>
 											    </div>
@@ -210,51 +213,51 @@
 											</div>
 										</div>
 							<!-- 		탭 화면 끝 -->
-										<button id="btnBefore">이전단계</button>
-										<button id="slideBtn2">선택완료</button>
+										<button id="btnBefore" class="btn btn-secondary mt-5 mb-5 mr-2">이전단계</button>
+										<button id="slideBtn2" class="btn btn-primary mt-5 mb-5">선택완료</button>
 	   							</div>
 							    <div class="carousel-item">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-									  (5)아래는 결제될 내역입니다
+									  <h1 class="h3 mt-4 mb-4">아래는 결제될 내역입니다</h1>
 									</div>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 								          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 											<img id="menuImg" src="${burgerResult.imgAddr}"><i></i>
-											<p class="h5" id="menuName">${burgerResult.menuName }</p>
+											<p class="h5 font-weight-bold" id="menuName">${burgerResult.menuName }</p>
 											<p id="menuEng">${burgerResult.menuNameEng }</p>
-											<p class="h5" id="price">${burgerResult.price }원</p>
+											<p class="h5" id="price">${burgerResult.price }</p>
 										  </div>
-									      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+									      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 												<img id="menuImg" src="${sideResult.imgAddr}"><i></i>
-												<p class="h5" id="menuName">${sideResult.menuName }</p>
+												<p class="h5 font-weight-bold" id="menuName">${sideResult.menuName }</p>
 												<p id="menuEng">${sideResult.menuNameEng }</p>
-											<p class="h5" id="price">${sideResult.price }원</p>
+											<p class="h5" id="price">${sideResult.price }</p>
 											  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 													<img id="menuImg" src="${beverageResult.imgAddr}">
-													<p class="h5" id="menuName">${beverageResult.menuName }</p>
+													<p class="h5 font-weight-bold" id="menuName">${beverageResult.menuName }</p>
 													<p id="menuEng">${beverageResult.menuNameEng }</p>
-													<p class="h5" id="price">${beverageResult.price }원</p>
+													<p class="h5" id="price">${beverageResult.price }</p>
 												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 													<img id="menuImg" src="${cafeResult.imgAddr}">
-													<p class="h5" id="menuName">${cafeResult.menuName }</p>
+													<p class="h5 font-weight-bold" id="menuName">${cafeResult.menuName }</p>
 													<p id="menuEng">${cafeResult.menuNameEng }</p>
-													<p class="h5" id="price">${cafeResult.price }원</p>
+													<p class="h5" id="price">${cafeResult.price }</p>
 												  </div>
-										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
+										      	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center h4">
 													<img id="menuImg" src="${desertResult.imgAddr}">
-													<p class="h5" id="menuName">${desertResult.menuName }</p>
+													<p class="h5 font-weight-bold" id="menuName">${desertResult.menuName }</p>
 													<p id="menuEng">${desertResult.menuNameEng }</p>
-													<p class="h5" id="price">${desertResult.price }원</p>
+													<p class="h5" id="price">${desertResult.price }</p>
 												  </div>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-									    <button id="slideBtn1">이전</button>
+									    <button id="slideBtn1"class="btn btn-secondary mt-5">이전단계</button>
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
-									    <button id="ordercancel">주문취소</button>
-										<button id="payButton">결제하기</button>
+									    <button id="ordercancel" class="btn btn-primary mt-1 mb-5 mr-2">주문취소</button>
+										<button id="payButton" class="btn btn-primary mt-1 mb-5">결제하기</button>
 									</div>
 							    </div>
 							  </div>

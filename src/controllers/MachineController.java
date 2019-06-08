@@ -262,7 +262,10 @@ public class MachineController extends HttpServlet {
 		}else if(cmd.equals("/returntakeio.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_2.jsp").forward(request, response);
 		}
-		///////
+		///////youtube
+		else if(cmd.equals("/youtube.kiosk")) {
+			request.getRequestDispatcher("/WEB-INF/game/youtube.jsp").forward(request, response);
+		}
 		
 		
 	}

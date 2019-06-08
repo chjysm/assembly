@@ -108,7 +108,7 @@
 			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
 				<ul class="nav justify-content-center fixMenu-text">
 				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-				  <li class="nav-item"><a class="nav-link" href="startGame.kiosk">학습하기</a></li>
+				  <li class="nav-item"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
