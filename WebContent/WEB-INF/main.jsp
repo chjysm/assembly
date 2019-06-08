@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://kit.fontawesome.com/650a47b167.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <link rel="stylesheet"
@@ -53,6 +55,7 @@
 	color: #fff;
 	font-weight: bold;
 }
+
 
 #logo {
 	font-family: 'Poiret One', cursive;
@@ -179,6 +182,7 @@ a:hover[class="moreBtn"] {
 	font-weight: bold;
 	background-color: #fcfcfc70;
 	font-size: 40px;
+
 }
 
 #kaLogout {
@@ -190,6 +194,7 @@ a:hover[class="moreBtn"] {
 	border: 0px;
 	padding: 0px;
 }
+
 
 .loginBox {
 	position: relative;
@@ -254,6 +259,7 @@ a:hover[class="moreBtn"] {
 .connect li {
 	margin: 0;
 }
+
 </style>
 <script>
    $(function() {
@@ -329,6 +335,7 @@ a:hover[class="moreBtn"] {
 
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
+
 		<div class="row fixedMenuNav">
 			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
@@ -381,8 +388,8 @@ a:hover[class="moreBtn"] {
 						처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
 					</p>
 					<a class="btn btn-primary btn-lg mr-2" href="goInfo.win"
-						role="button">소개보기</a> <a class="btn btn-primary btn-lg"
-						href="startGame.kiosk" role="button">체험 시작하기</a>
+						role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="startGame.kiosk"
+						role="button">체험 시작하기</a>
 				</div>
 				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
 					<iframe width="95%" height="315"
@@ -482,69 +489,72 @@ a:hover[class="moreBtn"] {
 										<img height="49" width="150" src="Resources/img/nlogout.PNG" />
 									</button>
 								</div>
+
+							</div>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
-							<div
+
+						<div
 								style="border-radius: 10px; background: #b8daff; height: 400px">
-								<div class="loginBox">
-									<div class="form-group pb-1" style="font-size: 1.4em">
-										<label for="comment"> <strong>${nickname}</strong>님
-											환영합니다!
-										</label>
-									</div>
-									<button type="button"
-										class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-									<button type="button"
-										class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-									<br> <br>
-									<button type="button" id="kaLogout">
-										<img height="49" width="222" src="Resources/img/klogout.PNG" />
-									</button>
-								</div>
+							<div class="loginBox">
+							<div class="form-group pb-1" style="font-size: 1.4em">
+									<label for="comment"> <strong>${nickname}</strong>님
+										환영합니다!
+									</label>
+							</div>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+							<br> <br>
+							<button type="button" id="kaLogout">
+								<img height="49" width="222" src="Resources/img/klogout.PNG" />
+							</button>
+							</div>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==3}">
 						<form>
-							<div
+						<div
 								style="border-radius: 10px; background: #b8daff; height: 400px">
-								<div class="loginBox">
-									<div class="form-group pb-1" style="font-size: 1.2em">
-										<label for="comment"> <strong>${nickname}</strong>님
-											환영합니다!
-										</label>
-									</div>
-									<button type="button"
-										class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-									<button type="button"
-										class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-									<button type="button" class="btn btn-outline-secondary mr-2"
-										id="emailLogout">로그아웃</button>
-									<br> <br>
-								</div>
+							<div class="loginBox">
+							<div class="form-group pb-1" style="font-size: 1.2em">
+									<label for="comment"> <strong>${nickname}</strong>님
+										환영합니다!
+									</label>
+							</div>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+							<button type="button"
+								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="emailLogout">로그아웃</button>
+							<br> <br>
+							</div>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==4}">
 						<form>
-							<div
+						<div
 								style="border-radius: 10px; height: 400px; background: #b8daff">
-								<div class="loginBox">
-									<div class="form-group pb-3">
-										<label for="comment"> 어서오세요 <strong>admin</strong>님!
-											환영합니다!
-										</label>
-									</div>
-									<button type="button" class="btn btn-outline-secondary mr-2"
-										id="emailLogout">로그아웃</button>
-									<br> <br>
-									<button type="button" class="btn btn-outline-secondary mr-2"
-										id="adminPage">관리자 페이지</button>
-									<br>
-								</div>
+							<div class="loginBox">
+							<div class="form-group pb-3">
+								<label for="comment"> 어서오세요 <strong>admin</strong>님!
+										환영합니다!
+									</label>
+							</div>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="emailLogout">로그아웃</button>
+							<br> <br>
+							<button type="button" class="btn btn-outline-secondary mr-2"
+								id="adminPage">관리자 페이지</button>
+							<br>
+							</div>
 							</div>
 						</form>
 					</c:when>
@@ -585,8 +595,8 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-success myCard" style="width: 18rem;">
 					<img
-						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
-						class="card-img-top" alt="card_img1">
+						src="Resources/img/tube.PNG"
+						class="card-img-top" alt="card_img1" height="162.05px">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">유튜브 영상 검색하기</h5>
 						<p class="card-text">유튜브로 더 많은 정보를 찾아보세요! 키워드만 입력하면 바로 검색됩니다.</p>
@@ -597,8 +607,8 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-danger myCard" style="width: 18rem;">
 					<img
-						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
-						class="card-img-top" alt="card_img1">
+						src="Resources/img/game.PNG"
+						class="card-img-top" alt="card_img1" height="162.05px">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수
@@ -609,8 +619,8 @@ a:hover[class="moreBtn"] {
 			</div>
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-warning myCard" style="width: 18rem;">
-					<img src="Resources/img/photo3.png" class="card-img-top"
-						height="162.05px" alt="card_img1">
+					<img src="Resources/img/photo3.png" class="card-img-top" height="162.05px"
+						alt="card_img1">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">내 주변에 있는 매장 검색해보기</h5>
 						<p class="card-text">키오스크 사용법이 익숙해졌다면 실제 매장에 가서 주문해보세요!</p>
@@ -663,41 +673,29 @@ a:hover[class="moreBtn"] {
 						data-toggle="tab" href="#qna">질문게시판</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="info">
+					<div class="tab-pane fade show active" id="info" >
 						<h5 class="font-weight-bold mb-3">새로운 정보를 알려드립니다</h5>
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
 						</div>
 						<div class="row text-center">
 							<c:choose>
 								<c:when test="${noticeRecordCount == 0 }">
-									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된
-										게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainNoticeList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
-											<a
-												href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+											<a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -705,37 +703,26 @@ a:hover[class="moreBtn"] {
 					</div>
 					<div class="tab-pane fade" id="freeBoard">
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
 						</div>
 						<div class="row text-center">
 							<c:choose>
 								<c:when test="${freeRecordCount == 0 }">
-									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된
-										게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainFreeList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
 											<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -743,37 +730,26 @@ a:hover[class="moreBtn"] {
 					</div>
 					<div class="tab-pane fade" id="qna">
 						<div class="row text-center">
-							<div
-								class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
-							<div
-								class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
-							<div
-								class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
-							<div
-								class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">번호</div>
+							<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+							<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
 						</div>
 						<div class="row text-center">
 							<c:choose>
 								<c:when test="${qnaRecordCount == 0 }">
-									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된
-										게시물이 없습니다.</div>
+									<div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="list" items="${mainQnaList}">
-										<div
-											class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
-										<div
-											class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+										<div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
 											<a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
 										</div>
-										<div
-											class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
-										<div
-											class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+										<div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -781,8 +757,7 @@ a:hover[class="moreBtn"] {
 					</div>
 				</div>
 				<div class="more">
-					<a href="list.board03?noticeCurrentPage=1" class="moreBtn">더 보기
-						></a>
+					<a href="list.board03?noticeCurrentPage=1" class="moreBtn">더 보기 ></a>
 				</div>
 			</div>
 		</div>
@@ -792,8 +767,7 @@ a:hover[class="moreBtn"] {
 		<div class="row pt-2 pb-5">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 				<div class="">
-					<span class="logo"><img src="/Resources/img/logo.png"
-						width="150px" height="100px"></span>
+					<span class="logo"><img src="/Resources/img/logo.png" width="150px" height="100px"></span>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
@@ -808,19 +782,14 @@ a:hover[class="moreBtn"] {
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-				<div class="connectBox">
-					<ul class="nav connect">
-						<li class="nav-item"><a href="#"
-							class="nav-link active insta"><i
-								class="fab fa-instagram fa-3x"></i></a></li>
-						<li class="nav-item"><a href="#" class="nav-link facebook"><i
-								class="fab fa-facebook-square fa-3x"></i></a></li>
-						<li class="nav-item"><a href="#" class="nav-link youtube "><i
-								class="fab fa-youtube fa-3x"></i></a></li>
-						<li class="nav-item"><a href="#" class="nav-link twitter "><i
-								class="fab fa-twitter-square fa-3x"></i></a></li>
-					</ul>
-				</div>
+				 <div class="connectBox">
+				  <ul class="nav connect">
+                <li class="nav-item"><a href="#" class="nav-link active insta"><i class="fab fa-instagram fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link facebook"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link youtube "><i class="fab fa-youtube fa-3x"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link twitter "><i class="fab fa-twitter-square fa-3x"></i></a></li>
+            </ul>
+            </div>
 			</div>
 		</div>
 	</div>

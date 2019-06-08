@@ -34,7 +34,7 @@
 		.logoLi{font-family: 'Noto Sans KR', sans-serif; text-shadow : 0 0 1px #5882FA;}
 		.logoLi:hover{opacity:0.7;}
 		.fixedMenu div{text-align: center; font-size:20px;} 
-		.mainPage{padding-top:100px;} /*수정*/
+		.mainPage{padding-top:100px; margin-bottom:100px;} /*수정*/
 		.myCard{border:none;}
 		.nav-tabs .nav-link{color:#000; font-weight:bold;}
 		.tab-pane{padding:30px; background:#fff; border-radius:0 0 5px 5px; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
@@ -109,12 +109,12 @@
 					</div>
 					<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 my">
 						<form id="speakerForm">
-							<div id="fake" style="display:none;">원하는 메뉴를 자유롭게 고른 후 다음 단계를 진행하세요</div>
+							<div id="fake" style="display:none;">원하는 메뉴를 자유롭게 고른 후 다음 단계를 진행하세요 최소 한가지 이상은 선택해야 다음 단계로 넘어갑니다</div>
 							    <textarea id="speakerTxt" class="text-center h3" style="width:100%; height:100%; border:none; background:none; display:block;" disabled></textarea>
 									<script>
 										document.getElementById('speakerTxt').value=document.getElementById('fake').innerText;
 									</script>
-							    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리로 들어보세요</button>
+							    <button id="play" class="btn btn-primary btn-lg mt-1 mb-3" type="submit"><img src="Resources/img/sound.png"/>&nbsp;버튼을 눌러 소리를 들어보세요</button>
 						    <div style="display:none;">
 						      <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
 						      <div class="rate-value">1</div>
@@ -130,7 +130,7 @@
 						</form>
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
-						<div id="machine" class="row my">
+						<div id="machine" class="row my lcd">
 <!-- -------machine view content start--------------------------------------->
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my scrollBar">
 								<img src="Resources/img/menu1.png" width="300" height="200" data-target="#carouselExampleIndicators" data-slide-to="0">
@@ -255,7 +255,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my text-center">
 		 <button id="btnBefore" class="btn btn-secondary mt-5 mr-2 mb-5">이전</button>
 		<button id="ordercancel" class="btn btn-primary mt-5 mr-2 mb-5">주문취소</button>
-		<button id="btnShopBox" class="btn btn-primary mt-5 mb-5">장바구니</button>
+		<button id="btnShopBox" class="btn btn-primary mt-5 mb-5" disabled>장바구니</button>
 	</div>
 			<script>
 				//scroll
@@ -276,10 +276,12 @@
 				//carousel
 // 				$('#carouselExampleIndicators').carousel("pause");
 				//carousel-contents
+				$('.choice1').on('click', function(){
+					$('#btnShopBox').removeAttr('disabled');
+				});
 				$('.burgerView .choice1').on('click', function(){
 					$('.burgerView .choice1').css("background", "none");
 					$(this).css("background", "#A9D0F5");
-					console.log($(this).find('#menuName').html());
 						$.ajax({
 							url : "burger_value.third",
 							type : "post",
@@ -324,7 +326,7 @@
 				});
 				$('#ordercancel').on("click", function(){
 					alert('초기화면으로 돌아갑니다');
-					$(location).attr("href", "startGame.third");
+					$(location).attr("href", "canclegame.third");
 				});
 				$('#btnShopBox').on("click", function(){
 					$(location).attr("href", "mc_slide.third");
@@ -340,9 +342,7 @@
 		</div>
 	</div>
 </div>
-<script>
-	
-</script>
+</div>
 		
 <!-- 	footer -->
 	<div class="container-fluid footer pt-5">
@@ -363,7 +363,7 @@
 					</dl>
 				</div>
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				 <div class="connectBox">
 				  <ul class="nav connect">
                 <li class="nav-item"><a href="#" class="nav-link active insta"><i class="fab fa-instagram fa-3x"></i></a></li>

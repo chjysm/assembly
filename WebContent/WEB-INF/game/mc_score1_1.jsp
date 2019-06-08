@@ -220,7 +220,11 @@
 	<script>
 		//시작버튼을 누르는 순간 8자리 무작위 코드를 발급, ajax로 db에 한 행씩 값 넣기
 	</script>
+<<<<<<< HEAD
 	<!-- 스크립트 끝 -->
+=======
+<!-- 스크립트 끝 -->
+>>>>>>> e3c72a5040d18767a35c3ba6f03b7fe61699d0e2
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
 		<div class="row fixedMenuNav">
@@ -310,7 +314,6 @@
 									height="500">
 							</div>
 						</div>
-						<!-- -------machine view end----------------------------------------------->
 					</div>
 				</div>
 			</div>

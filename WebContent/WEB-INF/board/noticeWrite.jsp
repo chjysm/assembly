@@ -92,9 +92,6 @@
 *:not (.content * ){
 	margin: 0 auto;
 }
-* {
-	margin: 0 auto;
-}
 .fixedMenu {
 	position: fixed;
 	background: #fff;

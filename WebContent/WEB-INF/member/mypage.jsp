@@ -38,6 +38,8 @@
 	color: #fff;
 	font-weight: bold;
 }
+.fixMenu-text{position: relative; top: 20px;}
+.fixedMenu div{text-align: center; font-size:30px;} 
 
 #logo {
 	font-family: 'Poiret One', cursive;
@@ -147,7 +149,7 @@ select :hover {
 </style>
 <script>
 	$(function() {
-
+		
 		$("#pwChange_btn").on("click", function() {
 			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
@@ -232,7 +234,6 @@ select :hover {
 										</tr>
 									</c:when>
 									<c:otherwise>
-
 									</c:otherwise>
 								</c:choose>
 								<tr class="pt-4">

@@ -44,7 +44,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(110, "set_menu");
 				machine.mcSaveDB(140, "mc_morning");
 				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
-			} catch (Exception e) {
+			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
 			}
@@ -54,7 +54,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(180, "happy_meal");
 				machine.mcSaveDB(150, "snack_side");
 				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
-			} catch (Exception e) {
+			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
 			}
@@ -64,7 +64,7 @@ public class MachineController extends HttpServlet {
 				machine.mcSaveDB(170, "beverage");
 				machine.mcSaveDB(160, "desert");
 				request.getRequestDispatcher("/WEB-INF/admin/menuUpdate.jsp").forward(request, response);
-			} catch (Exception e) {
+			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
 			}
@@ -79,8 +79,8 @@ public class MachineController extends HttpServlet {
 				machine.mcUpdateDB("mc_cafe");
 				machine.mcUpdateDB("beverage");
 				machine.mcUpdateDB("desert");
-				request.getRequestDispatcher("/WEB-INF/admin/menuDelete.jsp").forward(request, response);
-			} catch (Exception e) {
+				request.getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
+			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
@@ -167,11 +167,9 @@ public class MachineController extends HttpServlet {
 		} else if (cmd.equals("/takeio.kiosk")) {
 			String takeIOM = request.getParameter("key1");
 			String takeIOY = request.getParameter("key2");
-			int result1 = machine.updateGameStuff("takeIOM", takeIOM,
-					request.getSession().getAttribute("personalCode").toString());
-			int result2 = machine.updateGameStuff("takeIOY", takeIOY,
-					request.getSession().getAttribute("personalCode").toString());
-			if (result1 > 0 && result2 > 0) {
+			int result1 = machine.updateGameStuff("takeIOM", takeIOM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("takeIOY", takeIOY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			} else {
 				out.print("오류발생");
@@ -179,11 +177,9 @@ public class MachineController extends HttpServlet {
 		} else if (cmd.equals("/burger_value.kiosk")) {
 			String burgerNameM = request.getParameter("key1");
 			String burgerNameY = request.getParameter("key2");
-			int result1 = machine.updateGameStuff("burgerNameM", burgerNameM,
-					request.getSession().getAttribute("personalCode").toString());
-			int result2 = machine.updateGameStuff("burgerNameY", burgerNameY,
-					request.getSession().getAttribute("personalCode").toString());
-			if (result1 > 0 && result2 > 0) {
+			int result1 = machine.updateGameStuff("burgerNameM", burgerNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("burgerNameY", burgerNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			} else {
 				out.print("오류발생");
@@ -191,11 +187,9 @@ public class MachineController extends HttpServlet {
 		} else if (cmd.equals("/snack_value.kiosk")) {
 			String sideNameM = request.getParameter("key1");
 			String sideNameY = request.getParameter("key2");
-			int result1 = machine.updateGameStuff("sideNameM", sideNameM,
-					request.getSession().getAttribute("personalCode").toString());
-			int result2 = machine.updateGameStuff("sideNameY", sideNameY,
-					request.getSession().getAttribute("personalCode").toString());
-			if (result1 > 0 && result2 > 0) {
+			int result1 = machine.updateGameStuff("sideNameM", sideNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("sideNameY", sideNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			} else {
 				out.print("오류발생");
@@ -203,11 +197,9 @@ public class MachineController extends HttpServlet {
 		} else if (cmd.equals("/beverage_value.kiosk")) {
 			String beverageNameM = request.getParameter("key1");
 			String beverageNameY = request.getParameter("key2");
-			int result1 = machine.updateGameStuff("beverageNameM", beverageNameM,
-					request.getSession().getAttribute("personalCode").toString());
-			int result2 = machine.updateGameStuff("beverageNameY", beverageNameY,
-					request.getSession().getAttribute("personalCode").toString());
-			if (result1 > 0 && result2 > 0) {
+			int result1 = machine.updateGameStuff("beverageNameM", beverageNameM, request.getSession().getAttribute("personalCode").toString());
+			int result2 = machine.updateGameStuff("beverageNameY", beverageNameY, request.getSession().getAttribute("personalCode").toString());
+			if(result1>0 && result2>0) {
 				out.print("다음 단계로 넘어갑니다");
 			} else {
 				out.print("오류발생");
@@ -215,74 +207,75 @@ public class MachineController extends HttpServlet {
 		} else if (cmd.equals("/session_end.kiosk")) { // 게임종료 후 세션 속성 지우기
 			request.getSession().removeAttribute("personalCode");
 		}
-
-		// WEB-INF우회
-		else if (cmd.equals("/startGame.kiosk")) {
+		
+		//WEB-INF우회
+		else if(cmd.equals("/startGame.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/game_start.jsp").forward(request, response);
-		} else if (cmd.equals("/goFirstStep.kiosk")) {
+		}else if(cmd.equals("/goFirstStep.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
-		} else if (cmd.equals("/goMcFirst.kiosk")) {
+		}else if(cmd.equals("/goMcFirst.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_1.jsp").forward(request, response);
-		} else if (cmd.equals("/returnMain.kiosk")) {
-			FreeBoardDAO fb = new FreeBoardDAO();
+		}else if(cmd.equals("/returnMain.kiosk")) {
+			FreeBoardDAO fb= new FreeBoardDAO();
 			QnaBoardDAO qb = new QnaBoardDAO();
 			NoticeBoardDAO nb = new NoticeBoardDAO();
-			int freeRecordCount = 0;
-			int qnaRecordCount = 0;
+			int freeRecordCount = 0 ;
+			int qnaRecordCount = 0; 
 			int noticeRecordCount = 0;
 			try {
-				freeRecordCount = fb.recordCount();
-				qnaRecordCount = qb.recordCount();
-				noticeRecordCount = nb.recordCount();
-			} catch (Exception e) {
+			freeRecordCount = fb.recordCount();
+			qnaRecordCount = qb.recordCount();
+			noticeRecordCount = nb.recordCount();
+			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
-			if (freeRecordCount == 0) { // 자유게시판 게시글 0 일 경우
+			if(freeRecordCount == 0 ) { // 자유게시판 게시글 0 일 경우
 				request.setAttribute("freeRecordCount", freeRecordCount);
-			} else {
-				List<FreeBoardDTO> mainFreeList = null;
-				try {
-					mainFreeList = fb.mainFreeBoardList(1);
-				} catch (Exception e) {
-					e.printStackTrace();
-					response.sendRedirect("error.html");
-				}
-				request.setAttribute("mainFreeList", mainFreeList);
+			}else{
+			List<FreeBoardDTO> mainFreeList = null;
+			try {
+			mainFreeList = fb.mainFreeBoardList(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
-			if (qnaRecordCount == 0) {// 질문 게시판 게시글이 0 일경우
+			request.setAttribute("mainFreeList", mainFreeList);
+			}
+			if(qnaRecordCount == 0) {//질문 게시판 게시글이 0 일경우
 				request.setAttribute("qnaRecordCount", qnaRecordCount);
-			} else {
+			}else {
 				List<QnaBoardDTO> mainQnaList = null;
 				try {
-					mainQnaList = qb.mainQnaBoardList(1);
-				} catch (Exception e) {
+				mainQnaList = qb.mainQnaBoardList(1);
+				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				request.setAttribute("mainQnaList", mainQnaList);
 			}
-			if (noticeRecordCount == 0) {// 공지게시판 게시글이 0일 경우
+			if(noticeRecordCount == 0) {// 공지게시판 게시글이 0일 경우
 				request.setAttribute("noticeRecordCount", noticeRecordCount);
-			} else {
+			}else {
 				List<NoticeBoardDTO> mainNoticeList = null;
 				try {
 					mainNoticeList = nb.mainNoticeBoardList(1);
-				} catch (Exception e) {
+				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 				request.setAttribute("mainNoticeList", mainNoticeList);
 			}
 			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
-		} else if (cmd.equals("/returntakeio.kiosk")) {
+		}else if(cmd.equals("/returntakeio.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score1_2.jsp").forward(request, response);
 		}
-		/////// youtube
-		else if (cmd.equals("/youtube.kiosk")) {
+		///////youtube
+		else if(cmd.equals("/youtube.kiosk")) {
 			request.getRequestDispatcher("/WEB-INF/game/youtube.jsp").forward(request, response);
 		}
-
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
