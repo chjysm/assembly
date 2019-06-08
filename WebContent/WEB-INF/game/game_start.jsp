@@ -127,7 +127,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-5 text-center">
-				<div class="card"">
+				<div class="card">
 				  <img src="Resources/img/card2.png" class="card-img-top">
 				  <div class="card-body">
 				    <h5 class="card-title font-weight-bold">자유롭게 선택해서 주문하기</h5>
@@ -143,84 +143,73 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center h4 pb-1">
 				키오스크 주문 체험에 앞서, 메뉴 이름이 생소할 수 있습니다<br>
-				메뉴 이름을 클릭하기만 하면 <b>네이버 파파고</b>가 즉시 번역해 이해를 도와드립니다
+				메뉴 목록을 보며 어떤 종류의 메뉴들이 있는지 확인하세요
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-5 text-center">
-				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 papago mt-4">
-						<h1 class="h5 mt-1 mb-3">더 알고 싶은 단어가 있다면 직접 검색해보세요</h1>
-						<div id="source" contenteditable="true" style="height:100px; border:1px solid #ddd; border-radius:5px; overflow-y:auto;"></div>
-						<button type="button" id="send" class="btn btn-primary m-3">번역하기</button>
-						<h1 class="h5 mt-3 mb-3">해석된 단어가 기재될 공간입니다</h1>
-						<div id="result" style="height:250px; border:1px solid #ddd; border-radius:5px; overflow-y:auto;"></div>
-					</div>			
-					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
-						<div class="row" style="height:600px; overflow-y:auto;">
-								<c:forEach var="burger" items="${burgers }">
-									<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my text-center choice1">
-										<img id="menuImg" src="${burger.imgAddr}"><i></i>
-										<p class="h5" id="menuName">${burger.menuName}</p>
-										<p id="menuEng">${burger.menuNameEng }</p>
-									</div>
-								</c:forEach>
-								<c:forEach var="set_menu" items="${set_menus }">
-									<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my text-center choice1">
-										<img id="menuImg" src="${set_menu.imgAddr}"><i></i>
-										<p class="h5" id="menuName">${set_menu.menuName}</p>
-										<p id="menuEng">${set_menu.menuNameEng }</p>
-									</div>
-								</c:forEach>
-								<c:forEach var="mc_morning" items="${mc_mornings }">
-									<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my text-center choice1">
-										<img id="menuImg" src="${mc_morning.imgAddr}"><i></i>
-										<p class="h5" id="menuName">${mc_morning.menuName}</p>
-										<p id="menuEng">${mc_morning.menuNameEng }</p>
-									</div>
-								</c:forEach>
-								<c:forEach var="happy" items="${happys }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${happy.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${happy.menuName}</p>
-									<p id="menuEng">${happy.menuNameEng }</p>
-								</div>
-							</c:forEach>
-							<c:forEach var="happy_meal" items="${happy_meals }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${happy_meal.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${happy_meal.menuName}</p>
-									<p id="menuEng">${happy_meal.menuNameEng }</p>
-								</div>
-							</c:forEach>
-							<c:forEach var="snack_side" items="${snack_sides }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${snack_side.menuName}</p>
-									<p id="menuEng">${snack_side.menuNameEng }</p>
-								</div>
-							</c:forEach>
-							<c:forEach var="mc_cafe" items="${mc_cafes }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${mc_cafe.menuName}</p>
-									<p id="menuEng">${mc_cafe.menuNameEng }</p>
-								</div>
-							</c:forEach>
-							<c:forEach var="beverage" items="${beverages }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${beverage.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${beverage.menuName}</p>
-									<p id="menuEng">${beverage.menuNameEng }</p>
-								</div>
-							</c:forEach>
-							<c:forEach var="desert" items="${deserts }">
-								<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
-									<img id="menuImg" src="${desert.imgAddr}"><i></i>
-									<p class="h5" id="menuName">${desert.menuName}</p>
-									<p id="menuEng">${desert.menuNameEng }</p>
-								</div>
-							</c:forEach>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-5 text-center">	
+				<div class="row" style="height:600px; overflow-y:auto;">
+						<c:forEach var="burger" items="${burgers }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+								<img id="menuImg" src="${burger.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${burger.menuName}</p>
+								<p id="menuEng">${burger.menuNameEng }</p>
+							</div>
+						</c:forEach>
+						<c:forEach var="set_menu" items="${set_menus }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+								<img id="menuImg" src="${set_menu.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${set_menu.menuName}</p>
+								<p id="menuEng">${set_menu.menuNameEng }</p>
+							</div>
+						</c:forEach>
+						<c:forEach var="mc_morning" items="${mc_mornings }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+								<img id="menuImg" src="${mc_morning.imgAddr}"><i></i>
+								<p class="h5" id="menuName">${mc_morning.menuName}</p>
+								<p id="menuEng">${mc_morning.menuNameEng }</p>
+							</div>
+						</c:forEach>
+						<c:forEach var="happy" items="${happys }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${happy.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${happy.menuName}</p>
+							<p id="menuEng">${happy.menuNameEng }</p>
 						</div>
-					</div>
+					</c:forEach>
+					<c:forEach var="happy_meal" items="${happy_meals }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${happy_meal.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${happy_meal.menuName}</p>
+							<p id="menuEng">${happy_meal.menuNameEng }</p>
+						</div>
+					</c:forEach>
+					<c:forEach var="snack_side" items="${snack_sides }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${snack_side.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${snack_side.menuName}</p>
+							<p id="menuEng">${snack_side.menuNameEng }</p>
+						</div>
+					</c:forEach>
+					<c:forEach var="mc_cafe" items="${mc_cafes }">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${mc_cafe.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${mc_cafe.menuName}</p>
+							<p id="menuEng">${mc_cafe.menuNameEng }</p>
+						</div>
+					</c:forEach>
+					<c:forEach var="beverage" items="${beverages }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${beverage.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${beverage.menuName}</p>
+							<p id="menuEng">${beverage.menuNameEng }</p>
+						</div>
+					</c:forEach>
+					<c:forEach var="desert" items="${deserts }">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my text-center choice1">
+							<img id="menuImg" src="${desert.imgAddr}"><i></i>
+							<p class="h5" id="menuName">${desert.menuName}</p>
+							<p id="menuEng">${desert.menuNameEng }</p>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
