@@ -37,17 +37,7 @@ $(function(){
           });
 	  $(".searchWord").keypress(function(e){ // 검색창에서 엔터키누르면
 		  if(e.keyCode==13){
-			  var option = $("#option option:selected").val();
-	             var searchWord = $(".searchWord").val();
-	            if(searchWord == ""){
-                alert("검색어를 입력해주세요");
-             }else{
-                if(option == "글제목"){
-                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=title";
-                 }else if(option == "작성자"){
-                     location.href="searchContent.board02?qnaCurrentPage=1&&searchWord="+searchWord+"&&option=writer";
-                 }
-             };
+			  ("#searchForm").submit();
 		  }
 	  });
 	  
@@ -317,11 +307,13 @@ a:hover {
 		</div>
 		<div class="footer row">
 			<div class="col-lg-11 col-md-11 col-sm-11 col-10">
+				<form action="searchContent.board02" method="get" id="searchForm">
 				<select name="option" id="option">
 					<option>글제목</option>
 					<option>작성자</option>
 				</select> <input type="text" class="searchWord"> <input type="button"
 					class="searchBtn" value="검색">
+					</form>
 			</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
 				<input type="button" class="writeBtn" value="글쓰기">

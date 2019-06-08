@@ -35,7 +35,7 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB(int num, String table_name) {
-		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -260,7 +260,7 @@ public class MenuDataDAO {
 	}
 
 	public int mcSaveDB_coffee(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver",  "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver",  "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -299,7 +299,7 @@ public class MenuDataDAO {
 	}	
 	
 	public int mcSaveDB_pizza(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:/MyFolder/assembly/WebContent/WEB-INF/lib/chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -337,7 +337,7 @@ public class MenuDataDAO {
 	}	
 
 	public int mcSaveDB_pizzads(String table_name, String num) {
-		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
@@ -381,7 +381,7 @@ public class MenuDataDAO {
 	}	
 	
 	public int mcSaveDB_lotte(String selector, String table_name) {
-		System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:/temp/assembly/assembly/WebContent/WEB-INF/lib/chromedriver.exe");//"D:\\MyFolder\\assembly\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
 		ChromeOptions opt = new ChromeOptions();
 		opt.addArguments("--silent");
 		opt.addArguments("--headless");
