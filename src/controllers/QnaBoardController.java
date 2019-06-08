@@ -499,6 +499,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

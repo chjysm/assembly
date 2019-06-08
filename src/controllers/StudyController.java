@@ -12,6 +12,7 @@ import dao.StudyDAO;
 import dto.StudyDTO;
 @WebServlet("*.st")
 public class StudyController extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -40,5 +41,6 @@ public class StudyController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		doGet(request, response);
 	}
+
 
 	}
