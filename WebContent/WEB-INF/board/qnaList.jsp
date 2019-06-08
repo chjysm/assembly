@@ -44,15 +44,7 @@ $(function(){
 	  $(".answer").each(function(i,item){
 			var seq = $(this).attr('seq');
 			var answer = "." + seq;
-<<<<<<< HEAD
 			if($(answer).html() == 'N'){
-=======
-<<<<<<< HEAD
-			if($(answer).html() == 'n'){
-=======
-			if($(answer).html() == 'N'){
->>>>>>> 710ea33bc804603e26d82244cd9404d55557f213
->>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
 				$(answer).css('color','red');
 			}else{$(answer).css('color','blue');}
 		});
