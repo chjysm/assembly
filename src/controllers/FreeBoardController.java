@@ -371,37 +371,74 @@ public class FreeBoardController extends HttpServlet {
 				pw.write("수정안됨");
 			}
 		}else if(command.equals("/searchContent.board01")) { //검색버튼 누르면
-			int freeCurrentPage = Integer.parseInt(request.getParameter("freeCurrentPage"));
+			request.getSession().setAttribute("freeCurrentPage", 1);
+			int freeCurrentPage = (int)request.getSession().getAttribute("freeCurrentPage");
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
 
-			int recordCount = 0;
-			try {
-				recordCount = dao.selectCount(searchWord, option);
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-			if(recordCount == 0) {
-				request.setAttribute("recordCount", recordCount);
-			}else {
-				List<FreeBoardDTO> freeSelectList = null;
-				try {			
-					freeSelectList = dao.selectBySearchPage(freeCurrentPage, searchWord, option);
-				}catch(Exception e) {
-					e.printStackTrace();
-					response.sendRedirect("error.html");
-				}
-				String getNaviSelect = null;
+			if(option.equals("글제목")) {
+				int recordCount = 0;
 				try {
-					getNaviSelect = dao.getNaviSelect(freeCurrentPage, option, searchWord); // 페이지 네비 보여주기 
+					recordCount = dao.selectCount(searchWord, "title");
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
-				request.setAttribute("freeList", freeSelectList);
-				request.setAttribute("getNavi", getNaviSelect);
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<FreeBoardDTO> freeSelectList = null;
+					try {			
+						freeSelectList = dao.selectBySearchPage(freeCurrentPage, searchWord, "title");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(freeCurrentPage, "title", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("freeList", freeSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
 			}
+			
+			
+			
+			else if(option.equals("작성자")) {
+				int recordCount = 0;
+				try {
+					recordCount = dao.selectCount(searchWord, "writer");
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<FreeBoardDTO> freeSelectList = null;
+					try {			
+						freeSelectList = dao.selectBySearchPage(freeCurrentPage, searchWord, "writer");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(freeCurrentPage, "writer", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("freeList", freeSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
+			}
+			
+			
 			request.getRequestDispatcher("/WEB-INF/board/freeList.jsp").forward(request, response);
 		}
 	}

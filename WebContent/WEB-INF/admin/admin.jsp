@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,6 +111,69 @@
 </style>
 <script>
                     $(function() {                              // 회원 아이디 조회 결과 반환
+=======
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="description" content="">
+                <meta name="author" content="">
+
+                <title>관리자 페이지</title>
+
+                <!-- Custom fonts for this template-->
+                <link href="Resources/vendor/fontawesome-free/css/all.min.css"
+                      rel="stylesheet" type="text/css">
+                <link
+                      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                      rel="stylesheet">
+
+                <!-- Custom styles for this template-->
+                <link href="Resources/css/sb-admin-2.min.css" rel="stylesheet">
+                <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+                <style>
+                    #nav_menu * {
+                        margin: 0 auto;
+                    }
+
+                    .fixedMenuNav {
+                        background: #007bff;
+                    }
+
+                    .fixedMenu .nav-link {
+                        color: #fff;
+                        font-weight: bold;
+                    }
+
+                    .card-body a {
+                        color: gray;
+                    }
+
+                    .card-body a:hover {
+                        font-weight: bold;
+                    }
+
+                    .boardTitle div:nth-child(2) {
+                        text-align: right;
+                    }
+
+                    .moreBtn:hover {
+                        font-weight: bold;
+                    }
+                    .card80{background-color: pink; border-radius:4px;}
+                    .card90{background-color:#ffa03a; border-radius:4px;}
+                    .bar80{background-color: pink;}
+                    .bar90{background-color:#ffa03a;}
+                   
+                    .fixMenu-text{postion:relative; top:20px;} 
+                    .fixedMenuNav div{text-align: center; font-size: 30px;} 
+                </style>
+                <script>
+                    $(function() {										// 회원 아이디 조회 결과 반환
+>>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
                         $("#button-addon2").click(function(){
                             $.ajax({
                                 url : "emailCheck.admin",
@@ -128,6 +192,7 @@
                         })
                     })
                 </script>
+<<<<<<< HEAD
 </head>
 <body id="page-top">
    <!-- ================================================= 고정메뉴 ================================================= -->
@@ -201,6 +266,34 @@
                            <button class="btn btn-primary" type="button">
                               <i class="fas fa-search fa-sm"></i>
                            </button>
+=======
+            </head>
+            <body id="page-top">
+                <!-- ================================================= 고정메뉴 ================================================= -->
+                <div class="container-fluid fixedMenu" id=nav_menu>
+                   <div class="row fixedMenuNav p-2">
+			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " >
+				<img src="/Resources/img/logo.png" width="150px" height="100px">
+			</div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text">
+                                <li class="nav-item">
+                                	<a class="nav-link active" href="goMain.win">메인페이지</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="startGame.kiosk">학습하기</a></li>
+                                <li class="nav-item"><a class="nav-link" href="goInfo.win">사이트  소개</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+                                <c:if test="${type==4}">
+                                    <li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+                                        게시판</a></li>
+                                </c:if>
+                            </ul>
+>>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
                         </div>
                      </div>
                   </form>
@@ -391,6 +484,7 @@
                   </div>
                </div>
 
+<<<<<<< HEAD
                <!-- Earnings (Monthly) Card Example -->
                <div class="col-xl-3 col-md-6 mb-4">
                   <div class="card border-left-info shadow h-100 py-2">
@@ -430,6 +524,77 @@
                                     <div class="input-group-append">
                                        <button class="btn btn-outline-secondary" type="button"
                                           id="button-addon2">찾기</button>
+=======
+                        <!-- Content Row -->
+
+                        <div class="row">
+
+                            <!-- Area Chart -->
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">일일 방문자 수 (최근 30일)</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false"> <i
+                                                                                              class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div
+                                                 class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a> <a
+                                                                                                class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas id="myAreaChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pie Chart -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">성별 누적 통계</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            	<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a> 
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2">
+                                            <canvas id="myPieChart"></canvas>
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2"> 
+                                            	<i class="fas fa-circle text-success"></i> 남성
+                                            </span>
+                                            <span class="mr-2"> 
+                                            	<i class="fas fa-circle text-warning"></i> 여성
+                                            </span>                                     
+                                        </div>
+>>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
                                     </div>
                                  </div>
                               </div>
@@ -447,6 +612,7 @@
 
             <div class="row">
 
+<<<<<<< HEAD
                <!-- Area Chart -->
                <div class="col-xl-8 col-lg-7">
                   <div class="card shadow mb-4">
@@ -469,6 +635,304 @@
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="#">Something else here</a>
                            </div>
+=======
+                                <!-- Project Card Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">연령대별 회원 수</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <c:if test="${agedto.teenage > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                10대 <span class="float-right">${agedto.teenage }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: ${agePerdto.perTeenage }%" aria-valuenow="40"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.twenty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                20대 <span class="float-right">${agedto.twenty }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                     style="width: ${agePerdto.perTwenty }%" aria-valuenow="60"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.thirty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                30대 <span class="float-right">${agedto.thirty }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                     style="width: ${agePerdto.perThirty }%" aria-valuenow="80"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.forty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                40대 <span class="float-right">${agedto.forty }명</span>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-info" role="progressbar"
+                                                     style="width: ${agePerdto.perForty }%" aria-valuenow="100"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <br>
+                                        </c:if>
+                                        <c:if test="${agedto.fifty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                50대 <span class="float-right">${agedto.fifty }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-secondary" role="progressbar"
+                                                     style="width: ${agePerdto.perFifty }%" aria-valuenow="20"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.sixty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                60대 <span class="float-right">${agedto.sixty }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                     style="width: ${agePerdto.perSixty }%" aria-valuenow="20"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.seventy > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                70대 <span class="float-right">${agedto.seventy }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bar80" role="progressbar"
+                                                     style="width: ${agePerdto.perSeventy }%" aria-valuenow="20"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.eighty > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                80대 <span class="float-right">${agedto.eighty }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bar90" role="progressbar"
+                                                     style="width: ${agePerdto.perEighty }%" aria-valuenow="20"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${agedto.ninety > 0}">
+                                            <h4 class="small font-weight-bold">
+                                                90대 <span class="float-right">${agedto.ninety }명</span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                     style="width: ${agePerdto.perNinety }%" aria-valuenow="20"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
+
+                                <!-- Color System -->
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-warning text-white shadow">
+                                            <div class="card-body">
+                                                10~20대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-primary text-white shadow">
+                                            <div class="card-body">
+                                                30대
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-success text-white shadow">
+                                            <div class="card-body">
+                                                40대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-info text-white shadow">
+                                            <div class="card-body">
+                                               50대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-secondary text-white shadow">
+                                            <div class="card-body">
+                                               60대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card bg-danger text-white shadow">
+                                            <div class="card-body">
+                                                70대
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="col-lg-6 mb-4">
+                                        <div class="card80 shadow text-white shadow">
+                                            <div class="card-body">
+                                               80대
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="card90 text-white shadow">
+                                            <div class="card-body">
+                                               90대
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+
+ 								<!-- Approach (공지사항) -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <div class="row boardTitle">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <a href="list.board03?noticeCurrentPage=1" class="moreBtn">더보기 ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text">
+                                            <div class="row text-center">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">글번호</div>
+                                                <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+                                            </div>
+                                            <div class="row text-center">
+                                                <c:choose>
+                                                    <c:when test="${noticeRecordCount == 0 }">
+                                                        <div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="list" items="${noticeList}">
+                                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  d-none d-sm-block">${list.seq }</div>
+                                                            <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+                                                                <a href="noticeContent.board03?seq=${list.seq }&&commentPage=1">${list.title }</a>
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <!-- Illustrations (질문 게시판)-->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <div class="row boardTitle">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <h6 class="m-0 font-weight-bold text-primary">질문 게시판</h6>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <a href="list.board02?qnaCurrentPage=1" class="moreBtn">더보기 ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text">
+                                            <div class="row text-center">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">글번호</div>
+                                                <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">답변</div>
+                                            </div>
+                                            <div class="row text-center">
+                                                <c:choose>
+                                                    <c:when test="${qnaRecordCount == 0 }">
+                                                        <div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="list" items="${qnaList}">
+                                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+                                                            <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+                                                                <a href="qnaContent.board02?seq=${list.seq }&&commentPage=1">${list.title }</a>
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block answer ${list.seq }"
+                                                                 seq="${list.seq }">${list.answer }</div>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Approach (자유 게시판) -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <div class="row boardTitle">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <h6 class="m-0 font-weight-bold text-primary">자유 게시판</h6>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <a href="list.board01?freeCurrentPage=1" class="moreBtn">더보기 ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text">
+                                            <div class="row text-center">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 font-weight-bold d-none d-sm-block">글번호</div>
+                                                <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10 font-weight-bold myTitle d-none d-sm-block">글제목</div>
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 font-weight-bold d-none d-md-block">작성일</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">작성자</div>
+                                                <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4 font-weight-bold d-none d-lg-block">조회수</div>
+                                            </div>
+                                            <div class="row text-center">
+                                                <c:choose>
+                                                    <c:when test="${freeRecordCount == 0 }">
+                                                        <div class="noneRecord col-lg-12 col-md-12 col-sm-12 mt-2">등록된 게시물이 없습니다.</div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="list" items="${freeList}">
+                                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 d-none d-sm-block">${list.seq }</div>
+                                                            <div class="col-lg-4 col-md-8 col-sm-10 col-xs-10  myTitle d-none d-sm-block">
+                                                                <a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4  d-none d-md-block">${list.timeForm }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.writer }</div>
+                                                            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-4  d-none d-lg-block">${list.viewCount }</div>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+>>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
                         </div>
                      </div>
                      <!-- Card Body -->
@@ -1066,11 +1530,11 @@
                         var myPieChart = new Chart(ctx, {
                             type : 'doughnut',
                             data : {
-                                labels : [ "남성", "여성" ],
+                                labels : [ "여성", "남성" ],
                                 datasets : [ {
-                                    data : [ ${vdto.male}, ${vdto.female} ],
-                                    backgroundColor : [ '#1cc88a', '#f6c23e' ],
-                                    hoverBackgroundColor : [ '#2e59d9', '#2c9faf' ],
+                                    data : [ ${vdto.female}, ${vdto.male} ],
+                                    backgroundColor : [ '#f6c23e', '#1cc88a'],
+                                    hoverBackgroundColor : [ '#FA5882', '#0080FF' ],
                                     hoverBorderColor : "rgba(234, 236, 244, 1)",
                                 } ],
                             },
@@ -1080,7 +1544,7 @@
                                     backgroundColor : "rgb(255,255,255)",
                                     bodyFontColor : "#858796",
                                     borderColor : '#dddfeb',
-                                    borderWidth : 1,
+                                    borderWidth : 2,
                                     xPadding : 15,
                                     yPadding : 15,
                                     displayColors : false,
@@ -1089,7 +1553,7 @@
                                 legend : {
                                     display : false
                                 },
-                                cutoutPercentage : 80,
+                                cutoutPercentage : 35,
                             },
                         });
 

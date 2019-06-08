@@ -64,6 +64,7 @@ public class AddMenuItems extends HttpServlet {
 				request.getRequestDispatcher("db.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
+
 				request.getRequestDispatcher("error.html").forward(request, response);
 			}
 		}else if(cmd.equals("/updatecoffee.additems")) {
@@ -91,6 +92,8 @@ public class AddMenuItems extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 				request.getRequestDispatcher("error.html").forward(request, response);
+
+
 			}
 		}else if(cmd.equals("/updatelotte.additems")) {
 			try {

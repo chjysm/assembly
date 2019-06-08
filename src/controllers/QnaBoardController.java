@@ -404,37 +404,70 @@ public class QnaBoardController extends HttpServlet {
 			//---------------------------------------------------------------------------------------------------------------------
 
 		}else if(command.equals("/searchContent.board02")) { //검색버튼 누르면
-			int qnaCurrentPage = Integer.parseInt(request.getParameter("qnaCurrentPage"));
+			request.getSession().setAttribute("qnaCurrentPage", 1);
+			int qnaCurrentPage = (int)request.getSession().getAttribute("qnaCurrentPage");
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
-
-			int recordCount = 0;
-			try {
-				recordCount = dao.selectCount(searchWord, option);
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-			if(recordCount == 0) {
-				request.setAttribute("recordCount", recordCount);
-			}else {
-				List<QnaBoardDTO> qnaSelectList = null;
-				try {			
-					qnaSelectList = dao.selectBySearchPage(qnaCurrentPage, searchWord, option);
-				}catch(Exception e) {
-					e.printStackTrace();
-					response.sendRedirect("error.html");
-				}
-				String getNaviSelect = null;
+			
+			if(option.equals("글제목")) {
+				int recordCount = 0;
 				try {
-					getNaviSelect = dao.getNaviSelect(qnaCurrentPage, option, searchWord); // 페이지 네비 보여주기 
+					recordCount = dao.selectCount(searchWord, "title");
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
-				request.setAttribute("qnaList", qnaSelectList);
-				request.setAttribute("getNavi", getNaviSelect);
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<QnaBoardDTO> qnaSelectList = null;
+					try {			
+						qnaSelectList = dao.selectBySearchPage(qnaCurrentPage, searchWord, "title");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(qnaCurrentPage, "title", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("qnaList", qnaSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
+			}else if(option.equals("작성자")) {
+				int recordCount = 0;
+				try {
+					recordCount = dao.selectCount(searchWord, "writer");
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<QnaBoardDTO> qnaSelectList = null;
+					try {			
+						qnaSelectList = dao.selectBySearchPage(qnaCurrentPage, searchWord, "writer");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(qnaCurrentPage, "writer", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("qnaList", qnaSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
 			}
+
+			
 			request.getRequestDispatcher("/WEB-INF/board/qnaList.jsp").forward(request, response);
 			//---------------------------------------------------------------------------------------------------------------------
 		}else if(command.equals("/changeAnswer.board02")) {//관리자가 쓴 댓글 디비에 저장 -> answer y로 바꿔줌
@@ -466,6 +499,7 @@ public class QnaBoardController extends HttpServlet {
 			}else {
 				System.out.println("등록 ㄴ");
 			}
+
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

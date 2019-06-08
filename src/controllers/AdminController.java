@@ -73,6 +73,7 @@ public class AdminController extends HttpServlet {
 				}			
 				
 				if (freeRecordCount == 0) {											// 자유 게시판 게시글이 0일 경우
+
 					request.setAttribute("freeRecordCount", freeRecordCount);
 				} else {
 					List<FreeBoardDTO> mainFreeList = null;

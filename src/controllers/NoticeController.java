@@ -377,37 +377,70 @@ public class NoticeController extends HttpServlet {
 				pw.write("수정안됨");
 			}
 		}else if(command.equals("/searchContent.board03")) { //검색버튼 누르면
-			int noticeCurrentPage = Integer.parseInt(request.getParameter("noticeCurrentPage"));
+			request.getSession().setAttribute("noticeCurrentPage", 1);
+			int noticeCurrentPage = (int)request.getSession().getAttribute("noticeCurrentPage");
 			String searchWord = request.getParameter("searchWord");
 			String option = request.getParameter("option");
 
-			int recordCount = 0;
-			try {
-				recordCount = dao.selectCount(searchWord, option);
-			}catch(Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-			if(recordCount == 0) {
-				request.setAttribute("recordCount", recordCount);
-			}else {
-				List<NoticeBoardDTO> noticeSelectList = null;
-				try {			
-					noticeSelectList = dao.selectBySearchPage(noticeCurrentPage, searchWord, option);
-				}catch(Exception e) {
-					e.printStackTrace();
-					response.sendRedirect("error.html");
-				}
-				String getNaviSelect = null;
+			if(option.equals("글제목")) {
+				int recordCount = 0;
 				try {
-					getNaviSelect = dao.getNaviSelect(noticeCurrentPage, option, searchWord); // 페이지 네비 보여주기 
+					recordCount = dao.selectCount(searchWord, "title");
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
-				request.setAttribute("noticeList", noticeSelectList);
-				request.setAttribute("getNavi", getNaviSelect);
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<NoticeBoardDTO> noticeSelectList = null;
+					try {			
+						noticeSelectList = dao.selectBySearchPage(noticeCurrentPage, searchWord, "title");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(noticeCurrentPage, "title", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("noticeList", noticeSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
+			}else if(option.equals("작성자")) {
+				int recordCount = 0;
+				try {
+					recordCount = dao.selectCount(searchWord, "writer");
+				}catch(Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				if(recordCount == 0) {
+					request.setAttribute("recordCount", recordCount);
+				}else {
+					List<NoticeBoardDTO> noticeSelectList = null;
+					try {			
+						noticeSelectList = dao.selectBySearchPage(noticeCurrentPage, searchWord, "writer");
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					String getNaviSelect = null;
+					try {
+						getNaviSelect = dao.getNaviSelect(noticeCurrentPage, "writer", searchWord); // 페이지 네비 보여주기 
+					}catch(Exception e) {
+						e.printStackTrace();
+						response.sendRedirect("error.html");
+					}
+					request.setAttribute("noticeList", noticeSelectList);
+					request.setAttribute("getNavi", getNaviSelect);
+				}
 			}
+			
+			
 			request.getRequestDispatcher("/WEB-INF/board/noticeList.jsp").forward(request, response);
 		}
 	}
