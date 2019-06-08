@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -503,8 +504,8 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-success myCard" style="width: 18rem;">
 					<img
-						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
-						class="card-img-top" alt="card_img1">
+						src="Resources/img/tube.PNG"
+						class="card-img-top" alt="card_img1" height="162.05px">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">유튜브 영상 검색하기</h5>
 						<p class="card-text">유튜브로 더 많은 정보를 찾아보세요! 키워드만 입력하면 바로 검색됩니다.</p>
@@ -515,8 +516,8 @@ a:hover[class="moreBtn"] {
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
 				<div class="card bg-danger myCard" style="width: 18rem;">
 					<img
-						src="https://scratch.mit.edu/images/ideas/activities/animate-a-name-thumb.jpg"
-						class="card-img-top" alt="card_img1">
+						src="Resources/img/game.PNG"
+						class="card-img-top" alt="card_img1" height="162.05px">
 					<div class="card-body">
 						<h5 class="card-title font-weight-bold">키오스크 체험 시작하기</h5>
 						<p class="card-text">키오스크 사용법을 체험하고 연습해 보세요. 이제 혼자서도 주문할 수

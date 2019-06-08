@@ -176,17 +176,7 @@ strong {
 					</div>
 				</div>
 
-				<div class="col-lg-6">
-					<div style="width: 80%">
-						<h3>키오스크 게임,게임을 통한 쉬운 학습</h3>
-						<div>
-							<iframe width="100%" height="315"
-								src="https://www.youtube.com/embed/fpBbvE0Jsz4" frameborder="0"
-								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen></iframe>
-						</div>
-					</div>
-				</div>
+				
 				<div class="col-lg-6  ">
 					<div style="width: 80%">
 						<h3 class="mt-3">다양한 환경</h3>
@@ -215,6 +205,8 @@ strong {
 				<div class="col-lg-6">
 					<div style="width: 80%">
 						<h3 class="mt-3">우야꼬에 대하여 자세히 알아보기</h3>
+						<img class="rounded" src="Resources/img/info_ke.png"
+							alt="왜안나오죵" height="210px">
 						<p class="mt-2">
 							<span class="mainspan"><strong>우야꼬</strong>는 여러 브랜드의 키오스크를
 								연습하고 경험할 수 있는 사이트 입니다. 손쉬운 접근과 다양한 부가기능 제공으로 실제 상황이 되어도 좀더 편안한
@@ -222,6 +214,7 @@ strong {
 						</p>
 					</div>
 				</div>
+				
 				<div class="col-lg-6">
 					<div style="width: 80%">
 						<h3 class="mt-3">지원 및 자금 후원</h3>
@@ -234,6 +227,11 @@ strong {
 								페이지에서 확인하십시오. 만약 우야꼬를 지원하고 싶으시다면, 우야꼬 재단 기부 페이지를 방문하시거나,
 								donate@assembly.mit.edu로 문의하십시오.</span>
 						</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div style="width: 80%">
+						
 					</div>
 				</div>
 			</div>
