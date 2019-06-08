@@ -48,7 +48,7 @@ public class AdminDAO extends TimerTask {
 	}
 
 	public List<AdminDTO> visitChart() throws Exception{
-		String sql = "select * from visit where visitCount>1";
+		String sql = "select substr(visitDate,1,8) visitDate, visitCount from (select * from visit where visitCount>1 order by 1 desc) where rownum <=30 order by 1";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);		

@@ -52,7 +52,12 @@
     	             };
     			  }
     		  });
-    		 
+ $(".pageNum").each(function(i,item){
+     if(${freeCurrentPage} == $(this).html()){
+        $(this).css("color","blue");
+        $(this).css("font-weight","bold");
+     }
+  }); 
     			  
     		  
     	});

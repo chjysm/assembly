@@ -55,6 +55,13 @@ $(function(){
 				$(answer).css('color','red');
 			}else{$(answer).css('color','blue');}
 		});
+	  $(".pageNum").each(function(i,item){
+		     if(${qnaCurrentPage} == $(this).html()){
+		        $(this).css("color","blue");
+		        $(this).css("font-weight","bold");
+		     }
+		  }); 
+		    		
 });
 
 </script>

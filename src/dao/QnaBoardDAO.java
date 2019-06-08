@@ -68,7 +68,7 @@ public class QnaBoardDAO {
 			sb.append("<a href='list.board02?qnaCurrentPage=" + (startNavi - 1) + "'> <이전 </a>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='list.board02?qnaCurrentPage=" + i + "'>  " + i + "  </a>");
+			sb.append("<a class='pageNum' href='list.board02?qnaCurrentPage=" + i + "'>  " + i + "  </a>");
 		}
 		if (needNext) {
 			sb.append("<a href='list.board02?qnaCurrentPage=" + (endNavi + 1) + "'> 다음> </a>");
@@ -273,7 +273,7 @@ public class QnaBoardDAO {
 			sb.append("<a href='searchContent.board02?qnaCurrentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
 		}
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='searchContent.board02?qnaCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
+			sb.append("<a class='pageNum' href='searchContent.board02?qnaCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
 		}
 		if(needNext) {
 			sb.append("<a href='searchContent.board02?qnaCurrentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");

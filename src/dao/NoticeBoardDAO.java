@@ -164,7 +164,7 @@ public class NoticeBoardDAO {
 			sb.append("<a href='list.board03?noticeCurrentPage=" + (startNavi - 1) + "'> <이전 </a>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='list.board03?noticeCurrentPage=" + i + "'>  " + i + "  </a>");
+			sb.append("<a class='pageNum' href='list.board03?noticeCurrentPage=" + i + "'>  " + i + "  </a>");
 		}
 		if (needNext) {
 			sb.append("<a href='list.board03?noticeCurrentPage=" + (endNavi + 1) + "'> 다음> </a>");
@@ -286,7 +286,7 @@ public class NoticeBoardDAO {
 				sb.append("<a href='searchContent.board03?noticeCurrentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
 			}
 			for(int i = startNavi; i <= endNavi; i++) {
-				sb.append("<a href='searchContent.board03?noticeCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
+				sb.append("<a class='pageNum' href='searchContent.board03?noticeCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
 			}
 			if(needNext) {
 				sb.append("<a href='searchContent.board03?noticeCurrentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");

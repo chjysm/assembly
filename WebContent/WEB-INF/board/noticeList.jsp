@@ -48,6 +48,13 @@
     	             };
     			  }
     		  });
+    		  $(".pageNum").each(function(i,item){
+    			     if(${noticeCurrentPage} == $(this).html()){
+    			        $(this).css("color","blue");
+    			        $(this).css("font-weight","bold");
+    			     }
+    			  }); 
+    			    		
     		  
     	});
     </script>

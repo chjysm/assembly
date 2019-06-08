@@ -164,7 +164,7 @@ public class FreeBoardDAO {
 			sb.append("<a href='list.board01?freeCurrentPage=" + (startNavi - 1) + "'> <이전 </a>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='list.board01?freeCurrentPage=" + i + "'>  " + i + "  </a>");
+			sb.append("<a class='pageNum' href='list.board01?freeCurrentPage=" + i + "'>  " + i + "  </a>");
 		}
 		if (needNext) {
 			sb.append("<a href='list.board01?freeCurrentPage=" + (endNavi + 1) + "'> 다음> </a>");
@@ -286,7 +286,7 @@ public class FreeBoardDAO {
 				sb.append("<a href='searchContent.board01?freeCurrentPage="+(startNavi - 1)+"&&option="+option+"&&searchWord="+searchWord+"'> <이전 </a>");
 			}
 			for(int i = startNavi; i <= endNavi; i++) {
-				sb.append("<a href='searchContent.board01?freeCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
+				sb.append("<a class='pageNum' href='searchContent.board01?freeCurrentPage="+i+"&&option="+option+"&&searchWord="+searchWord+ "'>  " + i + "  </a>");
 			}
 			if(needNext) {
 				sb.append("<a href='searchContent.board01?freeCurrentPage="+(endNavi + 1)+"&&option="+option+"&&searchWord="+searchWord+"'> 다음> </a>");

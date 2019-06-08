@@ -391,13 +391,13 @@
 
                         <div class="row">
 
-                            <!-- Area Chart -->
+                           <!-- Area Chart -->
                             <div class="col-xl-8 col-lg-7">
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div
                                          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">일일 방문자 수</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">최근 한달간 방문자 수</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button"
                                                id="dropdownMenuLink" data-toggle="dropdown"
@@ -455,9 +455,9 @@
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <span class="mr-2"> 
-                                            	<i class="fas fa-circle text-warning"></i> 남성
+                                               <i class="fas fa-circle text-warning"></i> 남성
                                             </span> <span class="mr-2"> 
-                                            	<i class="fas fa-circle text-success"></i> 여성
+                                               <i class="fas fa-circle text-success"></i> 여성
                                             </span>
                                         </div>
                                     </div>
