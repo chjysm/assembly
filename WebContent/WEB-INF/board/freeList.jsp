@@ -63,12 +63,55 @@
     	});
     </script>
 <style>
-	*{margin: 0 auto;}
-	.fixedMenu{position: fixed; background: #fff;z-index: 999;}
-	.fixedMenuNav{background: #007bff;}
-	.fixedMenu,.nav-link{color: #fff; font-weight: bold;}
-	 .fixMenu-text{position: relative; top: 20px;}
-		.fixedMenu div{text-align: center; font-size:30px;} 
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
+
+* {
+	margin: 0 auto;
+}
+
+.fixedMenu {
+	position: fixed;
+	background: #fff;
+	z-index: 999;
+}
+
+.fixedMenuNav {
+	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
+}
+
+.fixedMenu, .nav-link {
+	color: #fff;
+	font-weight: bold;
+}
+
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenu div {
+	text-align: center;
+	font-size: 20px;
+}
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 	.head {position: relative;top: 200px;text-align: center;}
 	#wrapper {border: 0px solid black;position: relative;top: 250px;}
@@ -97,28 +140,40 @@
 
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " ><img src="/Resources/img/logo.png" width="150px" height="100px"></div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center fixMenu-text">
-				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goMain.win">메인페이지</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
 	</div>
 
 	<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
 
-	<div class="head"><h1>자유게시판</h1><div></div></div>
+	<div class="head">
+		<h1>자유게시판</h1>
+		<div></div>
+	</div>
 
 
 	<div class="container" id="wrapper">
@@ -135,22 +190,22 @@
 				<div class="noneRecord mt-2 mb-2">등록된 게시글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-					<c:forEach var="list" items="${freeList }">
-			<div class="content row">
-				<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
-				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
-					<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
-			</div>
-		</c:forEach>
+				<c:forEach var="list" items="${freeList }">
+					<div class="content row">
+						<div class="col-lg-2 col-md-1 col-sm-6 col-6">${list.seq }</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-6">
+							<a href="freeContent.board01?seq=${list.seq }&&commentPage=1">${list.title }</a>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.writer }</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.timeForm }</div>
+						<div class="col-lg-2 col-md-2 col-sm-4 d-none d-sm-block">${list.viewCount }</div>
+					</div>
+				</c:forEach>
 
-		
+
 			</c:otherwise>
 		</c:choose>
-				<div class="navi row">
+		<div class="navi row">
 			<div>${getNavi }</div>
 		</div>
 		<div class="footer row">
@@ -165,7 +220,7 @@
 			<div class="col-lg-1 col-md-1 col-sm-1 col-2">
 				<input type="button" class="writeBtn" value="글쓰기">
 			</div>
-		</div>	
 		</div>
+	</div>
 </body>
 </html>

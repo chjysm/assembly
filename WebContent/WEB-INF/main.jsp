@@ -22,9 +22,20 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://kit.fontawesome.com/650a47b167.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&display=swap&subset=korean" rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&display=swap&subset=korean"
+	rel="stylesheet">
 
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap')
+	;
+
 * {
 	margin: 0 auto;
 }
@@ -37,16 +48,55 @@
 
 .fixedMenuNav {
 	background: #007bff;
+	box-shadow: 1px 1px 5px #444;
 }
 
 .fixedMenu .nav-link {
 	color: #fff;
 	font-weight: bold;
 }
-.fixedMenuNav div{text-align: center; font-size: 30px;}
-.fixMenu-text{position: relative; top: 20px;}
+
+
+#logo {
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 #FFBF00, 1px -1px 0 #FFBF00, -1px 1px 0 #FFBF00,
+		1px 1px 0 #FFBF00;
+}
+
+.fixMenu-text {
+	position: relative;
+	top: 10px;
+}
+
+.logoLi {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-shadow: 0 0 1px #5882FA;
+}
+
+.logoLi:hover {
+	opacity: 0.7;
+}
+
+.fixedMenuNav div {
+	text-align: center;
+	font-size: 20px;
+}
+
+.bounce {
+	-webkit-transform-origin: center bottom;
+	transform-origin: center bottom;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+}
+
+a {
+	text-decoration: none;
+}
+/* 여기까지수정 */
 .jumbotron {
-	padding-top: 250px;
+	padding-top: 150px;
 	background: #b8daff;
 }
 
@@ -88,13 +138,6 @@ head>.nav-item {
 	border-bottom: 1px solid #ddd;
 }
 
-.myTitle {
-	text-align: left;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
 .myTitle a {
 	color: black;
 }
@@ -134,11 +177,12 @@ a:hover[class="moreBtn"] {
 }
 
 .carousel_h3 {
-   font-family: 'Nanum Gothic Coding', monospace;
-   color: black;
-   font-weight: bold;
-   background-color: #fcfcfc70;
-   font-size:40px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	color: black;
+	font-weight: bold;
+	background-color: #fcfcfc70;
+	font-size: 40px;
+
 }
 
 #kaLogout {
@@ -150,35 +194,71 @@ a:hover[class="moreBtn"] {
 	border: 0px;
 	padding: 0px;
 }
-.loginBox{position: relative; top: 100px;}
-.article{
-   font-family: 'Nanum Gothic Coding', monospace;
-   color: #05398c;
-   background-color: #fcfcfc70;
-   font-weight: bold;
-   font-size:18px;
-}
-.article:hover{
-   font-family: 'Nanum Gothic Coding', monospace;
-   color: #05398c;
-   font-weight: bold;
-   background-color: #fcfcfc70;
-   font-size:18px;
+
+
+.loginBox {
+	position: relative;
+	top: 100px;
 }
 
+.article {
+	font-family: 'Nanum Gothic Coding', monospace;
+	color: #05398c;
+	background-color: #fcfcfc70;
+	font-weight: bold;
+	font-size: 18px;
+}
 
+.article:hover {
+	font-family: 'Nanum Gothic Coding', monospace;
+	color: #05398c;
+	font-weight: bold;
+	background-color: #fcfcfc70;
+	font-size: 18px;
+}
 
-.insta{ color: #f442b3; }
-.insta:hover{color: #ad2e7f;}
-.facebook{color: #1448e5;}
-.facebook:hover{color: #022a60;}
-.youtube{color: #ff0000;}
-.youtube:hover{color: #600202;}
-.twitter{color:#00d0ff;}
-.twitter:hover{color:#329bc1;}
-.connectBox{text-align: right; position: absolute; right: 10px; bottom: 1px;}
-.connect li{margin:0;}
+.insta {
+	color: #f442b3;
+}
 
+.insta:hover {
+	color: #ad2e7f;
+}
+
+.facebook {
+	color: #1448e5;
+}
+
+.facebook:hover {
+	color: #022a60;
+}
+
+.youtube {
+	color: #ff0000;
+}
+
+.youtube:hover {
+	color: #600202;
+}
+
+.twitter {
+	color: #00d0ff;
+}
+
+.twitter:hover {
+	color: #329bc1;
+}
+
+.connectBox {
+	text-align: right;
+	position: absolute;
+	right: 10px;
+	bottom: 1px;
+}
+
+.connect li {
+	margin: 0;
+}
 
 </style>
 <script>
@@ -255,35 +335,40 @@ a:hover[class="moreBtn"] {
 
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
-		<div class="row fixedMenuNav p-2">
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 " >
-				<img src="/Resources/img/logo.png" width="150px" height="100px">
-			</div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-				<ul class="nav justify-content-center fixMenu-text">
-				<li class="nav-item"><a class="nav-link active" href="goMain.win">메인페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="translateMenu.go">학습하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="goInfo.win">사이트 소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="list.board03?noticeCurrentPage=1">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board01?freeCurrentPage=1">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="list.board02?qnaCurrentPage=1">문의하기</a></li>
+
+		<div class="row fixedMenuNav">
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+				<ul class="nav justify-content-center fixMenu-text pb-3">
+					<li id="logo" class="nav-item"><a class="nav-link active"
+						href="#">WUYAKO</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goMain.win">메인페이지</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="translateMenu.go">학습하기</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="goInfo.win">사이트 소개</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board03?noticeCurrentPage=1">공지사항</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board01?freeCurrentPage=1">자유게시판</a></li>
+					<li class="nav-item logoLi"><a class="nav-link"
+						href="list.board02?qnaCurrentPage=1">문의하기</a></li>
 					<c:if test="${type==4}">
-						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자 페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="goAdmin.admin">관리자
+								페이지</a></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
+			<div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 		</div>
-		<div class="row p-1">
+
+
+		<div class="row">
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
 			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 				<div class="input-group mt-3 mb-3">
-					<input type="search" class="form-control" placeholder="검색어를 입력하세요"
-						aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button"
-							id="button-addon2">찾아보기</button>
-					</div>
+					
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-none d-md-block"></div>
@@ -382,30 +467,36 @@ a:hover[class="moreBtn"] {
 			</div>
 			<!--    로그인 폼 -->
 			<div
-				class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-1 text-center  p-0 login" heignt="400px">
+				class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-1 text-center  p-0 login"
+				heignt="400px">
 				<c:choose>
 					<c:when test="${type==1}">
 						<form>
-						<div style="border-radius: 10px; background: #b8daff; height: 400px">
-							<div class="loginBox">
-							<div class="form-group pb-1 1 pt-5 pb-2" style="font-size: 1.4em">
-								<label for="comment"><strong>${nickname}</strong>님
-										환영합니다! </label>
-							</div>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
-							<button type="button"
-								class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
-							<br> <br>
-							<button type="button" id="naLogout">
-								<img height="49" width="150" src="Resources/img/nlogout.PNG" />
-							</button>
+							<div
+								style="border-radius: 10px; background: #b8daff; height: 400px">
+								<div class="loginBox">
+									<div class="form-group pb-1 1 pt-5 pb-2"
+										style="font-size: 1.4em">
+										<label for="comment"><strong>${nickname}</strong>님
+											환영합니다! </label>
+									</div>
+									<button type="button"
+										class="btn btn-outline-secondary mr-2 mPageGo">마이페이지</button>
+									<button type="button"
+										class="btn btn-outline-secondary mr-2 withdrawalBtn">회원탈퇴</button>
+									<br> <br>
+									<button type="button" id="naLogout">
+										<img height="49" width="150" src="Resources/img/nlogout.PNG" />
+									</button>
+								</div>
+
 							</div>
 							</div>
 						</form>
 					</c:when>
 					<c:when test="${type==2}">
 						<form>
+
 						<div
 								style="border-radius: 10px; background: #b8daff; height: 400px">
 							<div class="loginBox">

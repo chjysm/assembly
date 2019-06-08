@@ -263,6 +263,7 @@
 							  </div>
 							</div>
 						</div>
+						
 <script>
 	$('#carouselExampleIndicators').carousel("pause");
 	$('#slideBtn2').on('click', function(){
