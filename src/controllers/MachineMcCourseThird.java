@@ -126,7 +126,7 @@ public class MachineMcCourseThird extends HttpServlet {
 		//WEB-INF우회
 		else if(cmd.equals("/startGame.third")) {
 			request.getRequestDispatcher("/WEB-INF/game/mc_score3_start.jsp").forward(request, response);;
-		}else if(cmd.equals("/returnMain.kiosk")) {
+		}else if(cmd.equals("/returnMain.third")) {
 			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);;
 		}
 		

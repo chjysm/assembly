@@ -54,7 +54,7 @@ public class Translate extends HttpServlet {
 				JsonParser parser = new JsonParser();
 				String msg = request.getParameter("key");
 				WebApiDAO p = new WebApiDAO();
-				String rst = p.translate(msg, "ko", "en");
+				String rst = p.translate(msg, "en", "ko");
 				String translate = null;
 				try {
 					JsonObject root = parser.parse(rst).getAsJsonObject();
@@ -62,11 +62,11 @@ public class Translate extends HttpServlet {
 					JsonObject result = message.get("result").getAsJsonObject();
 					translate = result.get("translatedText").toString();
 					
-					String rst2 = p.translate(msg, "en", "ko");
-					JsonObject root2 = parser.parse(rst2).getAsJsonObject();
-					JsonObject message2 = root2.get("message").getAsJsonObject();
-					JsonObject result2 = message2.get("result").getAsJsonObject();
-					translate = result2.get("translatedText").toString();
+//					String rst2 = p.translate(msg, "en", "ko");
+//					JsonObject root2 = parser.parse(rst2).getAsJsonObject();
+//					JsonObject message2 = root2.get("message").getAsJsonObject();
+//					JsonObject result2 = message2.get("result").getAsJsonObject();
+//					translate = result2.get("translatedText").toString();
 					pw.append(translate);
 				}catch(Exception e) {
 					pw.print("잘못된 접근입니다. 다시 입력하세요."+"<br>");
@@ -93,45 +93,45 @@ public class Translate extends HttpServlet {
 					ArrayList<McdonaldDTO> deserts = machine.getAllInfo("desert");
 					request.setAttribute("deserts", deserts);
 					//
-					ArrayList<McdonaldDTO> coffee_coffees = machine.getAllInfo("coffee_coffee");
-					request.setAttribute("coffee_coffees", coffee_coffees);
-					ArrayList<McdonaldDTO> coffee_lattes = machine.getAllInfo("coffee_latte");
-					request.setAttribute("coffee_lattes", coffee_lattes);
-					ArrayList<McdonaldDTO> coffee_hollys = machine.getAllInfo("coffee_holly");
-					request.setAttribute("coffee_hollys", coffee_hollys);
-					ArrayList<McdonaldDTO> coffee_teas = machine.getAllInfo("coffee_tea");
-					request.setAttribute("coffee_teas", coffee_teas);
-					ArrayList<McdonaldDTO> coffee_bakerys = machine.getAllInfo("coffee_bakery");
-					request.setAttribute("coffee_bakerys", coffee_bakerys);
+//					ArrayList<McdonaldDTO> coffee_coffees = machine.getAllInfo("coffee_coffee");
+//					request.setAttribute("coffee_coffees", coffee_coffees);
+//					ArrayList<McdonaldDTO> coffee_lattes = machine.getAllInfo("coffee_latte");
+//					request.setAttribute("coffee_lattes", coffee_lattes);
+//					ArrayList<McdonaldDTO> coffee_hollys = machine.getAllInfo("coffee_holly");
+//					request.setAttribute("coffee_hollys", coffee_hollys);
+//					ArrayList<McdonaldDTO> coffee_teas = machine.getAllInfo("coffee_tea");
+//					request.setAttribute("coffee_teas", coffee_teas);
+//					ArrayList<McdonaldDTO> coffee_bakerys = machine.getAllInfo("coffee_bakery");
+//					request.setAttribute("coffee_bakerys", coffee_bakerys);
 					//
-					ArrayList<McdonaldDTO> lotte_burgersets = machine.getAllInfo("lotte_burgerset");
-					request.setAttribute("lotte_burgersets", lotte_burgersets);
-					ArrayList<McdonaldDTO> lotte_chickensets = machine.getAllInfo("lotte_chickenset");
-					request.setAttribute("lotte_chickensets", lotte_chickensets);
-					ArrayList<McdonaldDTO> lotte_goods = machine.getAllInfo("lotte_good");
-					request.setAttribute("lotte_goods", lotte_goods);
-					ArrayList<McdonaldDTO> lotte_burgers = machine.getAllInfo("lotte_burger");
-					request.setAttribute("lotte_burgers", lotte_burgers);
-					ArrayList<McdonaldDTO> lotte_chickens = machine.getAllInfo("lotte_chicken");
-					request.setAttribute("lotte_chickens", lotte_chickens);
-					ArrayList<McdonaldDTO> lotte_deserts = machine.getAllInfo("lotte_desert");
-					request.setAttribute("lotte_deserts", lotte_deserts);
-					ArrayList<McdonaldDTO> lotte_drinks = machine.getAllInfo("lotte_drink");
-					request.setAttribute("lotte_drinks", lotte_drinks);
+//					ArrayList<McdonaldDTO> lotte_burgersets = machine.getAllInfo("lotte_burgerset");
+//					request.setAttribute("lotte_burgersets", lotte_burgersets);
+//					ArrayList<McdonaldDTO> lotte_chickensets = machine.getAllInfo("lotte_chickenset");
+//					request.setAttribute("lotte_chickensets", lotte_chickensets);
+//					ArrayList<McdonaldDTO> lotte_goods = machine.getAllInfo("lotte_good");
+//					request.setAttribute("lotte_goods", lotte_goods);
+//					ArrayList<McdonaldDTO> lotte_burgers = machine.getAllInfo("lotte_burger");
+//					request.setAttribute("lotte_burgers", lotte_burgers);
+//					ArrayList<McdonaldDTO> lotte_chickens = machine.getAllInfo("lotte_chicken");
+//					request.setAttribute("lotte_chickens", lotte_chickens);
+//					ArrayList<McdonaldDTO> lotte_deserts = machine.getAllInfo("lotte_desert");
+//					request.setAttribute("lotte_deserts", lotte_deserts);
+//					ArrayList<McdonaldDTO> lotte_drinks = machine.getAllInfo("lotte_drink");
+//					request.setAttribute("lotte_drinks", lotte_drinks);
 					//
-					ArrayList<McdonaldDTO> pizza_seeds = machine.getAllInfo("pizza_seed");
-					request.setAttribute("pizza_seeds", pizza_seeds);
-					ArrayList<McdonaldDTO> pizza_prms = machine.getAllInfo("pizza_prm");
-					request.setAttribute("pizza_prms", pizza_prms);
-					ArrayList<McdonaldDTO> pizza_clss = machine.getAllInfo("pizza_cls");
-					request.setAttribute("pizza_clss", pizza_clss);
-					ArrayList<McdonaldDTO> pizza_sides = machine.getAllInfo("pizza_side");
-					request.setAttribute("pizza_sides", pizza_sides);
-					ArrayList<McdonaldDTO> pizza_beverages = machine.getAllInfo("pizza_beverage");
-					request.setAttribute("pizza_beverages", pizza_beverages);
-					ArrayList<McdonaldDTO> pizza_souces = machine.getAllInfo("pizza_souce");
-					request.setAttribute("pizza_souces", pizza_souces);
-					request.getRequestDispatcher("/WEB-INF/game/translateMenu.jsp").forward(request, response);
+//					ArrayList<McdonaldDTO> pizza_seeds = machine.getAllInfo("pizza_seed");
+//					request.setAttribute("pizza_seeds", pizza_seeds);
+//					ArrayList<McdonaldDTO> pizza_prms = machine.getAllInfo("pizza_prm");
+//					request.setAttribute("pizza_prms", pizza_prms);
+//					ArrayList<McdonaldDTO> pizza_clss = machine.getAllInfo("pizza_cls");
+//					request.setAttribute("pizza_clss", pizza_clss);
+//					ArrayList<McdonaldDTO> pizza_sides = machine.getAllInfo("pizza_side");
+//					request.setAttribute("pizza_sides", pizza_sides);
+//					ArrayList<McdonaldDTO> pizza_beverages = machine.getAllInfo("pizza_beverage");
+//					request.setAttribute("pizza_beverages", pizza_beverages);
+//					ArrayList<McdonaldDTO> pizza_souces = machine.getAllInfo("pizza_souce");
+//					request.setAttribute("pizza_souces", pizza_souces);
+					request.getRequestDispatcher("/WEB-INF/game/game_start.jsp").forward(request, response);
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
