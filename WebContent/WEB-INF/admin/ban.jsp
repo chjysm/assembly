@@ -10,7 +10,7 @@
 </head>
 <body>
 <script>
-		confirm("정지된 회원입니다. 관리자에게 문의하세요"); 
+		alert("정지된 회원입니다. 관리자에게 문의하세요"); 
 		location.href="goMain.win";
 </script>
 </body>

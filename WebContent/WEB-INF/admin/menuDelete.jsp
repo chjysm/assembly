@@ -10,7 +10,7 @@
 </head>
 <body>
 	<script>
-		confirm("Menu가 삭제되었습니다."); 
+	alert("Menu가 삭제되었습니다."); 
 		location.href="goAdmin.admin";
 	</script>
 </body>

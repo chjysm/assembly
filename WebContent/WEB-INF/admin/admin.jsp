@@ -857,24 +857,14 @@
             </div>
          </div>
 
-         <!-- ============================= DB에 햄버거 메뉴 데이터 갱신 ===========================-->
-         <button id="btn1">Burger_morning 데이터 삽입</button>
+          <!-- ============================= DB에 햄버거 메뉴 데이터 갱신 ===========================-->
+         <button id="btn1">햄버거 메뉴 삽입</button>
          <p id="p1"></p>
-         <button id="btn2">Happy_snack 데이터 삽입</button>
-         <p id="p2"></p>
-         <button id="btn3">Cafe_desert 데이터 삽입</button>
-         <p id="p3"></p>
          <button id="btn4">메뉴 삭제</button>
-         <p id="p3"></p>
+         <p id="p4"></p>
          <script>
                   document.getElementById("btn1").addEventListener("click", function(){
-                     location.href="burger_morning.kiosk";
-                  });
-                  document.getElementById("btn2").addEventListener("click", function(){
-                     location.href="happy_snack.kiosk";
-                  });
-                  document.getElementById("btn3").addEventListener("click", function(){
-                     location.href="cafe_desert.kiosk";
+                     location.href="updateTableInsert.kiosk";
                   });
                   document.getElementById("btn4").addEventListener("click", function(){
                      location.href="updateTableNull.kiosk";
