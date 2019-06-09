@@ -388,7 +388,7 @@ a:hover[class="moreBtn"] {
                   처음 방문하셨나요? <br> 아래 버튼을 누르시면 여러가지 사이트 소개를 볼 수 있습니다
                </p>
                <a class="btn btn-primary btn-lg mr-2" href="goInfo.win"
-                  role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="startGame.kiosk"
+                  role="button">소개보기</a> <a class="btn btn-primary btn-lg" href="translateMenu.go"
                   role="button">체험 시작하기</a>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
