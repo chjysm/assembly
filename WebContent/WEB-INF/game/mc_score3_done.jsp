@@ -170,38 +170,7 @@
 						</div>
 					</div>
 					<script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-					$('#goMain').on('click', function(){
-	                     $.ajax({
-	                        url : "session_end.kiosk",
-	                        type : "post"
-	                     });
-	                     $.ajax({
-	                        url : "insert.st",
-	                        type : "post",
-	                        data:{
-	                           brand:"mcdonald",
-	                           answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
-	                           id:'${id}'
-	                        }
-	                     }).done(function(){
-	                        $(location).attr("href", "returnMain.kiosk");
-	                     });
-	                  });
-	                  
-	                  $('#findMap').on('click', function(){
-	                     $.ajax({
-	                        url : "session_end.kiosk",
-	                        type : "post"
-	                     });
-	                     var width=window.screen.width/2-800/2;//에러 나는거 아닙니다. 강사님도 그냥 두라고 하셨어요! 
-	                     var height=window.screen.height/2-600/2;
-	                     open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
-	                  });
-=======
->>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
+
 						$('#goMain').on('click', function(){
 							$.ajax({
 								url : "session_end.kiosk",
@@ -212,11 +181,7 @@
 								type : "post",
 								data:{
 									brand:"mcdonald",
-<<<<<<< HEAD
 									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY } : ${dto.beverageNameY } : ${dto.cafeNameY } : ${dto.desertNaemY }',
-=======
-									answer:'${dto.takeIOY } : ${dto.burgerNameY } : ${dto.sideNameY } : ${dto.beverageNameY }',
->>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
 									id:'${id}'
 								}
 							}).done(function(){
@@ -233,10 +198,7 @@
 							var height=window.screen.height/2-600/2;
 							open("goStoreSerch.win", "_brank","width=800px,height=600px,left="+width+",top="+height);
 						});
-<<<<<<< HEAD
-=======
->>>>>>> 710ea33bc804603e26d82244cd9404d55557f213
->>>>>>> 3e75490484375bf28828f878c676ecddf7a4a468
+
 					</script>
 <!-- -------machine view end----------------------------------------------->
 					</div>
