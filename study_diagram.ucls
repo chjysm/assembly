@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="dto.FileDTO" project="assembly" file="/assembly/src/dto/FileDTO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1118" y="903"/>    
+    <position height="-1" width="-1" x="1364" y="905"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="dao.WebApiDAO" project="assembly" file="/assembly/src/dao/WebApiDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1120" y="707"/>    
+    <position height="-1" width="-1" x="1156" y="863"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="dao.MenuDataDAO" project="assembly" file="/assembly/src/dao/MenuDataDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1019" y="447"/>    
+    <position height="-1" width="-1" x="1035" y="464"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="controllers.MachineMcCourseThird" project="assembly" 
     file="/assembly/src/controllers/MachineMcCourseThird.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="838" y="758"/>    
+    <position height="-1" width="-1" x="801" y="733"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="controllers.AddMenuItems" project="assembly" 
     file="/assembly/src/controllers/AddMenuItems.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1062" y="129"/>    
+    <position height="-1" width="-1" x="1010" y="184"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

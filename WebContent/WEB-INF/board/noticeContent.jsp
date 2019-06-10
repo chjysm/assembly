@@ -387,8 +387,22 @@ a:hover {
       </div>
       <!--------------------------------------------------------------------------------------->
       <div class="footer row">
-
-         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+<c:choose>
+            <c:when test="${type == 4 }">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+               ${content.email}
+            </div>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+            
+            </c:when>
+            <c:otherwise>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" hidden>
+               ${conent.email}
+            </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            
+            </c:otherwise>
+         </c:choose>
             <c:choose>
                <c:when test="${email != content.email and type!=4 }">
                   <input type="button" value="수정" class="alterBtn btn btn-primary"

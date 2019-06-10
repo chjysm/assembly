@@ -90,6 +90,7 @@ select :hover {
 </style>
 <script>
    $(function() {
+      var spaceRex = /\s/g;
       var pwRex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/ //  패스워드가 적합한지 검사할 정규식
       var emailRex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
       var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
@@ -240,6 +241,18 @@ select :hover {
             $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
          }
       });
+      $('#name').keyup(function(event) {
+         if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+            var inputVal = $(this).val();
+            $(this).val($(this).val().replace(/[^_a-z0-9]/gi, '')); //_(underscore), 영어, 숫자만 가능
+         }
+      });
+      $('#nickname').keyup(function(event) {
+         if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+            var inputVal = $(this).val();
+            $(this).val($(this).val().replace(/[^_a-z0-9]/gi, '')); //_(underscore), 영어, 숫자만 가능
+         }
+      });
 
    })
 </script>
@@ -342,7 +355,7 @@ select :hover {
                         <td style="width: 200px" class="pt-4"><h5>닉네임</h5> <br>
                         <td colspan="2"><input class="form-control" type="text"
                            name="nickname" placeholder="닉네임을 입력해 주세요." maxlength="8"
-                           required><br>
+                           id="nickname" required><br>
                      </tr>
                      <tr>
                         <td style="width: 200px" class="pt-4"><h5>나이</h5>

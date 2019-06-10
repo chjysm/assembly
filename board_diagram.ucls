@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="dto.NoticeBoardDTO" project="assembly" 
     file="/assembly/src/dto/NoticeBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="387" y="361"/>    
+    <position height="-1" width="-1" x="209" y="543"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="dto.FreeBoardDTO" project="assembly" file="/assembly/src/dto/FreeBoardDTO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1420" y="419"/>    
+    <position height="-1" width="-1" x="1534" y="427"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="dto.FreeCommentsDTO" project="assembly" 
     file="/assembly/src/dto/FreeCommentsDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2030" y="423"/>    
+    <position height="-1" width="-1" x="1974" y="439"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="dto.NoticeCommentsDTO" project="assembly" 
     file="/assembly/src/dto/NoticeCommentsDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="889" y="435"/>    
+    <position height="-1" width="-1" x="980" y="573"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="dao.FreeBoardDAO" project="assembly" file="/assembly/src/dao/FreeBoardDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1187" y="1276"/>    
+    <position height="-1" width="-1" x="1467" y="1266"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="dao.NoticeCommentsDAO" project="assembly" 
     file="/assembly/src/dao/NoticeCommentsDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="759" y="1255"/>    
+    <position height="-1" width="-1" x="877" y="1093"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="dao.NoticeBoardDAO" project="assembly" 
     file="/assembly/src/dao/NoticeBoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="322" y="1355"/>    
+    <position height="-1" width="-1" x="346" y="1130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="dao.FreeCommentsDAO" project="assembly" 
     file="/assembly/src/dao/FreeCommentsDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1826" y="1249"/>    
+    <position height="-1" width="-1" x="1922" y="1193"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="controllers.NoticeController" project="assembly" 
     file="/assembly/src/controllers/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="608" y="905"/>    
+    <position height="-1" width="-1" x="594" y="680"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="controllers.FreeBoardController" project="assembly" 
     file="/assembly/src/controllers/FreeBoardController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1490" y="893"/>    
+    <position height="-1" width="-1" x="1696" y="893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
