@@ -32,8 +32,8 @@
 	</style>
 	<script>
 		$(function(){
+			var certi =0;
 			$("#emailbtn").on("click",function(){
-				var certi =0;
 				$.ajax({
 					url:"check.ma",
 					data:{email : $("#email").val()},
@@ -48,6 +48,7 @@
 							data:{email : $("#email").val()},
 							type:"get"
 						}).done(function(resp2){
+							console.log(resp2);
 							certi=resp2;
 							$("#certi").attr("disabled",false);
 						});
