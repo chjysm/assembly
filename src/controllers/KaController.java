@@ -43,9 +43,9 @@ public class KaController extends HttpServlet {
 				try {
 					String nickname = parse.parse(info).getAsJsonObject().get("properties").getAsJsonObject()
 							.get("nickname").getAsString();
-					String email = null;
-					String age = null;
-					String gender = null;
+					String email = "";
+					String age = "";
+					String gender = "";
 					if (parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email")
 							.getAsString().equals("true")) {
 						email = parse.parse(info).getAsJsonObject().get("kakao_account").getAsJsonObject().get("email")
@@ -63,6 +63,11 @@ public class KaController extends HttpServlet {
 					}
 					int type = 2;
 					email += " " + type;
+					if(gender.equals("male")||gender.equals("m")||gender.equals("M"))
+						gender = "M";
+					else if(gender.equals("female")||gender.equals("f")||gender.equals("F")) {
+						gender="F";
+					}
 					if (me.check(email) == 0) {
 						me.insert_member(new MemberDTO(0, email, null, nickname, nickname, null, gender, age, type));
 					}

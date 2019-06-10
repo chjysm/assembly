@@ -151,7 +151,6 @@ select :hover {
 	$(function() {
 		
 		$("#pwChange_btn").on("click", function() {
-			// 				location.href="getPw.me";
 			open("pwChangeGo.me", "_brank", "width=600px,height=500px")
 		})
 		$("#back_btn").on("click", function() {

@@ -194,7 +194,7 @@ create table members(
     pw varchar(300),
     name varchar(20) ,
     nickname varchar(30),
-    gender varchar(5),
+    gender varchar(10),
     ban varchar(10),
     age varchar(20),
     type number check (type in (1,2,3,4))

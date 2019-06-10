@@ -266,5 +266,11 @@ public class MemberDAO {
 			return -1;
 		}
 	}
+	   public String replaceAll(String contents)throws Exception{
+	       contents = contents.replaceAll("<script>","aa" );
+	       contents = contents.replaceAll("</script>", "bb");
+	       
+	       return contents;
+	    }
 
 }

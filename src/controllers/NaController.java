@@ -47,11 +47,10 @@ public class NaController extends HttpServlet {
 					String age=parse.parse(info).getAsJsonObject().get("age").getAsString();
 					String gender=parse.parse(info).getAsJsonObject().get("gender").getAsString();
 					String name = parse.parse(info).getAsJsonObject().get("name").getAsString();
-					String birthday = parse.parse(info).getAsJsonObject().get("birthday").getAsString();
 					int type = 1;
 					email+=" "+type;
 					if(me.check(email)==0) {
-						int result = me.insert_member(new MemberDTO(0,email,null,name,nickname,birthday,gender,age,type));
+						int result = me.insert_member(new MemberDTO(0,email,null,name,nickname,null,gender,age,type));
 					}
 					int id=me.getId(email);
 

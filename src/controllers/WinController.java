@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FreeBoardDAO;
+import dao.MemberDAO;
 import dao.NoticeBoardDAO;
 import dao.QnaBoardDAO;
 import dto.FreeBoardDTO;
@@ -34,6 +35,7 @@ public class WinController extends HttpServlet {
 		FreeBoardDAO fb= new FreeBoardDAO();
 		QnaBoardDAO qb = new QnaBoardDAO();
 		NoticeBoardDAO nb = new NoticeBoardDAO();
+		MemberDAO me= new MemberDAO();
 		try {
 			if (cmd.equals("/goMain.win")) { // 메인페이지로 이동
 				int freeRecordCount = 0 ;
@@ -88,7 +90,8 @@ public class WinController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch2.win")) {
 				String addr=request.getParameter("addr");
-				request.setAttribute("addr", addr);
+				
+				request.setAttribute("addr", me.replaceAll(addr));
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch2.jsp").forward(request, response);
 			}else if (cmd.equals("/goStoreSerch3.win")) {
 				//String addr=new String(request.getParameter("addr").getBytes(),"ISO-8859-1");
@@ -96,7 +99,7 @@ public class WinController extends HttpServlet {
 				String addr=request.getParameter("addr");
 				String brand=request.getParameter("brand");
 				request.setAttribute("addr", addr);
-				request.setAttribute("brand", brand);
+				request.setAttribute("brand",me.replaceAll(brand));
 				request.getRequestDispatcher("/WEB-INF/etc/storeSerch3.jsp").forward(request, response);
 				//response.sendRedirect("http://map.daum.net/?sName="+addr+"&eName="+brand);
 				//request.getRequestDispatcher("http://map.daum.net/?sName="+addr+"&eName="+brand).forward(request, response);

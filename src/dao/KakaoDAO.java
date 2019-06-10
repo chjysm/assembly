@@ -17,7 +17,7 @@ public class KakaoDAO {
 		String apiURL;
 		apiURL = "https://kauth.kakao.com/oauth/authorize?";
 		apiURL += "client_id=" + "eb3f2943dfb95e8918af19f33d1e72e4";
-		apiURL += "&redirect_uri=" + "http://localhost:8080/callback.ka";
+		apiURL += "&redirect_uri=" + "http://192.168.60.22:8080/callback.ka";
 		apiURL += "&response_type=code";
 		return apiURL;
 	}
@@ -26,7 +26,7 @@ public class KakaoDAO {
 		String apiURL;
 		apiURL = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 		apiURL += "&client_id=" + "eb3f2943dfb95e8918af19f33d1e72e4";
-		apiURL += "&redirect_uri=" + "http://localhost:8080/callback.ka";
+		apiURL += "&redirect_uri=" + "http://192.168.60.22:8080/callback.ka";
 		apiURL += "&code=" + code;
 		URL url = new URL(apiURL);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();

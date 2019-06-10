@@ -95,7 +95,7 @@ select :hover {
       var birthRex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
       var idCount = 0;
       var pwCount = 0;
-      var certi =0;
+      var certi = 0;
       //아이디 중복 ajax +정규표현식
       $("#email").on("input", function() {
          if (emailRex.exec($("#email").val()) == null) {
@@ -125,12 +125,14 @@ select :hover {
       });
       //패스워드 regex 
       $("#pw").on(
-            "input",
+            "focusout",
             function() {
                if (pwRex.exec($("#pw").val()) == null) {
                   $("#pwRegex").css("color", "red");
                   $("#pwRegex").text(
                         "적합한 형식이 아닙니다. ex)최소 8자리 숫자,문자, 특수문자 각1개씩  ");
+                  $("#pw").val("");
+                  $("#pw").focus();
                   $("#pw").attr("flag", "false")
                } else {
                   $("#pwRegex").css("color", "green");
@@ -164,6 +166,20 @@ select :hover {
             $("#pw").attr("flag", "false")
          }
       })
+      $("#nickname").on("focus", function() {
+         if ($("#pw").val() == $("#pwcheck").val()) {
+            $("#pwCheck").css("color", "green");
+            $("#pwCheck").text("사용할 수 있는 비밀번호 입니다. ");
+            $("#pw").attr("flag", "true")
+         } else {
+            $("#pwCheck").css("color", "red");
+            $("#pwCheck").text("비밀번호가 일치하지 않습니다.");
+            $("#pwcheck").val("");
+            $("#pw").val("");
+            $("#pw").focus();
+            $("#pw").attr("flag", "false")
+         }
+      })
 
       $("#sub").on(
             "click",
@@ -171,8 +187,16 @@ select :hover {
                if ($("#email").attr("flag") == "true"
                      && $("#certi").attr("flag") == "true"
                      && $("#pw").attr("flag") == "true"
-                     && $("#pwCheck").attr("flag") == "true") {
-                  $("#form").submit();
+                     && $("#pwCheck").attr("flag") == "true"
+                     && $("#certi").val() == certi) {
+                  if ($("#pw").val() == $("#pwcheck").val()) {
+                     $("#form").submit();
+                  } else {
+                     $("#pwcheck").val("");
+                     $("#pw").val("");
+                     $("#pw").focus();
+                     return false;
+                  }
                } else if ($("#email").attr("flag") == "false"
                      || $("#certi").attr("flag") == "false") {
                   alert("이메일이 중복되거나 인증하지 않았습니다.");
@@ -180,42 +204,44 @@ select :hover {
                   alert("입력하지 않은 값이 있습니다.");
                }
             });
-    $("#emailbtn").on("click", function() {
-       if ($("#email").attr("flag") == "true") {
-          alert("해당 이메일로 인증 번호가 발송 되었습니다!");
-          $("#certiRegex").css("color", "green");
-          $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-          $.ajax({
-             url : "post.ma",
-             data : {
-                email : $("#email").val()
-             },
-             type : "get"
-          }).done(function(resp2) {
-             certi = resp2;
-             $("#certi").attr("disabled",false);
-          });
-       } else {
-          alert("이메일이 중복 되거나 양식에 맞지 않습니다");
-       }
-    });
-    $("#certibtn").on("click", function() {
-        if ($("#certi").val() == certi) {
-           if (alert("인증성공") != 0) {
-              $("#certi").attr("flag", "true");
-              $("#certiRegex").css("color", "green");
-              $("#certiRegex").text("인증완료!");
-              $("#email").attr("readonly",true);
-           }
-        } else {
-           alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
-           $("#certi").attr("flag", "fales");
-           $("#certiRegex").css("color", "red");
-           $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
-        }
-     });
-    
- })
+      $("#emailbtn").on("click", function() {
+         if ($("#email").attr("flag") == "true") {
+            alert("해당 이메일로 인증 번호가 발송 되었습니다!");
+            $("#certiRegex").css("color", "green");
+            $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+            $.ajax({
+               url : "post.ma",
+               data : {
+                  email : $("#email").val()
+               },
+               type : "get"
+            }).done(function(resp2) {
+               certi = resp2;
+               $("#certi").attr("disabled", false);
+               $("#certibtn").attr("disabled", false);
+            });
+         } else {
+            alert("이메일이 중복 되거나 양식에 맞지 않습니다");
+         }
+      });
+      $("#certibtn").on("click", function() {
+         if ($("#certi").val() == certi) {
+            if (alert("인증성공") != 0) {
+               $("#certi").attr("flag", "true");
+               $("#certiRegex").css("color", "green");
+               $("#certiRegex").text("인증완료!");
+               $("#email").attr("readonly", true);
+
+            }
+         } else {
+            alert("인증 실패! 이메일과 인증번호를 확인 하세요!");
+            $("#certi").attr("flag", "fales");
+            $("#certiRegex").css("color", "red");
+            $("#certiRegex").text("인증번호가 발송 되었습니다!. ");
+         }
+      });
+
+   })
 </script>
 <title>회원가입</title>
 </head>
@@ -285,7 +311,7 @@ select :hover {
                                  required disabled>
                               <div class="input-group-append">
                                  <button class="btn btn-outline-primary" type="button"
-                                    id="certibtn">확인</button>
+                                    id="certibtn" disabled>확인</button>
                               </div>
                            </div>
                            <div class="float-left" id='certiRegex'></div>
@@ -309,7 +335,8 @@ select :hover {
                      <tr>
                         <td style="width: 200px" class="pt-4"><h5>이름</h5> <br>
                         <td colspan="2"><input class="form-control" type="text"
-                           name="name" id="name" placeholder="이름을 입력해 주세요." maxlength="10" required><br>
+                           name="name" id="name" placeholder="이름을 입력해 주세요." maxlength="10"
+                           required><br>
                      </tr>
                      <tr>
                         <td style="width: 200px" class="pt-4"><h5>닉네임</h5> <br>

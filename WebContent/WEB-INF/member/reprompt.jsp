@@ -20,7 +20,7 @@
 </script>
 </head>
 <body>
-<h1>필수 입력 정보 수집을 모두 동의 해 주세요</h1>
+<h1>정보 수집을 모두 동의 해 주세요!ㅠㅠ</h1>
 <c:choose>
 <c:when test="${type==1}"><input type="button" value="동의하러가기" id= 'nabtn'></c:when>
 <c:when test="${type==2}"><input type="button" value="동의하러가기" id= 'kabtn'></c:when>
