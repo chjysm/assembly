@@ -298,8 +298,12 @@ public class FreeBoardDAO {
 
       
       public String replaceAll(String contents)throws Exception{
-         contents = contents.replaceAll("<script>", "aabb");
-          contents = contents.replaceAll("</script>", "bbccc");
+    	  contents = contents.replaceAll("<script>","" );
+          contents = contents.replaceAll("</script>", "");
+          contents = contents.replaceAll("\\(\\'", "");
+          contents = contents.replaceAll("\\'\\)", "");
+          contents = contents.replaceAll("\\'", "");
+
           
           return contents;
        }

@@ -134,6 +134,7 @@
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 					<div class="row my">
+					<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>
 						<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pl-4 pr-4">
 							<div class="row lcd" id="mcClick">
 				<!-- carousel start-->

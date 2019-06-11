@@ -146,7 +146,7 @@
 											<p id="menuEng">${desertResult.menuNameEng }</p>
 											<p class="h5" id="price">${desertResult.price }</p>
 										  </div>
-									  <p class="h3 mt-4 mb-4">총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price }원</p>
+									    <p class="h3 mt-4 mb-4">총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price+cafeResult.price+desertResult.price }원</p>
 									<hr>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">

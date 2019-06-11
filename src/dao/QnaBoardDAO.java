@@ -23,8 +23,11 @@ public class QnaBoardDAO {
       return con;
    }
    public String replaceAll(String contents)throws Exception{
-       contents = contents.replaceAll("<script>","aa" );
-       contents = contents.replaceAll("</script>", "bb");
+	   contents = contents.replaceAll("<script>","" );
+       contents = contents.replaceAll("</script>", "");
+       contents = contents.replaceAll("\\(\\'", "");
+       contents = contents.replaceAll("\\'\\)", "");
+       contents = contents.replaceAll("\\'", "");
        
        return contents;
     }

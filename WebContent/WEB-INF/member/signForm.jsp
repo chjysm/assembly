@@ -244,13 +244,13 @@ select :hover {
       $('#name').keyup(function(event) {
          if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
             var inputVal = $(this).val();
-            $(this).val($(this).val().replace(/[^_a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/gi, '')); //_(underscore), 영어, 숫자만 가능
+            $(this).val($(this).val().replace(/[^_a-zA-Z0-9가-힣ㄱ-ㅣ]/gi, '')); //_(underscore), 영어, 숫자만 가능
          }
       });
       $('#nickname').keyup(function(event) {
          if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
             var inputVal = $(this).val();
-            $(this).val($(this).val().replace(/[^_a-z0-9A-Z가-힣ㄱ-ㅎㅏ-ㅣ]/gi, '')); //_(underscore), 영어, 숫자만 가능
+            $(this).val($(this).val().replace(/[^_a-z0-9A-Z가-힣ㄱ-ㅣ]/gi, '')); //_(underscore), 영어, 숫자만 가능
          }
       });
 

@@ -48,9 +48,9 @@
 							data:{email : $("#email").val()},
 							type:"get"
 						}).done(function(resp2){
-							console.log(resp2);
 							certi=resp2;
 							$("#certi").attr("disabled",false);
+							$("#certibtn").attr("disabled",false);
 						});
 					}
 				});
@@ -90,7 +90,7 @@
 					aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
 				<div class="input-group-append">
 					<button class="btn btn-outline-primary" type="button"
-						id="certibtn">인증번호 입력</button>
+						id="certibtn" disabled>인증번호 입력</button>
 				</div>
 			</div>
 		</div>

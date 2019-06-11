@@ -132,10 +132,11 @@
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 					<div class="row my">
+					<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>
 						<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
 							<div class="row lcd">
 					<!-- 	좌측메뉴 슬라이드 시작 -->
-								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 my">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 my">
 							      <div class="device-slider js-device-slider">
 							          <button type="button" class="device-slider__up js-device-slider-up"></button>
 							          <button type="button" class="device-slider__down js-device-slider-down"></button>
@@ -170,7 +171,7 @@
 							</div>	
 				<!-- 	좌측메뉴 슬라이드 끝 -->
 				<!-- 	우측메뉴 슬라이드 시작 -->
-						<div class="col-lg-9 col-md-6 col-sm-6 col-xs-6 my">
+						<div class="col-lg-9 col-md-6 col-sm-6 col-xs-12 my">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my menuList">
 								  <h1 class="h3 mt-4 mb-4">정답을 선택하면 다음 단계로 넘어갈 수 있습니다</h1>

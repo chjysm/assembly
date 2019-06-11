@@ -511,9 +511,9 @@
                         </div>
                         <div class="mt-4 text-center small">
                            <span class="mr-2"> <i
-                              class="fas fa-circle text-warning"></i> 남성
+                              class="fas fa-circle text-success"></i> 남성
                            </span> <span class="mr-2"> <i
-                              class="fas fa-circle text-success"></i> 여성
+                              class="fas fa-circle text-warning"></i> 여성
                            </span>
                         </div>
                      </div>
@@ -1056,11 +1056,11 @@
                         var myPieChart = new Chart(ctx, {
                             type : 'doughnut',
                             data : {
-                                labels : [ "남성", "여성" ],
+                                labels : [ "여성" , "남성" ],
                                 datasets : [ {
-                                    data : [ ${vdto.male}, ${vdto.female} ],
-                                    backgroundColor : [ '#1cc88a', '#f6c23e' ],
-                                    hoverBackgroundColor : [ '#2e59d9', '#2c9faf' ],
+                                    data : [ ${vdto.female},  ${vdto.male}],
+                                    backgroundColor : ['#f6c23e' , '#1cc88a' ],
+                                    hoverBackgroundColor : ['blue' , 'red'],
                                     hoverBorderColor : "rgba(234, 236, 244, 1)",
                                 } ],
                             },
@@ -1070,7 +1070,7 @@
                                     backgroundColor : "rgb(255,255,255)",
                                     bodyFontColor : "#858796",
                                     borderColor : '#dddfeb',
-                                    borderWidth : 1,
+                                    borderWidth : 2,
                                     xPadding : 15,
                                     yPadding : 15,
                                     displayColors : false,
