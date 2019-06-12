@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -228,8 +230,12 @@ h1+div {
 
 .content {
 	height: 450px;
-	overflow: auto;
+	
+	overflow:hidden;
+		word-wrap:break-word;
+	
 }
+
 
 .content div:nth-child(2) {
 	overflow-y: scroll;
@@ -252,7 +258,13 @@ h1+div {
 .writeBox>div {
 	padding: 0;
 }
-
+.comment {
+	
+	
+	overflow:hidden;
+		word-wrap:break-word;
+	
+}
 .commentBox {
 	position: relative;
 }

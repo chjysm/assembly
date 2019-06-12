@@ -211,7 +211,9 @@ h1+div {
 
 .content {
 	height: 450px;
-	overflow: auto;
+	overflow:hidden;
+		word-wrap:break-word;
+	
 }
 
 .content div:nth-child(2) {
@@ -235,7 +237,11 @@ h1+div {
 .writeBox>div {
 	padding: 0;
 }
-
+.comment {
+	overflow:hidden;
+		word-wrap:break-word;
+	
+}
 .commentBox {
 	position: relative;
 }
@@ -419,8 +425,8 @@ a:hover {
 						<div class="row  mb-5 alterBox" id="${list.seq }">
 							<div class="col-lg-11 col-md-9 col-sm-10 col-10">
 								<textarea name="alterTextarea" class="alterTextarea"
-									maxlength="200" id="alterTextarea${list.seq }" seq=${list.seq }
-									maxlength="200"></textarea>
+									maxlength="150" id="alterTextarea${list.seq }" seq=${list.seq }
+									></textarea>
 							</div>
 							<div class="col-lg-1 col-md-3 col-sm-2 col-2">
 								<input type="button" value="등록" seq=${list.seq }
@@ -483,7 +489,7 @@ a:hover {
 				<c:when test="${ type == 4 or email == content.email}">
 					<div class="col-lg-11 col-md-9 col-sm-10 col-10">
 						<textarea name="comment-writeBox" class="comment-writeBox"
-							maxlength="200"></textarea>
+							maxlength="150"></textarea>
 					</div>
 					<div class="col-lg-1 col-md-3 col-sm-2 col-2">
 						<input type="button" value="등록" class="commentBtn btn btn-primary">

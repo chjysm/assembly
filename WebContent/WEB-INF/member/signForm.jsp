@@ -218,6 +218,7 @@ select :hover {
                type : "get"
             }).done(function(resp2) {
                certi = resp2;
+               console.log(certi);
                $("#certi").attr("disabled", false);
                $("#certibtn").attr("disabled", false);
             });

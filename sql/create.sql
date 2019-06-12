@@ -5,7 +5,7 @@ visitCount number not null
 create table FreeBoard(
     seq number primary key,
     title varchar(100) not null,
-    content varchar(4000) not null,
+    content clob not null,
     writer varchar(50) not null,
     viewCount number not null,
     ip varchar(50) not null,
@@ -37,7 +37,7 @@ NOMAXVALUE;
 create table QuestionBoard(
     seq number primary key,
     title varchar(100) not null,
-    content varchar(4000) not null,
+    content clob not null,
     writer varchar(50) not null,
      viewCount number not null,
     ip varchar(50) not null,
@@ -74,7 +74,7 @@ NOMAXVALUE;
 create table NoticeBoard(
     seq number primary key,
     title varchar(100) not null,
-    content varchar(4000) not null,
+    content clob not null,
     writer varchar(50) not null,
      viewCount number not null,
     ip varchar(50) not null,

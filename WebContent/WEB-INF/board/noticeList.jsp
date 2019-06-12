@@ -280,7 +280,7 @@ a:hover {
 				<select name="option" id="option">
 					<option>글제목</option>
 					<option>작성자</option>
-				</select> <input type="text" class="searchWord" name="searchWord"> <input type="button"
+				</select> <input type="text" class="searchWord" name="searchWord" maxlength="30"> <input type="button"
 					class="searchBtn" value="검색">
 					</form>
 			</div>
