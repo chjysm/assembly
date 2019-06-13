@@ -58,7 +58,10 @@
 		.machine{width:100%; height:550px; background:url(Resources/img/mc_machine.png) no-repeat; background-size:cover;}
 		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px;}
 		.takeClick{cursor:pointer;}
- 		#popup{background:#fff; border:1px solid #ddd; border-radius:5px; box-shadow:0 0 15px; padding:50px 100px; position:fixed; top:10%; left:50%; margin-left:-500px; z-index:999;}
+ 		#popup{background:#fff; width:100%; border:1px solid #ddd; border-radius:5px; box-shadow:0 0 15px; padding:10px; position:fixed; top:15%; z-index:9999;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;}
 	</style>
 </head>
 <body>
@@ -72,10 +75,10 @@
 	</script>
 <!-- 스크립트 끝 -->
 <!-- popup -->
-	<div id="popup" class="d-none">
-		<h1 class="h4 mb-2">결제방법은 영상으로 대체합니다. <br> 영상을 주의깊게 시청 후 아래 버튼을 누르세요.</h1>
+	<div id="popup" class="d-none text-center">
+		<h1 class="h4 mt-2 mb-2">결제방법은 영상으로 대체합니다. <br> 영상을 주의깊게 시청 후 아래 버튼을 누르세요.</h1>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/xzGHzruXHbA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
-		<button id="close" class="d-flex justify-content-center btn btn-primary">이곳을 눌러 결제완료를 진행하세요</button>	
+		<button id="close" class="text-center btn btn-primary mb-3">이곳을 눌러 결제완료를 진행하세요</button>	
 	</div>
 	<!-- 고정메뉴 -->
 	<div class="container-fluid fixedMenu">
@@ -127,6 +130,7 @@
 						    <select id="speakerSelect" style="display:none;">
 						    </select>
 						</form>
+						<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 					<div class="row my">

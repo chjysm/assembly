@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="Resources/css/leftMenuSliderUp.css">
 <!--     scroll -->
 	<link rel="stylesheet" href="Resources/css/jquery.mCustomScrollbar.css"/>
 	<link rel="stylesheet" href="Resources/css/mCSB_buttons.png"/>
@@ -128,6 +127,7 @@
 						    <select id="speakerSelect" style="display:none;">
 						    </select>
 						</form>
+						<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 						<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>

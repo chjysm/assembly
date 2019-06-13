@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -43,7 +44,7 @@
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
 		.choice1{cursor:pointer; border-radius:10px;}
-		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:#0431B4; opacity:0.7;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; border-radius:50%; background:#0431B4; opacity:0.7; z-index:999;}
 .insta{ color: #f442b3; }
 .insta:hover{color: #ad2e7f;}
 .facebook{color: #1448e5;}
@@ -56,8 +57,9 @@
 .connect li{margin:0;}
 .h1, .h2, .h3, .h4{font-family: 'Nanum Gothic', sans-serif;}
 		.machine{width:100%; height:550px; background:url(Resources/img/mc_machine.png) no-repeat; background-size:cover;}
-		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px;}
+		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px; z-index:99;}
 		.takeClick{cursor:pointer;}
+		.device-slider__item img{width:100%;}
 	</style>
 </head>
 </head>
@@ -130,6 +132,7 @@
 						    <select id="speakerSelect" style="display:none;">
 						    </select>
 						</form>
+						<p class="mb-2" style="font-size:16px; color:red;">&nbsp;&nbsp;※표시되는 가격은 실제와는 관련이 없으며, 임의 책정한 결과입니다. 정확한 가격은 매장에서 확인하세요.</p>
 						<script src="Resources/js/speaker.js"></script>
 <!----------machine view start----------------------------------------------->
 					<div class="row my">
@@ -137,12 +140,7 @@
 						<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pl-4 pr-4">
 							<div class="row lcd" id="mcClick">
 					<!-- 	좌측메뉴 슬라이드 시작 -->
-								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 my">
-							      <div class="device-slider js-device-slider">
-							          <button type="button" class="device-slider__up js-device-slider-up"></button>
-							          <button type="button" class="device-slider__down js-device-slider-down"></button>
-							        <div class="device-slider__wrapper">
-							          <ul class="device-slider__list js-device-slider-list">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 my menuList">
 							            <li class="device-slider__item selected active">
 							               <img src="Resources/img/mcdonald1.jpg"/>
 							            </li>
@@ -164,11 +162,6 @@
 							            <li class="device-slider__item">
 							               <img src="Resources/img/mcdonald1.jpg"/>
 							            </li>
-							          </ul>
-							        </div>
-							      </div>
-							  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-							  <script  src="Resources/js/leftMenuSliderUp.js"></script> 
 							</div>	
 				<!-- 	좌측메뉴 슬라이드 끝 -->
 				<!-- 	우측메뉴 슬라이드 시작 -->

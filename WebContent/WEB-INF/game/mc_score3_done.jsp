@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="Resources/css/leftMenuSliderUp.css">
 <title>WUYAKO</title>
 	<style>
 	@import url('https://fonts.googleapis.com/css?family=Audiowide|Comfortaa|Gothic+A1|Nanum+Gothic|Nanum+Gothic+Coding|Noto+Sans+KR|Poiret+One|Syncopate&display=swap');		*{margin:0 auto;}
@@ -38,7 +37,7 @@
 		.myBanner img{paddingtop:10px; width:90%; height:250px; border-radius:50%;}
 		.footer{background:#b8daff;}
 /* 		(위쪽)수정하지 마세요 */
-		.lcd{min-height:700px; border:30px solid #000; border-bottom:55px solid #000; border-radius:5px; box-shadow:0 0 15px #ddd;}
+		.lcd{min-height:700px; min-width:600px; border:30px solid #000; border-bottom:55px solid #000; border-radius:5px; box-shadow:0 0 15px #ddd;}
 		.card{padding:10px 0px 0 0px; border:none;}
 		.cardImg{display:inline-block; margin:0 auto;}
 		.menuList{height:700px; overflow-y:auto;}
@@ -56,7 +55,6 @@
 .connect li{margin:0;}
 .h1, .h2, .h3, .h4{font-family: 'Nanum Gothic', sans-serif;}
 		.machine{width:100%; height:550px; background:url(Resources/img/mc_machine.png) no-repeat; background-size:cover;}
-		.bounce{-webkit-transform-origin: center bottom; transform-origin: center bottom; position:absolute; width:50px; height:50px;}
 		.takeClick{cursor:pointer;}
 	</style>
 </head>
@@ -146,7 +144,11 @@
 											<p id="menuEng">${desertResult.menuNameEng }</p>
 											<p class="h5" id="price">${desertResult.price }</p>
 										  </div>
+<<<<<<< HEAD
 									    <p class="h3 mt-4 mb-4">총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price+cafeResult.price+desertResult.price }원</p>
+=======
+									  <p class="h3 mt-4 mb-4">총 결제금액 : ${burgerResult.price+sideResult.price+beverageResult.price+cafeResult.price+desertResult.price }원</p>
+>>>>>>> 59fbec1aa6a5132b1bf5c523f70e65521451c19a
 									<hr>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
